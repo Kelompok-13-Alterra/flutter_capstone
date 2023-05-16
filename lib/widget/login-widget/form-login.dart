@@ -13,9 +13,9 @@ class FormLogin extends StatefulWidget {
 
 class _FormLoginState extends State<FormLogin> {
   final formKey = GlobalKey<FormState>();
-
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  bool isChecked = false;
 
   late bool newUser;
 
@@ -110,8 +110,12 @@ class _FormLoginState extends State<FormLogin> {
                 SizedBox(
                   width: 24,
                   child: Checkbox(
-                    value: false,
-                    onChanged: (value) {},
+                    value: isChecked,
+                    onChanged: (value) {
+                      setState(() {
+                        isChecked = value!;
+                      });
+                    },
                   ),
                 ),
                 const SizedBox(
