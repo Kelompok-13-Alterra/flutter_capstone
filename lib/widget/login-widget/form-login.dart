@@ -19,6 +19,14 @@ class _FormLoginState extends State<FormLogin> {
 
   late bool newUser;
 
+  bool _obscureText = true;
+
+  void _togglePasswordVisibility() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
+  }
+
   @override
   void dispose() {
     _emailController.dispose();
@@ -67,6 +75,7 @@ class _FormLoginState extends State<FormLogin> {
             // Input Password
             //========================================================
             TextFormField(
+              obscureText: _obscureText,
               controller: _passwordController,
               validator: (value) {
                 if (value != null && value.length < 5) {
@@ -80,6 +89,12 @@ class _FormLoginState extends State<FormLogin> {
                 hintStyle: GoogleFonts.roboto(
                   fontWeight: FontWeight.w400,
                   fontSize: 16,
+                ),
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    _obscureText ? Icons.visibility_off : Icons.visibility,
+                  ),
+                  onPressed: _togglePasswordVisibility,
                 ),
                 hintText: 'Input Password',
                 floatingLabelBehavior: FloatingLabelBehavior.always,
