@@ -1,29 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_capstone/theme.dart';
 import 'package:flutter_capstone/widgets/boarding_screen_widget.dart';
 
-import 'boarding_screen_second.dart';
-
-class BoardingScreen extends StatefulWidget {
-  const BoardingScreen({super.key});
+class BoardingScreenThird extends StatefulWidget {
+  const BoardingScreenThird({super.key});
 
   @override
-  State<BoardingScreen> createState() => _BoardingScreenState();
+  State<BoardingScreenThird> createState() => _BoardingScreenThirdState();
 }
 
-class _BoardingScreenState extends State<BoardingScreen> {
-  final double _currentPage = 0;
+class _BoardingScreenThirdState extends State<BoardingScreenThird> {
+  final double _currentPage = 2;
   final PageController _pageController = PageController(
-    initialPage: 0,
+    initialPage: 2,
   );
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(
-        const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
     return Scaffold(
-      extendBodyBehindAppBar: true,
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
@@ -65,7 +59,7 @@ class _BoardingScreenState extends State<BoardingScreen> {
                             width: 48,
                             height: 8,
                             child: Image.asset(
-                                'assets/progress_indicator/indicator1.png'),
+                                'assets/progress_indicator/indicator3.png'),
                           ),
                           TextButton(
                             child: Text(
@@ -79,16 +73,16 @@ class _BoardingScreenState extends State<BoardingScreen> {
                           )
                         ],
                       ),
-                      const Padding(padding: EdgeInsets.only(top: 26)),
+                      const Padding(padding: EdgeInsets.only(top: 20)),
                       Text(
-                        'Pesan Kantor atau Co-Working Space menjadi Mudah',
+                        'Daftar Secara Individu atau Wakilkan Perusahaan',
                         style: blackTextStyle.copyWith(
                             fontWeight: semiBold, fontSize: 16),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 8.0, bottom: 16.0),
                         child: Text(
-                          'Kamu ga perlu repot ke tempatnya untuk daftarnya! Daftar di sini dan semuanya beres',
+                          'Kamu bisa booking atau daftar secara individu atau perusahana yang kamu wakilkan untuk pesan office atau co-wroking space',
                           style: greyTextStyle.copyWith(
                               fontWeight: regular, fontSize: 12),
                         ),
@@ -101,13 +95,7 @@ class _BoardingScreenState extends State<BoardingScreen> {
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(100)),
                                 backgroundColor: kPrimaryColor),
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const BoardingScreenSecond()));
-                            },
+                            onPressed: () {},
                             child: const Text('Next')),
                       )
                     ]),

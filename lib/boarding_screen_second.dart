@@ -1,42 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_capstone/theme.dart';
 import 'package:flutter_capstone/widgets/boarding_screen_widget.dart';
 
-import 'boarding_screen_second.dart';
+import 'boarding_screen_third.dart';
 
-class BoardingScreen extends StatefulWidget {
-  const BoardingScreen({super.key});
+class BoardingScreenSecond extends StatefulWidget {
+  const BoardingScreenSecond({super.key});
 
   @override
-  State<BoardingScreen> createState() => _BoardingScreenState();
+  State<BoardingScreenSecond> createState() => _BoardingScreenSecondState();
 }
 
-class _BoardingScreenState extends State<BoardingScreen> {
-  final double _currentPage = 0;
+class _BoardingScreenSecondState extends State<BoardingScreenSecond> {
+  final double _currentPage = 1;
   final PageController _pageController = PageController(
-    initialPage: 0,
+    initialPage: 1,
   );
-
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(
-        const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
     return Scaffold(
-      extendBodyBehindAppBar: true,
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Color(0xFF85B6FF),
-              Color(0xFF1E90FF),
-              Color(0xFF0031CC),
-            ],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
+          gradient: LinearGradient(colors: [
+            Color(0xFF85B6FF),
+            Color(0xFF1E90FF),
+            Color(0xFF0031CC),
+          ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
         ),
         child: Column(
           children: [
@@ -65,7 +56,7 @@ class _BoardingScreenState extends State<BoardingScreen> {
                             width: 48,
                             height: 8,
                             child: Image.asset(
-                                'assets/progress_indicator/indicator1.png'),
+                                'assets/progress_indicator/indicator2.png'),
                           ),
                           TextButton(
                             child: Text(
@@ -81,35 +72,42 @@ class _BoardingScreenState extends State<BoardingScreen> {
                       ),
                       const Padding(padding: EdgeInsets.only(top: 26)),
                       Text(
-                        'Pesan Kantor atau Co-Working Space menjadi Mudah',
+                        'Ga Harus Pake Credit Card',
                         style: blackTextStyle.copyWith(
-                            fontWeight: semiBold, fontSize: 16),
+                          fontWeight: semiBold,
+                          fontSize: 16,
+                        ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 8.0, bottom: 16.0),
                         child: Text(
-                          'Kamu ga perlu repot ke tempatnya untuk daftarnya! Daftar di sini dan semuanya beres',
+                          'Booking ga perlu cartu credit, kamu bisa menggunakan metode pembayaran seperti e-wallet dan virtual account',
                           style: greyTextStyle.copyWith(
-                              fontWeight: regular, fontSize: 12),
+                            fontWeight: regular,
+                            fontSize: 12,
+                          ),
                         ),
                       ),
                       SizedBox(
                         width: double.infinity,
                         height: 50,
                         child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(100)),
-                                backgroundColor: kPrimaryColor),
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const BoardingScreenSecond()));
-                            },
-                            child: const Text('Next')),
-                      )
+                          style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(100),
+                            ),
+                            backgroundColor: kPrimaryColor,
+                          ),
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const BoardingScreenThird()));
+                          },
+                          child: const Text('Next'),
+                        ),
+                      ),
                     ]),
               ),
             )
