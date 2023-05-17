@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/screens/login-screen.dart';
+import 'package:sign_up/screen/signup_screen.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +17,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: Login(),
+      home: Signup(),
     );
   }
 }
