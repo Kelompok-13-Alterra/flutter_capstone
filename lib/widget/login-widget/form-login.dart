@@ -13,8 +13,8 @@ class FormLogin extends StatefulWidget {
 
 class _FormLoginState extends State<FormLogin> {
   final formKey = GlobalKey<FormState>();
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
   bool isChecked = false;
 
   late bool newUser;
@@ -25,6 +25,16 @@ class _FormLoginState extends State<FormLogin> {
     setState(() {
       _obscureText = !_obscureText;
     });
+  }
+
+  void _submitLogin() {
+    if (formKey.currentState!.validate()) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Selamat ${_emailController.text} berhasil login'),
+        ),
+      );
+    }
   }
 
   @override
@@ -51,13 +61,13 @@ class _FormLoginState extends State<FormLogin> {
             // Input Email
             //========================================================
             TextFormField(
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               controller: _emailController,
               validator: (email) {
-                // 5 install package email_validator
                 if (email != null && !EmailValidator.validate(email)) {
                   return 'Enter a valid email';
                 } else {
-                  return null; //form is valid
+                  return null;
                 }
               },
               decoration: InputDecoration(
@@ -75,13 +85,14 @@ class _FormLoginState extends State<FormLogin> {
             // Input Password
             //========================================================
             TextFormField(
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               obscureText: _obscureText,
               controller: _passwordController,
               validator: (value) {
                 if (value != null && value.length < 5) {
                   return 'Enter min. 5 characters';
                 } else {
-                  return null; //form is valid
+                  return null;
                 }
               },
               decoration: InputDecoration(
@@ -150,7 +161,7 @@ class _FormLoginState extends State<FormLogin> {
                       ),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: _submitLogin,
                   child: Text(
                     'Login',
                     style: GoogleFonts.roboto(),

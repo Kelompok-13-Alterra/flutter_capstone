@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sign_up/widget-signup/text_or.dart';
+import 'package:flutter_capstone/widget/login-widget/text-or.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:email_validator/email_validator.dart';
@@ -17,9 +17,28 @@ class _FormSignupState extends State<FormSignup> {
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  final _confirmPasswordController=TextEditingController();
+  final _confirmPasswordController = TextEditingController();
+  bool isChecked = false;
 
   late bool newUser;
+
+  bool _obscureText = true;
+
+  void _togglePasswordVisibility() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
+  }
+
+  void _submitSignup() {
+    if (formKey.currentState!.validate()) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Selamat ${_nameController.text} berhasil login'),
+        ),
+      );
+    }
+  }
 
   @override
   void dispose() {
@@ -42,7 +61,6 @@ class _FormSignupState extends State<FormSignup> {
         autovalidateMode: AutovalidateMode.onUserInteraction,
         child: Column(
           children: [
-           
             //form name
 
             TextFormField(
@@ -66,7 +84,7 @@ class _FormSignupState extends State<FormSignup> {
               ),
             ),
             const SizedBox(height: 20.0),
-           // Form Login
+            // Form Login
             //========================================================
             // Input Email
             //========================================================
@@ -109,6 +127,12 @@ class _FormSignupState extends State<FormSignup> {
                   fontWeight: FontWeight.w400,
                   fontSize: 16,
                 ),
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    _obscureText ? Icons.visibility_off : Icons.visibility,
+                  ),
+                  onPressed: _togglePasswordVisibility,
+                ),
                 hintText: 'Input Password',
                 floatingLabelBehavior: FloatingLabelBehavior.always,
                 border: OutlineInputBorder(),
@@ -116,8 +140,8 @@ class _FormSignupState extends State<FormSignup> {
             ),
             const SizedBox(height: 20.0),
 
-          //confirmpassword
-          TextFormField(
+            //confirmpassword
+            TextFormField(
               controller: _confirmPasswordController,
               validator: (value) {
                 if (value != null && value.length < 5) {
@@ -132,13 +156,18 @@ class _FormSignupState extends State<FormSignup> {
                   fontWeight: FontWeight.w400,
                   fontSize: 16,
                 ),
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    _obscureText ? Icons.visibility_off : Icons.visibility,
+                  ),
+                  onPressed: _togglePasswordVisibility,
+                ),
                 hintText: 'Input Password Again',
                 floatingLabelBehavior: FloatingLabelBehavior.always,
                 border: OutlineInputBorder(),
               ),
             ),
             const SizedBox(height: 20.0),
-
 
             // CheckBox remember me
             //========================================================
@@ -147,8 +176,12 @@ class _FormSignupState extends State<FormSignup> {
                 SizedBox(
                   width: 24,
                   child: Checkbox(
-                    value: false,
-                    onChanged: (value) {},
+                    value: isChecked,
+                    onChanged: (value) {
+                      setState(() {
+                        isChecked = value!;
+                      });
+                    },
                   ),
                 ),
                 const SizedBox(
@@ -183,7 +216,7 @@ class _FormSignupState extends State<FormSignup> {
                       ),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: _submitSignup,
                   child: Text(
                     'Sign Up',
                     style: GoogleFonts.roboto(),
@@ -195,7 +228,7 @@ class _FormSignupState extends State<FormSignup> {
 
             // Style untuk text OR
             //========================================================
-            TextOr(),
+            const TextOr(),
 
             // Button Login
             //========================================================

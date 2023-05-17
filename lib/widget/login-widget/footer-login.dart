@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/gestures.dart';
+import 'package:flutter_capstone/screens/signup_screen.dart';
 
 class FooterLogin extends StatelessWidget {
   const FooterLogin({super.key});
@@ -18,7 +19,11 @@ class FooterLogin extends StatelessWidget {
             text: 'Register here',
             style: GoogleFonts.roboto(
                 color: Color(0xFF0074E5), fontWeight: FontWeight.w600),
-            recognizer: TapGestureRecognizer()..onTap = () {},
+            recognizer: TapGestureRecognizer()
+              ..onTap = () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => Signup()));
+              },
           ),
         ],
       ),

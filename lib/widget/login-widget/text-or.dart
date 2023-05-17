@@ -11,10 +11,10 @@ class TextOr extends StatelessWidget {
         Expanded(
           child: Container(
             padding: EdgeInsets.symmetric(horizontal: 10),
-            width: double.infinity, // Atur lebar garis sesuai kebutuhan
+            width: double.infinity,
             child: const Divider(
               color: Color(0xFF77777A),
-              thickness: 1.0, // Atur ketebalan garis sesuai kebutuhan
+              thickness: 1.0,
             ),
           ),
         ),
@@ -27,10 +27,10 @@ class TextOr extends StatelessWidget {
         Expanded(
           child: Container(
             padding: EdgeInsets.symmetric(horizontal: 10),
-            width: double.infinity, // Atur lebar garis sesuai kebutuhan
+            width: double.infinity,
             child: const Divider(
               color: Color(0xFF77777A),
-              thickness: 1.0, // Atur ketebalan garis sesuai kebutuhan
+              thickness: 1.0,
             ),
           ),
         ),

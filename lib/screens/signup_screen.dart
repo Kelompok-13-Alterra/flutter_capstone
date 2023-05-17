@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sign_up/widget-signup/form_signup.dart';
-import 'package:sign_up/widget-signup/header_signup.dart';
+import 'package:flutter_capstone/widget/signup-widget/form_signup.dart';
+import 'package:flutter_capstone/widget/signup-widget/header_signup.dart';
 
 class Signup extends StatelessWidget {
   const Signup({super.key});
