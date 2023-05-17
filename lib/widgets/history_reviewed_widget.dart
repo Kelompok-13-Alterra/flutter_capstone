@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone_order_tab_bar/theme.dart';
+import 'package:flutter_capstone/theme.dart';
 
 class HistoryReviewed extends StatelessWidget {
   const HistoryReviewed({super.key});

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone_order_tab_bar/widgets/booked_widget.dart';
-import 'package:flutter_capstone_order_tab_bar/widgets/history_ordered_widget.dart';
+import 'package:flutter_capstone/widgets/booked_widget.dart';
+import 'package:flutter_capstone/widgets/history_ordered_widget.dart';
 import '../theme.dart';
 
 class OrderTab extends StatefulWidget {
