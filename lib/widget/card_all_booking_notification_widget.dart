@@ -1,7 +1,7 @@
 //AUTHOR : ULFA LADAYYA
 //KELAS C FLUTTER
 import 'package:flutter/material.dart';
-import 'package:notification_feature/style/text_style.dart';
+import 'package:flutter_capstone/style/text_style.dart';
 
 Widget cardAllBookingNotificationWidget(BuildContext context) {
   return Column(

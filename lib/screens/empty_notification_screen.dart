@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:notification_feature/style/text_style.dart';
+import 'package:flutter_capstone/style/text_style.dart';
 
 class EmptyNotificationScreen extends StatelessWidget {
   const EmptyNotificationScreen({super.key});

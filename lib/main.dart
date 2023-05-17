@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:notification_feature/splash_screen.dart';
+import 'package:flutter_capstone/screens/notification_screen.dart';
 
 void main() {
   runApp(const MyApp());
