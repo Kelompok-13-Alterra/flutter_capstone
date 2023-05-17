@@ -8,20 +8,24 @@ Color kPrimaryColor = const Color(0xff005DB9);
 Color kBlackColor = const Color(0xff1E1F23);
 Color kWhiteColor = const Color(0xffFFFFFF);
 Color kGreyColor = const Color(0xff5E5E62);
+Color kRedColor = const Color(0xffDE3730);
+Color kGreenColor = const Color(0xff20E500);
+Color kYellowColor = const Color(0xffF5EF5A);
+Color kPurpleColor = const Color(0xff8567BD);
 
-TextStyle primaryTextStyle = GoogleFonts.poppins(
+TextStyle primaryTextStyle = GoogleFonts.roboto(
   color: kPrimaryColor,
 );
 
-TextStyle blackTextStyle = GoogleFonts.poppins(
+TextStyle blackTextStyle = GoogleFonts.roboto(
   color: kBlackColor,
 );
 
-TextStyle whiteTextStyle = GoogleFonts.poppins(
+TextStyle whiteTextStyle = GoogleFonts.roboto(
   color: kWhiteColor,
 );
 
-TextStyle greyTextStyle = GoogleFonts.poppins(
+TextStyle greyTextStyle = GoogleFonts.roboto(
   color: kGreyColor,
 );
 
