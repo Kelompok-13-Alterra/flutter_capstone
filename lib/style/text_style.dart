@@ -115,7 +115,7 @@ class IdBooking {
   );
 }
 
-class EmptyDesc {
+class EmptyDescription {
   TextStyle text15 = GoogleFonts.roboto(
     fontSize: 16,
     fontWeight: FontWeight.w400,

@@ -58,7 +58,7 @@ class EmptyNotificationScreen extends StatelessWidget {
             ),
             Text(
               "Masih Kosong Nih",
-              style: EmptyDesc().text15,
+              style: EmptyDescription().text15,
             ),
             const SizedBox(
               height: 8,
