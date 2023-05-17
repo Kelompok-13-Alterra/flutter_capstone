@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_capstone/theme.dart';
-import 'package:flutter_capstone/widgets/boarding_screen_widget.dart';
+import 'package:notification_feature/theme.dart';
+import 'package:notification_feature/widgets/boarding_screen_widget.dart';
 
 import 'boarding_screen_second.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/theme.dart';
-import 'package:flutter_capstone/widgets/boarding_screen_widget.dart';
+import 'package:notification_feature/theme.dart';
+import 'package:notification_feature/widgets/boarding_screen_widget.dart';
 
 class BoardingScreenThird extends StatefulWidget {
   const BoardingScreenThird({super.key});
