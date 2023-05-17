@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone_order_tab_bar/screens/order_tab.dart';
+import 'package:flutter_capstone/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +16,8 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: OrderTab(),
+      debugShowCheckedModeBanner: false,
+      home: SplashScreen(),
     );
   }
 }
