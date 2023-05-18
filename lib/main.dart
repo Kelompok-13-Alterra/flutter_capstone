@@ -1,23 +1,29 @@
+//AUTHOR : ULFA LADAYYA
+//KELAS C FLUTTER
 import 'package:flutter/material.dart';
-import 'splash_screen.dart';
+import 'package:flutter_capstone/screens/image_picker_rating_screen.dart';
+
 
 void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+      title: 'Office Booking (Capstone Project Kel 13)',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      initialRoute: '/',
+      routes: {
+
+        '/': (context) => const ImagePickerRatingScreen(),
+
+      },
     );
   }
 }
