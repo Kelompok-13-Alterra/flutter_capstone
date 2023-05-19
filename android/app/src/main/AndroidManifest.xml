@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.flutter_capstone_order_tab_bar">
+    package="com.example.flutter_capstone">
    <application
-        android:label="flutter_capstone_order_tab_bar"
+        android:label="flutter_capstone"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
