@@ -1,8 +1,5 @@
-//AUTHOR : ULFA LADAYYA
-//KELAS C FLUTTER
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/screens/image_picker_rating_screen.dart';
-
+import 'screens/review_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,9 +17,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-
-        '/': (context) => const ImagePickerRatingScreen(),
-
+        '/': (context) => const ReviewPage(),
       },
     );
   }
