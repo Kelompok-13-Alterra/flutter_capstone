@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/screens/homescreen/home-screen.dart';
 import 'package:flutter_capstone/screens/login/login_screen.dart';
+import 'package:flutter_capstone/screens/profile/circle_avatar_home_screen.dart';
+import 'package:flutter_capstone/screens/profile/profile_screen.dart';
 import 'package:flutter_capstone/screens/sign_up/sign_up_screen.dart';
 import 'package:flutter_capstone/screens/splash/boarding_screen.dart';
 import 'package:flutter_capstone/screens/splash/boarding_screen_second.dart';
@@ -30,6 +32,9 @@ class MyApp extends StatelessWidget {
         '/boarding-second': (context) => const BoardingScreenSecond(),
         '/boarding-third': (context) => const BoardingScreenThird(),
         '/home-screen': (context) => const HomeScreen(),
+        '/circle-avatar-home-screen': (context) =>
+            const CircleAvatarHomeScreen(),
+        '/profile': (context) => const ProfileScreen(),
       },
     );
   }

@@ -10,7 +10,7 @@ class TextOr extends StatelessWidget {
       children: [
         Expanded(
           child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             width: double.infinity,
             child: const Divider(
               color: Color(0xFF77777A),
@@ -21,12 +21,12 @@ class TextOr extends StatelessWidget {
         Text(
           "OR",
           style: GoogleFonts.roboto(
-            color: Color(0xFF77777A),
+            color: const Color(0xFF77777A),
           ),
         ),
         Expanded(
           child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             width: double.infinity,
             child: const Divider(
               color: Color(0xFF77777A),

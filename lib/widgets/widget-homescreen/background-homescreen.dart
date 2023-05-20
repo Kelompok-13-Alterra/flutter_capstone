@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -58,7 +60,7 @@ class _BackgroundHomeScreenState extends State<BackgroundHomeScreen> {
             //Item di dalam
             //==========================================================
             Container(
-              padding: EdgeInsets.fromLTRB(16, 45, 16, 0),
+              padding: const EdgeInsets.fromLTRB(16, 45, 16, 0),
               child: Column(
                 children: [
                   //Akun selamat datang
@@ -75,7 +77,7 @@ class _BackgroundHomeScreenState extends State<BackgroundHomeScreen> {
                             style: GoogleFonts.roboto(
                                 fontWeight: FontWeight.w600,
                                 fontSize: 16,
-                                color: Color(0xFFFAF9FD)),
+                                color: const Color(0xFFFAF9FD)),
                           ),
                           const SizedBox(
                             height: 10,
@@ -85,7 +87,7 @@ class _BackgroundHomeScreenState extends State<BackgroundHomeScreen> {
                             style: GoogleFonts.roboto(
                               fontWeight: FontWeight.w400,
                               fontSize: 12,
-                              color: Color(0xFFFAF9FD),
+                              color: const Color(0xFFFAF9FD),
                             ),
                           ),
                         ],
@@ -161,7 +163,7 @@ class _BackgroundHomeScreenState extends State<BackgroundHomeScreen> {
                       ),
                     ),
                     child: Padding(
-                      padding: EdgeInsets.all(20),
+                      padding: const EdgeInsets.all(20),
                       child: Column(
                         children: [
                           GestureDetector(

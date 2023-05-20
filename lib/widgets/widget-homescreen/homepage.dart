@@ -71,12 +71,12 @@ class _HomepageState extends State<Homepage> {
                                     fontSize: 14,
                                     color: _selectedFilterIndex == index
                                         ? Colors.white
-                                        : Color(0xFF0074E5),
+                                        : const Color(0xFF0074E5),
                                   ),
                                 ),
                               ),
                               selected: _selectedFilterIndex == index,
-                              selectedColor: Color(0xFF0074E5),
+                              selectedColor: const Color(0xFF0074E5),
                               onSelected: (bool selected) {
                                 setState(
                                   () {
@@ -137,7 +137,7 @@ class _HomepageState extends State<Homepage> {
                                 ),
                                 ElevatedButton(
                                     style: ElevatedButton.styleFrom(
-                                      backgroundColor: Color(0xFF20E500),
+                                      backgroundColor: const Color(0xFF20E500),
                                       elevation: 0,
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(30),

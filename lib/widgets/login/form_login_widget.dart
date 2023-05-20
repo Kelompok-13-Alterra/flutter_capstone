@@ -173,7 +173,7 @@ class _FormLoginState extends State<FormLogin> {
 
             // Style untuk text OR
             //========================================================
-            TextOr(),
+            const TextOr(),
 
             // Button Login
             //========================================================
@@ -188,7 +188,8 @@ class _FormLoginState extends State<FormLogin> {
                     backgroundColor: MaterialStateProperty.all(Colors.white),
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
-                        side: BorderSide(width: 1, color: Color(0xFF292A2D)),
+                        side: const BorderSide(
+                            width: 1, color: Color(0xFF292A2D)),
                         borderRadius:
                             BorderRadius.circular(100), // Bentuk border
                       ),
@@ -204,7 +205,8 @@ class _FormLoginState extends State<FormLogin> {
                       ),
                       Text(
                         'Sign In With Google',
-                        style: GoogleFonts.roboto(color: Color(0xFF292A2D)),
+                        style:
+                            GoogleFonts.roboto(color: const Color(0xFF292A2D)),
                       ),
                     ],
                   ),
