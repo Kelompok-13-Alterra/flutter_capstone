@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/widget/homepage.dart';
+import 'package:flutter_capstone/widgets/widget-homescreen/homepage.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -41,6 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: null,
       body: _children[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         elevation: 0,
