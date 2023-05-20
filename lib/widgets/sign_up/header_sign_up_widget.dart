@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_capstone/style/text_style.dart';
 
 class HeaderLogin extends StatelessWidget {
   const HeaderLogin({super.key});
@@ -13,20 +13,34 @@ class HeaderLogin extends StatelessWidget {
         SizedBox(
           width: MediaQuery.of(context).size.width,
         ),
-        Text(
-          'Sign Up',
-          style: GoogleFonts.roboto(
-            fontSize: 22.0,
-            fontWeight: FontWeight.w400,
+        Center(
+          child: SizedBox(
+            width: 100,
+            height: 42.67,
+            child: Image.asset('assets/logo_colour.png'),
           ),
         ),
-        const SizedBox(height: 10.0),
+        const Padding(
+          padding: EdgeInsets.only(
+            top: 24,
+          ),
+        ),
+        Text(
+          'Sign Up',
+          style: blackTextStyle.copyWith(
+            fontSize: 22.0,
+            fontWeight: regular,
+          ),
+        ),
+        const SizedBox(
+          height: 10,
+        ),
         Text(
           'Silahkan isi data diri anda untuk daftar akun',
-          style: GoogleFonts.roboto(
-              fontSize: 12.0,
-              color: Color(0xFF98A2B3),
-              fontWeight: FontWeight.w400),
+          style: greyTextStyle.copyWith(
+            fontSize: 12.0,
+            fontWeight: regular,
+          ),
         ),
         const SizedBox(height: 30.0),
       ],

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/theme.dart';
+import 'package:flutter_capstone/style/text_style.dart';
 
 class BookedWidget extends StatelessWidget {
   const BookedWidget({super.key});

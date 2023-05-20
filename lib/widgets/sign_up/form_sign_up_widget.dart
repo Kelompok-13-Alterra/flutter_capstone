@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/widget/login-widget/text-or.dart';
+import 'package:flutter_capstone/widgets/login/text_or_widget.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:email_validator/email_validator.dart';
 
-class FormLogin extends StatefulWidget {
-  const FormLogin({super.key});
+class FormSignup extends StatefulWidget {
+  const FormSignup({super.key});
 
   @override
-  State<FormLogin> createState() => _FormLoginState();
+  State<FormSignup> createState() => _FormSignupState();
 }
 
-class _FormLoginState extends State<FormLogin> {
+class _FormSignupState extends State<FormSignup> {
   final formKey = GlobalKey<FormState>();
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+
+  final _nameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
   bool isChecked = false;
 
   late bool newUser;
@@ -27,20 +30,23 @@ class _FormLoginState extends State<FormLogin> {
     });
   }
 
-  void _submitLogin() {
+  void _submitSignup() {
     if (formKey.currentState!.validate()) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Selamat ${_emailController.text} berhasil login'),
+          content: Text('Selamat ${_nameController.text} berhasil login'),
         ),
       );
+      Navigator.pushNamed(context, '/');
     }
   }
 
   @override
   void dispose() {
+    _nameController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
+    _confirmPasswordController.dispose();
     super.dispose();
   }
 
@@ -56,18 +62,41 @@ class _FormLoginState extends State<FormLogin> {
         autovalidateMode: AutovalidateMode.onUserInteraction,
         child: Column(
           children: [
+            //form name
+
+            TextFormField(
+              controller: _nameController,
+              validator: (value) {
+                if (value != null && value.length < 5) {
+                  return 'Enter min. 4 characters';
+                } else {
+                  return null; //form is valid
+                }
+              },
+              decoration: InputDecoration(
+                labelText: 'Nama',
+                hintStyle: GoogleFonts.roboto(
+                  fontWeight: FontWeight.w400,
+                  fontSize: 16,
+                ),
+                hintText: 'Input Full Name',
+                floatingLabelBehavior: FloatingLabelBehavior.always,
+                border: OutlineInputBorder(),
+              ),
+            ),
+            const SizedBox(height: 20.0),
             // Form Login
             //========================================================
             // Input Email
             //========================================================
             TextFormField(
-              autovalidateMode: AutovalidateMode.onUserInteraction,
               controller: _emailController,
               validator: (email) {
+                // 5 install package email_validator
                 if (email != null && !EmailValidator.validate(email)) {
                   return 'Enter a valid email';
                 } else {
-                  return null;
+                  return null; //form is valid
                 }
               },
               decoration: InputDecoration(
@@ -85,14 +114,12 @@ class _FormLoginState extends State<FormLogin> {
             // Input Password
             //========================================================
             TextFormField(
-              autovalidateMode: AutovalidateMode.onUserInteraction,
-              obscureText: _obscureText,
               controller: _passwordController,
               validator: (value) {
                 if (value != null && value.length < 5) {
                   return 'Enter min. 5 characters';
                 } else {
-                  return null;
+                  return null; //form is valid
                 }
               },
               decoration: InputDecoration(
@@ -108,6 +135,35 @@ class _FormLoginState extends State<FormLogin> {
                   onPressed: _togglePasswordVisibility,
                 ),
                 hintText: 'Input Password',
+                floatingLabelBehavior: FloatingLabelBehavior.always,
+                border: OutlineInputBorder(),
+              ),
+            ),
+            const SizedBox(height: 20.0),
+
+            //confirmpassword
+            TextFormField(
+              controller: _confirmPasswordController,
+              validator: (value) {
+                if (value != null && value.length < 5) {
+                  return 'Enter min. 5 characters';
+                } else {
+                  return null; //form is valid
+                }
+              },
+              decoration: InputDecoration(
+                labelText: 'Confirm Password',
+                hintStyle: GoogleFonts.roboto(
+                  fontWeight: FontWeight.w400,
+                  fontSize: 16,
+                ),
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    _obscureText ? Icons.visibility_off : Icons.visibility,
+                  ),
+                  onPressed: _togglePasswordVisibility,
+                ),
+                hintText: 'Input Password Again',
                 floatingLabelBehavior: FloatingLabelBehavior.always,
                 border: OutlineInputBorder(),
               ),
@@ -133,7 +189,7 @@ class _FormLoginState extends State<FormLogin> {
                   width: 7,
                 ),
                 Text(
-                  'Remember me',
+                  'I Agree with Terms and Condition',
                   style: GoogleFonts.roboto(
                     fontWeight: FontWeight.w500,
                     fontSize: 14,
@@ -161,9 +217,11 @@ class _FormLoginState extends State<FormLogin> {
                       ),
                     ),
                   ),
-                  onPressed: _submitLogin,
+                  onPressed: () {
+                    _submitSignup;
+                  },
                   child: Text(
-                    'Login',
+                    'Sign Up',
                     style: GoogleFonts.roboto(),
                   ),
                 ),
@@ -173,7 +231,7 @@ class _FormLoginState extends State<FormLogin> {
 
             // Style untuk text OR
             //========================================================
-            TextOr(),
+            const TextOr(),
 
             // Button Login
             //========================================================
@@ -188,13 +246,16 @@ class _FormLoginState extends State<FormLogin> {
                     backgroundColor: MaterialStateProperty.all(Colors.white),
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
-                        side: BorderSide(width: 1, color: Color(0xFF292A2D)),
+                        side: const BorderSide(
+                            width: 1, color: Color(0xFF292A2D)),
                         borderRadius:
                             BorderRadius.circular(100), // Bentuk border
                       ),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/home');
+                  },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -203,8 +264,9 @@ class _FormLoginState extends State<FormLogin> {
                         width: 8,
                       ),
                       Text(
-                        'Sign In With Google',
-                        style: GoogleFonts.roboto(color: Color(0xFF292A2D)),
+                        'Continue With Google',
+                        style:
+                            GoogleFonts.roboto(color: const Color(0xFF292A2D)),
                       ),
                     ],
                   ),

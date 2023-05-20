@@ -26,21 +26,25 @@ Widget cardBookingNotificationWidget(BuildContext context) {
                     RichText(
                       text: TextSpan(
                         text: "Booking Office dengan No",
-                        style: DescBooking().text13,
+                        style: blackTextStyle.copyWith(
+                            fontSize: 14, fontWeight: regular),
                       ),
                     ),
                     RichText(
                       text: TextSpan(
                         text: "Pesanan ",
-                        style: DescBooking().text13,
+                        style: blackTextStyle.copyWith(
+                            fontSize: 14, fontWeight: regular),
                         children: <TextSpan>[
                           TextSpan(
                             text: "#ID20230506 ",
-                            style: IdBooking().text14,
+                            style: blackTextStyle.copyWith(
+                                fontSize: 14, fontWeight: bold),
                           ),
                           TextSpan(
                             text: "Berhasil",
-                            style: DescBooking().text13,
+                            style: blackTextStyle.copyWith(
+                                fontSize: 14, fontWeight: regular),
                           ),
                         ],
                       ),
@@ -88,11 +92,13 @@ Widget cardBookingNotificationWidget(BuildContext context) {
                     RichText(
                       text: TextSpan(
                         text: "Bookingan kamu ",
-                        style: DescBooking().text13,
+                        style: blackTextStyle.copyWith(
+                            fontSize: 14, fontWeight: regular),
                         children: <TextSpan>[
                           TextSpan(
                             text: "sedang diproses",
-                            style: IdBooking().text14,
+                            style: blackTextStyle.copyWith(
+                                fontSize: 14, fontWeight: bold),
                           ),
                         ],
                       ),

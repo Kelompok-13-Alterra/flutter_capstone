@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_capstone/theme.dart';
-import 'package:flutter_capstone/widgets/boarding_screen_widget.dart';
-
-import 'boarding_screen_second.dart';
+import 'package:flutter_capstone/style/text_style.dart';
+import 'package:flutter_capstone/widgets/boarding_widget.dart';
 
 class BoardingScreen extends StatefulWidget {
   const BoardingScreen({super.key});
@@ -41,7 +39,7 @@ class _BoardingScreenState extends State<BoardingScreen> {
         child: Column(
           children: [
             // Using BoardingScreenWidget instead of PageView.builder directly
-            BoardingScreenWidget(
+            BoardingWidget(
               currentPage: _currentPage,
               pageController: _pageController,
             ),
@@ -102,11 +100,7 @@ class _BoardingScreenState extends State<BoardingScreen> {
                                     borderRadius: BorderRadius.circular(100)),
                                 backgroundColor: kPrimaryColor),
                             onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const BoardingScreenSecond()));
+                              Navigator.pushNamed(context, '/boarding-second');
                             },
                             child: const Text('Next')),
                       )

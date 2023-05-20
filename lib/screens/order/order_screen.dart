@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_capstone/widgets/booked_widget.dart';
 import 'package:flutter_capstone/widgets/history_ordered_widget.dart';
-import '../theme.dart';
 
 class OrderTab extends StatefulWidget {
   const OrderTab({super.key});

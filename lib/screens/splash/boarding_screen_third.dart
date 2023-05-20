@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/theme.dart';
-import 'package:flutter_capstone/widgets/boarding_screen_widget.dart';
+import 'package:flutter_capstone/style/text_style.dart';
+import 'package:flutter_capstone/widgets/boarding_widget.dart';
 
 class BoardingScreenThird extends StatefulWidget {
   const BoardingScreenThird({super.key});
@@ -35,7 +35,7 @@ class _BoardingScreenThirdState extends State<BoardingScreenThird> {
         child: Column(
           children: [
             // Using BoardingScreenWidget instead of PageView.builder directly
-            BoardingScreenWidget(
+            BoardingWidget(
               currentPage: _currentPage,
               pageController: _pageController,
             ),
@@ -95,7 +95,9 @@ class _BoardingScreenThirdState extends State<BoardingScreenThird> {
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(100)),
                                 backgroundColor: kPrimaryColor),
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pushNamed(context, '/login');
+                            },
                             child: const Text('Next')),
                       )
                     ]),

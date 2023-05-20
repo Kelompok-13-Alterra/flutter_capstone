@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/gestures.dart';
-import 'package:flutter_capstone/screens/signup_screen.dart';
+import 'package:flutter_capstone/screens/sign_up/sign_up_screen.dart';
 
 class FooterLogin extends StatelessWidget {
   const FooterLogin({super.key});
@@ -21,8 +21,7 @@ class FooterLogin extends StatelessWidget {
                 color: Color(0xFF0074E5), fontWeight: FontWeight.w600),
             recognizer: TapGestureRecognizer()
               ..onTap = () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => Signup()));
+                Navigator.pushNamed(context, '/sign-up');
               },
           ),
         ],

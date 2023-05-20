@@ -6,8 +6,8 @@
 import 'package:flutter/material.dart';
 //import 'package:notification_feature/style/padding_style.dart';
 import 'package:flutter_capstone/style/text_style.dart';
-import 'package:flutter_capstone/widgets/notification/card_all_booking_notification_widget.dart';
-import 'package:flutter_capstone/widgets/notification/card_booking_notification_widget.dart';
+import 'package:flutter_capstone/widgets/card_all_booking_notification_widget.dart';
+import 'package:flutter_capstone/widgets/card_booking_notification_widget.dart';
 
 class NotificationScreen extends StatefulWidget {
   const NotificationScreen({super.key});
@@ -46,8 +46,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                   ),
                   child: Text(
                     "Notification",
-                    style: blackTextStyle.copyWith(
-                        fontSize: 16, fontWeight: regular),
+                    style: NotificationTitle().text9,
                   ),
                 ),
                 Padding(
@@ -59,8 +58,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                     onPressed: () {},
                     child: Text(
                       "Mark all as read",
-                      style: blackTextStyle.copyWith(
-                          fontSize: 14, fontWeight: semiBold),
+                      style: MarkAllAsRead().text10,
                     ),
                   ),
                 ),
@@ -75,10 +73,8 @@ class _NotificationScreenState extends State<NotificationScreen> {
               indicatorColor: const Color(0xFF005DB9),
               labelColor: const Color(0xFF5E5E62),
               unselectedLabelColor: const Color(0xFF666666),
-              labelStyle:
-                  blackTextStyle.copyWith(fontSize: 14, fontWeight: semiBold),
-              unselectedLabelStyle:
-                  blackTextStyle.copyWith(fontSize: 14, fontWeight: semiBold),
+              labelStyle: TabLabelStyle().text11,
+              unselectedLabelStyle: UnselectTabLabelStyle().text12,
               tabs: notifTab,
             ),
             Expanded(

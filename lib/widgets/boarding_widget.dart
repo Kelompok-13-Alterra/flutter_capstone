@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class BoardingScreenWidget extends StatelessWidget {
+class BoardingWidget extends StatelessWidget {
   late double currentPage;
   final PageController pageController;
 
-  BoardingScreenWidget({
+  BoardingWidget({
     super.key,
     required this.currentPage,
     required this.pageController,
@@ -23,10 +23,10 @@ class BoardingScreenWidget extends StatelessWidget {
         },
         itemBuilder: (BuildContext context, int index) {
           String assetName = index == 0
-              ? "illustration1.png"
+              ? "on_boarding/illustration1.png"
               : index == 1
-                  ? "illustration2.png"
-                  : "illustration3.png";
+                  ? "on_boarding/illustration2.png"
+                  : "on_boarding/illustration3.png";
           return AnimatedContainer(
             duration: const Duration(milliseconds: 500),
             curve: Curves.decelerate,

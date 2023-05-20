@@ -26,21 +26,25 @@ Widget cardAllBookingNotificationWidget(BuildContext context) {
                     RichText(
                       text: TextSpan(
                         text: "Booking Office dengan No",
-                        style: DescBooking().text13,
+                        style: blackTextStyle.copyWith(
+                            fontSize: 14, fontWeight: regular),
                       ),
                     ),
                     RichText(
                       text: TextSpan(
                         text: "Pesanan ",
-                        style: DescBooking().text13,
+                        style: blackTextStyle.copyWith(
+                            fontSize: 16, fontWeight: regular),
                         children: <TextSpan>[
                           TextSpan(
                             text: "#ID20230506 ",
-                            style: IdBooking().text14,
+                            style: blackTextStyle.copyWith(
+                                fontSize: 14, fontWeight: bold),
                           ),
                           TextSpan(
                             text: "Berhasil",
-                            style: DescBooking().text13,
+                            style: blackTextStyle.copyWith(
+                                fontSize: 16, fontWeight: regular),
                           ),
                         ],
                       ),
@@ -88,11 +92,13 @@ Widget cardAllBookingNotificationWidget(BuildContext context) {
                     RichText(
                       text: TextSpan(
                         text: "Bookingan kamu ",
-                        style: DescBooking().text13,
+                        style: blackTextStyle.copyWith(
+                            fontSize: 16, fontWeight: regular),
                         children: <TextSpan>[
                           TextSpan(
                             text: "sedang diproses",
-                            style: IdBooking().text14,
+                            style: blackTextStyle.copyWith(
+                                fontSize: 16, fontWeight: bold),
                           ),
                         ],
                       ),
@@ -140,11 +146,13 @@ Widget cardAllBookingNotificationWidget(BuildContext context) {
                     RichText(
                       text: TextSpan(
                         text: "Mulai lakukan ",
-                        style: DescBooking().text13,
+                        style: blackTextStyle.copyWith(
+                            fontSize: 16, fontWeight: regular),
                         children: <TextSpan>[
                           TextSpan(
                             text: "pemesanan kantor ",
-                            style: IdBooking().text14,
+                            style: blackTextStyle.copyWith(
+                                fontSize: 16, fontWeight: bold),
                           ),
                         ],
                       ),
@@ -152,11 +160,13 @@ Widget cardAllBookingNotificationWidget(BuildContext context) {
                     RichText(
                       text: TextSpan(
                         text: "atau co-working space ",
-                        style: DescBooking().text13,
+                        style: blackTextStyle.copyWith(
+                            fontSize: 16, fontWeight: regular),
                         children: <TextSpan>[
                           TextSpan(
                             text: "pertama ",
-                            style: IdBooking().text14,
+                            style: blackTextStyle.copyWith(
+                                fontSize: 16, fontWeight: bold),
                           ),
                         ],
                       ),
@@ -164,7 +174,8 @@ Widget cardAllBookingNotificationWidget(BuildContext context) {
                     RichText(
                       text: TextSpan(
                         text: "kamu!",
-                        style: DescBooking().text13,
+                        style: blackTextStyle.copyWith(
+                            fontSize: 16, fontWeight: regular),
                       ),
                     ),
                     const SizedBox(
@@ -210,11 +221,13 @@ Widget cardAllBookingNotificationWidget(BuildContext context) {
                     RichText(
                       text: TextSpan(
                         text: "Selamat Datang di ",
-                        style: DescBooking().text13,
+                        style: blackTextStyle.copyWith(
+                            fontSize: 16, fontWeight: regular),
                         children: <TextSpan>[
                           TextSpan(
                             text: "Office Buddy",
-                            style: IdBooking().text14,
+                            style: blackTextStyle.copyWith(
+                                fontSize: 16, fontWeight: bold),
                           ),
                         ],
                       ),

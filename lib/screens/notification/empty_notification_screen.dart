@@ -23,7 +23,8 @@ class EmptyNotificationScreen extends StatelessWidget {
                 ),
                 child: Text(
                   "Notification",
-                  style: NotificationTitle().text9,
+                  style: blackTextStyle.copyWith(
+                      fontSize: 16, fontWeight: regular),
                 ),
               ),
               Padding(
@@ -35,7 +36,8 @@ class EmptyNotificationScreen extends StatelessWidget {
                   onPressed: () {},
                   child: Text(
                     "Mark all as read",
-                    style: MarkAllAsRead().text10,
+                    style: blackTextStyle.copyWith(
+                        fontSize: 14, fontWeight: semiBold),
                   ),
                 ),
               ),
@@ -58,18 +60,18 @@ class EmptyNotificationScreen extends StatelessWidget {
             ),
             Text(
               "Masih Kosong Nih",
-              style: EmptyDesc().text15,
+              style: blackTextStyle.copyWith(fontSize: 16, fontWeight: regular),
             ),
             const SizedBox(
               height: 8,
             ),
             Text(
               "Yuk, pesan kantor atau co-working",
-              style: SubEmptyDesc().text16,
+              style: blackTextStyle.copyWith(fontSize: 12, fontWeight: regular),
             ),
             Text(
               "space kamu sekarang",
-              style: SubEmptyDesc().text16,
+              style: blackTextStyle.copyWith(fontSize: 12, fontWeight: regular),
             ),
             const SizedBox(
               height: 11,
@@ -91,7 +93,8 @@ class EmptyNotificationScreen extends StatelessWidget {
                 ),
                 child: Text(
                   "Start Booking",
-                  style: TextButtonBooking().text17,
+                  style: blackTextStyle.copyWith(
+                      fontSize: 14, fontWeight: semiBold),
                 ),
               ),
             ),
