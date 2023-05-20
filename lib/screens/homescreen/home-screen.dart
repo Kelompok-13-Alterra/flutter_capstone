@@ -42,6 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: null,
+      backgroundColor: Colors.white,
       body: _children[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         elevation: 0,
