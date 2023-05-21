@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/screens/homescreen/home-screen.dart';
+import 'package:flutter_capstone/screens/home/home_screen.dart';
 import 'package:flutter_capstone/screens/login/login_screen.dart';
 import 'package:flutter_capstone/screens/profile/circle_avatar_home_screen.dart';
 import 'package:flutter_capstone/screens/profile/profile_screen.dart';
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         '/boarding': (context) => const BoardingScreen(),
         '/boarding-second': (context) => const BoardingScreenSecond(),
         '/boarding-third': (context) => const BoardingScreenThird(),
-        '/home-screen': (context) => const HomeScreen(),
+        '/home': (context) => const HomeScreen(),
         '/circle-avatar-home-screen': (context) =>
             const CircleAvatarHomeScreen(),
         '/profile': (context) => const ProfileScreen(),

@@ -34,6 +34,11 @@ class _FormLoginState extends State<FormLogin> {
           content: Text('Selamat ${_emailController.text} berhasil login'),
         ),
       );
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        '/home',
+        (route) => false,
+      );
     }
   }
 
