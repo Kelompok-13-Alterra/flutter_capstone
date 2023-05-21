@@ -1,7 +1,5 @@
-// ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/screens/booking-schedule/booking_schedule.dart';
+import 'package:flutter_capstone/screens/profile/profile_screen.dart';
 import 'package:flutter_capstone/widgets/home/homepage.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -18,10 +16,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final List<Widget> _children = [
     const Homepage(),
-    const BookingScheduleScreen(),
-    const Center(
-      child: Text("Ini buat page Setting"),
-    ),
+    const HomeScreen(),
+    const ProfileScreen(),
   ];
 
   List<String> svgAssets = [
