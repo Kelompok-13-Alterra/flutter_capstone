@@ -6,8 +6,8 @@
 import 'package:flutter/material.dart';
 //import 'package:notification_feature/style/padding_style.dart';
 import 'package:flutter_capstone/style/text_style.dart';
-import 'package:flutter_capstone/widgets/card_all_booking_notification_widget.dart';
-import 'package:flutter_capstone/widgets/card_booking_notification_widget.dart';
+import 'package:flutter_capstone/widgets/notification/card_all_booking_notification_widget.dart';
+import 'package:flutter_capstone/widgets/notification/card_booking_notification_widget.dart';
 
 class NotificationScreen extends StatefulWidget {
   const NotificationScreen({super.key});

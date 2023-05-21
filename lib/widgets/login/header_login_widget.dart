@@ -28,7 +28,7 @@ class HeaderLogin extends StatelessWidget {
           'Silahkan masuk dengan akunmu yang sudah terdaftar di Office Buddy',
           style: GoogleFonts.roboto(
               fontSize: 12.0,
-              color: Color(0xFF98A2B3),
+              color: const Color(0xFF98A2B3),
               fontWeight: FontWeight.w400),
         ),
         const SizedBox(height: 30.0),

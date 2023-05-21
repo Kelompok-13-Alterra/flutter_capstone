@@ -30,7 +30,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  google_fonts: ^4.0.4
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -39,6 +38,7 @@ dependencies:
   email_validator: ^2.1.17
   flutter_svg: ^2.0.5
   flutter_rating_bar: ^4.0.1
+  google_fonts: ^4.0.4
 
 dev_dependencies:
   flutter_test:
@@ -81,6 +81,17 @@ flutter:
     - assets/img/
     - assets/on_boarding/
     - assets/progress_indicator/
+    - assets/image/Avatar.png
+    - assets/image/meeting_room.png
+    - assets/image/Image_total_kantor.png
+    - assets/image/Image_total_co-working.png
+    - assets/image/meeting_room_fill.png
+    - assets/image/delete_forever.png
+    - assets/image/help_center.png
+    - assets/image/privacy_tip.png
+    - assets/image/lock.png
+    - assets/image/logout.png
+    - assets/image/local_police.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

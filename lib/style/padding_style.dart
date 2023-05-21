@@ -74,9 +74,7 @@ class PaddingMarkAsRead {
   EdgeInsets padding10 = const EdgeInsets.only(right: 16, top: 16, bottom: 36);
 }
 
-// class PaddingOfficeBuddy {
-//   EdgeInsets padding9 = const EdgeInsets.only(
-//     left: 16,
-
-//   );
-// }
+class PaddingCircleAvatarProfile {
+  EdgeInsets padding11 =
+      const EdgeInsets.only(right: 136, left: 136, top: 32, bottom: 8);
+}

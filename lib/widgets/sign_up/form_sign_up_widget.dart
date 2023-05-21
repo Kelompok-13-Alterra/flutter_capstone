@@ -81,7 +81,7 @@ class _FormSignupState extends State<FormSignup> {
                 ),
                 hintText: 'Input Full Name',
                 floatingLabelBehavior: FloatingLabelBehavior.always,
-                border: OutlineInputBorder(),
+                border: const OutlineInputBorder(),
               ),
             ),
             const SizedBox(height: 20.0),
@@ -107,7 +107,7 @@ class _FormSignupState extends State<FormSignup> {
                 ),
                 hintText: 'Input Email',
                 floatingLabelBehavior: FloatingLabelBehavior.always,
-                border: OutlineInputBorder(),
+                border: const OutlineInputBorder(),
               ),
             ),
             const SizedBox(height: 25.0),
@@ -136,7 +136,7 @@ class _FormSignupState extends State<FormSignup> {
                 ),
                 hintText: 'Input Password',
                 floatingLabelBehavior: FloatingLabelBehavior.always,
-                border: OutlineInputBorder(),
+                border: const OutlineInputBorder(),
               ),
             ),
             const SizedBox(height: 20.0),
@@ -165,7 +165,7 @@ class _FormSignupState extends State<FormSignup> {
                 ),
                 hintText: 'Input Password Again',
                 floatingLabelBehavior: FloatingLabelBehavior.always,
-                border: OutlineInputBorder(),
+                border: const OutlineInputBorder(),
               ),
             ),
             const SizedBox(height: 20.0),
@@ -209,7 +209,7 @@ class _FormSignupState extends State<FormSignup> {
                   style: ButtonStyle(
                     elevation: MaterialStateProperty.all(0),
                     backgroundColor:
-                        MaterialStateProperty.all(Color(0xFF005DB9)),
+                        MaterialStateProperty.all(const Color(0xFF005DB9)),
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
                         borderRadius:
