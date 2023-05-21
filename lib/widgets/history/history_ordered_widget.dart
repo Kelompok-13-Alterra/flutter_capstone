@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone_order_tab_bar/theme.dart';
-import 'package:flutter_capstone_order_tab_bar/widgets/history_reviewed_widget.dart';
+import 'package:flutter_capstone/style/text_style.dart';
+import 'package:flutter_capstone/widgets/history/history_reviewed_widget.dart';
 
 class HistoryOrdered extends StatelessWidget {
   const HistoryOrdered({super.key});

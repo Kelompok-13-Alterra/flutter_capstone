@@ -1,4 +1,4 @@
-# flutter_capstone_order_tab_bar
+# flutter_capstone
 
 A new Flutter project.
 
