@@ -3,14 +3,14 @@ import 'package:flutter_capstone_order_tab_bar/widgets/booked_widget.dart';
 import 'package:flutter_capstone_order_tab_bar/widgets/history_ordered_widget.dart';
 import '../theme.dart';
 
-class OrderTab extends StatefulWidget {
-  const OrderTab({super.key});
+class OrderTabScreen extends StatefulWidget {
+  const OrderTabScreen({super.key});
 
   @override
-  State<OrderTab> createState() => _OrderTabState();
+  State<OrderTabScreen> createState() => _OrderTabScreenState();
 }
 
-class _OrderTabState extends State<OrderTab>
+class _OrderTabScreenState extends State<OrderTabScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   int _currentTabIndex = 0;
