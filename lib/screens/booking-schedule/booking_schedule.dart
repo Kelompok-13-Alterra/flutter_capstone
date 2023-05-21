@@ -14,9 +14,10 @@ Future selectDateRange(BuildContext context) async {
       builder: (context, child) {
         return Theme(
             data: Theme.of(context).copyWith(
-              colorScheme: ColorScheme.light(
-                primary: kWhiteColor,
-                onPrimary: kBlackColor,
+              colorScheme: ColorScheme.dark(
+                surface: kWhiteColor,
+                primary: kPrimaryColor,
+                onPrimary: kWhiteColor,
                 onSurface: kBlackColor,
               ),
               textButtonTheme: TextButtonThemeData(
