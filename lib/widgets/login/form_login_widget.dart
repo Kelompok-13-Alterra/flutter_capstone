@@ -34,6 +34,7 @@ class _FormLoginState extends State<FormLogin> {
           content: Text('Selamat ${_emailController.text} berhasil login'),
         ),
       );
+      Navigator.pushNamed(context, '/home');
     }
   }
 

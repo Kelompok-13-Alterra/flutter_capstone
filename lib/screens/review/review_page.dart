@@ -33,13 +33,6 @@ class _ReviewPageState extends State<ReviewPage> {
     if (pickedImage != null) {}
   }
 
-  Future<void> _pickImageFromGallery() async {
-    final picker = ImagePicker();
-    final pickedImage = await picker.getImage(source: ImageSource.gallery);
-
-    if (pickedImage != null) {}
-  }
-
   void _submitReview() {
     _reviewController.clear();
 
@@ -53,12 +46,11 @@ class _ReviewPageState extends State<ReviewPage> {
           elevation: 0.0,
           backgroundColor: kWhiteColor,
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back),
-            color: kBlackColor,
-            onPressed: () {
-              // Aksi ketika tombol panah kembali ditekan
-            },
-          ),
+              icon: const Icon(Icons.arrow_back),
+              color: kBlackColor,
+              onPressed: () {
+                Navigator.pushNamed(context, '/order');
+              }),
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -222,7 +214,10 @@ class _ReviewPageState extends State<ReviewPage> {
                                               .photo_size_select_actual_outlined,
                                           color: kPrimaryColor,
                                         ),
-                                        onPressed: _pickImageFromGallery,
+                                        onPressed: () {
+                                          Navigator.pushNamed(
+                                              context, '/image-picker');
+                                        },
                                       ),
                                     ),
                                     Container(

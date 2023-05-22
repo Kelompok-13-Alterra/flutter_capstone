@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 
-class HistoryReviewed extends StatelessWidget {
-  const HistoryReviewed({super.key});
+class BookedWidget extends StatelessWidget {
+  const BookedWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class HistoryReviewed extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
                     image: const DecorationImage(
-                      image: AssetImage('assets/office2.png'),
+                      image: AssetImage('assets/office1.png'),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -31,10 +31,10 @@ class HistoryReviewed extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      'SEO Office',
+                    Text(
+                      'Wellspace',
                       style: TextStyle(
-                        fontWeight: FontWeight.bold,
+                        fontWeight: semiBold,
                         fontSize: 20,
                       ),
                     ),
@@ -43,10 +43,10 @@ class HistoryReviewed extends StatelessWidget {
                       children: [
                         Icon(Icons.star, color: kYellowColor),
                         const SizedBox(width: 4),
-                        const Text(
+                        Text(
                           '4.6',
                           style: TextStyle(
-                            fontWeight: FontWeight.bold,
+                            fontWeight: medium,
                             fontSize: 16,
                           ),
                         ),
@@ -61,7 +61,7 @@ class HistoryReviewed extends StatelessWidget {
                           '10:00 AM - 06:00 PM',
                           style: TextStyle(
                             fontSize: 14,
-                            fontWeight: regular,
+                            fontWeight: medium,
                             color: kGreyColor,
                           ),
                         ),
@@ -84,10 +84,10 @@ class HistoryReviewed extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(
-                    'Reviewed',
+                    'Booked',
                     style: TextStyle(
                       color: kWhiteColor,
-                      fontWeight: FontWeight.bold,
+                      fontWeight: medium,
                       fontSize: 14,
                     ),
                   ),
@@ -96,6 +96,7 @@ class HistoryReviewed extends StatelessWidget {
             ),
             Positioned(
               top: 90,
+              left: 16,
               child: Wrap(
                 spacing: 5,
                 children: [
@@ -104,22 +105,22 @@ class HistoryReviewed extends StatelessWidget {
                     height: 40,
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, '/home');
+                        // Aksi ketika tombol "Change Schedule" ditekan
                       },
                       style: ElevatedButton.styleFrom(
-                        foregroundColor: kWhiteColor,
                         backgroundColor: kPrimaryColor,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(100),
                         ),
-                        padding: const EdgeInsets.symmetric(vertical: 8),
-                        visualDensity: VisualDensity.compact,
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 8),
                       ),
                       child: Text(
-                        'Book Again',
+                        'Change Schedule',
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: medium,
+                          color: kWhiteColor,
                         ),
                       ),
                     ),
@@ -129,24 +130,23 @@ class HistoryReviewed extends StatelessWidget {
                     height: 40,
                     child: ElevatedButton(
                       onPressed: () {
-                        // Aksi ketika "Download Bill" button ditekan
+                        // Aksi ketika tombol "Cancel Book" ditekan
                       },
                       style: ElevatedButton.styleFrom(
-                        foregroundColor: kPrimaryColor,
                         backgroundColor: kWhiteColor,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(100),
-                          side: BorderSide(color: kPrimaryColor),
+                          side: BorderSide(color: kRedColor),
                         ),
                         padding: const EdgeInsets.symmetric(
                             horizontal: 16, vertical: 8),
-                        visualDensity: VisualDensity.compact,
                       ),
                       child: Text(
-                        'Download Bill',
+                        'Cancel Book',
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: medium,
+                          color: kRedColor,
                         ),
                       ),
                     ),

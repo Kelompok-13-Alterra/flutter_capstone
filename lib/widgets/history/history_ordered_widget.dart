@@ -34,10 +34,10 @@ class HistoryOrdered extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
+                        Text(
                           'Wellspace',
                           style: TextStyle(
-                            fontWeight: FontWeight.bold,
+                            fontWeight: semiBold,
                             fontSize: 20,
                           ),
                         ),
@@ -46,10 +46,10 @@ class HistoryOrdered extends StatelessWidget {
                           children: [
                             Icon(Icons.star, color: kYellowColor),
                             const SizedBox(width: 4),
-                            const Text(
+                            Text(
                               '4.6',
                               style: TextStyle(
-                                fontWeight: FontWeight.bold,
+                                fontWeight: medium,
                                 fontSize: 16,
                               ),
                             ),
@@ -101,60 +101,59 @@ class HistoryOrdered extends StatelessWidget {
                 ),
                 Positioned(
                   top: 90,
-                  left: 16,
                   child: Wrap(
                     spacing: 5,
                     children: [
                       SizedBox(
                         width: 160,
                         height: 40,
-                        child: ChoiceChip(
-                          label: Text(
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/home');
+                          },
+                          style: ElevatedButton.styleFrom(
+                            foregroundColor: kWhiteColor,
+                            backgroundColor: kPrimaryColor,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(100),
+                            ),
+                            padding: const EdgeInsets.symmetric(vertical: 8),
+                            visualDensity: VisualDensity.compact,
+                          ),
+                          child: Text(
                             'Book Again',
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight: medium,
                             ),
                           ),
-                          selected: false,
-                          onSelected: (_) {
-                            // Aksi ketika choice chip "Change Schedule" dipilih
-                          },
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(100),
-                          ),
-                          backgroundColor: kPrimaryColor,
-                          labelStyle: TextStyle(color: kWhiteColor),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 16, vertical: 8),
-                          materialTapTargetSize:
-                              MaterialTapTargetSize.shrinkWrap,
-                          visualDensity: VisualDensity.compact,
                         ),
                       ),
                       SizedBox(
                         width: 160,
                         height: 40,
-                        child: ChoiceChip(
-                          label: Text(
-                            'Give Review',
-                            style: TextStyle(fontSize: 14, fontWeight: medium),
-                          ),
-                          selected: false,
-                          onSelected: (_) {
-                            // Aksi ketika choice chip "Cancel Booked" dipilih
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/review');
                           },
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(100),
-                            side: BorderSide(color: kPrimaryColor),
+                          style: ElevatedButton.styleFrom(
+                            foregroundColor: kPrimaryColor,
+                            backgroundColor: kWhiteColor,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(100),
+                              side: BorderSide(color: kPrimaryColor),
+                            ),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 16, vertical: 8),
+                            visualDensity: VisualDensity.compact,
                           ),
-                          backgroundColor: kWhiteColor,
-                          labelStyle: TextStyle(color: kPrimaryColor),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 16, vertical: 8),
-                          materialTapTargetSize:
-                              MaterialTapTargetSize.shrinkWrap,
-                          visualDensity: VisualDensity.compact,
+                          child: Text(
+                            'Give Review',
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: medium,
+                            ),
+                          ),
                         ),
                       ),
                     ],

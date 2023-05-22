@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/style/text_style.dart';
-import 'package:flutter_capstone/widgets/booked_widget.dart';
+import 'package:flutter_capstone/widgets/order/booked_widget.dart';
 import 'package:flutter_capstone/widgets/history/history_ordered_widget.dart';
 
-class OrderTabScreen extends StatefulWidget {
-  const OrderTabScreen({super.key});
+class OrderScreen extends StatefulWidget {
+  const OrderScreen({super.key});
 
   @override
-  State<OrderTabScreen> createState() => _OrderTabScreenState();
+  State<OrderScreen> createState() => _OrderScreenState();
 }
 
-class _OrderTabScreenState extends State<OrderTabScreen>
+class _OrderScreenState extends State<OrderScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   int _currentTabIndex = 0;
@@ -44,7 +44,7 @@ class _OrderTabScreenState extends State<OrderTabScreen>
             icon: const Icon(Icons.arrow_back),
             color: kBlackColor,
             onPressed: () {
-              // Aksi ketika tombol panah kembali ditekan
+              Navigator.pushNamed(context, '/home');
             },
           ),
           title: Row(
