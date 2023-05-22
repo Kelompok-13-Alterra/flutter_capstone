@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
         '/profile': (context) => const ProfileScreen(),
         '/order': (context) => const OrderScreen(),
         '/review': (context) => const ReviewPage(),
-        'image-picker': (context) => const ImagePickerRatingScreen(),
+        '/image-picker': (context) => const ImagePickerRatingScreen(),
       },
     );
   }
