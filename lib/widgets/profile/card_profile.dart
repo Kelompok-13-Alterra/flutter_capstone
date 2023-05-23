@@ -41,21 +41,23 @@ Widget cardProfile(BuildContext context) {
                     ),
                     Text(
                       "Total Kantor",
-                      style: TextTotalKantor().text21,
+                      style: setTextStyle(NeutralColor().neutral12),
                     ),
                     const SizedBox(
                       height: 4,
                     ),
                     Text(
                       "yang kamu kunjungi",
-                      style: TextAbuabu().text22,
+
+                      //ganti jadi neutral variant
+                      style: setTextStyle(NeutralColor().neutral60),
                     ),
                     const SizedBox(
                       height: 4,
                     ),
                     Text(
                       "36",
-                      style: TextTotal().text23,
+                      style: setTextStyle(SourceColor().black),
                     ),
                   ],
                 ),
@@ -96,21 +98,21 @@ Widget cardProfile(BuildContext context) {
                     ),
                     Text(
                       "Total Kantor",
-                      style: TextTotalKantor().text21,
+                      style: setTextStyle(NeutralColor().neutral60),
                     ),
                     const SizedBox(
                       height: 4,
                     ),
                     Text(
                       "yang kamu kunjungi",
-                      style: TextAbuabu().text22,
+                      style: setTextStyle(NeutralColor().neutral60),
                     ),
                     const SizedBox(
                       height: 4,
                     ),
                     Text(
                       "36",
-                      style: TextTotal().text23,
+                      style: setTextStyle(SourceColor().black),
                     ),
                   ],
                 ),

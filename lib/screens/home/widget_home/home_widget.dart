@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_capstone/style/text_style.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomeWidget extends StatefulWidget {
@@ -166,10 +167,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                         ),
                         Row(
                           children: [
-                            const Icon(
+                            Icon(
                               Icons.star,
                               size: 15,
-                              color: Color(0xFFF5EF5A),
+                              color: SourceColor().yellow,
                             ),
                             const SizedBox(
                               width: 5,
@@ -304,10 +305,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                         ),
                         Row(
                           children: [
-                            const Icon(
+                            Icon(
                               Icons.star,
                               size: 15,
-                              color: Color(0xFFF5EF5A),
+                              color: SourceColor().yellow,
                             ),
                             const SizedBox(
                               width: 5,
@@ -441,10 +442,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                         ),
                         Row(
                           children: [
-                            const Icon(
+                            Icon(
                               Icons.star,
                               size: 15,
-                              color: Color(0xFFF5EF5A),
+                              color: SourceColor().yellow,
                             ),
                             const SizedBox(
                               width: 5,
@@ -577,10 +578,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                         ),
                         Row(
                           children: [
-                            const Icon(
+                            Icon(
                               Icons.star,
                               size: 15,
-                              color: Color(0xFFF5EF5A),
+                              color: SourceColor().yellow,
                             ),
                             const SizedBox(
                               width: 5,
@@ -713,10 +714,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                         ),
                         Row(
                           children: [
-                            const Icon(
+                            Icon(
                               Icons.star,
                               size: 15,
-                              color: Color(0xFFF5EF5A),
+                              color: SourceColor().yellow,
                             ),
                             const SizedBox(
                               width: 5,

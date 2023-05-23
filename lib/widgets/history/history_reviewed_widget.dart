@@ -41,7 +41,7 @@ class HistoryReviewed extends StatelessWidget {
                     const SizedBox(height: 8),
                     Row(
                       children: [
-                        Icon(Icons.star, color: kYellowColor),
+                        Icon(Icons.star, color: SourceColor().yellow),
                         const SizedBox(width: 4),
                         const Text(
                           '4.6',
@@ -55,14 +55,15 @@ class HistoryReviewed extends StatelessWidget {
                     const SizedBox(height: 8),
                     Row(
                       children: [
-                        Icon(Icons.access_time, size: 16, color: kGreyColor),
+                        Icon(Icons.access_time,
+                            size: 16, color: NeutralColor().neutral60),
                         const SizedBox(width: 4),
                         Text(
                           '10:00 AM - 06:00 PM',
                           style: TextStyle(
                             fontSize: 14,
                             fontWeight: regular,
-                            color: kGreyColor,
+                            color: NeutralColor().neutral60,
                           ),
                         ),
                       ],
@@ -79,14 +80,14 @@ class HistoryReviewed extends StatelessWidget {
                 width: 81,
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 decoration: BoxDecoration(
-                  color: kGreenColor,
+                  color: SuccessColor().green,
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Center(
                   child: Text(
                     'Reviewed',
                     style: TextStyle(
-                      color: kWhiteColor,
+                      color: SourceColor().white,
                       fontWeight: FontWeight.bold,
                       fontSize: 14,
                     ),
@@ -118,8 +119,8 @@ class HistoryReviewed extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(100),
                       ),
-                      backgroundColor: kPrimaryColor,
-                      labelStyle: TextStyle(color: kWhiteColor),
+                      backgroundColor: PrimaryColor().primary,
+                      labelStyle: TextStyle(color: SourceColor().white),
                       padding: const EdgeInsets.symmetric(
                           horizontal: 16, vertical: 8),
                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
@@ -140,10 +141,10 @@ class HistoryReviewed extends StatelessWidget {
                       },
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(100),
-                        side: BorderSide(color: kPrimaryColor),
+                        side: BorderSide(color: PrimaryColor().primary),
                       ),
-                      backgroundColor: kWhiteColor,
-                      labelStyle: TextStyle(color: kPrimaryColor),
+                      backgroundColor: SourceColor().white,
+                      labelStyle: TextStyle(color: PrimaryColor().primary),
                       padding: const EdgeInsets.symmetric(
                           horizontal: 16, vertical: 8),
                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,

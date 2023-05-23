@@ -64,7 +64,8 @@ class _BoardingScreenThirdState extends State<BoardingScreenThird> {
                           TextButton(
                             child: Text(
                               'Skip',
-                              style: greyTextStyle.copyWith(
+                              style: setTextStyle(SourceColor().darkOutline)
+                                  .copyWith(
                                 fontSize: 14,
                                 fontWeight: medium,
                               ),
@@ -76,15 +77,15 @@ class _BoardingScreenThirdState extends State<BoardingScreenThird> {
                       const Padding(padding: EdgeInsets.only(top: 20)),
                       Text(
                         'Daftar Secara Individu atau Wakilkan Perusahaan',
-                        style: blackTextStyle.copyWith(
-                            fontWeight: semiBold, fontSize: 16),
+                        style: setTextStyle(NeutralColor().neutral12)
+                            .copyWith(fontWeight: semiBold, fontSize: 16),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 8.0, bottom: 16.0),
                         child: Text(
                           'Kamu bisa booking atau daftar secara individu atau perusahana yang kamu wakilkan untuk pesan office atau co-wroking space',
-                          style: greyTextStyle.copyWith(
-                              fontWeight: regular, fontSize: 12),
+                          style: setTextStyle(NeutralColor().neutral40)
+                              .copyWith(fontWeight: regular, fontSize: 12),
                         ),
                       ),
                       SizedBox(
@@ -94,7 +95,7 @@ class _BoardingScreenThirdState extends State<BoardingScreenThird> {
                             style: ElevatedButton.styleFrom(
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(100)),
-                                backgroundColor: kPrimaryColor),
+                                backgroundColor: SourceColor().seed),
                             onPressed: () {
                               Navigator.pushNamed(context, '/login');
                             },

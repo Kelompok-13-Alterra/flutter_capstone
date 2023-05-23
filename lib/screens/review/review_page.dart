@@ -51,10 +51,10 @@ class _ReviewPageState extends State<ReviewPage> {
     return Scaffold(
         appBar: AppBar(
           elevation: 0.0,
-          backgroundColor: kWhiteColor,
+          backgroundColor: SourceColor().white,
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
-            color: kBlackColor,
+            color: SourceColor().black,
             onPressed: () {
               // Aksi ketika tombol panah kembali ditekan
             },
@@ -64,11 +64,11 @@ class _ReviewPageState extends State<ReviewPage> {
             children: [
               Text(
                 'Review',
-                style:
-                    blackTextStyle.copyWith(fontSize: 16, fontWeight: medium),
+                style: setTextStyle(NeutralColor().neutral40)
+                    .copyWith(fontSize: 16, fontWeight: medium),
               ),
               IconButton(
-                icon: Icon(Icons.more_vert, color: kBlackColor),
+                icon: Icon(Icons.more_vert, color: SourceColor().black),
                 onPressed: () {
                   // Aksi ketika tombol tanda titik tiga ditekan
                 },
@@ -78,7 +78,7 @@ class _ReviewPageState extends State<ReviewPage> {
         ),
         body: SingleChildScrollView(
           child: Container(
-            color: kWhiteColor,
+            color: SourceColor().white,
             child: Column(
               children: [
                 Padding(
@@ -105,7 +105,7 @@ class _ReviewPageState extends State<ReviewPage> {
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: regular,
-                          color: kGreyColor,
+                          color: NeutralColor().neutral60,
                         ),
                       ),
                       const SizedBox(
@@ -118,9 +118,9 @@ class _ReviewPageState extends State<ReviewPage> {
                         allowHalfRating: true,
                         itemCount: 5,
                         itemSize: 50,
-                        itemBuilder: (context, _) => Icon(
+                        itemBuilder: (context, _) => const Icon(
                           Icons.star,
-                          color: kYellowColor,
+                          color: Color(0xffF8C74E),
                         ),
                         onRatingUpdate: (rating) {
                           setState(() {
@@ -136,7 +136,7 @@ class _ReviewPageState extends State<ReviewPage> {
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: regular,
-                          color: kBlackColor,
+                          color: SourceColor().black,
                         ),
                       ),
                     ],
@@ -155,12 +155,12 @@ class _ReviewPageState extends State<ReviewPage> {
                             _filters[index],
                             style: TextStyle(
                               color: _selectedFilterIndex == index
-                                  ? kWhiteColor
-                                  : kGreyColor,
+                                  ? SourceColor().white
+                                  : NeutralColor().neutral60,
                             ),
                           ),
                           selected: _selectedFilterIndex == index,
-                          selectedColor: kPrimaryColor,
+                          selectedColor: SourceColor().seed,
                           onSelected: (bool selected) {
                             setState(() {
                               _selectedFilterIndex = selected ? index : 0;
@@ -201,14 +201,14 @@ class _ReviewPageState extends State<ReviewPage> {
                                         fontSize: 12,
                                       ),
                                       border: InputBorder.none,
-                                      fillColor: kWhiteColor,
+                                      fillColor: SourceColor().white,
                                     ),
                                   ),
                                 ),
                               ),
                               Container(
                                 height: 1,
-                                color: kGreyColor,
+                                color: SourceColor().outline,
                               ),
                               Container(
                                 padding: const EdgeInsets.all(0),
@@ -220,21 +220,21 @@ class _ReviewPageState extends State<ReviewPage> {
                                         icon: Icon(
                                           Icons
                                               .photo_size_select_actual_outlined,
-                                          color: kPrimaryColor,
+                                          color: PrimaryColor().primary,
                                         ),
                                         onPressed: _pickImageFromGallery,
                                       ),
                                     ),
                                     Container(
                                       width: 1,
-                                      color: kGreyColor,
+                                      color: SourceColor().outline,
                                       height: 48,
                                     ),
                                     Expanded(
                                       child: IconButton(
                                         icon: Icon(
                                           Icons.camera_alt_outlined,
-                                          color: kPrimaryColor,
+                                          color: PrimaryColor().primary,
                                         ),
                                         onPressed: _pickImageFromCamera,
                                       ),
@@ -253,7 +253,7 @@ class _ReviewPageState extends State<ReviewPage> {
                   onPressed: _submitReview,
                   style: ElevatedButton.styleFrom(
                     fixedSize: const Size(328, 50),
-                    backgroundColor: kPrimaryColor,
+                    backgroundColor: PrimaryColor().primary,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(100),
                     ),

@@ -1,10 +1,4 @@
-//AUTHOR : ULFA LADAYYA
-//KELAS C FLUTTER
-
-// ignore_for_file: avoid_unnecessary_containers
-
 import 'package:flutter/material.dart';
-//import 'package:notification_feature/style/padding_style.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_capstone/widgets/notification/card_all_booking_notification_widget.dart';
 import 'package:flutter_capstone/widgets/notification/card_booking_notification_widget.dart';
@@ -46,7 +40,10 @@ class _NotificationScreenState extends State<NotificationScreen> {
                   ),
                   child: Text(
                     "Notification",
-                    style: NotificationTitle().text9,
+                    style: setTextStyle(NeutralColor().neutral12).copyWith(
+                      fontSize: 16,
+                      fontWeight: regular,
+                    ),
                   ),
                 ),
                 Padding(
@@ -58,7 +55,10 @@ class _NotificationScreenState extends State<NotificationScreen> {
                     onPressed: () {},
                     child: Text(
                       "Mark all as read",
-                      style: MarkAllAsRead().text10,
+                      style: setTextStyle(KeyColor().primary).copyWith(
+                        fontSize: 14,
+                        fontWeight: semiBold,
+                      ),
                     ),
                   ),
                 ),
@@ -73,8 +73,10 @@ class _NotificationScreenState extends State<NotificationScreen> {
               indicatorColor: const Color(0xFF005DB9),
               labelColor: const Color(0xFF5E5E62),
               unselectedLabelColor: const Color(0xFF666666),
-              labelStyle: TabLabelStyle().text11,
-              unselectedLabelStyle: UnselectTabLabelStyle().text12,
+              labelStyle: setTextStyle(NeutralColor().neutral10)
+                  .copyWith(fontSize: 14, fontWeight: semiBold),
+              unselectedLabelStyle: setTextStyle(NeutralColor().neutral10)
+                  .copyWith(fontSize: 14, fontWeight: semiBold),
               tabs: notifTab,
             ),
             Expanded(

@@ -13,7 +13,7 @@ Widget profileWidget(BuildContext context) {
       children: [
         Text(
           "Account",
-          style: TextTitleAccountInfo().text25,
+          style: setTextStyle(NeutralColor().neutral12),
         ),
         const SizedBox(
           height: 16,
@@ -33,7 +33,10 @@ Widget profileWidget(BuildContext context) {
                 ),
                 Text(
                   "Company",
-                  style: SubAccountInfo().text26,
+                  style: setTextStyle(NeutralColor().neutral30).copyWith(
+                    fontSize: 12,
+                    fontWeight: regular,
+                  ),
                 ),
               ],
             ),
@@ -67,7 +70,10 @@ Widget profileWidget(BuildContext context) {
                 ),
                 Text(
                   "Change Password",
-                  style: SubAccountInfo().text26,
+                  style: setTextStyle(NeutralColor().neutral30).copyWith(
+                    fontSize: 12,
+                    fontWeight: regular,
+                  ),
                 ),
               ],
             ),
@@ -101,7 +107,10 @@ Widget profileWidget(BuildContext context) {
                 ),
                 Text(
                   "Delete Account",
-                  style: SubAccountInfo().text26,
+                  style: setTextStyle(NeutralColor().neutral30).copyWith(
+                    fontSize: 12,
+                    fontWeight: regular,
+                  ),
                 ),
               ],
             ),
@@ -125,7 +134,10 @@ Widget profileWidget(BuildContext context) {
         ),
         Text(
           "Information",
-          style: TextTitleAccountInfo().text25,
+
+          //Ganti jadi neutral-variant
+          style: setTextStyle(NeutralColor().neutral30)
+              .copyWith(fontSize: 14, fontWeight: semiBold),
         ),
         const SizedBox(
           height: 16,
@@ -145,7 +157,10 @@ Widget profileWidget(BuildContext context) {
                 ),
                 Text(
                   "Privacy Policy",
-                  style: SubAccountInfo().text26,
+                  style: setTextStyle(NeutralColor().neutral30).copyWith(
+                    fontSize: 12,
+                    fontWeight: regular,
+                  ),
                 ),
               ],
             ),
@@ -179,7 +194,10 @@ Widget profileWidget(BuildContext context) {
                 ),
                 Text(
                   "Terms and Condition",
-                  style: SubAccountInfo().text26,
+                  style: setTextStyle(NeutralColor().neutral30).copyWith(
+                    fontSize: 12,
+                    fontWeight: regular,
+                  ),
                 ),
               ],
             ),
@@ -213,7 +231,10 @@ Widget profileWidget(BuildContext context) {
                 ),
                 Text(
                   "Help Centre",
-                  style: SubAccountInfo().text26,
+                  style: setTextStyle(NeutralColor().neutral30).copyWith(
+                    fontSize: 12,
+                    fontWeight: regular,
+                  ),
                 ),
               ],
             ),
@@ -250,7 +271,10 @@ Widget profileWidget(BuildContext context) {
                 ),
                 Text(
                   "Log Out",
-                  style: SubAccountInfo().text26,
+                  style: setTextStyle(NeutralColor().neutral30).copyWith(
+                    fontSize: 12,
+                    fontWeight: regular,
+                  ),
                 ),
               ],
             ),

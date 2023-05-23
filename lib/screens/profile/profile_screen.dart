@@ -21,11 +21,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
         backgroundColor: Colors.transparent,
         title: Text(
           "Profile",
-          style: TextTitleProfile().text24,
+          style: setTextStyle(NeutralColor().neutral12)
+              .copyWith(fontSize: 16, fontWeight: regular),
         ),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
-          color: kBlackColor,
+          color: NeutralColor().neutral0,
           onPressed: () {
             Navigator.pop(context);
           },
@@ -73,7 +74,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     children: [
                       Text(
                         "Michael Abraham",
-                        style: TextNameOfUser().text18,
+                        style: setTextStyle(SourceColor().black).copyWith(
+                          fontSize: 14,
+                          fontWeight: medium,
+                        ),
                       ),
                       IconButton(
                         splashRadius: 10,
@@ -90,7 +94,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                   child: Text(
                     "michaelabraham@gmail.com",
-                    style: TextGmail().text19,
+                    style: setTextStyle(NeutralColor().neutral40).copyWith(
+                      fontSize: 12,
+                      fontWeight: regular,
+                    ),
                   ),
                 ),
                 Padding(
@@ -111,7 +118,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                       Text(
                         'No Company',
-                        style: TextNoCompany().text20,
+                        style: setTextStyle(NeutralColor().neutral50).copyWith(
+                          fontSize: 12,
+                          fontWeight: regular,
+                        ),
                       )
                     ],
                   ),
