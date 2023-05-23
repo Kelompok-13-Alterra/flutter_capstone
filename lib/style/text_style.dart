@@ -14,6 +14,12 @@ Color kRedColor = const Color(0xffDE3730);
 Color kGreenColor = const Color(0xff20E500);
 Color kYellowColor = const Color(0xffF5EF5A);
 Color kPurpleColor = const Color(0xff8567BD);
+Color kSourceBlackColor = const Color(0xff000000);
+Color kLightSecondaryColor = const Color(0xFF97CBFF);
+Color kNeutral50 = const Color(0xFF77777A);
+Color kNeutralVariant30 = const Color(0xFF44474E);
+Color kNeutralVariant60 = const Color(0xFF8E9099);
+Color kNeutral30 = const Color(0xFF46474A);
 
 TextStyle primaryTextStyle = GoogleFonts.roboto(
   color: kPrimaryColor,
@@ -29,6 +35,26 @@ TextStyle whiteTextStyle = GoogleFonts.roboto(
 
 TextStyle greyTextStyle = GoogleFonts.roboto(
   color: kGreyColor,
+);
+
+TextStyle sourceBlackTextStyle = GoogleFonts.roboto(
+  color: kSourceBlackColor,
+);
+
+TextStyle neutral50TextStyle = GoogleFonts.roboto(
+  color: kNeutral50,
+);
+
+TextStyle neutralVariant30TextStyle = GoogleFonts.roboto(
+  color: kNeutralVariant30,
+);
+
+TextStyle neutralVariant60TextStyle = GoogleFonts.roboto(
+  color: kNeutralVariant60,
+);
+
+TextStyle neutral30TextStyle = GoogleFonts.roboto(
+  color: kNeutral30,
 );
 
 FontWeight light = FontWeight.w300;
