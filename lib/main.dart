@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/screens/bottom_nav/bottom_nav_screen.dart';
 import 'package:flutter_capstone/screens/home/home_screen.dart';
 import 'package:flutter_capstone/screens/login/login_screen.dart';
 import 'package:flutter_capstone/screens/order/order_screen.dart';
@@ -27,18 +26,17 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => const BottomNavScreen(),
+        '/': (context) => const SplashScreen(),
         '/login': (context) => const LoginScreen(),
         '/sign-up': (context) => const SignUpScreen(),
         '/boarding': (context) => const BoardingScreen(),
         '/boarding-second': (context) => const BoardingScreenSecond(),
         '/boarding-third': (context) => const BoardingScreenThird(),
-        '/bottom-nav': (context) => const BottomNavScreen(),
         '/home': (context) => const HomeScreen(),
         '/circle-avatar-home-screen': (context) =>
             const CircleAvatarHomeScreen(),
         '/profile': (context) => const ProfileScreen(),
-        '/order': (context) => const OrderScreen()
+        'order': (context) => const OrderScreen()
       },
     );
   }

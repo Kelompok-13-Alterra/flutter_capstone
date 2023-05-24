@@ -31,13 +31,13 @@ class _FormSignupState extends State<FormSignup> {
   }
 
   void _submitSignup() {
-    // Navigator.pushNamed(context, '/home');
     if (formKey.currentState!.validate()) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Selamat ${_nameController.text} berhasil login'),
         ),
       );
+      Navigator.pushNamed(context, '/');
     }
   }
 

@@ -14,12 +14,12 @@ class SignUpScreen extends StatelessWidget {
         children: [
           Container(
             padding: const EdgeInsets.all(20.0),
-            child: const Column(
+            child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
                 Column(
                   mainAxisSize: MainAxisSize.max,
-                  children: <Widget>[
+                  children: const <Widget>[
                     HeaderLogin(),
                     FormSignup(),
                   ],
