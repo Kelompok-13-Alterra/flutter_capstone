@@ -68,7 +68,8 @@ class _BoardingScreenState extends State<BoardingScreen> {
                           TextButton(
                             child: Text(
                               'Skip',
-                              style: greyTextStyle.copyWith(
+                              style: setTextStyle(SourceColor().darkOutline)
+                                  .copyWith(
                                 fontSize: 14,
                                 fontWeight: medium,
                               ),
@@ -80,15 +81,15 @@ class _BoardingScreenState extends State<BoardingScreen> {
                       const Padding(padding: EdgeInsets.only(top: 26)),
                       Text(
                         'Pesan Kantor atau Co-Working Space menjadi Mudah',
-                        style: blackTextStyle.copyWith(
-                            fontWeight: semiBold, fontSize: 16),
+                        style: setTextStyle(NeutralColor().neutral12)
+                            .copyWith(fontWeight: semiBold, fontSize: 16),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 8.0, bottom: 16.0),
                         child: Text(
                           'Kamu ga perlu repot ke tempatnya untuk daftarnya! Daftar di sini dan semuanya beres',
-                          style: greyTextStyle.copyWith(
-                              fontWeight: regular, fontSize: 12),
+                          style: setTextStyle(NeutralColor().neutral40)
+                              .copyWith(fontWeight: regular, fontSize: 12),
                         ),
                       ),
                       SizedBox(
@@ -98,7 +99,7 @@ class _BoardingScreenState extends State<BoardingScreen> {
                             style: ElevatedButton.styleFrom(
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(100)),
-                                backgroundColor: kPrimaryColor),
+                                backgroundColor: SourceColor().seed),
                             onPressed: () {
                               Navigator.pushNamed(context, '/boarding-second');
                             },
