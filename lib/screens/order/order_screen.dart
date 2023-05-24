@@ -39,10 +39,10 @@ class _OrderScreenState extends State<OrderScreen>
     return Scaffold(
         appBar: AppBar(
           elevation: 0.0,
-          backgroundColor: kWhiteColor,
+          backgroundColor: SourceColor().white,
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
-            color: kBlackColor,
+            color: SourceColor().black,
             onPressed: () {
               // Aksi ketika tombol panah kembali ditekan
             },
@@ -52,11 +52,11 @@ class _OrderScreenState extends State<OrderScreen>
             children: [
               Text(
                 'Orders',
-                style:
-                    blackTextStyle.copyWith(fontSize: 16, fontWeight: medium),
+                style: setTextStyle(NeutralColor().neutral12)
+                    .copyWith(fontSize: 16, fontWeight: medium),
               ),
               IconButton(
-                icon: Icon(Icons.more_vert, color: kBlackColor),
+                icon: Icon(Icons.more_vert, color: SourceColor().black),
                 onPressed: () {
                   // Aksi ketika tombol tanda titik tiga ditekan
                 },
@@ -65,7 +65,7 @@ class _OrderScreenState extends State<OrderScreen>
           ),
         ),
         body: Container(
-          color: kWhiteColor,
+          color: SourceColor().white,
           child: Padding(
             padding: const EdgeInsets.all(5),
             child: Expanded(
@@ -75,12 +75,12 @@ class _OrderScreenState extends State<OrderScreen>
                 child: Column(
                   children: [
                     Container(
-                      color: kWhiteColor,
+                      color: SourceColor().white,
                       child: TabBar(
                         controller: _tabController,
-                        indicatorColor: kPrimaryColor,
-                        unselectedLabelColor: kGreyColor,
-                        labelColor: kBlackColor,
+                        indicatorColor: PrimaryColor().primary,
+                        unselectedLabelColor: NeutralColor().neutral40,
+                        labelColor: SourceColor().black,
                         tabs: const [
                           Tab(
                             text: "Booked",
@@ -92,14 +92,18 @@ class _OrderScreenState extends State<OrderScreen>
                       ),
                     ),
                     Expanded(
-                      child: TabBarView(
-                        controller: _tabController,
-                        children: const [
-                          // Widget yang ingin ditampilkan di tab "Booked"
-                          BookedWidget(),
-                          // Widget yang ingin ditampilkan di tab "History"
-                          HistoryOrdered(),
-                        ],
+                      child: SizedBox(
+                        width: double.infinity,
+                        height: MediaQuery.of(context).size.height,
+                        child: TabBarView(
+                          controller: _tabController,
+                          children: const [
+                            // Widget yang ingin ditampilkan di tab "Booked"
+                            Flexible(child: BookedWidget()),
+                            // Widget yang ingin ditampilkan di tab "History"
+                            Flexible(child: HistoryOrdered()),
+                          ],
+                        ),
                       ),
                     )
                   ],
