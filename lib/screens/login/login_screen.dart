@@ -15,18 +15,18 @@ class LoginScreen extends StatelessWidget {
           Container(
             height: MediaQuery.of(context).size.height,
             padding: const EdgeInsets.all(20.0),
-            child: Column(
+            child: const Column(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Column(
                   mainAxisSize: MainAxisSize.max,
-                  children: const <Widget>[
+                  children: <Widget>[
                     HeaderLogin(),
                     FormLogin(),
                   ],
                 ),
-                const FooterLogin(),
+                FooterLogin(),
               ],
             ),
           ),

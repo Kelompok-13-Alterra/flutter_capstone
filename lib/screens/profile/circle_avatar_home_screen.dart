@@ -38,7 +38,7 @@ class _CircleAvatarHomeScreenState extends State<CircleAvatarHomeScreen> {
           )
         ],
       ),
-      body: Column(),
+      body: const Column(),
     );
   }
 }
