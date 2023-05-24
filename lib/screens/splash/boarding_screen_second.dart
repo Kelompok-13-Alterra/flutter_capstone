@@ -59,7 +59,8 @@ class _BoardingScreenSecondState extends State<BoardingScreenSecond> {
                           TextButton(
                             child: Text(
                               'Skip',
-                              style: greyTextStyle.copyWith(
+                              style: setTextStyle(SourceColor().darkOutline)
+                                  .copyWith(
                                 fontSize: 14,
                                 fontWeight: medium,
                               ),
@@ -71,7 +72,7 @@ class _BoardingScreenSecondState extends State<BoardingScreenSecond> {
                       const Padding(padding: EdgeInsets.only(top: 26)),
                       Text(
                         'Ga Harus Pake Credit Card',
-                        style: blackTextStyle.copyWith(
+                        style: setTextStyle(NeutralColor().neutral12).copyWith(
                           fontWeight: semiBold,
                           fontSize: 16,
                         ),
@@ -80,7 +81,7 @@ class _BoardingScreenSecondState extends State<BoardingScreenSecond> {
                         padding: const EdgeInsets.only(top: 8.0, bottom: 16.0),
                         child: Text(
                           'Booking ga perlu cartu credit, kamu bisa menggunakan metode pembayaran seperti e-wallet dan virtual account',
-                          style: greyTextStyle.copyWith(
+                          style: setTextStyle(SourceColor().outline).copyWith(
                             fontWeight: regular,
                             fontSize: 12,
                           ),
@@ -94,7 +95,7 @@ class _BoardingScreenSecondState extends State<BoardingScreenSecond> {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(100),
                             ),
-                            backgroundColor: kPrimaryColor,
+                            backgroundColor: PrimaryColor().primary,
                           ),
                           onPressed: () {
                             Navigator.pushNamed(context, '/boarding-third');

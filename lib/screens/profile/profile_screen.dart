@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/style/padding_style.dart';
+import 'package:flutter_capstone/screens/profile/widget/cards_profile_widget.dart';
+import 'package:flutter_capstone/screens/profile/widget/profiles_widget.dart';
 import 'package:flutter_capstone/style/text_style.dart';
-import 'package:flutter_capstone/widgets/profile/card_profile.dart';
-import 'package:flutter_capstone/widgets/profile/profile_widget.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -21,7 +20,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
         backgroundColor: Colors.transparent,
         title: Text(
           "Profile",
-          style: TextTitleProfile().text24,
+          style: setTextStyle(NeutralColor().neutral12)
+              .copyWith(fontSize: 16, fontWeight: regular),
+        ),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          color: NeutralColor().neutral0,
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
         actions: const [
           Padding(
@@ -37,41 +44,44 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
         ],
       ),
-      body: Column(
-        // mainAxisAlignment: MainAxisAlignment.start,
-        // crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Column(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Padding(
-                padding: PaddingCircleAvatarProfile().padding11,
-                child: Container(
-                  width: 88,
-                  height: 88,
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Color(0xFF97CBFF),
-                  ),
+              SizedBox(
+                width: 88,
+                height: 88,
+                child: CircleAvatar(
+                  backgroundColor: SecondaryColor().secondaryFixedDim,
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(
-                  bottom: 8,
+                padding: const EdgeInsets.symmetric(
+                  vertical: 8,
                 ),
                 child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       "Michael Abraham",
-                      style: TextNameOfUser().text18,
+                      style: setTextStyle(SourceColor().black).copyWith(
+                        fontSize: 14,
+                        fontWeight: medium,
+                      ),
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(left: 10),
                     ),
                     IconButton(
+                      iconSize: 15,
                       splashRadius: 10,
                       onPressed: () {},
                       icon: const Icon(Icons.edit),
-                      color: const Color(0xFF000000),
+                      color: SourceColor().black,
                     ),
                   ],
                 ),
@@ -82,13 +92,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
                 child: Text(
                   "michaelabraham@gmail.com",
-                  style: TextGmail().text19,
+                  style: setTextStyle(NeutralColor().neutral40).copyWith(
+                    fontSize: 16,
+                    fontWeight: regular,
+                  ),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(
-                  bottom: 8,
-                ),
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -98,21 +109,48 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       width: 16,
                       height: 16,
                     ),
-                    const SizedBox(
-                      width: 10,
-                    ),
                     Text(
                       'No Company',
-                      style: TextNoCompany().text20,
+                      style: setTextStyle(NeutralColor().neutral50).copyWith(
+                        fontSize: 12,
+                        fontWeight: regular,
+                      ),
                     )
                   ],
                 ),
               ),
+              Row(
+                children: <Widget>[
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.5 - 16,
+                    child: const CardsProfileWidget(
+                      cardColor: Color(0xffF2F6FF),
+                      icon: AssetImage(
+                        "assets/image/Image_total_kantor.png",
+                      ),
+                      title: 'Total Kantor',
+                      desc: 'yang kamu kunjungi',
+                      count: 36,
+                    ),
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.5 - 16,
+                    child: const CardsProfileWidget(
+                      cardColor: Color(0xffFFFCF5),
+                      icon: AssetImage(
+                        "assets/image/Image_total_co-working.png",
+                      ),
+                      title: 'Total Co-working',
+                      desc: 'yang kamu kunjungi',
+                      count: 36,
+                    ),
+                  ),
+                ],
+              ),
+              profilesWidget(context),
             ],
           ),
-          cardProfile(context),
-          profileWidget(context),
-        ],
+        ),
       ),
     );
   }

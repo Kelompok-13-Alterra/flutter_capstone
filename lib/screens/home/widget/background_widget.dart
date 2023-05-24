@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class BackgroundHomeScreen extends StatefulWidget {
-  const BackgroundHomeScreen({super.key});
+class BackgroundWidget extends StatefulWidget {
+  const BackgroundWidget({super.key});
 
   @override
-  State<BackgroundHomeScreen> createState() => _BackgroundHomeScreenState();
+  State<BackgroundWidget> createState() => _BackgroundWidgetState();
 }
 
-class _BackgroundHomeScreenState extends State<BackgroundHomeScreen> {
+class _BackgroundWidgetState extends State<BackgroundWidget> {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
@@ -110,7 +110,7 @@ class _BackgroundHomeScreenState extends State<BackgroundHomeScreen> {
                           ),
                           GestureDetector(
                             onTap: () {
-                              //OnTab di Akun
+                              Navigator.pushNamed(context, '/profile');
                             },
                             child: const CircleAvatar(
                               child: Icon(

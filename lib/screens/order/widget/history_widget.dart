@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/style/text_style.dart';
-import 'package:flutter_capstone/widgets/history/history_reviewed_widget.dart';
+import 'package:flutter_capstone/widgets/rating/history_reviewed_widget.dart';
 
-class HistoryOrdered extends StatelessWidget {
-  const HistoryOrdered({super.key});
+class HistoryOrderedWidget extends StatelessWidget {
+  const HistoryOrderedWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +44,7 @@ class HistoryOrdered extends StatelessWidget {
                         const SizedBox(height: 8),
                         Row(
                           children: [
-                            Icon(Icons.star, color: kYellowColor),
+                            Icon(Icons.star, color: SourceColor().yellow),
                             const SizedBox(width: 4),
                             const Text(
                               '4.6',
@@ -59,14 +59,14 @@ class HistoryOrdered extends StatelessWidget {
                         Row(
                           children: [
                             Icon(Icons.access_time,
-                                size: 16, color: kGreyColor),
+                                size: 16, color: NeutralColor().neutral60),
                             const SizedBox(width: 4),
                             Text(
                               '10:00 AM - 06:00 PM',
                               style: TextStyle(
                                 fontSize: 14,
                                 fontWeight: regular,
-                                color: kGreyColor,
+                                color: NeutralColor().neutral60,
                               ),
                             ),
                           ],
@@ -84,14 +84,14 @@ class HistoryOrdered extends StatelessWidget {
                     padding:
                         const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                     decoration: BoxDecoration(
-                      color: kPurpleColor,
+                      color: TertiaryColor().tertiary,
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Center(
                       child: Text(
                         'Ordered',
                         style: TextStyle(
-                          color: kWhiteColor,
+                          color: SourceColor().white,
                           fontWeight: FontWeight.bold,
                           fontSize: 14,
                         ),
@@ -123,8 +123,8 @@ class HistoryOrdered extends StatelessWidget {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(100),
                           ),
-                          backgroundColor: kPrimaryColor,
-                          labelStyle: TextStyle(color: kWhiteColor),
+                          backgroundColor: PrimaryColor().primary,
+                          labelStyle: TextStyle(color: SourceColor().white),
                           padding: const EdgeInsets.symmetric(
                               horizontal: 16, vertical: 8),
                           materialTapTargetSize:
@@ -146,10 +146,10 @@ class HistoryOrdered extends StatelessWidget {
                           },
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(100),
-                            side: BorderSide(color: kPrimaryColor),
+                            side: BorderSide(color: PrimaryColor().primary),
                           ),
-                          backgroundColor: kWhiteColor,
-                          labelStyle: TextStyle(color: kPrimaryColor),
+                          backgroundColor: SourceColor().white,
+                          labelStyle: TextStyle(color: PrimaryColor().primary),
                           padding: const EdgeInsets.symmetric(
                               horizontal: 16, vertical: 8),
                           materialTapTargetSize:

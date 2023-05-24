@@ -27,7 +27,7 @@ class HeaderLogin extends StatelessWidget {
         ),
         Text(
           'Sign Up',
-          style: blackTextStyle.copyWith(
+          style: setTextStyle(SourceColor().black).copyWith(
             fontSize: 22.0,
             fontWeight: regular,
           ),
@@ -37,7 +37,7 @@ class HeaderLogin extends StatelessWidget {
         ),
         Text(
           'Silahkan isi data diri anda untuk daftar akun',
-          style: greyTextStyle.copyWith(
+          style: setTextStyle(NeutralColor().neutral60).copyWith(
             fontSize: 12.0,
             fontWeight: regular,
           ),

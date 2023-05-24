@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_capstone/screens/order/widget/booked_widget.dart';
 import 'package:flutter_capstone/screens/order/widget/history_widget.dart';
 import 'package:flutter_capstone/style/text_style.dart';
-import 'package:flutter_capstone/screens/order/widget/booked_widget.dart';
 
-class OrderScreen extends StatefulWidget {
-  const OrderScreen({super.key});
+class OrderTabScreen extends StatefulWidget {
+  const OrderTabScreen({super.key});
 
   @override
-  State<OrderScreen> createState() => _OrderScreenState();
+  State<OrderTabScreen> createState() => _OrderTabScreenState();
 }
 
-class _OrderScreenState extends State<OrderScreen>
+class _OrderTabScreenState extends State<OrderTabScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   int _currentTabIndex = 0;
@@ -78,9 +78,9 @@ class _OrderScreenState extends State<OrderScreen>
                       color: SourceColor().white,
                       child: TabBar(
                         controller: _tabController,
-                        indicatorColor: PrimaryColor().primary,
-                        unselectedLabelColor: NeutralColor().neutral40,
-                        labelColor: SourceColor().black,
+                        indicatorColor: SourceColor().seed,
+                        unselectedLabelColor: NeutralColor().neutral10,
+                        labelColor: NeutralColor().neutral10,
                         tabs: const [
                           Tab(
                             text: "Booked",
@@ -92,18 +92,15 @@ class _OrderScreenState extends State<OrderScreen>
                       ),
                     ),
                     Expanded(
-                      child: SizedBox(
-                        width: double.infinity,
-                        height: MediaQuery.of(context).size.height,
-                        child: TabBarView(
-                          controller: _tabController,
-                          children: const [
-                            // Widget yang ingin ditampilkan di tab "Booked"
-                            Flexible(child: BookedWidget()),
-                            // Widget yang ingin ditampilkan di tab "History"
-                            Flexible(child: HistoryOrderedWidget()),
-                          ],
-                        ),
+                      child: TabBarView(
+                        controller: _tabController,
+                        children: const [
+                          // Widget yang ingin ditampilkan di tab
+                          //x /Booked"
+                          BookedWidget(),
+                          // Widget yang ingin ditampilkan di tab "History"
+                          HistoryOrderedWidget(),
+                        ],
                       ),
                     )
                   ],

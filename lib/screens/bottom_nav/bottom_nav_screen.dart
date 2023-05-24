@@ -1,26 +1,24 @@
-
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/widgets/widget-homescreen/homepage.dart';
+import 'package:flutter_capstone/screens/home/home_screen.dart';
+import 'package:flutter_capstone/screens/order/order_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class BottomNavScreen extends StatefulWidget {
+  const BottomNavScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<BottomNavScreen> createState() => _BottomNavScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _BottomNavScreenState extends State<BottomNavScreen> {
   int currentIndex = 0;
 
   final List<Widget> _children = [
-    const Homepage(),
-    const Center(
-      child: Text("Ini buat page Order"),
-    ),
+    const HomeScreen(),
+    const OrderScreen(),
     const Center(
       child: Text("Ini buat page Setting"),
     ),
