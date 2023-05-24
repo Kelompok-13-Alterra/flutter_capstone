@@ -1,23 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/widgets/login/text_or_widget.dart';
+import 'package:flutter_capstone/screens/login/widget/text_or_widget.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:email_validator/email_validator.dart';
 
-class FormSignup extends StatefulWidget {
-  const FormSignup({super.key});
+class FormLogin extends StatefulWidget {
+  const FormLogin({super.key});
 
   @override
-  State<FormSignup> createState() => _FormSignupState();
+  State<FormLogin> createState() => _FormLoginState();
 }
 
-class _FormSignupState extends State<FormSignup> {
+class _FormLoginState extends State<FormLogin> {
   final formKey = GlobalKey<FormState>();
-
-  final _nameController = TextEditingController();
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
-  final _confirmPasswordController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   bool isChecked = false;
 
   late bool newUser;
@@ -30,23 +27,26 @@ class _FormSignupState extends State<FormSignup> {
     });
   }
 
-  void _submitSignup() {
-    // Navigator.pushNamed(context, '/home');
+  void _submitLogin() {
     if (formKey.currentState!.validate()) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Selamat ${_nameController.text} berhasil login'),
+          content: Text('Selamat ${_emailController.text} berhasil login'),
         ),
       );
+<<<<<<< Updated upstream:lib/screens/login/widget/form_login_widget.dart
+      Navigator.pushNamedAndRemoveUntil(
+          context, '/bottom-nav', (route) => false);
+=======
+      Navigator.pushNamed(context, '/home');
+>>>>>>> Stashed changes:lib/widgets/login/form_login_widget.dart
     }
   }
 
   @override
   void dispose() {
-    _nameController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
-    _confirmPasswordController.dispose();
     super.dispose();
   }
 
@@ -62,41 +62,18 @@ class _FormSignupState extends State<FormSignup> {
         autovalidateMode: AutovalidateMode.onUserInteraction,
         child: Column(
           children: [
-            //form name
-
-            TextFormField(
-              controller: _nameController,
-              validator: (value) {
-                if (value != null && value.length < 5) {
-                  return 'Enter min. 4 characters';
-                } else {
-                  return null; //form is valid
-                }
-              },
-              decoration: InputDecoration(
-                labelText: 'Nama',
-                hintStyle: GoogleFonts.roboto(
-                  fontWeight: FontWeight.w400,
-                  fontSize: 16,
-                ),
-                hintText: 'Input Full Name',
-                floatingLabelBehavior: FloatingLabelBehavior.always,
-                border: const OutlineInputBorder(),
-              ),
-            ),
-            const SizedBox(height: 20.0),
             // Form Login
             //========================================================
             // Input Email
             //========================================================
             TextFormField(
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               controller: _emailController,
               validator: (email) {
-                // 5 install package email_validator
                 if (email != null && !EmailValidator.validate(email)) {
                   return 'Enter a valid email';
                 } else {
-                  return null; //form is valid
+                  return null;
                 }
               },
               decoration: InputDecoration(
@@ -114,12 +91,14 @@ class _FormSignupState extends State<FormSignup> {
             // Input Password
             //========================================================
             TextFormField(
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              obscureText: _obscureText,
               controller: _passwordController,
               validator: (value) {
                 if (value != null && value.length < 5) {
                   return 'Enter min. 5 characters';
                 } else {
-                  return null; //form is valid
+                  return null;
                 }
               },
               decoration: InputDecoration(
@@ -135,35 +114,6 @@ class _FormSignupState extends State<FormSignup> {
                   onPressed: _togglePasswordVisibility,
                 ),
                 hintText: 'Input Password',
-                floatingLabelBehavior: FloatingLabelBehavior.always,
-                border: const OutlineInputBorder(),
-              ),
-            ),
-            const SizedBox(height: 20.0),
-
-            //confirmpassword
-            TextFormField(
-              controller: _confirmPasswordController,
-              validator: (value) {
-                if (value != null && value.length < 5) {
-                  return 'Enter min. 5 characters';
-                } else {
-                  return null; //form is valid
-                }
-              },
-              decoration: InputDecoration(
-                labelText: 'Confirm Password',
-                hintStyle: GoogleFonts.roboto(
-                  fontWeight: FontWeight.w400,
-                  fontSize: 16,
-                ),
-                suffixIcon: IconButton(
-                  icon: Icon(
-                    _obscureText ? Icons.visibility_off : Icons.visibility,
-                  ),
-                  onPressed: _togglePasswordVisibility,
-                ),
-                hintText: 'Input Password Again',
                 floatingLabelBehavior: FloatingLabelBehavior.always,
                 border: const OutlineInputBorder(),
               ),
@@ -189,7 +139,7 @@ class _FormSignupState extends State<FormSignup> {
                   width: 7,
                 ),
                 Text(
-                  'I Agree with Terms and Condition',
+                  'Remember me',
                   style: GoogleFonts.roboto(
                     fontWeight: FontWeight.w500,
                     fontSize: 14,
@@ -217,11 +167,9 @@ class _FormSignupState extends State<FormSignup> {
                       ),
                     ),
                   ),
-                  onPressed: () {
-                    _submitSignup;
-                  },
+                  onPressed: _submitLogin,
                   child: Text(
-                    'Sign Up',
+                    'Login',
                     style: GoogleFonts.roboto(),
                   ),
                 ),
@@ -253,9 +201,7 @@ class _FormSignupState extends State<FormSignup> {
                       ),
                     ),
                   ),
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/home');
-                  },
+                  onPressed: () {},
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -264,7 +210,7 @@ class _FormSignupState extends State<FormSignup> {
                         width: 8,
                       ),
                       Text(
-                        'Continue With Google',
+                        'Sign In With Google',
                         style:
                             GoogleFonts.roboto(color: const Color(0xFF292A2D)),
                       ),

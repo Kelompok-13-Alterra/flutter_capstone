@@ -33,13 +33,6 @@ class _ReviewPageState extends State<ReviewPage> {
     if (pickedImage != null) {}
   }
 
-  Future<void> _pickImageFromGallery() async {
-    final picker = ImagePicker();
-    final pickedImage = await picker.getImage(source: ImageSource.gallery);
-
-    if (pickedImage != null) {}
-  }
-
   void _submitReview() {
     _reviewController.clear();
 
@@ -51,24 +44,22 @@ class _ReviewPageState extends State<ReviewPage> {
     return Scaffold(
         appBar: AppBar(
           elevation: 0.0,
-          backgroundColor: kWhiteColor,
+          backgroundColor: SourceColor().white,
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back),
-            color: kBlackColor,
-            onPressed: () {
-              // Aksi ketika tombol panah kembali ditekan
-            },
-          ),
+              icon: const Icon(Icons.arrow_back),
+              color: SourceColor().black,
+              onPressed: () {
+                Navigator.pushNamed(context, '/order');
+              }),
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 'Review',
-                style:
-                    blackTextStyle.copyWith(fontSize: 16, fontWeight: medium),
+                style: TextStyle(fontSize: 16, fontWeight: regular),
               ),
               IconButton(
-                icon: Icon(Icons.more_vert, color: kBlackColor),
+                icon: Icon(Icons.more_vert, color: SourceColor().black),
                 onPressed: () {
                   // Aksi ketika tombol tanda titik tiga ditekan
                 },
@@ -78,7 +69,7 @@ class _ReviewPageState extends State<ReviewPage> {
         ),
         body: SingleChildScrollView(
           child: Container(
-            color: kWhiteColor,
+            color: SourceColor().white,
             child: Column(
               children: [
                 Padding(
@@ -95,6 +86,7 @@ class _ReviewPageState extends State<ReviewPage> {
                         style: TextStyle(
                           fontSize: 24,
                           fontWeight: regular,
+                          color: NeutralColor().neutral20,
                         ),
                       ),
                       const SizedBox(
@@ -105,7 +97,7 @@ class _ReviewPageState extends State<ReviewPage> {
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: regular,
-                          color: kGreyColor,
+                          color: NeutralColor().neutral60,
                         ),
                       ),
                       const SizedBox(
@@ -120,7 +112,7 @@ class _ReviewPageState extends State<ReviewPage> {
                         itemSize: 50,
                         itemBuilder: (context, _) => Icon(
                           Icons.star,
-                          color: kYellowColor,
+                          color: SourceColor().yellow,
                         ),
                         onRatingUpdate: (rating) {
                           setState(() {
@@ -136,7 +128,7 @@ class _ReviewPageState extends State<ReviewPage> {
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: regular,
-                          color: kBlackColor,
+                          color: SourceColor().black,
                         ),
                       ),
                     ],
@@ -155,12 +147,12 @@ class _ReviewPageState extends State<ReviewPage> {
                             _filters[index],
                             style: TextStyle(
                               color: _selectedFilterIndex == index
-                                  ? kWhiteColor
-                                  : kGreyColor,
+                                  ? NeutralColor().neutral100
+                                  : NeutralColor().neutral90,
                             ),
                           ),
                           selected: _selectedFilterIndex == index,
-                          selectedColor: kPrimaryColor,
+                          selectedColor: SourceColor().seed,
                           onSelected: (bool selected) {
                             setState(() {
                               _selectedFilterIndex = selected ? index : 0;
@@ -179,7 +171,7 @@ class _ReviewPageState extends State<ReviewPage> {
                         Container(
                           decoration: BoxDecoration(
                               border: Border.all(
-                                color: Colors.grey,
+                                color: SourceColor().outline,
                                 width: 1.0,
                               ),
                               borderRadius: BorderRadius.circular(4)),
@@ -201,14 +193,14 @@ class _ReviewPageState extends State<ReviewPage> {
                                         fontSize: 12,
                                       ),
                                       border: InputBorder.none,
-                                      fillColor: kWhiteColor,
+                                      fillColor: SourceColor().white,
                                     ),
                                   ),
                                 ),
                               ),
                               Container(
                                 height: 1,
-                                color: kGreyColor,
+                                color: SourceColor().outline,
                               ),
                               Container(
                                 padding: const EdgeInsets.all(0),
@@ -220,21 +212,24 @@ class _ReviewPageState extends State<ReviewPage> {
                                         icon: Icon(
                                           Icons
                                               .photo_size_select_actual_outlined,
-                                          color: kPrimaryColor,
+                                          color: PrimaryColor().primary,
                                         ),
-                                        onPressed: _pickImageFromGallery,
+                                        onPressed: () {
+                                          Navigator.pushNamed(
+                                              context, '/image-picker');
+                                        },
                                       ),
                                     ),
                                     Container(
                                       width: 1,
-                                      color: kGreyColor,
+                                      color: SourceColor().outline,
                                       height: 48,
                                     ),
                                     Expanded(
                                       child: IconButton(
                                         icon: Icon(
                                           Icons.camera_alt_outlined,
-                                          color: kPrimaryColor,
+                                          color: PrimaryColor().primary,
                                         ),
                                         onPressed: _pickImageFromCamera,
                                       ),
@@ -253,7 +248,7 @@ class _ReviewPageState extends State<ReviewPage> {
                   onPressed: _submitReview,
                   style: ElevatedButton.styleFrom(
                     fixedSize: const Size(328, 50),
-                    backgroundColor: kPrimaryColor,
+                    backgroundColor: PrimaryColor().primary,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(100),
                     ),

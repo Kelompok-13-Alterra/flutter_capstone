@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/style/text_style.dart';
-import 'package:flutter_capstone/widgets/history/history_ordered_widget.dart';
-import 'package:flutter_capstone/widgets/order/booked_widget.dart';
+<<<<<<< Updated upstream:lib/screens/order_tab.dart
+import 'package:flutter_capstone/screens/order/widget/history_widget.dart';
+import 'package:flutter_capstone/screens/order/widget/booked_widget.dart';
+=======
+import 'package:flutter_capstone/screens/history/history_ordered_screen.dart';
+import 'package:flutter_capstone/screens/history/booked_screen.dart';
+>>>>>>> Stashed changes:lib/screens/order/order_tab_screen.dart
 
 class OrderTabScreen extends StatefulWidget {
   const OrderTabScreen({super.key});
@@ -39,10 +44,10 @@ class _OrderTabScreenState extends State<OrderTabScreen>
     return Scaffold(
         appBar: AppBar(
           elevation: 0.0,
-          backgroundColor: kWhiteColor,
+          backgroundColor: SourceColor().white,
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
-            color: kBlackColor,
+            color: SourceColor().black,
             onPressed: () {
               // Aksi ketika tombol panah kembali ditekan
             },
@@ -52,11 +57,11 @@ class _OrderTabScreenState extends State<OrderTabScreen>
             children: [
               Text(
                 'Orders',
-                style:
-                    blackTextStyle.copyWith(fontSize: 16, fontWeight: medium),
+                style: setTextStyle(NeutralColor().neutral12)
+                    .copyWith(fontSize: 16, fontWeight: medium),
               ),
               IconButton(
-                icon: Icon(Icons.more_vert, color: kBlackColor),
+                icon: Icon(Icons.more_vert, color: SourceColor().black),
                 onPressed: () {
                   // Aksi ketika tombol tanda titik tiga ditekan
                 },
@@ -65,7 +70,7 @@ class _OrderTabScreenState extends State<OrderTabScreen>
           ),
         ),
         body: Container(
-          color: kWhiteColor,
+          color: SourceColor().white,
           child: Padding(
             padding: const EdgeInsets.all(5),
             child: Expanded(
@@ -75,12 +80,12 @@ class _OrderTabScreenState extends State<OrderTabScreen>
                 child: Column(
                   children: [
                     Container(
-                      color: kWhiteColor,
+                      color: SourceColor().white,
                       child: TabBar(
                         controller: _tabController,
-                        indicatorColor: kPrimaryColor,
-                        unselectedLabelColor: kGreyColor,
-                        labelColor: kBlackColor,
+                        indicatorColor: SourceColor().seed,
+                        unselectedLabelColor: NeutralColor().neutral10,
+                        labelColor: NeutralColor().neutral10,
                         tabs: const [
                           Tab(
                             text: "Booked",
@@ -99,7 +104,7 @@ class _OrderTabScreenState extends State<OrderTabScreen>
                           //x /Booked"
                           BookedWidget(),
                           // Widget yang ingin ditampilkan di tab "History"
-                          HistoryOrdered(),
+                          HistoryOrderedWidget(),
                         ],
                       ),
                     )

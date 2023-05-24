@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/style/padding_style.dart';
+import 'package:flutter_capstone/screens/profile/widget/cards_profile_widget.dart';
+import 'package:flutter_capstone/screens/profile/widget/profiles_widget.dart';
 import 'package:flutter_capstone/style/text_style.dart';
-import 'package:flutter_capstone/widgets/profile/card_profile.dart';
-import 'package:flutter_capstone/widgets/profile/profile_widget.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -21,11 +20,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
         backgroundColor: Colors.transparent,
         title: Text(
           "Profile",
-          style: TextTitleProfile().text24,
+          style: setTextStyle(NeutralColor().neutral12)
+              .copyWith(fontSize: 16, fontWeight: regular),
         ),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
-          color: kBlackColor,
+          color: NeutralColor().neutral0,
           onPressed: () {
             Navigator.pop(context);
           },
@@ -45,82 +45,111 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ],
       ),
       body: SingleChildScrollView(
-        child: Column(
-          // mainAxisAlignment: MainAxisAlignment.start,
-          // crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: PaddingCircleAvatarProfile().padding11,
-                  child: Container(
-                    width: 88,
-                    height: 88,
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Color(0xFF97CBFF),
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                width: 88,
+                height: 88,
+                child: CircleAvatar(
+                  backgroundColor: SecondaryColor().secondaryFixedDim,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 8,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Michael Abraham",
+                      style: setTextStyle(SourceColor().black).copyWith(
+                        fontSize: 14,
+                        fontWeight: medium,
+                      ),
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(left: 10),
+                    ),
+                    IconButton(
+                      iconSize: 15,
+                      splashRadius: 10,
+                      onPressed: () {},
+                      icon: const Icon(Icons.edit),
+                      color: SourceColor().black,
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                  bottom: 8,
+                ),
+                child: Text(
+                  "michaelabraham@gmail.com",
+                  style: setTextStyle(NeutralColor().neutral40).copyWith(
+                    fontSize: 16,
+                    fontWeight: regular,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      'assets/image/meeting_room.png',
+                      width: 16,
+                      height: 16,
+                    ),
+                    Text(
+                      'No Company',
+                      style: setTextStyle(NeutralColor().neutral50).copyWith(
+                        fontSize: 12,
+                        fontWeight: regular,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Row(
+                children: <Widget>[
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.5 - 16,
+                    child: const CardsProfileWidget(
+                      cardColor: Color(0xffF2F6FF),
+                      icon: AssetImage(
+                        "assets/image/Image_total_kantor.png",
+                      ),
+                      title: 'Total Kantor',
+                      desc: 'yang kamu kunjungi',
+                      count: 36,
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    bottom: 8,
-                  ),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "Michael Abraham",
-                        style: TextNameOfUser().text18,
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.5 - 16,
+                    child: const CardsProfileWidget(
+                      cardColor: Color(0xffFFFCF5),
+                      icon: AssetImage(
+                        "assets/image/Image_total_co-working.png",
                       ),
-                      IconButton(
-                        splashRadius: 10,
-                        onPressed: () {},
-                        icon: const Icon(Icons.edit),
-                        color: const Color(0xFF000000),
-                      ),
-                    ],
+                      title: 'Total Co-working',
+                      desc: 'yang kamu kunjungi',
+                      count: 36,
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    bottom: 8,
-                  ),
-                  child: Text(
-                    "michaelabraham@gmail.com",
-                    style: TextGmail().text19,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    bottom: 8,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        'assets/image/meeting_room.png',
-                        width: 16,
-                        height: 16,
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        'No Company',
-                        style: TextNoCompany().text20,
-                      )
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            cardProfile(context),
-            profileWidget(context),
-          ],
+                ],
+              ),
+              profilesWidget(context),
+            ],
+          ),
         ),
       ),
     );

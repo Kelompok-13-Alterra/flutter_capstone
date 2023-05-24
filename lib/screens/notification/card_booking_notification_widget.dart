@@ -1,5 +1,3 @@
-//AUTHOR : ULFA LADAYYA
-//KELAS C FLUTTER
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 
@@ -26,25 +24,25 @@ Widget cardBookingNotificationWidget(BuildContext context) {
                     RichText(
                       text: TextSpan(
                         text: "Booking Office dengan No",
-                        style: blackTextStyle.copyWith(
-                            fontSize: 14, fontWeight: regular),
+                        style: setTextStyle(NeutralColor().neutral12)
+                            .copyWith(fontSize: 14, fontWeight: regular),
                       ),
                     ),
                     RichText(
                       text: TextSpan(
                         text: "Pesanan ",
-                        style: blackTextStyle.copyWith(
-                            fontSize: 14, fontWeight: regular),
+                        style: setTextStyle(NeutralColor().neutral12)
+                            .copyWith(fontSize: 14, fontWeight: regular),
                         children: <TextSpan>[
                           TextSpan(
                             text: "#ID20230506 ",
-                            style: blackTextStyle.copyWith(
-                                fontSize: 14, fontWeight: bold),
+                            style: setTextStyle(NeutralColor().neutral12)
+                                .copyWith(fontSize: 14, fontWeight: bold),
                           ),
                           TextSpan(
                             text: "Berhasil",
-                            style: blackTextStyle.copyWith(
-                                fontSize: 14, fontWeight: regular),
+                            style: setTextStyle(NeutralColor().neutral12)
+                                .copyWith(fontSize: 14, fontWeight: regular),
                           ),
                         ],
                       ),
@@ -92,13 +90,13 @@ Widget cardBookingNotificationWidget(BuildContext context) {
                     RichText(
                       text: TextSpan(
                         text: "Bookingan kamu ",
-                        style: blackTextStyle.copyWith(
-                            fontSize: 14, fontWeight: regular),
+                        style: setTextStyle(NeutralColor().neutral12)
+                            .copyWith(fontSize: 14, fontWeight: regular),
                         children: <TextSpan>[
                           TextSpan(
                             text: "sedang diproses",
-                            style: blackTextStyle.copyWith(
-                                fontSize: 14, fontWeight: bold),
+                            style: setTextStyle(NeutralColor().neutral12)
+                                .copyWith(fontSize: 14, fontWeight: bold),
                           ),
                         ],
                       ),
