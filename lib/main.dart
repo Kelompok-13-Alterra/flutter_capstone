@@ -1,8 +1,9 @@
 //AUTHOR : ULFA LADAYYA
 //KELAS C FLUTTER
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/screens/circle_avatar_home_screen.dart';
-import 'package:flutter_capstone/screens/profile_screen.dart';
+import 'package:flutter_capstone/profile/profile_screen.dart';
+
+
 
 void main() {
   runApp(const MyApp());
@@ -20,8 +21,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => const CircleAvatarHomeScreen(),
-        '/profile': (context) => const ProfileScreen(),
+        '/': (context) => const ProfileScreen(),
       },
     );
   }
