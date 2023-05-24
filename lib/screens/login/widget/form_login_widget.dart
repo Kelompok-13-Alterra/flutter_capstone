@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/widgets/login/text_or_widget.dart';
+import 'package:flutter_capstone/screens/login/widget/text_or_widget.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:email_validator/email_validator.dart';
