@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/style/padding_style.dart';
-import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_capstone/screens/profile/cards_profile_widget.dart';
 import 'package:flutter_capstone/screens/profile/profiles_widget.dart';
+import 'package:flutter_capstone/style/padding_style.dart';
+import 'package:flutter_capstone/style/text_style.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -15,16 +15,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kWhiteColor,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
         title: Text(
           "Profile",
-          style: blackTextStyle.copyWith(
-            fontSize: 16,
-            fontWeight: regular,
-          ),
+          style: setTextStyle(NeutralColor().neutral12)
+              .copyWith(fontSize: 16, fontWeight: regular),
+        ),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          color: NeutralColor().neutral0,
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
         actions: const [
           Padding(
@@ -52,7 +57,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   height: 88,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: kLightSecondaryColor,
+                    color: SecondaryColor().secondaryFixedDim,
                   ),
                 ),
               ),
@@ -66,7 +71,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   children: [
                     Text(
                       "Michael Abraham",
-                      style: sourceBlackTextStyle.copyWith(
+                      style: setTextStyle(SourceColor().black).copyWith(
                         fontSize: 14,
                         fontWeight: medium,
                       ),
@@ -75,7 +80,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       splashRadius: 10,
                       onPressed: () {},
                       icon: const Icon(Icons.edit),
-                      color: kSourceBlackColor,
+                      color: SourceColor().black,
                     ),
                   ],
                 ),
@@ -86,7 +91,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
                 child: Text(
                   "michaelabraham@gmail.com",
-                  style: TextGmail().text19,
+                  style: setTextStyle(NeutralColor().neutral40).copyWith(
+                    fontSize: 12,
+                    fontWeight: regular,
+                  ),
                 ),
               ),
               Padding(
@@ -107,7 +115,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                     Text(
                       'No Company',
-                      style: neutral50TextStyle.copyWith(
+                      style: setTextStyle(NeutralColor().neutral50).copyWith(
                         fontSize: 12,
                         fontWeight: regular,
                       ),
@@ -141,19 +149,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
             width2: 24,
             height3: 4,
             text1: 'Total Kantor',
-            style1: neutralVariant30TextStyle.copyWith(
+            style1: setTextStyle(NeutralColor().neutral30).copyWith(
               fontSize: 16,
               fontWeight: medium,
             ),
             height4: 4,
             text2: 'yang kamu kunjungi',
-            style2: neutralVariant60TextStyle.copyWith(
+            style2: setTextStyle(SourceColor().darkOutline).copyWith(
               fontSize: 12,
               fontWeight: regular,
             ),
             height5: 4,
             text3: '36',
-            style3: sourceBlackTextStyle.copyWith(
+            style3: setTextStyle(SourceColor().black).copyWith(
               fontSize: 24,
               fontWeight: regular,
             ),
@@ -172,19 +180,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
             width7: 24,
             height8: 4,
             text4: 'Total Co-working',
-            style4: neutralVariant30TextStyle.copyWith(
+            style4: setTextStyle(NeutralColor().neutral30).copyWith(
               fontSize: 16,
               fontWeight: medium,
             ),
             height9: 4,
             text5: 'yang kamu kunjungi',
-            style5: neutralVariant60TextStyle.copyWith(
+            style5: setTextStyle(SourceColor().darkOutline).copyWith(
               fontSize: 12,
               fontWeight: regular,
             ),
             height10: 4,
             text6: '36',
-            style6: sourceBlackTextStyle.copyWith(
+            style6: setTextStyle(SourceColor().black).copyWith(
               fontSize: 24,
               fontWeight: regular,
             ),

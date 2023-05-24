@@ -79,7 +79,7 @@ Widget profilesWidget(BuildContext context) {
             ),
             child: Text(
               "Account",
-              style: neutralVariant30TextStyle.copyWith(
+              style: setTextStyle(NeutralColor().neutral30).copyWith(
                 fontSize: 14,
                 fontWeight: medium,
               ),
@@ -97,7 +97,7 @@ Widget profilesWidget(BuildContext context) {
                   leading: iconSubMenuAccount[index],
                   title: Text(
                     subMenuAccount[index],
-                    style: neutral30TextStyle.copyWith(
+                    style: setTextStyle(NeutralColor().neutral30).copyWith(
                       fontSize: 12,
                       fontWeight: regular,
                     ),
@@ -125,7 +125,7 @@ Widget profilesWidget(BuildContext context) {
             ),
             child: Text(
               "Information",
-              style: neutralVariant30TextStyle.copyWith(
+              style: setTextStyle(NeutralColor().neutral30).copyWith(
                 fontSize: 14,
                 fontWeight: medium,
               ),
@@ -143,7 +143,7 @@ Widget profilesWidget(BuildContext context) {
                   leading: iconSubMenuInformation[index],
                   title: Text(
                     subMenuInformation[index],
-                    style: neutral30TextStyle.copyWith(
+                    style: setTextStyle(NeutralColor().neutral30).copyWith(
                       fontSize: 12,
                       fontWeight: regular,
                     ),
@@ -184,7 +184,7 @@ Widget profilesWidget(BuildContext context) {
                     ),
                     Text(
                       "Log Out",
-                      style: neutral30TextStyle.copyWith(
+                      style: setTextStyle(NeutralColor().neutral30).copyWith(
                         fontSize: 12,
                         fontWeight: regular,
                       ),
