@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+<<<<<<< Updated upstream
 import 'package:flutter_capstone/screens/order/widget/history_widget.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_capstone/screens/order/widget/booked_widget.dart';
+=======
+import 'package:flutter_capstone/screens/history/history_ordered_screen.dart';
+import 'package:flutter_capstone/style/text_style.dart';
+import 'package:flutter_capstone/screens/history/booked_screen.dart';
+>>>>>>> Stashed changes
 
 class OrderScreen extends StatefulWidget {
   const OrderScreen({super.key});
@@ -44,7 +50,7 @@ class _OrderScreenState extends State<OrderScreen>
             icon: const Icon(Icons.arrow_back),
             color: SourceColor().black,
             onPressed: () {
-              // Aksi ketika tombol panah kembali ditekan
+              Navigator.pushNamed(context, '/home');
             },
           ),
           title: Row(
@@ -52,8 +58,11 @@ class _OrderScreenState extends State<OrderScreen>
             children: [
               Text(
                 'Orders',
-                style: setTextStyle(NeutralColor().neutral12)
-                    .copyWith(fontSize: 16, fontWeight: medium),
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: medium,
+                  color: SourceColor().black,
+                ),
               ),
               IconButton(
                 icon: Icon(Icons.more_vert, color: SourceColor().black),
@@ -79,8 +88,8 @@ class _OrderScreenState extends State<OrderScreen>
                       child: TabBar(
                         controller: _tabController,
                         indicatorColor: PrimaryColor().primary,
-                        unselectedLabelColor: NeutralColor().neutral40,
-                        labelColor: SourceColor().black,
+                        unselectedLabelColor: NeutralColor().neutral00,
+                        labelColor: NeutralColor().neutral0,
                         tabs: const [
                           Tab(
                             text: "Booked",
@@ -92,6 +101,7 @@ class _OrderScreenState extends State<OrderScreen>
                       ),
                     ),
                     Expanded(
+<<<<<<< Updated upstream
                       child: SizedBox(
                         width: double.infinity,
                         height: MediaQuery.of(context).size.height,
@@ -104,6 +114,16 @@ class _OrderScreenState extends State<OrderScreen>
                             Flexible(child: HistoryOrderedWidget()),
                           ],
                         ),
+=======
+                      child: TabBarView(
+                        controller: _tabController,
+                        children: const [
+                          // Widget yang ingin ditampilkan di tab "Booked"
+                          BookedWidget(),
+                          // Widget yang ingin ditampilkan di tab "History"
+                          HistoryOrdered(),
+                        ],
+>>>>>>> Stashed changes
                       ),
                     )
                   ],

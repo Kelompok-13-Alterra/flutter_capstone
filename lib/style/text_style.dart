@@ -14,6 +14,7 @@ class SourceColor {
   Color white = const Color(0xffFFFFFF);
   Color seed = const Color(0xff0074E5);
   Color yellow = const Color(0xffF5EF5A);
+  Color purple = const Color(0xff8567BD);
   Color outline = const Color(0xff74777F);
   Color darkOutline = const Color(0xff8E9099);
 }
@@ -88,6 +89,7 @@ class NeutralColor {
   Color neutral4 = const Color(0xff0D0E11);
   Color neutral5 = const Color(0xff101114);
   Color neutral6 = const Color(0xff121316);
+  Color neutral00 = const Color(0xff666666);
   Color neutral10 = const Color(0xff1A1B1E);
   Color neutral12 = const Color(0xff1E1F23);
   Color neutral17 = const Color(0xff292A2D);
