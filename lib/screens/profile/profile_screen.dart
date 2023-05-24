@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/screens/profile/cards_profile_widget.dart';
-import 'package:flutter_capstone/screens/profile/profiles_widget.dart';
-import 'package:flutter_capstone/style/padding_style.dart';
+import 'package:flutter_capstone/screens/profile/widget/cards_profile_widget.dart';
+import 'package:flutter_capstone/screens/profile/widget/profiles_widget.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -45,28 +44,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          Column(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Padding(
-                padding: PaddingCircleAvatarProfile().padding11,
-                child: Container(
-                  width: 88,
-                  height: 88,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: SecondaryColor().secondaryFixedDim,
-                  ),
+              SizedBox(
+                width: 88,
+                height: 88,
+                child: CircleAvatar(
+                  backgroundColor: SecondaryColor().secondaryFixedDim,
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(
-                  bottom: 8,
+                padding: const EdgeInsets.symmetric(
+                  vertical: 8,
                 ),
                 child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
@@ -76,7 +73,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         fontWeight: medium,
                       ),
                     ),
+                    const Padding(
+                      padding: EdgeInsets.only(left: 10),
+                    ),
                     IconButton(
+                      iconSize: 15,
                       splashRadius: 10,
                       onPressed: () {},
                       icon: const Icon(Icons.edit),
@@ -92,15 +93,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: Text(
                   "michaelabraham@gmail.com",
                   style: setTextStyle(NeutralColor().neutral40).copyWith(
-                    fontSize: 12,
+                    fontSize: 16,
                     fontWeight: regular,
                   ),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(
-                  bottom: 8,
-                ),
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -109,9 +108,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       'assets/image/meeting_room.png',
                       width: 16,
                       height: 16,
-                    ),
-                    const SizedBox(
-                      width: 10,
                     ),
                     Text(
                       'No Company',
@@ -123,82 +119,38 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ],
                 ),
               ),
+              Row(
+                children: <Widget>[
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.5 - 16,
+                    child: const CardsProfileWidget(
+                      cardColor: Color(0xffF2F6FF),
+                      icon: AssetImage(
+                        "assets/image/Image_total_kantor.png",
+                      ),
+                      title: 'Total Kantor',
+                      desc: 'yang kamu kunjungi',
+                      count: 36,
+                    ),
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.5 - 16,
+                    child: const CardsProfileWidget(
+                      cardColor: Color(0xffFFFCF5),
+                      icon: AssetImage(
+                        "assets/image/Image_total_co-working.png",
+                      ),
+                      title: 'Total Co-working',
+                      desc: 'yang kamu kunjungi',
+                      count: 36,
+                    ),
+                  ),
+                ],
+              ),
+              profilesWidget(context),
             ],
           ),
-          CardsProfileWidget(
-            padding1: const EdgeInsets.only(
-              left: 16,
-              right: 16,
-              bottom: 20,
-            ),
-            height1: 136,
-            width1: 156,
-            cardColor1: const Color(0xFFF2F6FF),
-            border: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
-            ),
-            padding2: const EdgeInsets.only(
-              top: 16,
-              left: 16,
-              bottom: 12,
-            ),
-            img1: const AssetImage(
-              "assets/image/Image_total_kantor.png",
-            ),
-            height2: 24,
-            width2: 24,
-            height3: 4,
-            text1: 'Total Kantor',
-            style1: setTextStyle(NeutralColor().neutral30).copyWith(
-              fontSize: 16,
-              fontWeight: medium,
-            ),
-            height4: 4,
-            text2: 'yang kamu kunjungi',
-            style2: setTextStyle(SourceColor().darkOutline).copyWith(
-              fontSize: 12,
-              fontWeight: regular,
-            ),
-            height5: 4,
-            text3: '36',
-            style3: setTextStyle(SourceColor().black).copyWith(
-              fontSize: 24,
-              fontWeight: regular,
-            ),
-            height6: 136,
-            width6: 156,
-            cardColor2: const Color(0xFFFFFCF5),
-            padding3: const EdgeInsets.only(
-              top: 16,
-              left: 16,
-              bottom: 12,
-            ),
-            img2: const AssetImage(
-              "assets/image/Image_total_co-working.png",
-            ),
-            height7: 24,
-            width7: 24,
-            height8: 4,
-            text4: 'Total Co-working',
-            style4: setTextStyle(NeutralColor().neutral30).copyWith(
-              fontSize: 16,
-              fontWeight: medium,
-            ),
-            height9: 4,
-            text5: 'yang kamu kunjungi',
-            style5: setTextStyle(SourceColor().darkOutline).copyWith(
-              fontSize: 12,
-              fontWeight: regular,
-            ),
-            height10: 4,
-            text6: '36',
-            style6: setTextStyle(SourceColor().black).copyWith(
-              fontSize: 24,
-              fontWeight: regular,
-            ),
-          ),
-          profilesWidget(context),
-        ],
+        ),
       ),
     );
   }

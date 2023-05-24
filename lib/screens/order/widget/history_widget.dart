@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/style/text_style.dart';
-import 'package:flutter_capstone/widgets/history/history_reviewed_widget.dart';
+import 'package:flutter_capstone/widgets/rating/history_reviewed_widget.dart';
 
-class HistoryOrdered extends StatelessWidget {
-  const HistoryOrdered({super.key});
+class HistoryOrderedWidget extends StatelessWidget {
+  const HistoryOrderedWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
