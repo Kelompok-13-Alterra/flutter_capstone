@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_capstone/screens/bottom_nav/bottom_nav_screen.dart';
 import 'package:flutter_capstone/screens/home/home_screen.dart';
 import 'package:flutter_capstone/screens/login/login_screen.dart';
 import 'package:flutter_capstone/screens/order/order_screen.dart';
@@ -31,9 +32,10 @@ class MyApp extends StatelessWidget {
         '/boarding': (context) => const BoardingScreen(),
         '/boarding-second': (context) => const BoardingScreenSecond(),
         '/boarding-third': (context) => const BoardingScreenThird(),
+        '/bottom-nav': (context) => const BottomNavScreen(),
         '/home': (context) => const HomeScreen(),
         '/profile': (context) => const ProfileScreen(),
-        'order': (context) => const OrderScreen()
+        '/order': (context) => const OrderScreen()
       },
     );
   }
