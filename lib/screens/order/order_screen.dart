@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_capstone/screens/order/widget/history_ordered_widget.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_capstone/widgets/order/booked_widget.dart';
-import 'package:flutter_capstone/widgets/history/history_ordered_widget.dart';
 
 class OrderScreen extends StatefulWidget {
   const OrderScreen({super.key});
@@ -101,7 +101,7 @@ class _OrderScreenState extends State<OrderScreen>
                             // Widget yang ingin ditampilkan di tab "Booked"
                             Flexible(child: BookedWidget()),
                             // Widget yang ingin ditampilkan di tab "History"
-                            Flexible(child: HistoryOrdered()),
+                            Flexible(child: HistoryOrderedWidget()),
                           ],
                         ),
                       ),

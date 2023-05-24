@@ -113,6 +113,36 @@ class NeutralColor {
   Color neutral100 = const Color(0xffFFFFFF);
 }
 
+class NeutralVariantColor {
+  Color neutralVariant0 = const Color(0xff000000);
+  Color neutralVariant4 = const Color(0xff0B0E15);
+  Color neutralVariant5 = const Color(0xff0E1118);
+  Color neutralVariant6 = const Color(0xff10131A);
+  Color neutralVariant10 = const Color(0xff181C22);
+  Color neutralVariant12 = const Color(0xff1C2027);
+  Color neutralVariant17 = const Color(0xff272A31);
+  Color neutralVariant20 = const Color(0xff2d3038);
+  Color neutralVariant22 = const Color(0xff32353C);
+  Color neutralVariant24 = const Color(0xff363941);
+  Color neutralVariant25 = const Color(0xff383B43);
+  Color neutralVariant30 = const Color(0xff44474E);
+  Color neutralVariant35 = const Color(0xff4F525A);
+  Color neutralVariant40 = const Color(0xff5B5E66);
+  Color neutralVariant50 = const Color(0xff74777F);
+  Color neutralVariant60 = const Color(0xff8E9099);
+  Color neutralVariant70 = const Color(0xffA9ABB4);
+  Color neutralVariant80 = const Color(0xffC4C6D0);
+  Color neutralVariant87 = const Color(0xffD8DAE3);
+  Color neutralVariant90 = const Color(0xffE0E2EC);
+  Color neutralVariant92 = const Color(0xffE6E8F1);
+  Color neutralVariant94 = const Color(0xffECEDF7);
+  Color neutralVariant95 = const Color(0xffEFF0FA);
+  Color neutralVariant96 = const Color(0xffF1F3FD);
+  Color neutralVariant98 = const Color(0xffF9F9FF);
+  Color neutralVariant99 = const Color(0xffFDFBFF);
+  Color neutralVariant100 = const Color(0xffFFFFFF);
+}
+
 class SuccessColor {
   Color green = const Color(0xff20E500);
 }
