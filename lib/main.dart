@@ -11,6 +11,7 @@ import 'package:flutter_capstone/screens/splash/boarding_screen.dart';
 import 'package:flutter_capstone/screens/splash/boarding_screen_second.dart';
 import 'package:flutter_capstone/screens/splash/boarding_screen_third.dart';
 import 'package:flutter_capstone/screens/splash/splash_screen.dart';
+import 'package:flutter_capstone/screens/detail/detail-screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -37,13 +38,10 @@ class MyApp extends StatelessWidget {
         '/bottom-nav': (context) => const BottomNavScreen(),
         '/home': (context) => const HomeScreen(),
         '/profile': (context) => const ProfileScreen(),
-<<<<<<< Updated upstream
-        '/order': (context) => const OrderScreen()
-=======
         '/order': (context) => const OrderScreen(),
         '/review': (context) => const ReviewPage(),
         '/image-picker': (context) => const ImagePickerRatingScreen(),
->>>>>>> Stashed changes
+        '/detail': (context) => const DetailScreen(),
       },
     );
   }
