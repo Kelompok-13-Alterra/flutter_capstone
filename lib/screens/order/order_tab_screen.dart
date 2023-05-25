@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/style/text_style.dart';
-<<<<<<< Updated upstream:lib/screens/order_tab.dart
 import 'package:flutter_capstone/screens/order/widget/history_widget.dart';
 import 'package:flutter_capstone/screens/order/widget/booked_widget.dart';
-=======
-import 'package:flutter_capstone/screens/history/history_ordered_screen.dart';
-import 'package:flutter_capstone/screens/history/booked_screen.dart';
->>>>>>> Stashed changes:lib/screens/order/order_tab_screen.dart
 
 class OrderTabScreen extends StatefulWidget {
   const OrderTabScreen({super.key});
