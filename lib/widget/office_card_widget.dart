@@ -1,11 +1,8 @@
 // ignore_for_file: unused_local_variable, no_leading_underscores_for_local_identifiers, avoid_print
 
-// import 'package:easy_search_bar/easy_search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_capstone/widget/office_recommendation_widget.dart';
-
-//import 'package:flutter_capstone/widget/card_rekomendasi_kantor.dart';
 
 class OfficeCardWidget extends StatefulWidget {
   const OfficeCardWidget({super.key});
@@ -15,6 +12,7 @@ class OfficeCardWidget extends StatefulWidget {
 }
 
 class _OfficeCardWidgetState extends State<OfficeCardWidget> {
+  //List untuk data office
   List<String> listNamaKantor = [
     'Wellspace',
     'Seo Office',
@@ -48,12 +46,14 @@ class _OfficeCardWidgetState extends State<OfficeCardWidget> {
     'Office',
     'Co-Working Space',
   ];
+
   List rating = [
     4.6,
     4.8,
     4.6,
     4.8,
   ];
+
   List iconImage = [
     'assets/image/star_purple500.png',
     'assets/image/co_working_space.png',
@@ -67,13 +67,17 @@ class _OfficeCardWidgetState extends State<OfficeCardWidget> {
     'assets/image/pase_office.png',
     'assets/image/agung_space.png',
   ];
+
   List<String> statusKantor = [
     'Open',
     'Open',
     'Close',
     'Open',
   ];
+
+  // Search Bar Controller
   final _searchBarController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
