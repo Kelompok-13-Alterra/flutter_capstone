@@ -81,6 +81,9 @@ flutter:
     - assets/icon-botton-navigation-bar/apps-rectangle-selected.svg
     - assets/img/
     - assets/on_boarding/
+    - assets/on_boarding/illustration1.png
+    - assets/on_boarding/illustration2.png
+    - assets/on_boarding/illustration3.png
     - assets/progress_indicator/
     - assets/image/Avatar.png
     - assets/image/meeting_room.png
