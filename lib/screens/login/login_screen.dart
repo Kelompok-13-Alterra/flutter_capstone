@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/widgets/login/footer_login_widget.dart';
-import 'package:flutter_capstone/widgets/login/form_login_widget.dart';
-import 'package:flutter_capstone/widgets/login/header_login_widget.dart';
+import 'package:flutter_capstone/screens/login/widget/footer_login_widget.dart';
+import 'package:flutter_capstone/screens/login/widget/form_login_widget.dart';
+import 'package:flutter_capstone/screens/login/widget/header_login_widget.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});

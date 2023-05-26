@@ -39,6 +39,7 @@ dependencies:
   flutter_svg: ^2.0.5
   flutter_rating_bar: ^4.0.1
   google_fonts: ^4.0.4
+  smooth_page_indicator: ^1.1.0
 
 dev_dependencies:
   flutter_test:
@@ -92,6 +93,22 @@ flutter:
     - assets/image/lock.png
     - assets/image/logout.png
     - assets/image/local_police.png
+    - assets/detail/board.svg
+    - assets/detail/mic.svg
+    - assets/detail/projector.svg
+    - assets/detail/water.svg
+    - assets/detail/up.svg
+    - assets/detail/down.svg
+    - assets/image/seo_office.png
+    - assets/image/pase_office.png
+    - assets/image/wellspace.png
+    - assets/image/agung_space.png
+    - assets/image/co_working_space.png
+    - assets/image/location.png
+    - assets/image/time.png
+    - assets/image/office.png
+    - assets/image/star_purple500.png
+    - assets/image/icon.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
