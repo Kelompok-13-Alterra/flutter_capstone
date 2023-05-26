@@ -10,7 +10,8 @@ import 'package:flutter_capstone/screens/sign_up/sign_up_screen.dart';
 import 'package:flutter_capstone/screens/splash/boarding_screen.dart';
 import 'package:flutter_capstone/screens/splash/boarding_screen_second.dart';
 import 'package:flutter_capstone/screens/splash/boarding_screen_third.dart';
-import 'package:flutter_capstone/screens/splash/splash_screen.dart';
+// import 'package:flutter_capstone/screens/splash/splash_screen.dart';
+import 'package:flutter_capstone/screens/splash/splash/splash_screen.dart';
 import 'package:flutter_capstone/screens/detail/detail-screen.dart';
 
 void main() {
