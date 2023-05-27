@@ -19,10 +19,6 @@ class SourceColor {
   Color darkOutline = const Color(0xff8E9099);
 }
 
-class BlackColor {
-  Color black = const Color(0xFF1A1A1A);
-}
-
 class KeyColor {
   Color primary = const Color(0xff0074E5);
   Color secondary = const Color(0xff17212B);
@@ -155,6 +151,10 @@ class SuccessColor {
 
 class WarningColor {
   Color red = const Color(0xffE5001B);
+}
+
+class BlackColor {
+  Color black = const Color(0xFF1A1A1A);
 }
 
 TextStyle setTextStyle(Color color) => GoogleFonts.roboto(color: color);
