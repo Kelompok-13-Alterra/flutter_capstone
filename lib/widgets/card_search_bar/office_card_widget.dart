@@ -1,6 +1,5 @@
 // ignore_for_file: unused_local_variable, no_leading_underscores_for_local_identifiers, avoid_print
 
-// import 'package:easy_search_bar/easy_search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_capstone/widgets/card_search_bar/office_recommendation_widget.dart';
@@ -15,6 +14,7 @@ class OfficeCardWidget extends StatefulWidget {
 }
 
 class _OfficeCardWidgetState extends State<OfficeCardWidget> {
+  //List data rekomendasi kantor
   List<String> listNamaKantor = [
     'Wellspace',
     'Seo Office',
@@ -42,18 +42,21 @@ class _OfficeCardWidgetState extends State<OfficeCardWidget> {
     'Serdang - 500 M',
     'Keagungan - 1.2 KM',
   ];
+
   List<String> office = [
     'Co-Working Space',
     'Co-Working Space',
     'Office',
     'Co-Working Space',
   ];
+
   List rating = [
     4.6,
     4.8,
     4.6,
     4.8,
   ];
+
   List iconImage = [
     'assets/image/star_purple500.png',
     'assets/image/co_working_space.png',
