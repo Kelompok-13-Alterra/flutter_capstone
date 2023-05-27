@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_capstone/screens/history/history_ordered_screen.dart';
 import 'package:flutter_capstone/style/text_style.dart';
-import 'package:flutter_capstone/widgets/order/booked_widget.dart';
-import 'package:flutter_capstone/widgets/history/history_ordered_widget.dart';
+import 'package:flutter_capstone/screens/history/booked_screen.dart';
 
 class OrderScreen extends StatefulWidget {
   const OrderScreen({super.key});
@@ -39,12 +39,12 @@ class _OrderScreenState extends State<OrderScreen>
     return Scaffold(
         appBar: AppBar(
           elevation: 0.0,
-          backgroundColor: kWhiteColor,
+          backgroundColor: SourceColor().white,
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
-            color: kBlackColor,
+            color: SourceColor().black,
             onPressed: () {
-              // Aksi ketika tombol panah kembali ditekan
+              Navigator.pushNamed(context, '/home');
             },
           ),
           title: Row(
@@ -52,11 +52,14 @@ class _OrderScreenState extends State<OrderScreen>
             children: [
               Text(
                 'Orders',
-                style:
-                    blackTextStyle.copyWith(fontSize: 16, fontWeight: medium),
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: medium,
+                  color: SourceColor().black,
+                ),
               ),
               IconButton(
-                icon: Icon(Icons.more_vert, color: kBlackColor),
+                icon: Icon(Icons.more_vert, color: SourceColor().black),
                 onPressed: () {
                   // Aksi ketika tombol tanda titik tiga ditekan
                 },
@@ -65,7 +68,7 @@ class _OrderScreenState extends State<OrderScreen>
           ),
         ),
         body: Container(
-          color: kWhiteColor,
+          color: SourceColor().white,
           child: Padding(
             padding: const EdgeInsets.all(5),
             child: Expanded(
@@ -75,12 +78,12 @@ class _OrderScreenState extends State<OrderScreen>
                 child: Column(
                   children: [
                     Container(
-                      color: kWhiteColor,
+                      color: SourceColor().white,
                       child: TabBar(
                         controller: _tabController,
-                        indicatorColor: kPrimaryColor,
-                        unselectedLabelColor: kGreyColor,
-                        labelColor: kBlackColor,
+                        indicatorColor: PrimaryColor().primary,
+                        unselectedLabelColor: NeutralColor().neutral00,
+                        labelColor: NeutralColor().neutral0,
                         tabs: const [
                           Tab(
                             text: "Booked",

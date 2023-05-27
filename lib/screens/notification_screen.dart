@@ -1,13 +1,7 @@
-//AUTHOR : ULFA LADAYYA
-//KELAS C FLUTTER
-
-// ignore_for_file: avoid_unnecessary_containers
-
 import 'package:flutter/material.dart';
-//import 'package:notification_feature/style/padding_style.dart';
 import 'package:flutter_capstone/style/text_style.dart';
-import 'package:flutter_capstone/widgets/notification/card_all_booking_notification_widget.dart';
-import 'package:flutter_capstone/widgets/notification/card_booking_notification_widget.dart';
+import 'package:flutter_capstone/screens/notification/widget/card_all_booking_notification_widget.dart';
+import 'package:flutter_capstone/screens/notification/widget/card_booking_notification_widget.dart';
 
 class NotificationScreen extends StatefulWidget {
   const NotificationScreen({super.key});
@@ -46,8 +40,8 @@ class _NotificationScreenState extends State<NotificationScreen> {
                   ),
                   child: Text(
                     "Notification",
-                    style: blackTextStyle.copyWith(
-                        fontSize: 16, fontWeight: regular),
+                    style: setTextStyle(NeutralColor().neutral12)
+                        .copyWith(fontSize: 16, fontWeight: regular),
                   ),
                 ),
                 Padding(
@@ -59,8 +53,8 @@ class _NotificationScreenState extends State<NotificationScreen> {
                     onPressed: () {},
                     child: Text(
                       "Mark all as read",
-                      style: blackTextStyle.copyWith(
-                          fontSize: 14, fontWeight: semiBold),
+                      style: setTextStyle(KeyColor().primary)
+                          .copyWith(fontSize: 14, fontWeight: semiBold),
                     ),
                   ),
                 ),
@@ -75,10 +69,10 @@ class _NotificationScreenState extends State<NotificationScreen> {
               indicatorColor: const Color(0xFF005DB9),
               labelColor: const Color(0xFF5E5E62),
               unselectedLabelColor: const Color(0xFF666666),
-              labelStyle:
-                  blackTextStyle.copyWith(fontSize: 14, fontWeight: semiBold),
-              unselectedLabelStyle:
-                  blackTextStyle.copyWith(fontSize: 14, fontWeight: semiBold),
+              labelStyle: setTextStyle(NeutralColor().neutral12)
+                  .copyWith(fontSize: 14, fontWeight: semiBold),
+              unselectedLabelStyle: setTextStyle(NeutralColor().neutral12)
+                  .copyWith(fontSize: 14, fontWeight: semiBold),
               tabs: notifTab,
             ),
             Expanded(
