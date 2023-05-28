@@ -153,4 +153,8 @@ class WarningColor {
   Color red = const Color(0xffE5001B);
 }
 
+class BlackColor {
+  Color black = const Color(0xFF1A1A1A);
+}
+
 TextStyle setTextStyle(Color color) => GoogleFonts.roboto(color: color);
