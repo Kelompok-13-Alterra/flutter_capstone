@@ -76,13 +76,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     const Padding(
                       padding: EdgeInsets.only(left: 10),
                     ),
-                    IconButton(
-                      iconSize: 15,
-                      splashRadius: 10,
-                      onPressed: () {},
-                      icon: const Icon(Icons.edit),
-                      color: SourceColor().black,
-                    ),
+                    GestureDetector(
+                        onTap: () {},
+                        child: Icon(
+                          Icons.edit,
+                          size: 15,
+                          color: SourceColor().black,
+                        )),
+                    // Icon(
+                    //   // iconSize: 15,
+                    //   // splashRadius: 10,
+                    //   // onPressed: () {},
+                    //   // icon: const
+                    //   Icon(Icons.edit),
+                    //   color: SourceColor().black,
+                    // ),
                   ],
                 ),
               ),

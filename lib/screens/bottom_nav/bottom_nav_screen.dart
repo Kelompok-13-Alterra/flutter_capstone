@@ -1,5 +1,3 @@
-// ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/screens/home/home_screen.dart';
 import 'package:flutter_capstone/screens/order/order_screen.dart';
@@ -18,7 +16,8 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
 
   final List<Widget> _children = [
     const HomeScreen(),
-    const OrderScreen(),
+    // Container(),
+    // const OrderScreen(),
     const Center(
       child: Text("Ini buat page Setting"),
     ),
@@ -36,12 +35,23 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
   void onTabTapped(int index) {
     setState(() {
       currentIndex = index;
+      if (currentIndex == 1) {
+        print('Pindah halaman');
+      }
     });
+    print(currentIndex);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButtonLocation:
+          FloatingActionButtonLocation.miniCenterDocked,
+      floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.pushNamed(context, '/order');
+          },
+          child: SvgPicture.asset(svgAssets[1])),
       appBar: null,
       backgroundColor: Colors.white,
       body: _children[currentIndex],
@@ -77,22 +87,22 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
             ),
             label: 'Home',
           ),
-          BottomNavigationBarItem(
-            icon: Column(
-              children: [
-                SvgPicture.asset(
-                  currentIndex == 1 ? svgAssets[3] : svgAssets[2],
-                  height: 24,
-                  width: 24,
-                  fit: BoxFit.contain,
-                ),
-                const SizedBox(
-                  height: 5,
-                )
-              ],
-            ),
-            label: "Order",
-          ),
+          // BottomNavigationBarItem(
+          //   icon: Column(
+          //     children: [
+          //       SvgPicture.asset(
+          //         currentIndex == 1 ? svgAssets[3] : svgAssets[2],
+          //         height: 24,
+          //         width: 24,
+          //         fit: BoxFit.contain,
+          //       ),
+          //       const SizedBox(
+          //         height: 5,
+          //       )
+          //     ],
+          //   ),
+          //   label: "Order",
+          // ),
           BottomNavigationBarItem(
             icon: Column(
               children: [

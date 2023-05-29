@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
-<<<<<<< Updated upstream
-import 'package:flutter_capstone/screens/order/widget/history_widget.dart';
-import 'package:flutter_capstone/style/text_style.dart';
-import 'package:flutter_capstone/screens/order/widget/booked_widget.dart';
-=======
 import 'package:flutter_capstone/screens/history/history_ordered_screen.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_capstone/screens/history/booked_screen.dart';
->>>>>>> Stashed changes
 
 class OrderScreen extends StatefulWidget {
   const OrderScreen({super.key});
@@ -50,7 +44,7 @@ class _OrderScreenState extends State<OrderScreen>
             icon: const Icon(Icons.arrow_back),
             color: SourceColor().black,
             onPressed: () {
-              Navigator.pushNamed(context, '/home');
+              Navigator.pop(context);
             },
           ),
           title: Row(
@@ -101,20 +95,6 @@ class _OrderScreenState extends State<OrderScreen>
                       ),
                     ),
                     Expanded(
-<<<<<<< Updated upstream
-                      child: SizedBox(
-                        width: double.infinity,
-                        height: MediaQuery.of(context).size.height,
-                        child: TabBarView(
-                          controller: _tabController,
-                          children: const [
-                            // Widget yang ingin ditampilkan di tab "Booked"
-                            Flexible(child: BookedWidget()),
-                            // Widget yang ingin ditampilkan di tab "History"
-                            Flexible(child: HistoryOrderedWidget()),
-                          ],
-                        ),
-=======
                       child: TabBarView(
                         controller: _tabController,
                         children: const [
@@ -123,7 +103,6 @@ class _OrderScreenState extends State<OrderScreen>
                           // Widget yang ingin ditampilkan di tab "History"
                           HistoryOrdered(),
                         ],
->>>>>>> Stashed changes
                       ),
                     )
                   ],

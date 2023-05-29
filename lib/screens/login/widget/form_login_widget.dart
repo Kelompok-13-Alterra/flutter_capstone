@@ -34,12 +34,8 @@ class _FormLoginState extends State<FormLogin> {
           content: Text('Selamat ${_emailController.text} berhasil login'),
         ),
       );
-<<<<<<< Updated upstream:lib/screens/login/widget/form_login_widget.dart
       Navigator.pushNamedAndRemoveUntil(
           context, '/bottom-nav', (route) => false);
-=======
-      Navigator.pushNamed(context, '/home');
->>>>>>> Stashed changes:lib/widgets/login/form_login_widget.dart
     }
   }
 

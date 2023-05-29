@@ -37,13 +37,9 @@ class MyApp extends StatelessWidget {
         '/bottom-nav': (context) => const BottomNavScreen(),
         '/home': (context) => const HomeScreen(),
         '/profile': (context) => const ProfileScreen(),
-<<<<<<< Updated upstream
-        '/order': (context) => const OrderScreen()
-=======
         '/order': (context) => const OrderScreen(),
         '/review': (context) => const ReviewPage(),
         '/image-picker': (context) => const ImagePickerRatingScreen(),
->>>>>>> Stashed changes
       },
     );
   }
