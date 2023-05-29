@@ -5,14 +5,14 @@ import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:image_picker/image_picker.dart';
 
-class ReviewPage extends StatefulWidget {
-  const ReviewPage({Key? key}) : super(key: key);
+class ReviewScreen extends StatefulWidget {
+  const ReviewScreen({Key? key}) : super(key: key);
 
   @override
-  _ReviewPageState createState() => _ReviewPageState();
+  _ReviewScreenState createState() => _ReviewScreenState();
 }
 
-class _ReviewPageState extends State<ReviewPage> {
+class _ReviewScreenState extends State<ReviewScreen> {
   int _selectedFilterIndex = 0;
   final List<String> _filters = [
     'Terdekat',
@@ -49,7 +49,7 @@ class _ReviewPageState extends State<ReviewPage> {
               icon: const Icon(Icons.arrow_back),
               color: SourceColor().black,
               onPressed: () {
-                Navigator.pushNamed(context, '/order');
+                Navigator.pop(context);
               }),
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

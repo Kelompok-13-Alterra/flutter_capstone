@@ -28,7 +28,9 @@ class _BottomBookState extends State<BottomBook> {
                 ),
               ),
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, '/review');
+            },
             child: Text("Book",
                 style: GoogleFonts.roboto(
                   fontWeight: FontWeight.w500,

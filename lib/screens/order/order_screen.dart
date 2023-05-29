@@ -40,13 +40,13 @@ class _OrderScreenState extends State<OrderScreen>
         appBar: AppBar(
           elevation: 0.0,
           backgroundColor: SourceColor().white,
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back),
-            color: SourceColor().black,
-            onPressed: () {
-              Navigator.pushNamed(context, '/home');
-            },
-          ),
+          // leading: IconButton(
+          //   icon: const Icon(Icons.arrow_back),
+          //   color: SourceColor().black,
+          //   onPressed: () {
+          //     Navigator.pushNamed(context, '/home');
+          //   },
+          // ),
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

@@ -17,11 +17,10 @@ class DetailScreen extends StatefulWidget {
 class _DetailScreenState extends State<DetailScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      appBar: null,
+    return Scaffold(
       body: SingleChildScrollView(
         child: Column(
-          children: [
+          children: const <Widget>[
             // Image Swipe
             //================================================================
             ImageDetail(),

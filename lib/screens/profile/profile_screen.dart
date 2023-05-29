@@ -23,13 +23,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
           style: setTextStyle(NeutralColor().neutral12)
               .copyWith(fontSize: 16, fontWeight: regular),
         ),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          color: NeutralColor().neutral0,
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
         actions: const [
           Padding(
             padding: EdgeInsets.only(
@@ -45,7 +38,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ],
       ),
       body: SingleChildScrollView(
-        child: Padding(
+        child: Container(
+          color: SourceColor().white,
           padding: const EdgeInsets.all(16),
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -76,12 +70,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     const Padding(
                       padding: EdgeInsets.only(left: 10),
                     ),
-                    IconButton(
-                      iconSize: 15,
-                      splashRadius: 10,
-                      onPressed: () {},
-                      icon: const Icon(Icons.edit),
-                      color: SourceColor().black,
+                    GestureDetector(
+                      onTap: () {},
+                      child: Icon(
+                        Icons.edit,
+                        size: 15,
+                        color: SourceColor().black,
+                      ),
                     ),
                   ],
                 ),
