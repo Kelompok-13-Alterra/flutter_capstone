@@ -1,11 +1,11 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/screens/detail/detail/bottom-book.dart';
-import 'package:flutter_capstone/screens/detail/detail/card-detail.dart';
-import 'package:flutter_capstone/screens/detail/detail/deskripsi-ofiice.dart';
-import 'package:flutter_capstone/screens/detail/detail/fasilities.dart';
-import 'package:flutter_capstone/screens/detail/detail/image-detail.dart';
+import 'package:flutter_capstone/screens/detail/widget/bottom-book.dart';
+import 'package:flutter_capstone/screens/detail/widget/card-detail.dart';
+import 'package:flutter_capstone/screens/detail/widget/deskripsi-ofiice.dart';
+import 'package:flutter_capstone/screens/detail/widget/fasilities.dart';
+import 'package:flutter_capstone/screens/detail/widget/image-detail.dart';
 
 class DetailScreen extends StatefulWidget {
   const DetailScreen({super.key});
