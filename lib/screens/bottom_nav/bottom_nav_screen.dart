@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/screens/home/home_screen.dart';
-import 'package:flutter_capstone/screens/order/order_screen.dart';
+import 'package:flutter_capstone/screens/history/order_screen.dart';
 import 'package:flutter_capstone/screens/profile/profile_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/style/padding_style.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 
 class HistoryReviewed extends StatelessWidget {
@@ -8,97 +7,97 @@ class HistoryReviewed extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: SizedBox(
-        height: 185,
-        width: 360,
+      child: Container(
+        height: 184,
+        width: double.infinity,
+        padding: const EdgeInsets.all(16),
         child: Stack(
           children: [
-            Padding(
-              padding: PaddingCardOrdered().padding13,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    width: 89,
-                    height: 76,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      image: const DecorationImage(
-                        image: AssetImage('assets/office2.png'),
-                        fit: BoxFit.cover,
-                      ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  width: 89,
+                  height: 76,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    image: const DecorationImage(
+                      image: AssetImage('assets/office2.png'),
+                      fit: BoxFit.cover,
                     ),
                   ),
-                  const SizedBox(width: 16),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'SEO Office',
-                        style: TextStyle(
-                          fontWeight: semiBold,
-                          fontSize: 16,
+                ),
+                const SizedBox(
+                  width: 16,
+                  height: 6,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Wellspace',
+                      style: TextStyle(
+                        fontWeight: semiBold,
+                        fontSize: 16,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Row(
+                      children: [
+                        Icon(Icons.star, color: SourceColor().yellow),
+                        const SizedBox(width: 4),
+                        Text(
+                          '4.6',
+                          style: TextStyle(
+                            fontWeight: medium,
+                            fontSize: 13,
+                            color: NeutralColor().neutral17,
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 8),
-                      Row(
-                        children: [
-                          Icon(Icons.star, color: SourceColor().yellow),
-                          const SizedBox(width: 4),
-                          Text(
-                            '4.6',
-                            style: TextStyle(
-                              fontWeight: medium,
-                              fontSize: 13,
-                              color: NeutralColor().neutral17,
-                            ),
+                      ],
+                    ),
+                    const SizedBox(height: 4),
+                    Row(
+                      children: [
+                        Icon(Icons.business,
+                            size: 14, color: NeutralColor().neutral60),
+                        const SizedBox(width: 4),
+                        Text(
+                          'Co-Working Space',
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: medium,
+                            color: NeutralColor().neutral60,
                           ),
-                        ],
-                      ),
-                      const SizedBox(height: 4),
-                      Row(
-                        children: [
-                          Icon(Icons.business,
-                              size: 14, color: NeutralColor().neutral60),
-                          const SizedBox(width: 4),
-                          Text(
-                            'Co-Working Space',
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: regular,
-                              color: NeutralColor().neutral60,
-                            ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 4),
+                    Row(
+                      children: [
+                        Icon(Icons.access_time,
+                            size: 14, color: NeutralColor().neutral60),
+                        const SizedBox(width: 4),
+                        Text(
+                          '10:00 AM - 06:00 PM',
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: medium,
+                            color: NeutralColor().neutral60,
                           ),
-                        ],
-                      ),
-                      const SizedBox(height: 4),
-                      Row(
-                        children: [
-                          Icon(Icons.access_time,
-                              size: 14, color: NeutralColor().neutral60),
-                          const SizedBox(width: 4),
-                          Text(
-                            '10:00 AM - 06:00 PM',
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: regular,
-                              color: NeutralColor().neutral60,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
             ),
             Positioned(
-              top: 8,
               right: 8,
               child: Container(
                 height: 28,
                 width: 81,
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
                 decoration: BoxDecoration(
                   color: SuccessColor().green,
                   borderRadius: BorderRadius.circular(12),
@@ -107,8 +106,8 @@ class HistoryReviewed extends StatelessWidget {
                   child: Text(
                     'Reviewed',
                     style: TextStyle(
-                      color: NeutralColor().neutral100,
-                      fontWeight: medium,
+                      color: SourceColor().white,
+                      fontWeight: FontWeight.bold,
                       fontSize: 13,
                     ),
                   ),
@@ -116,8 +115,8 @@ class HistoryReviewed extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: 120,
-              left: 16,
+              top: 98,
+              left: 8,
               child: Wrap(
                 spacing: 5,
                 children: [
@@ -140,9 +139,9 @@ class HistoryReviewed extends StatelessWidget {
                       child: Text(
                         'Book Again',
                         style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: medium,
-                            color: SourceColor().white),
+                          fontSize: 14,
+                          fontWeight: medium,
+                        ),
                       ),
                     ),
                   ),

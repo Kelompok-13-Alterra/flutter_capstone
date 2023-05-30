@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/screens/history/history_ordered_screen.dart';
+import 'package:flutter_capstone/screens/history/history_reviewed_screen.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_capstone/screens/history/booked_screen.dart';
 
@@ -89,11 +90,15 @@ class _OrderScreenState extends State<OrderScreen>
                 Expanded(
                   child: TabBarView(
                     controller: _tabController,
-                    children: const [
-                      // Widget yang ingin ditampilkan di tab "Booked"
-                      BookedWidget(),
-                      // Widget yang ingin ditampilkan di tab "History"
-                      HistoryOrdered(),
+                    children: [
+                      const BookedWidget(),
+                      PageView(
+                        controller: PageController(initialPage: 0),
+                        children: const [
+                          HistoryOrdered(),
+                          HistoryReviewed(),
+                        ],
+                      ),
                     ],
                   ),
                 ),

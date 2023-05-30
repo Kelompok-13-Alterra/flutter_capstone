@@ -140,24 +140,50 @@ class _ReviewScreenState extends State<ReviewScreen> {
                     alignment: Alignment.topLeft,
                     child: Wrap(
                       spacing: 8.0,
-                      children:
-                          List<Widget>.generate(_filters.length, (int index) {
-                        return ChoiceChip(
-                          label: Text(
-                            _filters[index],
-                            style: TextStyle(
-                              color: _selectedFilterIndex == index
-                                  ? NeutralColor().neutral100
-                                  : NeutralColor().neutral60,
+                      children: List<Widget>.generate(_filters.length ~/ 2,
+                          (int index) {
+                        final firstIndex = index * 2;
+                        final secondIndex = index * 2 + 1;
+                        return Row(
+                          children: [
+                            ChoiceChip(
+                              label: Text(
+                                _filters[firstIndex],
+                                style: TextStyle(
+                                  color: _selectedFilterIndex == firstIndex
+                                      ? NeutralColor().neutral100
+                                      : NeutralColor().neutral60,
+                                ),
+                              ),
+                              selected: _selectedFilterIndex == firstIndex,
+                              selectedColor: SourceColor().seed,
+                              onSelected: (bool selected) {
+                                setState(() {
+                                  _selectedFilterIndex =
+                                      selected ? firstIndex : 0;
+                                });
+                              },
                             ),
-                          ),
-                          selected: _selectedFilterIndex == index,
-                          selectedColor: SourceColor().seed,
-                          onSelected: (bool selected) {
-                            setState(() {
-                              _selectedFilterIndex = selected ? index : 0;
-                            });
-                          },
+                            const SizedBox(width: 8.0),
+                            ChoiceChip(
+                              label: Text(
+                                _filters[secondIndex],
+                                style: TextStyle(
+                                  color: _selectedFilterIndex == secondIndex
+                                      ? NeutralColor().neutral100
+                                      : NeutralColor().neutral60,
+                                ),
+                              ),
+                              selected: _selectedFilterIndex == secondIndex,
+                              selectedColor: SourceColor().seed,
+                              onSelected: (bool selected) {
+                                setState(() {
+                                  _selectedFilterIndex =
+                                      selected ? secondIndex : 0;
+                                });
+                              },
+                            ),
+                          ],
                         );
                       }),
                     ),
