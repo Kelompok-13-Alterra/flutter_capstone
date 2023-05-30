@@ -99,10 +99,10 @@ Widget profilesWidget(BuildContext context) {
                   minLeadingWidth: 11,
                   leading: ConstrainedBox(
                     constraints: const BoxConstraints(
-                      minWidth: 20,
-                      minHeight: 20,
-                      maxWidth: 25,
-                      maxHeight: 25,
+                      minWidth: 15,
+                      minHeight: 15,
+                      maxWidth: 20,
+                      maxHeight: 20,
                     ),
                     child: iconSubMenuAccount[index],
                   ),
@@ -167,10 +167,10 @@ Widget profilesWidget(BuildContext context) {
                   minLeadingWidth: 11,
                   leading: ConstrainedBox(
                     constraints: const BoxConstraints(
-                      minWidth: 20,
-                      minHeight: 20,
-                      maxWidth: 25,
-                      maxHeight: 25,
+                      minWidth: 15,
+                      minHeight: 15,
+                      maxWidth: 20,
+                      maxHeight: 20,
                     ),
                     child: iconSubMenuInformation[index],
                   ),
@@ -210,10 +210,10 @@ Widget profilesWidget(BuildContext context) {
                     children: [
                       ConstrainedBox(
                         constraints: const BoxConstraints(
-                          minWidth: 20,
-                          minHeight: 20,
-                          maxWidth: 25,
-                          maxHeight: 25,
+                          minWidth: 15,
+                          minHeight: 15,
+                          maxWidth: 20,
+                          maxHeight: 20,
                         ),
                         child: Image.asset(
                           'assets/image/logout.png',
