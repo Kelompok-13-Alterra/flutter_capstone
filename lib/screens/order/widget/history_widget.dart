@@ -55,22 +55,35 @@ class HistoryOrderedWidget extends StatelessWidget {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 8),
                         Row(
                           children: [
-                            Icon(Icons.access_time,
-                                size: 16, color: NeutralColor().neutral60),
+                            Icon(Icons.star, color: SourceColor().yellow),
                             const SizedBox(width: 4),
-                            Text(
-                              '10:00 AM - 06:00 PM',
+                            const Text(
+                              '4.6',
                               style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: regular,
-                                color: NeutralColor().neutral60,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
                               ),
                             ),
                           ],
                         ),
+                        const SizedBox(height: 8),
+                        // Row(
+                        //   children: [
+                        //     Icon(Icons.access_time,
+                        //         size: 16, color: NeutralColor().neutral60),
+                        //     const SizedBox(width: 4),
+                        //     Text(
+                        //       '10:00 AM - 06:00 PM',
+                        //       style: TextStyle(
+                        //         fontSize: 14,
+                        //         fontWeight: regular,
+                        //         color: NeutralColor().neutral60,
+                        //       ),
+                        //     ),
+                        //   ],
+                        // ),
                       ],
                     ),
                   ],
