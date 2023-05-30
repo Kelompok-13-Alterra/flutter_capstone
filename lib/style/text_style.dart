@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-EdgeInsets defaultMargin = EdgeInsets.all(16);
+EdgeInsets defaultMargin = const EdgeInsets.all(16);
 
 FontWeight light = FontWeight.w300;
 FontWeight regular = FontWeight.w400;
@@ -115,6 +115,7 @@ class NeutralColor {
   Color neutral98 = const Color(0xffFAF9FD);
   Color neutral99 = const Color(0xffFDFBFF);
   Color neutral100 = const Color(0xffFFFFFF);
+
 }
 
 class NeutralVariantColor {

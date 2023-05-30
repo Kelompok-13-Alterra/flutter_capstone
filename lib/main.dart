@@ -6,7 +6,7 @@ import 'package:flutter_capstone/screens/login/login_screen.dart';
 import 'package:flutter_capstone/screens/order/order_screen.dart';
 import 'package:flutter_capstone/screens/profile/profile_screen.dart';
 import 'package:flutter_capstone/screens/rating/image_picker_rating_screen.dart';
-import 'package:flutter_capstone/screens/review/review_page.dart';
+import 'package:flutter_capstone/screens/review/review_screen.dart';
 import 'package:flutter_capstone/screens/sign_up/sign_up_screen.dart';
 import 'package:flutter_capstone/screens/detail/detail_screen.dart';
 import 'package:flutter_capstone/screens/splash/boarding_screen.dart';

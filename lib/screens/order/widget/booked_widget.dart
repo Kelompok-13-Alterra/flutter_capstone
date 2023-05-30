@@ -9,7 +9,7 @@ class BookedWidget extends StatelessWidget {
     return Card(
       child: Container(
         height: 172,
-        width: 360,
+        width: double.infinity,
         padding: const EdgeInsets.all(16),
         child: Stack(
           children: [
@@ -31,11 +31,11 @@ class BookedWidget extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
+                    Text(
                       'Wellspace',
                       style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
+                        fontWeight: semiBold,
+                        fontSize: 16,
                       ),
                     ),
                     const SizedBox(height: 8),
@@ -43,26 +43,42 @@ class BookedWidget extends StatelessWidget {
                       children: [
                         Icon(Icons.star, color: SourceColor().yellow),
                         const SizedBox(width: 4),
-                        const Text(
+                        Text(
                           '4.6',
                           style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
+                            fontWeight: medium,
+                            fontSize: 13,
                           ),
                         ),
                       ],
                     ),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: 4),
+                    Row(
+                      children: [
+                        Icon(Icons.business,
+                            size: 14, color: NeutralColor().neutral60),
+                        const SizedBox(width: 4),
+                        Text(
+                          'Co-Working Space',
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: medium,
+                            color: NeutralColor().neutral60,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 4),
                     Row(
                       children: [
                         Icon(Icons.access_time,
-                            size: 16, color: NeutralColor().neutral60),
+                            size: 14, color: NeutralColor().neutral60),
                         const SizedBox(width: 4),
                         Text(
                           '10:00 AM - 06:00 PM',
                           style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
+                            fontSize: 12,
+                            fontWeight: medium,
                             color: NeutralColor().neutral60,
                           ),
                         ),
@@ -88,8 +104,8 @@ class BookedWidget extends StatelessWidget {
                     'Booked',
                     style: TextStyle(
                       color: SourceColor().white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 14,
+                      fontWeight: medium,
+                      fontSize: 13,
                     ),
                   ),
                 ),
@@ -104,52 +120,52 @@ class BookedWidget extends StatelessWidget {
                   SizedBox(
                     width: 160,
                     height: 40,
-                    child: ChoiceChip(
-                      label: const Text(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        // Aksi ketika tombol "Change Schedule" ditekan
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: PrimaryColor().primary,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(100),
+                        ),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 8),
+                      ),
+                      child: Text(
                         'Change Schedule',
                         style: TextStyle(
                           fontSize: 14,
-                          fontWeight: FontWeight.w500,
+                          fontWeight: medium,
+                          color: SourceColor().white,
                         ),
                       ),
-                      selected: false,
-                      onSelected: (_) {
-                        // Aksi ketika choice chip "Change Schedule" dipilih
-                      },
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(100),
-                      ),
-                      backgroundColor: PrimaryColor().primary,
-                      labelStyle: TextStyle(color: SourceColor().white),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 16, vertical: 8),
-                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                      visualDensity: VisualDensity.compact,
                     ),
                   ),
                   SizedBox(
                     width: 160,
                     height: 40,
-                    child: ChoiceChip(
-                      label: const Text(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        // Aksi ketika tombol "Cancel Book" ditekan
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: SourceColor().white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(100),
+                          side: BorderSide(color: WarningColor().red),
+                        ),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 8),
+                      ),
+                      child: Text(
                         'Cancel Book',
                         style: TextStyle(
-                            fontSize: 14, fontWeight: FontWeight.w500),
+                          fontSize: 14,
+                          fontWeight: medium,
+                          color: WarningColor().red,
+                        ),
                       ),
-                      selected: false,
-                      onSelected: (_) {
-                        // Aksi ketika choice chip "Cancel Booked" dipilih
-                      },
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(100),
-                        side: BorderSide(color: WarningColor().red),
-                      ),
-                      backgroundColor: SourceColor().white,
-                      labelStyle: TextStyle(color: WarningColor().red),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 16, vertical: 8),
-                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                      visualDensity: VisualDensity.compact,
                     ),
                   ),
                 ],

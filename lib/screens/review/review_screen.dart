@@ -148,7 +148,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                             style: TextStyle(
                               color: _selectedFilterIndex == index
                                   ? NeutralColor().neutral100
-                                  : NeutralColor().neutral90,
+                                  : NeutralColor().neutral60,
                             ),
                           ),
                           selected: _selectedFilterIndex == index,

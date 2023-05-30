@@ -14,7 +14,7 @@ class _DescriptionOfficeState extends State<DescriptionOffice> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       child: Column(
         children: [
           Row(
@@ -75,7 +75,7 @@ class _DescriptionOfficeState extends State<DescriptionOffice> {
         ),
       );
     } else {
-      return Text("");
+      return const Text("");
     }
   }
 }
