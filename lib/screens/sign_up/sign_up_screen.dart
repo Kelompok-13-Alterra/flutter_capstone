@@ -12,7 +12,7 @@ class SignUpScreen extends StatelessWidget {
       body: SafeArea(
         child: Container(
           padding: const EdgeInsets.all(16),
-          child: Column(
+          child: const Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
