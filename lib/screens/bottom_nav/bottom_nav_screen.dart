@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/screens/home/home_screen.dart';
 import 'package:flutter_capstone/screens/order/order_screen.dart';
+import 'package:flutter_capstone/screens/profile/profile_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -19,9 +20,7 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
   final List<Widget> _children = [
     const HomeScreen(),
     const OrderScreen(),
-    const Center(
-      child: Text("Ini buat page Setting"),
-    ),
+    const ProfileScreen()
   ];
 
   List<String> svgAssets = [
@@ -29,8 +28,8 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
     'assets/icon-botton-navigation-bar/home-selected.svg',
     'assets/icon-botton-navigation-bar/notes.svg',
     'assets/icon-botton-navigation-bar/notes-selected.svg',
-    'assets/icon-botton-navigation-bar/apps-rectangle.svg',
-    'assets/icon-botton-navigation-bar/apps-rectangle-selected.svg',
+    'assets/icon-botton-navigation-bar/profile.svg',
+    'assets/icon-botton-navigation-bar/profile-selected.svg',
   ];
 
   void onTabTapped(int index) {
@@ -107,7 +106,7 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
                 )
               ],
             ),
-            label: "Settings",
+            label: "Profile",
           ),
         ],
       ),

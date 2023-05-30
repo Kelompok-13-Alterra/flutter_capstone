@@ -5,14 +5,14 @@ import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:image_picker/image_picker.dart';
 
-class ReviewPage extends StatefulWidget {
-  const ReviewPage({Key? key}) : super(key: key);
+class ReviewScreen extends StatefulWidget {
+  const ReviewScreen({Key? key}) : super(key: key);
 
   @override
-  _ReviewPageState createState() => _ReviewPageState();
+  _ReviewScreenState createState() => _ReviewScreenState();
 }
 
-class _ReviewPageState extends State<ReviewPage> {
+class _ReviewScreenState extends State<ReviewScreen> {
   int _selectedFilterIndex = 0;
   final List<String> _filters = [
     'Terdekat',
@@ -33,13 +33,6 @@ class _ReviewPageState extends State<ReviewPage> {
     if (pickedImage != null) {}
   }
 
-  Future<void> _pickImageFromGallery() async {
-    final picker = ImagePicker();
-    final pickedImage = await picker.getImage(source: ImageSource.gallery);
-
-    if (pickedImage != null) {}
-  }
-
   void _submitReview() {
     _reviewController.clear();
 
@@ -53,19 +46,17 @@ class _ReviewPageState extends State<ReviewPage> {
           elevation: 0.0,
           backgroundColor: SourceColor().white,
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back),
-            color: SourceColor().black,
-            onPressed: () {
-              // Aksi ketika tombol panah kembali ditekan
-            },
-          ),
+              icon: const Icon(Icons.arrow_back),
+              color: SourceColor().black,
+              onPressed: () {
+                Navigator.pop(context);
+              }),
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 'Review',
-                style: setTextStyle(NeutralColor().neutral40)
-                    .copyWith(fontSize: 16, fontWeight: medium),
+                style: TextStyle(fontSize: 16, fontWeight: regular),
               ),
               IconButton(
                 icon: Icon(Icons.more_vert, color: SourceColor().black),
@@ -95,6 +86,7 @@ class _ReviewPageState extends State<ReviewPage> {
                         style: TextStyle(
                           fontSize: 24,
                           fontWeight: regular,
+                          color: NeutralColor().neutral20,
                         ),
                       ),
                       const SizedBox(
@@ -118,9 +110,9 @@ class _ReviewPageState extends State<ReviewPage> {
                         allowHalfRating: true,
                         itemCount: 5,
                         itemSize: 50,
-                        itemBuilder: (context, _) => const Icon(
+                        itemBuilder: (context, _) => Icon(
                           Icons.star,
-                          color: Color(0xffF8C74E),
+                          color: SourceColor().yellow,
                         ),
                         onRatingUpdate: (rating) {
                           setState(() {
@@ -155,8 +147,8 @@ class _ReviewPageState extends State<ReviewPage> {
                             _filters[index],
                             style: TextStyle(
                               color: _selectedFilterIndex == index
-                                  ? SourceColor().white
-                                  : NeutralColor().neutral60,
+                                  ? NeutralColor().neutral100
+                                  : NeutralColor().neutral90,
                             ),
                           ),
                           selected: _selectedFilterIndex == index,
@@ -179,7 +171,7 @@ class _ReviewPageState extends State<ReviewPage> {
                         Container(
                           decoration: BoxDecoration(
                               border: Border.all(
-                                color: Colors.grey,
+                                color: SourceColor().outline,
                                 width: 1.0,
                               ),
                               borderRadius: BorderRadius.circular(4)),
@@ -222,7 +214,10 @@ class _ReviewPageState extends State<ReviewPage> {
                                               .photo_size_select_actual_outlined,
                                           color: PrimaryColor().primary,
                                         ),
-                                        onPressed: _pickImageFromGallery,
+                                        onPressed: () {
+                                          Navigator.pushNamed(
+                                              context, '/image-picker');
+                                        },
                                       ),
                                     ),
                                     Container(

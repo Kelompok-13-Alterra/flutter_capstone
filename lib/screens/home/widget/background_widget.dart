@@ -92,35 +92,45 @@ class _BackgroundWidgetState extends State<BackgroundWidget> {
                           ),
                         ],
                       ),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              //OnTab di Notifikasi
-                            },
-                            child: SvgPicture.asset(
-                              "assets/homescreen/notification-home.svg",
-                              height: 32,
-                              width: 32,
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.pushNamed(context, '/profile');
-                            },
-                            child: const CircleAvatar(
-                              child: Icon(
-                                Icons.account_circle,
-                                size: 38,
-                              ),
-                            ),
-                          )
-                        ],
-                      )
+                      GestureDetector(
+                        onTap: () {
+                          //OnTab di Notifikasi
+                        },
+                        child: SvgPicture.asset(
+                          "assets/homescreen/notification-home.svg",
+                          height: 32,
+                          width: 32,
+                        ),
+                      ),
+                      // Row(
+                      //   crossAxisAlignment: CrossAxisAlignment.center,
+                      //   children: [
+                      //     GestureDetector(
+                      //       onTap: () {
+                      //         //OnTab di Notifikasi
+                      //       },
+                      //       child: SvgPicture.asset(
+                      //         "assets/homescreen/notification-home.svg",
+                      //         height: 32,
+                      //         width: 32,
+                      //       ),
+                      //     ),
+                      //     const SizedBox(
+                      //       width: 10,
+                      //     ),
+                      //     GestureDetector(
+                      //       onTap: () {
+                      //         Navigator.pushNamed(context, '/profile');
+                      //       },
+                      //       child: const CircleAvatar(
+                      //         child: Icon(
+                      //           Icons.account_circle,
+                      //           size: 38,
+                      //         ),
+                      //       ),
+                      //     )
+                      //   ],
+                      // )
                     ],
                   ),
                   //Card Location

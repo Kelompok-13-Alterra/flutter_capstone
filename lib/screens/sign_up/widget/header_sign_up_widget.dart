@@ -10,16 +10,16 @@ class HeaderLogin extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.max,
       children: [
-        SizedBox(
-          width: MediaQuery.of(context).size.width,
-        ),
-        Center(
-          child: SizedBox(
-            width: 100,
-            height: 42.67,
-            child: Image.asset('assets/logo_colour.png'),
-          ),
-        ),
+        // SizedBox(
+        //   width: MediaQuery.of(context).size.width,
+        // ),
+        // Center(
+        //   child: SizedBox(
+        //     width: 100,
+        //     height: 42.67,
+        //     child: Image.asset('assets/logo_colour.png'),
+        //   ),
+        // ),
         const Padding(
           padding: EdgeInsets.only(
             top: 24,
