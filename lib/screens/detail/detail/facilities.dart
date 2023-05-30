@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class FasilitiesOffice extends StatelessWidget {
-  const FasilitiesOffice({super.key});
+class OfficeFalicities extends StatelessWidget {
+  const OfficeFalicities({super.key});
 
   @override
   Widget build(BuildContext context) {

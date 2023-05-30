@@ -39,6 +39,17 @@ class _ReviewScreenState extends State<ReviewScreen> {
     setState(() {});
   }
 
+  final ImagePicker imgPicker = ImagePicker();
+  List<XFile>? imgFileList = [];
+
+  void selectImg() async {
+    final List<XFile>? selectImg = await imgPicker.pickMultiImage();
+    if (selectImg!.isNotEmpty) {
+      imgFileList!.addAll(selectImg);
+    }
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -241,8 +252,9 @@ class _ReviewScreenState extends State<ReviewScreen> {
                                           color: PrimaryColor().primary,
                                         ),
                                         onPressed: () {
-                                          Navigator.pushNamed(
-                                              context, '/image-picker');
+                                          selectImg();
+                                          // Navigator.pushNamed(
+                                          //     context, '/image-picker');
                                         },
                                       ),
                                     ),

@@ -1,11 +1,11 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/screens/detail/detail/bottom-book.dart';
-import 'package:flutter_capstone/screens/detail/detail/card-detail.dart';
-import 'package:flutter_capstone/screens/detail/detail/deskripsi-ofiice.dart';
-import 'package:flutter_capstone/screens/detail/detail/fasilities.dart';
-import 'package:flutter_capstone/screens/detail/detail/image-detail.dart';
+import 'package:flutter_capstone/screens/detail/detail/bottom_book.dart';
+import 'package:flutter_capstone/screens/detail/detail/detail_card.dart';
+import 'package:flutter_capstone/screens/detail/detail/office_description.dart';
+import 'package:flutter_capstone/screens/detail/detail/facilities.dart';
+import 'package:flutter_capstone/screens/detail/widget/image-detail.dart';
 
 class DetailScreen extends StatefulWidget {
   const DetailScreen({super.key});
@@ -26,16 +26,19 @@ class _DetailScreenState extends State<DetailScreen> {
             ImageDetail(),
             // Container Detail
             //================================================================
-            CardDetail(),
+            DetailCard(),
             // Container Fasilitas
             //================================================================
-            FasilitiesOffice(),
+            OfficeFalicities(),
             // Container Deskripsi
             //================================================================
-            DescriptionOffice(),
+            OfficeDescription(),
             // Button Book
             //================================================================
-            BottomBook(),
+            BottomBook(
+              buttonRoute: '/bottom-nav',
+              textButton: 'Book',
+            ),
           ],
         ),
       ),

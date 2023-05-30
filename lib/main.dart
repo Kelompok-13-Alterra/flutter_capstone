@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_capstone/screens/booking/booking_screen.dart';
 import 'package:flutter_capstone/screens/bottom_nav/bottom_nav_screen.dart';
 import 'package:flutter_capstone/screens/card-search-bar/office_card_widget.dart';
 import 'package:flutter_capstone/screens/home/home_screen.dart';
 import 'package:flutter_capstone/screens/login/login_screen.dart';
-import 'package:flutter_capstone/screens/history/order_screen.dart';
+import 'package:flutter_capstone/screens/order/detail_schedule.dart';
+import 'package:flutter_capstone/screens/order/order_screen.dart';
 import 'package:flutter_capstone/screens/profile/profile_screen.dart';
 import 'package:flutter_capstone/screens/rating/image_picker_rating_screen.dart';
 import 'package:flutter_capstone/screens/review/review_screen.dart';
@@ -39,7 +41,9 @@ class MyApp extends StatelessWidget {
         '/review': (context) => const ReviewScreen(),
         '/image-picker': (context) => const ImagePickerRatingScreen(),
         '/detail': (context) => const DetailScreen(),
+        '/detail-schedule': (context) => const DetailScheduleScreen(),
         '/card-search-bar': (context) => const OfficeCardWidget(),
+        '/booking': (context) => const BookingScheduleScreen()
       },
     );
   }

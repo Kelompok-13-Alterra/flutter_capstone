@@ -2,7 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class BottomBook extends StatefulWidget {
-  const BottomBook({super.key});
+  final String textButton;
+  final String buttonRoute;
+  const BottomBook({
+    super.key,
+    required this.textButton,
+    required this.buttonRoute,
+  });
 
   @override
   State<BottomBook> createState() => _BottomBookState();
@@ -29,9 +35,9 @@ class _BottomBookState extends State<BottomBook> {
               ),
             ),
             onPressed: () {
-              Navigator.pushNamed(context, '/review');
+              Navigator.pushNamed(context, widget.buttonRoute);
             },
-            child: Text("Book",
+            child: Text(widget.textButton,
                 style: GoogleFonts.roboto(
                   fontWeight: FontWeight.w500,
                   fontSize: 14,

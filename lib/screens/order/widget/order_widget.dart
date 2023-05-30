@@ -1,9 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/style/text_style.dart';
-import 'history_reviewed_screen.dart';
 
-class HistoryOrdered extends StatelessWidget {
-  const HistoryOrdered({Key? key});
+class OrderWidget extends StatelessWidget {
+  final String urlImg;
+  final String title;
+  final double rating;
+  final String type;
+  final String duration;
+  final String status;
+  final String route;
+  final String buttonText1;
+  final String routeButton1;
+  final String buttonText2;
+  final String routeButton2;
+  const OrderWidget({
+    Key? key,
+    required this.urlImg,
+    required this.title,
+    required this.rating,
+    required this.type,
+    required this.duration,
+    required this.status,
+    required this.route,
+    required this.buttonText1,
+    required this.routeButton1,
+    required this.buttonText2,
+    required this.routeButton2,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +47,8 @@ class HistoryOrdered extends StatelessWidget {
                       height: 76,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
-                        image: const DecorationImage(
-                          image: AssetImage('assets/office1.png'),
+                        image: DecorationImage(
+                          image: AssetImage(urlImg),
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -38,7 +61,7 @@ class HistoryOrdered extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Wellspace',
+                          title,
                           style: TextStyle(
                             fontWeight: semiBold,
                             fontSize: 16,
@@ -50,7 +73,7 @@ class HistoryOrdered extends StatelessWidget {
                             Icon(Icons.star, color: SourceColor().yellow),
                             const SizedBox(width: 4),
                             Text(
-                              '4.6',
+                              rating.toString(),
                               style: TextStyle(
                                 fontWeight: medium,
                                 fontSize: 13,
@@ -66,7 +89,7 @@ class HistoryOrdered extends StatelessWidget {
                                 size: 14, color: NeutralColor().neutral60),
                             const SizedBox(width: 4),
                             Text(
-                              'Co-Working Space',
+                              type,
                               style: TextStyle(
                                 fontSize: 12,
                                 fontWeight: medium,
@@ -82,7 +105,7 @@ class HistoryOrdered extends StatelessWidget {
                                 size: 14, color: NeutralColor().neutral60),
                             const SizedBox(width: 4),
                             Text(
-                              '10:00 AM - 06:00 PM',
+                              duration,
                               style: TextStyle(
                                 fontSize: 12,
                                 fontWeight: medium,
@@ -108,7 +131,7 @@ class HistoryOrdered extends StatelessWidget {
                     ),
                     child: Center(
                       child: Text(
-                        'Ordered',
+                        status,
                         style: TextStyle(
                           color: SourceColor().white,
                           fontWeight: medium,
@@ -129,7 +152,7 @@ class HistoryOrdered extends StatelessWidget {
                         height: 40,
                         child: ElevatedButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, '/home');
+                            Navigator.pushNamed(context, routeButton1);
                           },
                           style: ElevatedButton.styleFrom(
                             foregroundColor: SourceColor().white,
@@ -141,7 +164,7 @@ class HistoryOrdered extends StatelessWidget {
                             visualDensity: VisualDensity.compact,
                           ),
                           child: Text(
-                            'Book Again',
+                            buttonText1,
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight: medium,
@@ -154,26 +177,36 @@ class HistoryOrdered extends StatelessWidget {
                         height: 40,
                         child: ElevatedButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, '/review');
+                            Navigator.pushNamed(context, routeButton2);
                           },
                           style: ElevatedButton.styleFrom(
-                            foregroundColor: PrimaryColor().primary,
+                            foregroundColor: buttonText2 == 'Cancel Book'
+                                ? ErrorColor().error50
+                                : PrimaryColor().primary,
                             backgroundColor: SourceColor().white,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(100),
-                              side: BorderSide(color: PrimaryColor().primary),
+                              side: BorderSide(
+                                color: buttonText2 == 'Cancel Book'
+                                    ? ErrorColor().error50
+                                    : PrimaryColor().primary,
+                              ),
                             ),
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 16, vertical: 8),
                             visualDensity: VisualDensity.compact,
                           ),
-                          child: Text(
-                            'Give Review',
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: medium,
-                            ),
-                          ),
+                          child: Text(buttonText2,
+                              style: buttonText2 == 'Cancel Book'
+                                  ? setTextStyle(ErrorColor().error50).copyWith(
+                                      fontSize: 14,
+                                      fontWeight: medium,
+                                    )
+                                  : setTextStyle(PrimaryColor().primary)
+                                      .copyWith(
+                                      fontSize: 14,
+                                      fontWeight: medium,
+                                    )),
                         ),
                       ),
                     ],
@@ -183,7 +216,6 @@ class HistoryOrdered extends StatelessWidget {
             ),
           ),
         ),
-        const HistoryReviewed(),
       ],
     );
   }
