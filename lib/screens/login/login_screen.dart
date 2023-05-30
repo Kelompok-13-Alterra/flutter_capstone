@@ -9,7 +9,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
+      body: SingleChildScrollView(
         child: Container(
           height: MediaQuery.of(context).size.height,
           padding: const EdgeInsets.all(20.0),
@@ -19,7 +19,7 @@ class LoginScreen extends StatelessWidget {
             children: [
               Container(
                 padding: const EdgeInsets.only(top: 89.15),
-                child: Column(
+                child: const Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   mainAxisSize: MainAxisSize.max,
                   children: const <Widget>[

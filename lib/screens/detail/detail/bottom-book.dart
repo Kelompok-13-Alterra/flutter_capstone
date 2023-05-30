@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_capstone/style/text_style.dart';
 
 class BottomBook extends StatefulWidget {
   const BottomBook({super.key});
@@ -31,11 +31,11 @@ class _BottomBookState extends State<BottomBook> {
             onPressed: () {
               Navigator.pushNamed(context, '/review');
             },
-            child: Text("Book",
-                style: GoogleFonts.roboto(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 14,
-                )),
+            child: Text(
+              "Book",
+              style: setTextStyle(NeutralColor().neutral100)
+                  .copyWith(fontWeight: semiBold, fontSize: 14),
+            ),
           ),
         ),
       ),
