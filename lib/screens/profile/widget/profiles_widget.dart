@@ -67,175 +67,50 @@ Widget profilesWidget(BuildContext context) {
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       Container(
-        width: 360,
-        height: 200,
+        width: MediaQuery.of(context).size.width,
+        // width: 360,
+        height: 220,
         color: SourceColor().white,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(
-                left: 16,
-                // bottom: 16,
-              ),
-              child: Text(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
                 "Account",
                 style: setTextStyle(NeutralColor().neutral30).copyWith(
                   fontSize: 14,
                   fontWeight: medium,
                 ),
               ),
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            ListView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: subMenuAccount.length,
-              itemBuilder: ((context, index) {
-                return ListTile(
-                  minLeadingWidth: 11,
-                  leading: ConstrainedBox(
-                    constraints: const BoxConstraints(
-                      minWidth: 15,
-                      minHeight: 15,
-                      maxWidth: 20,
-                      maxHeight: 20,
-                    ),
-                    child: iconSubMenuAccount[index],
-                  ),
-                  title: Text(
-                    subMenuAccount[index],
-                    style: setTextStyle(NeutralColor().neutral30).copyWith(
-                      fontSize: 12,
-                      fontWeight: regular,
-                    ),
-                  ),
-                  trailing: GestureDetector(
-                    onTap: () {},
-                    child: const Padding(
-                      padding: EdgeInsets.only(
-                        right: 21.53,
-                      ),
-                      child: Icon(
-                        Icons.keyboard_arrow_right_sharp,
-                        color: Color(0xFF292A2D),
-                      ),
-                    ),
-                  ),
-                );
-              }),
-            ),
-          ],
-        ),
-      ),
-      const SizedBox(
-        height: 4,
-      ),
-      Container(
-        width: 360,
-        height: 230,
-        color: SourceColor().white,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(
-                left: 16,
-                // bottom: 16,
+              const SizedBox(
+                height: 16,
               ),
-              child: Text(
-                "Information",
-                style: setTextStyle(NeutralColor().neutral30).copyWith(
-                  fontSize: 14,
-                  fontWeight: medium,
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            ListView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: subMenuInformation.length,
-              itemBuilder: ((context, index) {
-                return ListTile(
-                  minLeadingWidth: 11,
-                  leading: ConstrainedBox(
-                    constraints: const BoxConstraints(
-                      minWidth: 15,
-                      minHeight: 15,
-                      maxWidth: 20,
-                      maxHeight: 20,
-                    ),
-                    child: iconSubMenuInformation[index],
-                  ),
-                  title: Text(
-                    subMenuInformation[index],
-                    style: setTextStyle(NeutralColor().neutral30).copyWith(
-                      fontSize: 12,
-                      fontWeight: regular,
-                    ),
-                  ),
-                  trailing: GestureDetector(
-                    onTap: () {},
-                    child: const Padding(
-                      padding: EdgeInsets.only(
-                        right: 21.53,
+              ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: subMenuAccount.length,
+                itemBuilder: ((context, index) {
+                  return ListTile(
+                    minLeadingWidth: 11,
+                    leading: ConstrainedBox(
+                      constraints: const BoxConstraints(
+                        minWidth: 15,
+                        minHeight: 15,
+                        maxWidth: 20,
+                        maxHeight: 20,
                       ),
-                      child: Icon(
-                        Icons.keyboard_arrow_right_sharp,
-                        color: Color(0xFF292A2D),
+                      child: iconSubMenuAccount[index],
+                    ),
+                    title: Text(
+                      subMenuAccount[index],
+                      style: setTextStyle(NeutralColor().neutral30).copyWith(
+                        fontSize: 12,
+                        fontWeight: regular,
                       ),
                     ),
-                  ),
-                );
-              }),
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(
-                left: 16,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      ConstrainedBox(
-                        constraints: const BoxConstraints(
-                          minWidth: 15,
-                          minHeight: 15,
-                          maxWidth: 20,
-                          maxHeight: 20,
-                        ),
-                        child: Image.asset(
-                          'assets/image/logout.png',
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 11,
-                      ),
-                      Text(
-                        "Log Out",
-                        style: setTextStyle(NeutralColor().neutral30).copyWith(
-                          fontSize: 12,
-                          fontWeight: regular,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      right: 18,
-                    ),
-                    child: GestureDetector(
+                    trailing: GestureDetector(
                       onTap: () {},
                       child: const Padding(
                         padding: EdgeInsets.only(
@@ -247,11 +122,133 @@ Widget profilesWidget(BuildContext context) {
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  );
+                }),
               ),
-            ),
-          ],
+            ],
+          ),
+        ),
+      ),
+      const SizedBox(
+        height: 4,
+      ),
+      Container(
+        width: MediaQuery.of(context).size.width,
+        // width: 360,
+        height: 255,
+        color: SourceColor().white,
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Information",
+                style: setTextStyle(NeutralColor().neutral30).copyWith(
+                  fontSize: 14,
+                  fontWeight: medium,
+                ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: subMenuInformation.length,
+                itemBuilder: ((context, index) {
+                  return ListTile(
+                    minLeadingWidth: 11,
+                    leading: ConstrainedBox(
+                      constraints: const BoxConstraints(
+                        minWidth: 15,
+                        minHeight: 15,
+                        maxWidth: 20,
+                        maxHeight: 20,
+                      ),
+                      child: iconSubMenuInformation[index],
+                    ),
+                    title: Text(
+                      subMenuInformation[index],
+                      style: setTextStyle(NeutralColor().neutral30).copyWith(
+                        fontSize: 12,
+                        fontWeight: regular,
+                      ),
+                    ),
+                    trailing: GestureDetector(
+                      onTap: () {},
+                      child: const Padding(
+                        padding: EdgeInsets.only(
+                          right: 21.53,
+                        ),
+                        child: Icon(
+                          Icons.keyboard_arrow_right_sharp,
+                          color: Color(0xFF292A2D),
+                        ),
+                      ),
+                    ),
+                  );
+                }),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 16,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        ConstrainedBox(
+                          constraints: const BoxConstraints(
+                            minWidth: 15,
+                            minHeight: 15,
+                            maxWidth: 20,
+                            maxHeight: 20,
+                          ),
+                          child: Image.asset(
+                            'assets/image/logout.png',
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 11,
+                        ),
+                        Text(
+                          "Log Out",
+                          style:
+                              setTextStyle(NeutralColor().neutral30).copyWith(
+                            fontSize: 12,
+                            fontWeight: regular,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        right: 18,
+                      ),
+                      child: GestureDetector(
+                        onTap: () {},
+                        child: const Padding(
+                          padding: EdgeInsets.only(
+                            right: 21.53,
+                          ),
+                          child: Icon(
+                            Icons.keyboard_arrow_right_sharp,
+                            color: Color(0xFF292A2D),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
       const SizedBox(
