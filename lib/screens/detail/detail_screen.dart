@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/screens/detail/widget/bottom-book.dart';
-import 'package:flutter_capstone/screens/detail/widget/card-detail.dart';
+import 'package:flutter_capstone/screens/detail/widget/detai_card.dart';
 import 'package:flutter_capstone/screens/detail/widget/office_description.dart';
 import 'package:flutter_capstone/screens/detail/widget/fasilities.dart';
 import 'package:flutter_capstone/screens/detail/widget/image-detail.dart';
@@ -26,16 +26,19 @@ class _DetailScreenState extends State<DetailScreen> {
             ImageDetail(),
             // Container Detail
             //================================================================
-            CardDetail(),
+            DetailCard(),
             // Container Fasilitas
             //================================================================
-            FasilitiesOffice(),
+            OfficeFalicities(),
             // Container Deskripsi
             //================================================================
-            DescriptionOffice(),
+            OfficeDescription(),
             // Button Book
             //================================================================
-            BottomBook(),
+            BottomBook(
+              buttonRoute: '/booking',
+              textButton: 'Reschedule',
+            ),
           ],
         ),
       ),

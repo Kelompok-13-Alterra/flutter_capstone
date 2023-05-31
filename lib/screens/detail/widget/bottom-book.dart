@@ -2,7 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 
 class BottomBook extends StatefulWidget {
-  const BottomBook({super.key});
+  final String textButton;
+  final String buttonRoute;
+  const BottomBook({
+    super.key,
+    required this.textButton,
+    required this.buttonRoute,
+  });
 
   @override
   State<BottomBook> createState() => _BottomBookState();
@@ -29,10 +35,10 @@ class _BottomBookState extends State<BottomBook> {
               ),
             ),
             onPressed: () {
-              Navigator.pushNamed(context, '/review');
+              Navigator.pushNamed(context, widget.buttonRoute);
             },
             child: Text(
-              "Book",
+              widget.textButton,
               style: setTextStyle(NeutralColor().neutral100)
                   .copyWith(fontWeight: semiBold, fontSize: 14),
             ),

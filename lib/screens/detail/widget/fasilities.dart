@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_capstone/screens/detail/widget/card-facilities.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 
-class FasilitiesOffice extends StatelessWidget {
-  const FasilitiesOffice({Key? key}) : super(key: key);
+class OfficeFalicities extends StatelessWidget {
+  const OfficeFalicities({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

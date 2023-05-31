@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 
-class CardDetail extends StatefulWidget {
-  const CardDetail({super.key});
+class DetailCard extends StatefulWidget {
+  const DetailCard({super.key});
 
   @override
-  State<CardDetail> createState() => _CardDetailState();
+  State<DetailCard> createState() => _DetailCardState();
 }
 
-class _CardDetailState extends State<CardDetail> {
+class _DetailCardState extends State<DetailCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
