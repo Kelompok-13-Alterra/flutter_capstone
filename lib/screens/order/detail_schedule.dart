@@ -1,11 +1,11 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/screens/detail/detail/bottom_book.dart';
-import 'package:flutter_capstone/screens/detail/detail/detail_card.dart';
-import 'package:flutter_capstone/screens/detail/detail/office_description.dart';
-import 'package:flutter_capstone/screens/detail/detail/facilities.dart';
+import 'package:flutter_capstone/screens/detail/widget/bottom-book.dart';
+import 'package:flutter_capstone/screens/detail/widget/detai_card.dart';
+import 'package:flutter_capstone/screens/detail/widget/fasilities.dart';
 import 'package:flutter_capstone/screens/detail/widget/image-detail.dart';
+import 'package:flutter_capstone/screens/detail/widget/office_description.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 
 class DetailScheduleScreen extends StatefulWidget {
@@ -62,10 +62,10 @@ class _DetailScheduleScreenState extends State<DetailScheduleScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: SingleChildScrollView(
         child: Column(
-          children: const <Widget>[
+          children: <Widget>[
             // Image Swipe
             //================================================================
             ImageDetail(),
