@@ -143,7 +143,7 @@ class OrderWidget extends StatelessWidget {
                 ),
                 Positioned(
                   top: 98,
-                  left: 8,
+                  left: 20,
                   child: Wrap(
                     spacing: 5,
                     children: [
