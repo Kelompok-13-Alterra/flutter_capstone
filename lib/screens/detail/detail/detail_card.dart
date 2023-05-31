@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/style/text_style.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class DetailCard extends StatefulWidget {
   const DetailCard({super.key});
@@ -21,8 +21,10 @@ class _DetailCardState extends State<DetailCard> {
             children: [
               Text(
                 "Wellspace",
-                style: setTextStyle(NeutralColor().neutral20)
-                    .copyWith(fontWeight: semiBold, fontSize: 20),
+                style: GoogleFonts.roboto(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 20,
+                ),
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
@@ -37,8 +39,11 @@ class _DetailCardState extends State<DetailCard> {
                   padding: const EdgeInsets.symmetric(horizontal: 8),
                   child: Text(
                     "Open",
-                    style: setTextStyle(SourceColor().white)
-                        .copyWith(fontWeight: semiBold, fontSize: 13),
+                    style: GoogleFonts.roboto(
+                      color: Colors.white,
+                      fontSize: 13,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ),
               ),
@@ -56,8 +61,11 @@ class _DetailCardState extends State<DetailCard> {
               ),
               Text(
                 "4.6",
-                style: setTextStyle(NeutralColor().neutral17)
-                    .copyWith(fontWeight: semiBold, fontSize: 13),
+                style: GoogleFonts.roboto(
+                  color: const Color(0xFF292A2D),
+                  fontSize: 13,
+                  fontWeight: FontWeight.w500,
+                ),
               )
             ],
           ),
@@ -76,8 +84,11 @@ class _DetailCardState extends State<DetailCard> {
               ),
               Text(
                 "Maximum: 10 People",
-                style: setTextStyle(NeutralColor().neutral30)
-                    .copyWith(fontWeight: semiBold, fontSize: 12),
+                style: GoogleFonts.roboto(
+                  color: const Color(0xFF46474A),
+                  fontSize: 12,
+                  fontWeight: FontWeight.w500,
+                ),
               )
             ],
           ),
@@ -96,8 +107,11 @@ class _DetailCardState extends State<DetailCard> {
               ),
               Text(
                 "06:00 AM - 10:00 PM",
-                style: setTextStyle(NeutralColor().neutral30)
-                    .copyWith(fontWeight: semiBold, fontSize: 12),
+                style: GoogleFonts.roboto(
+                  color: const Color(0xFF46474A),
+                  fontSize: 12,
+                  fontWeight: FontWeight.w500,
+                ),
               )
             ],
           ),
@@ -106,8 +120,10 @@ class _DetailCardState extends State<DetailCard> {
           ),
           Text(
             "IDR 20.999",
-            style: setTextStyle(NeutralColor().neutral20)
-                .copyWith(fontWeight: regular, fontSize: 22),
+            style: GoogleFonts.roboto(
+              fontSize: 22,
+              fontWeight: FontWeight.w400,
+            ),
           ),
           const SizedBox(
             height: 10,
@@ -144,8 +160,11 @@ class _DetailCardState extends State<DetailCard> {
                   ),
                   Text(
                     "Mampang - 400",
-                    style: setTextStyle(NeutralColor().neutral30)
-                        .copyWith(fontWeight: semiBold, fontSize: 12),
+                    style: GoogleFonts.roboto(
+                      color: const Color(0xFF46474A),
+                      fontSize: 12,
+                      fontWeight: FontWeight.w500,
+                    ),
                   )
                 ],
               ),
@@ -161,8 +180,11 @@ class _DetailCardState extends State<DetailCard> {
                   ),
                   Text(
                     "See On Google Maps",
-                    style: setTextStyle(NeutralColor().neutral30)
-                        .copyWith(fontWeight: semiBold, fontSize: 12),
+                    style: GoogleFonts.roboto(
+                      color: const Color(0xFF46474A),
+                      fontSize: 12,
+                      fontWeight: FontWeight.w500,
+                    ),
                   )
                 ],
               ),
