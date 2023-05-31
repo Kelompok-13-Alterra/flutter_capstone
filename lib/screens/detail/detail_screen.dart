@@ -26,19 +26,16 @@ class _DetailScreenState extends State<DetailScreen> {
             ImageDetail(),
             // Container Detail
             //================================================================
-            DetailCard(),
+            CardDetail(),
             // Container Fasilitas
             //================================================================
-            OfficeFalicities(),
+            FasilitiesOffice(),
             // Container Deskripsi
             //================================================================
-            OfficeDescription(),
+            DescriptionOffice(),
             // Button Book
             //================================================================
-            BottomBook(
-              buttonRoute: '/bottom-nav',
-              textButton: 'Book',
-            ),
+            BottomBook(),
           ],
         ),
       ),
