@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/screens/detail/widget/bottom-book.dart';
-import 'package:flutter_capstone/screens/detail/widget/detai_card.dart';
+import 'package:flutter_capstone/screens/detail/widget/detail_card.dart';
 import 'package:flutter_capstone/screens/detail/widget/office_description.dart';
 import 'package:flutter_capstone/screens/detail/widget/fasilities.dart';
 import 'package:flutter_capstone/screens/detail/widget/image-detail.dart';
