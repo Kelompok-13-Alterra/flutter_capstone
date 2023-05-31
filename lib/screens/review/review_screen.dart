@@ -282,16 +282,18 @@ class _ReviewScreenState extends State<ReviewScreen> {
                     ),
                   ),
                 ),
-                ElevatedButton(
-                  onPressed: _submitReview,
-                  style: ElevatedButton.styleFrom(
-                    fixedSize: const Size(328, 50),
-                    backgroundColor: PrimaryColor().primary,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(100),
+                SizedBox(
+                  child: ElevatedButton(
+                    onPressed: _submitReview,
+                    style: ElevatedButton.styleFrom(
+                      fixedSize: const Size(365, 50),
+                      backgroundColor: PrimaryColor().primary,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(100),
+                      ),
                     ),
+                    child: const Text('Submit'),
                   ),
-                  child: const Text('Submit'),
                 ),
               ],
             ),

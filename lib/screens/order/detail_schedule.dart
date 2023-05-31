@@ -84,7 +84,7 @@ class _DetailScheduleScreenState extends State<DetailScheduleScreen> {
                         return Padding(
                           padding: const EdgeInsets.all(16),
                           child: FractionallySizedBox(
-                            heightFactor: 0.314,
+                            heightFactor: 0.4,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
