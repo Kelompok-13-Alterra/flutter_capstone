@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/screens/history/history_ordered_screen.dart';
-import 'package:flutter_capstone/screens/history/history_reviewed_screen.dart';
+import 'package:flutter_capstone/screens/order/booked_screen.dart';
+import 'package:flutter_capstone/screens/order/history_screen.dart';
 import 'package:flutter_capstone/style/text_style.dart';
-import 'package:flutter_capstone/screens/history/booked_screen.dart';
 
 class OrderScreen extends StatefulWidget {
   const OrderScreen({Key? key}) : super(key: key);
@@ -90,15 +89,9 @@ class _OrderScreenState extends State<OrderScreen>
                 Expanded(
                   child: TabBarView(
                     controller: _tabController,
-                    children: [
-                      const BookedWidget(),
-                      PageView(
-                        controller: PageController(initialPage: 0),
-                        children: const [
-                          HistoryOrdered(),
-                          HistoryReviewed(),
-                        ],
-                      ),
+                    children: const <Widget>[
+                      BookedOrderScreen(),
+                      HistoryOrderScreen(),
                     ],
                   ),
                 ),

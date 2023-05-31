@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class DescriptionOffice extends StatefulWidget {
-  const DescriptionOffice({super.key});
+class OfficeDescription extends StatefulWidget {
+  const OfficeDescription({super.key});
 
   @override
-  State<DescriptionOffice> createState() => _DescriptionOfficeState();
+  State<OfficeDescription> createState() => _OfficeDescriptionState();
 }
 
-class _DescriptionOfficeState extends State<DescriptionOffice> {
+class _OfficeDescriptionState extends State<OfficeDescription> {
   bool isDescriptionVisible = true;
   @override
   Widget build(BuildContext context) {
