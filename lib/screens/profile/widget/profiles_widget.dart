@@ -69,7 +69,7 @@ Widget profilesWidget(BuildContext context) {
       Container(
         width: MediaQuery.of(context).size.width,
         // width: 360,
-        height: 220,
+        height: 234,
         color: SourceColor().white,
         child: Padding(
           padding: const EdgeInsets.all(16),
@@ -135,7 +135,7 @@ Widget profilesWidget(BuildContext context) {
       Container(
         width: MediaQuery.of(context).size.width,
         // width: 360,
-        height: 255,
+        height: 272,
         color: SourceColor().white,
         child: Padding(
           padding: const EdgeInsets.all(16),

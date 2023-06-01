@@ -22,9 +22,9 @@ class _HistoryOrderScreenState extends State<HistoryOrderScreen> {
             status: 'Booked',
             route: '/detail-schedule',
             buttonText1: 'Book Again',
-            routeButton1: '/detail-schedule',
+            routeButton1: '/detail',
             buttonText2: 'Give Review',
-            routeButton2: '')
+            routeButton2: '/review')
       ],
     );
   }

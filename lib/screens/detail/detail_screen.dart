@@ -1,10 +1,10 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/screens/detail/widget/bottom-book.dart';
+import 'package:flutter_capstone/screens/detail/widget/bottom_book.dart';
 import 'package:flutter_capstone/screens/detail/widget/detail_card.dart';
 import 'package:flutter_capstone/screens/detail/widget/fasilities.dart';
-import 'package:flutter_capstone/screens/detail/widget/image-detail.dart';
+import 'package:flutter_capstone/screens/detail/widget/image_detail.dart';
 import 'package:flutter_capstone/screens/detail/widget/office_description.dart';
 
 class DetailScreen extends StatefulWidget {
@@ -17,10 +17,10 @@ class DetailScreen extends StatefulWidget {
 class _DetailScreenState extends State<DetailScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: SingleChildScrollView(
         child: Column(
-          children: <Widget>[
+          children: const <Widget>[
             // Image Swipe
             //================================================================
             ImageDetail(),

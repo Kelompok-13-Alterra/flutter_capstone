@@ -23,13 +23,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
           style: setTextStyle(NeutralColor().neutral12)
               .copyWith(fontSize: 16, fontWeight: regular),
         ),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          color: NeutralColor().neutral0,
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
         actions: const [
           Padding(
             padding: EdgeInsets.only(

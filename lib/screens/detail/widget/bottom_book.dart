@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/style/text_style.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class BottomBook extends StatefulWidget {
   final String textButton;
-  final String buttonRoute;
+  final String? buttonRoute;
+  final VoidCallback? function;
   const BottomBook({
     super.key,
     required this.textButton,
-    required this.buttonRoute,
+    this.buttonRoute,
+    this.function,
   });
 
   @override
@@ -34,14 +36,22 @@ class _BottomBookState extends State<BottomBook> {
                 ),
               ),
             ),
+            // onPressed: widget.function,
             onPressed: () {
-              Navigator.pushNamed(context, widget.buttonRoute);
+              widget.function!();
+
+              // if (widget.buttonRoute != null) {
+              //   Navigator.pushNamedAndRemoveUntil(
+              //       context, widget.buttonRoute!, (route) => false);
+              //   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+              //       content: Text('Yay! Successfully booked an office!')));
+              // }
             },
-            child: Text(
-              widget.textButton,
-              style: setTextStyle(NeutralColor().neutral100)
-                  .copyWith(fontWeight: semiBold, fontSize: 14),
-            ),
+            child: Text(widget.textButton,
+                style: GoogleFonts.roboto(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 14,
+                )),
           ),
         ),
       ),
