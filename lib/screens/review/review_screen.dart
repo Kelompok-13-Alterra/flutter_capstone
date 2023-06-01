@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 
 class ReviewScreen extends StatefulWidget {
   const ReviewScreen({Key? key}) : super(key: key);
@@ -30,7 +31,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
     final picker = ImagePicker();
     final pickedImage = await picker.getImage(source: ImageSource.camera);
 
-    if (pickedImage != null) {}
+    //if (pickedImage != null) {}
   }
 
   void _submitReview() {
@@ -40,12 +41,12 @@ class _ReviewScreenState extends State<ReviewScreen> {
   }
 
   final ImagePicker imgPicker = ImagePicker();
-  List<XFile>? imgFileList = [];
+  List<XFile> imgFileList = [];
 
   void selectImg() async {
-    final List<XFile>? selectImg = await imgPicker.pickMultiImage();
-    if (selectImg!.isNotEmpty) {
-      imgFileList!.addAll(selectImg);
+    final List<XFile> selectImg = await imgPicker.pickMultiImage();
+    if (selectImg.isNotEmpty) {
+      imgFileList.addAll(selectImg);
     }
     setState(() {});
   }
@@ -53,251 +54,304 @@ class _ReviewScreenState extends State<ReviewScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          elevation: 0.0,
-          backgroundColor: SourceColor().white,
-          leading: IconButton(
-              icon: const Icon(Icons.arrow_back),
-              color: SourceColor().black,
+      appBar: AppBar(
+        elevation: 0.0,
+        backgroundColor: SourceColor().white,
+        leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            color: SourceColor().black,
+            onPressed: () {
+              Navigator.pop(context);
+            }),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'Review',
+              style: TextStyle(fontSize: 16, fontWeight: regular),
+            ),
+            IconButton(
+              icon: Icon(Icons.more_vert, color: SourceColor().black),
               onPressed: () {
-                Navigator.pop(context);
-              }),
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'Review',
-                style: TextStyle(fontSize: 16, fontWeight: regular),
-              ),
-              IconButton(
-                icon: Icon(Icons.more_vert, color: SourceColor().black),
-                onPressed: () {
-                  // Aksi ketika tombol tanda titik tiga ditekan
-                },
-              ),
-            ],
-          ),
+                // Aksi ketika tombol tanda titik tiga ditekan
+              },
+            ),
+          ],
         ),
-        body: SingleChildScrollView(
-          child: Container(
-            color: SourceColor().white,
-            child: Column(
-              children: [
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+      ),
+      body: SingleChildScrollView(
+        child: Container(
+          color: SourceColor().white,
+          child: Column(
+            children: [
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Align(
+                      alignment: Alignment.topLeft,
+                    ),
+                    Text(
+                      'Rate Your Experience',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: regular,
+                        color: NeutralColor().neutral20,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      'Are you satisfied with the service?',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: regular,
+                        color: NeutralColor().neutral60,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    RatingBar.builder(
+                      initialRating: _rating,
+                      minRating: 0,
+                      direction: Axis.horizontal,
+                      allowHalfRating: true,
+                      itemCount: 5,
+                      itemSize: 50,
+                      itemBuilder: (context, _) => Icon(
+                        Icons.star,
+                        color: SourceColor().yellow,
+                      ),
+                      onRatingUpdate: (rating) {
+                        setState(() {
+                          _rating = rating;
+                        });
+                      },
+                    ),
+                    const SizedBox(
+                      height: 42,
+                    ),
+                    Text(
+                      'Tell us what stood out',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: regular,
+                        color: SourceColor().black,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Align(
+                  alignment: Alignment.topLeft,
+                  child: Wrap(
+                    spacing: 8.0,
+                    children: List<Widget>.generate(_filters.length ~/ 2,
+                        (int index) {
+                      final firstIndex = index * 2;
+                      final secondIndex = index * 2 + 1;
+                      return Row(
+                        children: [
+                          ChoiceChip(
+                            label: Text(
+                              _filters[firstIndex],
+                              style: TextStyle(
+                                color: _selectedFilterIndex == firstIndex
+                                    ? NeutralColor().neutral100
+                                    : NeutralColor().neutral60,
+                              ),
+                            ),
+                            selected: _selectedFilterIndex == firstIndex,
+                            selectedColor: SourceColor().seed,
+                            onSelected: (bool selected) {
+                              setState(() {
+                                _selectedFilterIndex =
+                                    selected ? firstIndex : 0;
+                              });
+                            },
+                          ),
+                          const SizedBox(width: 8.0),
+                          ChoiceChip(
+                            label: Text(
+                              _filters[secondIndex],
+                              style: TextStyle(
+                                color: _selectedFilterIndex == secondIndex
+                                    ? NeutralColor().neutral100
+                                    : NeutralColor().neutral60,
+                              ),
+                            ),
+                            selected: _selectedFilterIndex == secondIndex,
+                            selectedColor: SourceColor().seed,
+                            onSelected: (bool selected) {
+                              setState(() {
+                                _selectedFilterIndex =
+                                    selected ? secondIndex : 0;
+                              });
+                            },
+                          ),
+                        ],
+                      );
+                    }),
+                  ),
+                ),
+              ),
+
+              // Show Picked Image from Gallery
+              Padding(
+                padding: const EdgeInsets.only(
+                    top: 20, bottom: 24, right: 16, left: 16),
+                child: GridView.builder(
+                  shrinkWrap: true,
+                  scrollDirection: Axis.vertical,
+                  itemCount: imgFileList.length,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 4,
+                    mainAxisSpacing: 4,
+                    crossAxisSpacing: 4,
+                  ),
+                  itemBuilder: (BuildContext context, int index) {
+                    return Stack(
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Image.file(
+                            File(imgFileList[index].path),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        Positioned(
+                          right: 1,
+                          child: GestureDetector(
+                            onTap: () {
+                              deleteImage(
+                                imgFileList[index],
+                              );
+                            },
+                            child: Image.asset(
+                              "assets/image/delete.png",
+                              width: 20,
+                              height: 20,
+                            ),
+                          ),
+                        ),
+                      ],
+                    );
+                  },
+                ),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Container(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Align(
-                        alignment: Alignment.topLeft,
-                      ),
-                      Text(
-                        'Rate Your Experience',
-                        style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: regular,
-                          color: NeutralColor().neutral20,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        'Are you satisfied with the service?',
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: regular,
-                          color: NeutralColor().neutral60,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      RatingBar.builder(
-                        initialRating: _rating,
-                        minRating: 0,
-                        direction: Axis.horizontal,
-                        allowHalfRating: true,
-                        itemCount: 5,
-                        itemSize: 50,
-                        itemBuilder: (context, _) => Icon(
-                          Icons.star,
-                          color: SourceColor().yellow,
-                        ),
-                        onRatingUpdate: (rating) {
-                          setState(() {
-                            _rating = rating;
-                          });
-                        },
-                      ),
-                      const SizedBox(
-                        height: 42,
-                      ),
-                      Text(
-                        'Tell us what stood out',
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: regular,
-                          color: SourceColor().black,
+                      Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                              color: SourceColor().outline,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(4)),
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 8.0),
+                              child: SizedBox(
+                                width: double.infinity,
+                                height: 98,
+                                child: TextField(
+                                  controller: _reviewController,
+                                  maxLines: 4,
+                                  decoration: InputDecoration(
+                                    hintText:
+                                        'The Place is very cozy and also clean. So many kind of facilities here. Probably I`ll go back here someday.',
+                                    hintStyle: const TextStyle(
+                                      fontSize: 12,
+                                    ),
+                                    border: InputBorder.none,
+                                    fillColor: SourceColor().white,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              height: 1,
+                              color: SourceColor().outline,
+                            ),
+                            Container(
+                              padding: const EdgeInsets.all(0),
+                              margin: const EdgeInsets.all(0),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: IconButton(
+                                      icon: Icon(
+                                        Icons.photo_size_select_actual_outlined,
+                                        color: PrimaryColor().primary,
+                                      ),
+                                      onPressed: () {
+                                        selectImg();
+                                        // Navigator.pushNamed(
+                                        //     context, '/image-picker');
+                                      },
+                                    ),
+                                  ),
+                                  Container(
+                                    width: 1,
+                                    color: SourceColor().outline,
+                                    height: 48,
+                                  ),
+                                  Expanded(
+                                    child: IconButton(
+                                      icon: Icon(
+                                        Icons.camera_alt_outlined,
+                                        color: PrimaryColor().primary,
+                                      ),
+                                      onPressed: _pickImageFromCamera,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: Align(
-                    alignment: Alignment.topLeft,
-                    child: Wrap(
-                      spacing: 8.0,
-                      children: List<Widget>.generate(_filters.length ~/ 2,
-                          (int index) {
-                        final firstIndex = index * 2;
-                        final secondIndex = index * 2 + 1;
-                        return Row(
-                          children: [
-                            ChoiceChip(
-                              label: Text(
-                                _filters[firstIndex],
-                                style: TextStyle(
-                                  color: _selectedFilterIndex == firstIndex
-                                      ? NeutralColor().neutral100
-                                      : NeutralColor().neutral60,
-                                ),
-                              ),
-                              selected: _selectedFilterIndex == firstIndex,
-                              selectedColor: SourceColor().seed,
-                              onSelected: (bool selected) {
-                                setState(() {
-                                  _selectedFilterIndex =
-                                      selected ? firstIndex : 0;
-                                });
-                              },
-                            ),
-                            const SizedBox(width: 8.0),
-                            ChoiceChip(
-                              label: Text(
-                                _filters[secondIndex],
-                                style: TextStyle(
-                                  color: _selectedFilterIndex == secondIndex
-                                      ? NeutralColor().neutral100
-                                      : NeutralColor().neutral60,
-                                ),
-                              ),
-                              selected: _selectedFilterIndex == secondIndex,
-                              selectedColor: SourceColor().seed,
-                              onSelected: (bool selected) {
-                                setState(() {
-                                  _selectedFilterIndex =
-                                      selected ? secondIndex : 0;
-                                });
-                              },
-                            ),
-                          ],
-                        );
-                      }),
+              ),
+              SizedBox(
+                child: ElevatedButton(
+                  onPressed: _submitReview,
+                  style: ElevatedButton.styleFrom(
+                    fixedSize: const Size(365, 50),
+                    backgroundColor: PrimaryColor().primary,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(100),
                     ),
                   ),
+                  child: const Text('Submit'),
                 ),
-                Container(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                              border: Border.all(
-                                color: SourceColor().outline,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(4)),
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 8.0),
-                                child: SizedBox(
-                                  width: double.infinity,
-                                  height: 98,
-                                  child: TextField(
-                                    controller: _reviewController,
-                                    maxLines: 4,
-                                    decoration: InputDecoration(
-                                      hintText:
-                                          'The Place is very cozy and also clean. So many kind of facilities here. Probably I`ll go back here someday.',
-                                      hintStyle: const TextStyle(
-                                        fontSize: 12,
-                                      ),
-                                      border: InputBorder.none,
-                                      fillColor: SourceColor().white,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                height: 1,
-                                color: SourceColor().outline,
-                              ),
-                              Container(
-                                padding: const EdgeInsets.all(0),
-                                margin: const EdgeInsets.all(0),
-                                child: Row(
-                                  children: [
-                                    Expanded(
-                                      child: IconButton(
-                                        icon: Icon(
-                                          Icons
-                                              .photo_size_select_actual_outlined,
-                                          color: PrimaryColor().primary,
-                                        ),
-                                        onPressed: () {
-                                          selectImg();
-                                          // Navigator.pushNamed(
-                                          //     context, '/image-picker');
-                                        },
-                                      ),
-                                    ),
-                                    Container(
-                                      width: 1,
-                                      color: SourceColor().outline,
-                                      height: 48,
-                                    ),
-                                    Expanded(
-                                      child: IconButton(
-                                        icon: Icon(
-                                          Icons.camera_alt_outlined,
-                                          color: PrimaryColor().primary,
-                                        ),
-                                        onPressed: _pickImageFromCamera,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  child: ElevatedButton(
-                    onPressed: _submitReview,
-                    style: ElevatedButton.styleFrom(
-                      fixedSize: const Size(365, 50),
-                      backgroundColor: PrimaryColor().primary,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(100),
-                      ),
-                    ),
-                    child: const Text('Submit'),
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ));
+        ),
+      ),
+    );
+  }
+
+  void deleteImage(data) {
+    setState(() {
+      imgFileList.remove(data);
+    });
   }
 }
