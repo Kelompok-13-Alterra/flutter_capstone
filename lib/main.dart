@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => const EditProfile(),
+        '/': (context) => const SplashScreen(),
         '/login': (context) => const LoginScreen(),
         '/sign-up': (context) => const SignUpScreen(),
         '/boarding': (context) => const BoardingScreen(),
@@ -47,7 +47,8 @@ class MyApp extends StatelessWidget {
         '/detail': (context) => const DetailScreen(),
         '/detail-schedule': (context) => const DetailScheduleScreen(),
         '/card-search-bar': (context) => const OfficeCardWidget(),
-        '/booking': (context) => const BookingScheduleScreen()
+        '/booking': (context) => const BookingScheduleScreen(),
+        '/edit-profile': (context) => const EditProfile(),
       },
     );
   }

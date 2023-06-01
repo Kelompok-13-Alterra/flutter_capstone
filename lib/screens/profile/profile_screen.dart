@@ -83,7 +83,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               width: 6,
                             ),
                             GestureDetector(
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.of(context)
+                                    .pushNamed('/edit-profile');
+                              },
                               child: Icon(
                                 Icons.edit,
                                 color: SourceColor().black,
