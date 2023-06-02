@@ -14,6 +14,7 @@ packages:
     description:
       name: async
       sha256: bfe67ef28df125b7dddcea62755991f807aa39a2492a23e1550161692950bbe0
+      sha256: bfe67ef28df125b7dddcea62755991f807aa39a2492a23e1550161692950bbe0
       url: "https://pub.dev"
     source: hosted
     version: "2.10.0"
@@ -78,6 +79,7 @@ packages:
     description:
       name: collection
       sha256: cfc915e6923fe5ce6e153b0723c753045de46de1b4d63771530504004a45fae0
+      sha256: cfc915e6923fe5ce6e153b0723c753045de46de1b4d63771530504004a45fae0
       url: "https://pub.dev"
     source: hosted
     version: "1.17.0"
@@ -105,6 +107,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.5"
+  dio:
+    dependency: "direct main"
+    description:
+      name: dio
+      sha256: "347d56c26d63519552ef9a569f2a593dda99a81fdbdff13c584b7197cfe05059"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.1.2"
   dio:
     dependency: "direct main"
     description:
@@ -285,6 +295,7 @@ packages:
     description:
       name: js
       sha256: "5528c2f391ededb7775ec1daa69e65a2d61276f7552de2b5f7b8d34ee9fd4ab7"
+      sha256: "5528c2f391ededb7775ec1daa69e65a2d61276f7552de2b5f7b8d34ee9fd4ab7"
       url: "https://pub.dev"
     source: hosted
     version: "0.6.5"
@@ -319,7 +330,15 @@ packages:
       sha256: "6c268b42ed578a53088d834796959e4a1814b5e9e164f147f580a386e5decf42"
       url: "https://pub.dev"
     source: hosted
-    version: "1.9.1"
+    version: "1.8.0"
+  octo_image:
+    dependency: transitive
+    description:
+      name: octo_image
+      sha256: "107f3ed1330006a3bea63615e81cf637433f5135a52466c7caa0e7152bca9143"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.2"
   path:
     dependency: transitive
     description:
@@ -424,6 +443,70 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.2.4"
+  rxdart:
+    dependency: transitive
+    description:
+      name: rxdart
+      sha256: "0c7c0cedd93788d996e33041ffecda924cc54389199cde4e6a34b440f50044cb"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.27.7"
+  shared_preferences:
+    dependency: "direct main"
+    description:
+      name: shared_preferences
+      sha256: "16d3fb6b3692ad244a695c0183fca18cf81fd4b821664394a781de42386bf022"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.1"
+  shared_preferences_android:
+    dependency: transitive
+    description:
+      name: shared_preferences_android
+      sha256: "6478c6bbbecfe9aced34c483171e90d7c078f5883558b30ec3163cf18402c749"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.4"
+  shared_preferences_foundation:
+    dependency: transitive
+    description:
+      name: shared_preferences_foundation
+      sha256: e014107bb79d6d3297196f4f2d0db54b5d1f85b8ea8ff63b8e8b391a02700feb
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.2"
+  shared_preferences_linux:
+    dependency: transitive
+    description:
+      name: shared_preferences_linux
+      sha256: "9d387433ca65717bbf1be88f4d5bb18f10508917a8fa2fb02e0fd0d7479a9afa"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.0"
+  shared_preferences_platform_interface:
+    dependency: transitive
+    description:
+      name: shared_preferences_platform_interface
+      sha256: fb5cf25c0235df2d0640ac1b1174f6466bd311f621574997ac59018a6664548d
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.0"
+  shared_preferences_web:
+    dependency: transitive
+    description:
+      name: shared_preferences_web
+      sha256: "74083203a8eae241e0de4a0d597dbedab3b8fef5563f33cf3c12d7e93c655ca5"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.0"
+  shared_preferences_windows:
+    dependency: transitive
+    description:
+      name: shared_preferences_windows
+      sha256: "5e588e2efef56916a3b229c3bfe81e6a525665a454519ca51dbcc4236a274173"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.0"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -506,6 +589,7 @@ packages:
     description:
       name: test_api
       sha256: ad540f65f92caa91bf21dfc8ffb8c589d6e4dc0c2267818b4cc2792857706206
+      sha256: ad540f65f92caa91bf21dfc8ffb8c589d6e4dc0c2267818b4cc2792857706206
       url: "https://pub.dev"
     source: hosted
     version: "0.4.16"
@@ -582,5 +666,6 @@ packages:
     source: hosted
     version: "6.2.2"
 sdks:
+  dart: ">=2.19.2 <3.0.0"
   dart: ">=2.19.2 <3.0.0"
   flutter: ">=3.7.0-0"
