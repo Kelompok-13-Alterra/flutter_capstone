@@ -36,7 +36,7 @@ class _DetailScreenState extends State<DetailScreen> {
             // Button Book
             //================================================================
             BottomBook(
-              buttonRoute: '/bottom-nav',
+              buttonRoute: null,
               textButton: 'Book',
             ),
           ],

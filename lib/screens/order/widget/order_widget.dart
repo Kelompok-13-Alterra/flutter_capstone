@@ -14,7 +14,7 @@ class OrderWidget extends StatelessWidget {
   final String buttonText2;
   final String routeButton2;
   const OrderWidget({
-    Key? key,
+    super.key,
     required this.urlImg,
     required this.title,
     required this.rating,
