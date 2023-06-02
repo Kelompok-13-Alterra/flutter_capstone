@@ -38,11 +38,10 @@ dependencies:
   flutter_rating_bar: ^4.0.1
   flutter_svg: ^2.0.5
   google_fonts: ^4.0.4
-  smooth_page_indicator: ^1.1.0
+  image_picker: ^0.8.7+5
   intl: ^0.18.1
-  calendar_date_picker2: ^0.5.2
-  
-  cached_network_image: ^3.1.0
+  shared_preferences: ^2.1.1
+  smooth_page_indicator: ^1.1.0
 
 dev_dependencies:
   flutter_lints: ^2.0.0
