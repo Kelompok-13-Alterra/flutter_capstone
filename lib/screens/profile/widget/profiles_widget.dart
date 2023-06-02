@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/style/text_style.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class IconSubMenu {
   final String urlImg;
@@ -194,57 +195,72 @@ Widget profilesWidget(BuildContext context) {
               const SizedBox(
                 height: 16,
               ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: 16,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
+              GestureDetector(
+                onTap: () async {
+                  SharedPreferences prefs =
+                      await SharedPreferences.getInstance();
+                  prefs.remove('email');
+
+                  // ignore: use_build_context_synchronously
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, '/login', (route) => false);
+
+                  // ignore: use_build_context_synchronously
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Berhasil keluar!')));
+                },
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    left: 16,
+                  ),
+                  child: SizedBox(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        ConstrainedBox(
-                          constraints: const BoxConstraints(
-                            minWidth: 15,
-                            minHeight: 15,
-                            maxWidth: 20,
-                            maxHeight: 20,
-                          ),
-                          child: Image.asset(
-                            'assets/image/logout.png',
-                          ),
+                        Row(
+                          children: [
+                            ConstrainedBox(
+                              constraints: const BoxConstraints(
+                                minWidth: 15,
+                                minHeight: 15,
+                                maxWidth: 20,
+                                maxHeight: 20,
+                              ),
+                              child: Image.asset(
+                                'assets/image/logout.png',
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 11,
+                            ),
+                            Text(
+                              "Log Out",
+                              style: setTextStyle(NeutralColor().neutral30)
+                                  .copyWith(
+                                fontSize: 12,
+                                fontWeight: regular,
+                              ),
+                            ),
+                          ],
                         ),
-                        const SizedBox(
-                          width: 11,
-                        ),
-                        Text(
-                          "Log Out",
-                          style:
-                              setTextStyle(NeutralColor().neutral30).copyWith(
-                            fontSize: 12,
-                            fontWeight: regular,
+                        // ignore: prefer_const_constructors
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            right: 18,
+                          ),
+                          child: const Padding(
+                            padding: EdgeInsets.only(
+                              right: 21.53,
+                            ),
+                            child: Icon(
+                              Icons.keyboard_arrow_right_sharp,
+                              color: Color(0xFF292A2D),
+                            ),
                           ),
                         ),
                       ],
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        right: 18,
-                      ),
-                      child: GestureDetector(
-                        onTap: () {},
-                        child: const Padding(
-                          padding: EdgeInsets.only(
-                            right: 21.53,
-                          ),
-                          child: Icon(
-                            Icons.keyboard_arrow_right_sharp,
-                            color: Color(0xFF292A2D),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
               ),
             ],

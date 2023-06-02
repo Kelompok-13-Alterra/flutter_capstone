@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_capstone/model/login/login_model.dart';
 import 'package:flutter_capstone/screens/login/widget/text_or_widget.dart';
 import 'package:flutter_capstone/services/login/login_services.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class FormLogin extends StatefulWidget {
   const FormLogin({super.key});
@@ -41,10 +43,14 @@ class _FormLoginState extends State<FormLogin> {
         email: _emailController.text,
         password: _passwordController.text,
       );
-
+      //Trying to get email value
+      print(LoginModel.fromJson(res).email);
       if (res['meta']['is_error'] == false) {
         // ignore: use_build_context_synchronously
         String accessToken = res['data']['token'];
+
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        prefs.setString('email', _emailController.text);
 
         // ignore: use_build_context_synchronously
         Navigator.pushNamedAndRemoveUntil(

@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_capstone/screens/bottom_nav/bottom_nav_screen.dart';
 import 'package:flutter_capstone/screens/splash/boarding_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:your_app/home_screen.dart'; // Ganti dengan nama halaman utama aplikasi Anda
 
 class SplashScreen extends StatefulWidget {
@@ -15,10 +17,17 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(const Duration(seconds: 1), () {
+
+    Timer(const Duration(seconds: 3), () async {
+      WidgetsFlutterBinding.ensureInitialized();
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      var email = prefs.getString('email');
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const BoardingScreen()),
+        MaterialPageRoute(
+            builder: (context) => email == null
+                ? const BoardingScreen()
+                : BottomNavScreen(token: '')),
       );
     });
   }
