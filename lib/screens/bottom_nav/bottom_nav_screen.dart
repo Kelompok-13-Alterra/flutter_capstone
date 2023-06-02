@@ -8,7 +8,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class BottomNavScreen extends StatefulWidget {
-  const BottomNavScreen({super.key});
+  final String token;
+  const BottomNavScreen({super.key, required this.token});
 
   @override
   State<BottomNavScreen> createState() => _BottomNavScreenState();

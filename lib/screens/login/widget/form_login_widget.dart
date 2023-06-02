@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/screens/login/widget/text_or_widget.dart';
+import 'package:flutter_capstone/services/login/login_services.dart';
+import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:email_validator/email_validator.dart';
@@ -27,15 +29,33 @@ class _FormLoginState extends State<FormLogin> {
     });
   }
 
-  void _submitLogin() {
+  _submitLogin() async {
     if (formKey.currentState!.validate()) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Selamat ${_emailController.text} berhasil login'),
-        ),
+      // ScaffoldMessenger.of(context).showSnackBar(
+      //   SnackBar(
+      //     content: Text('Selamat ${_emailController.text} berhasil login'),
+      //   ),
+      // );
+
+      var res = await LoginService().postLogin(
+        email: _emailController.text,
+        password: _passwordController.text,
       );
-      Navigator.pushNamedAndRemoveUntil(
-          context, '/bottom-nav', (route) => false);
+
+      if (res['meta']['is_error'] == false) {
+        // ignore: use_build_context_synchronously
+        String accessToken = res['data']['token'];
+
+        // ignore: use_build_context_synchronously
+        Navigator.pushNamedAndRemoveUntil(
+            context, '/bottom-nav', arguments: accessToken, (route) => false);
+      }
+      // ignore: use_build_context_synchronously
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(
+        '${res['meta']['message']}',
+        style: setTextStyle(SourceColor().white),
+      )));
     }
   }
 

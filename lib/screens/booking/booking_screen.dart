@@ -54,8 +54,6 @@ Future selectDateRange(BuildContext context) async {
 class _BookingScheduleScreenState extends State<BookingScheduleScreen> {
   @override
   void initState() {
-    // TODO: implement initState
-
     WidgetsBinding.instance
         .addPostFrameCallback((_) => selectDateRange(context));
     super.initState();
@@ -63,6 +61,6 @@ class _BookingScheduleScreenState extends State<BookingScheduleScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return const Scaffold();
   }
 }

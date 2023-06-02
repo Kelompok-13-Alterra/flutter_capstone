@@ -30,8 +30,6 @@ class _ReviewScreenState extends State<ReviewScreen> {
   Future<void> _pickImageFromCamera() async {
     final picker = ImagePicker();
     final pickedImage = await picker.getImage(source: ImageSource.camera);
-
-    //if (pickedImage != null) {}
   }
 
   void _submitReview() {
