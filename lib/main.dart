@@ -49,6 +49,7 @@ class MyApp extends StatelessWidget {
         '/card-search-bar': (context) => const OfficeCardWidget(),
         '/booking': (context) => const BookingScheduleScreen(),
         '/edit-profile': (context) => const EditProfileScreen(),
+
       },
     );
   }
