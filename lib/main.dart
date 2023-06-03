@@ -14,6 +14,10 @@ import 'package:flutter_capstone/screens/sign_up/sign_up_screen.dart';
 import 'package:flutter_capstone/screens/detail/detail_screen.dart';
 import 'package:flutter_capstone/screens/splash/boarding_screen.dart';
 import 'package:flutter_capstone/screens/splash/splash_screen.dart';
+import 'package:flutter_capstone/screens/errors/connection_error.dart';
+import 'package:flutter_capstone/screens/errors/location_not_found.dart';
+import 'package:flutter_capstone/screens/errors/page_not_found.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -32,7 +36,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => const SplashScreen(),
+        '/': (context) => SplashScreen (),
         '/login': (context) => const LoginScreen(),
         '/sign-up': (context) => const SignUpScreen(),
         '/boarding': (context) => const BoardingScreen(),
@@ -48,6 +52,11 @@ class MyApp extends StatelessWidget {
         '/card-search-bar': (context) => const OfficeCardWidget(),
         '/booking': (context) => const BookingScheduleScreen(),
         '/edit-profile': (context) => const EditProfileScreen(),
+        '/page-not-found-screen': (context) => const PageNotFoundScreen(),
+      '/location-not-found-screen': (context) => const LocationNotFoundScreen(),
+      '/connection-error-screen': (context) => const ConnectionErrorScreen(),
+      
+
       },
     );
   }
