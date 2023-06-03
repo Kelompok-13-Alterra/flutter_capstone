@@ -18,6 +18,10 @@ import 'package:flutter_capstone/screens/sign_up/sign_up_screen.dart';
 import 'package:flutter_capstone/screens/detail/detail_screen.dart';
 import 'package:flutter_capstone/screens/splash/boarding_screen.dart';
 import 'package:flutter_capstone/screens/splash/splash_screen.dart';
+import 'package:flutter_capstone/screens/errors/connection_error.dart';
+import 'package:flutter_capstone/screens/errors/location_not_found.dart';
+import 'package:flutter_capstone/screens/errors/page_not_found.dart';
+
 import 'package:provider/provider.dart';
 
 void main() {
