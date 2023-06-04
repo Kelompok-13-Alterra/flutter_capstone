@@ -38,14 +38,30 @@ class _BottomBookState extends State<BottomBook> {
             ),
             // onPressed: widget.function,
             onPressed: () {
-              widget.function!();
-
-              // if (widget.buttonRoute != null) {
-              //   Navigator.pushNamedAndRemoveUntil(
-              //       context, widget.buttonRoute!, (route) => false);
-              //   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-              //       content: Text('Yay! Successfully booked an office!')));
-              // }
+              if (widget.function != null) {
+                widget.function!();
+              }
+              // widget.function!();
+              if (widget.buttonRoute != null) {
+                Navigator.pushNamed(context, '${widget.buttonRoute}');
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                    content: Text('Yay! Successfully booked an office!')));
+              }
+              if (widget.textButton == 'Pilih Metode Pembayaran') {
+                showBottomSheet(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return Container(
+                      width: double.infinity,
+                      height: 500,
+                      child: Padding(
+                        padding: EdgeInsets.all(16.0),
+                        child: Text('Hello from the bottom sheet!'),
+                      ),
+                    );
+                  },
+                );
+              }
             },
             child: Text(widget.textButton,
                 style: GoogleFonts.roboto(

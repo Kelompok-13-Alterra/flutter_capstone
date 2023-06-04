@@ -68,7 +68,8 @@ class MyApp extends StatelessWidget {
         '/order': (context) => const OrderScreen(),
         '/review': (context) => const ReviewScreen(),
         '/image-picker': (context) => const ImagePickerRatingScreen(),
-        '/detail': (context) => const DetailScreen(),
+        // '/detail': (context) =>
+        //     const DetailScreen(buttonRoute: '/jadwal-booking'),
         '/detail-schedule': (context) => const DetailScheduleScreen(),
         '/card-search-bar': (context) => const SearchScreen(),
         '/booking': (context) => const BookingScheduleScreen(),
