@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_capstone/core/init/utils/shared_preferences.dart';
 import 'package:flutter_capstone/style/text_style.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class IconSubMenu {
   final String urlImg;
@@ -197,9 +197,7 @@ Widget profilesWidget(BuildContext context) {
               ),
               GestureDetector(
                 onTap: () async {
-                  SharedPreferences prefs =
-                      await SharedPreferences.getInstance();
-                  prefs.remove('email');
+                  removeToken();
 
                   // ignore: use_build_context_synchronously
                   Navigator.pushNamedAndRemoveUntil(
