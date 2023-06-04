@@ -14,6 +14,8 @@ import 'package:flutter_capstone/screens/sign_up/sign_up_screen.dart';
 import 'package:flutter_capstone/screens/detail/detail_screen.dart';
 import 'package:flutter_capstone/screens/splash/boarding_screen.dart';
 import 'package:flutter_capstone/screens/splash/splash_screen.dart';
+import 'package:flutter_capstone/view_model/home/home_view_model.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,31 +26,38 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bottomNavParamater = ModalRoute.of(context)?.settings.arguments ?? '';
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Office Booking (Capstone Project Kel 13)',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return MultiProvider(
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Office Booking (Capstone Project Kel 13)',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        initialRoute: '/',
+        routes: {
+          '/': (context) => const SplashScreen(),
+          '/login': (context) => const LoginScreen(),
+          '/sign-up': (context) => const SignUpScreen(),
+          '/boarding': (context) => const BoardingScreen(),
+          '/bottom-nav': (context) =>
+              BottomNavScreen(token: bottomNavParamater.toString()),
+          '/home': (context) => const HomeScreen(),
+          '/profile': (context) => const ProfileScreen(),
+          '/order': (context) => const OrderScreen(),
+          '/review': (context) => const ReviewScreen(),
+          '/image-picker': (context) => const ImagePickerRatingScreen(),
+          '/detail': (context) => const DetailScreen(),
+          '/detail-schedule': (context) => const DetailScheduleScreen(),
+          '/card-search-bar': (context) => const OfficeCardWidget(),
+          '/booking': (context) => const BookingScheduleScreen(),
+          '/edit-profile': (context) => const EditProfileScreen(),
+        },
       ),
-      initialRoute: '/',
-      routes: {
-        '/': (context) => const SplashScreen(),
-        '/login': (context) => const LoginScreen(),
-        '/sign-up': (context) => const SignUpScreen(),
-        '/boarding': (context) => const BoardingScreen(),
-        '/bottom-nav': (context) =>
-            BottomNavScreen(token: bottomNavParamater.toString()),
-        '/home': (context) => const HomeScreen(),
-        '/profile': (context) => const ProfileScreen(),
-        '/order': (context) => const OrderScreen(),
-        '/review': (context) => const ReviewScreen(),
-        '/image-picker': (context) => const ImagePickerRatingScreen(),
-        '/detail': (context) => const DetailScreen(),
-        '/detail-schedule': (context) => const DetailScheduleScreen(),
-        '/card-search-bar': (context) => const OfficeCardWidget(),
-        '/booking': (context) => const BookingScheduleScreen(),
-        '/edit-profile': (context) => const EditProfileScreen(),
-      },
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => HomeViewModel(),
+        )
+      ],
     );
   }
 }
