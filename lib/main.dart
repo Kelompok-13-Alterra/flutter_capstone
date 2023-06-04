@@ -17,8 +17,6 @@ import 'package:flutter_capstone/screens/splash/splash_screen.dart';
 import 'package:flutter_capstone/screens/errors/connection_error.dart';
 import 'package:flutter_capstone/screens/errors/location_not_found.dart';
 import 'package:flutter_capstone/screens/errors/page_not_found.dart';
-import 'package:flutter_capstone/view_model/home/home_view_model.dart';
-import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
