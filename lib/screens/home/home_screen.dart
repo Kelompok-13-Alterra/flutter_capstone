@@ -24,30 +24,28 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const BackgroundWidget(),
-            const FilterChoice(),
-            Container(
-              height: 100,
-              width: MediaQuery.of(context).size.width,
-              child: Consumer<HomeViewModel>(
-                builder: (context, offices, child) {
-                  return ListView.builder(
-                    itemCount: offices.listOffice.length,
-                    itemBuilder: (context, index) {
-                      final data = offices.listOffice[index];
-                      return HomeWidget(
-                        office: data,
-                      );
-                    },
-                  );
-                },
-              ),
+      body: CustomScrollView(
+        slivers: [
+          const BackgroundWidget(),
+          const FilterChoice(),
+          Container(
+            height: 100,
+            width: MediaQuery.of(context).size.width,
+            child: Consumer<HomeViewModel>(
+              builder: (context, offices, child) {
+                return ListView.builder(
+                  itemCount: offices.listOffice.length,
+                  itemBuilder: (context, index) {
+                    final data = offices.listOffice[index];
+                    return HomeWidget(
+                      office: data,
+                    );
+                  },
+                );
+              },
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
