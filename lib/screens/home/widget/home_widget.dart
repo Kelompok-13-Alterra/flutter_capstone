@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/screens/home/model/home_model.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomeWidget extends StatefulWidget {
-  final Office office;
-  const HomeWidget({super.key, required this.office});
+  const HomeWidget({super.key});
 
   @override
   State<HomeWidget> createState() => _HomeWidgetState();
