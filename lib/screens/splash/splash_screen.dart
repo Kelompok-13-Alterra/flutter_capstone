@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_capstone/core/init/utils/shared_preferences.dart';
 import 'package:flutter_capstone/screens/bottom_nav/bottom_nav_screen.dart';
 import 'package:flutter_capstone/screens/splash/boarding_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -20,15 +21,14 @@ class _SplashScreenState extends State<SplashScreen> {
 
     Timer(const Duration(seconds: 3), () async {
       WidgetsFlutterBinding.ensureInitialized();
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      var email = prefs.getString('email');
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-            builder: (context) => email == null
-                ? const BoardingScreen()
-                : BottomNavScreen(token: '')),
-      );
+      var token = await getToken();
+      if (token.isNotEmpty) {
+        Navigator.pushNamedAndRemoveUntil(
+            context, '/bottom-nav', (route) => false);
+      } else {
+        Navigator.pushNamedAndRemoveUntil(
+            context, '/boarding', (route) => false);
+      }
     });
   }
 
