@@ -402,7 +402,7 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                                         .copyWith(
                                             fontWeight: semiBold, fontSize: 11),
                                   ),
-                                )
+                                ),
                               ],
                             ),
                           ),

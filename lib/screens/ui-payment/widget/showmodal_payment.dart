@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_capstone/screens/ui-payment/detail_payment_screen.dart';
-
+import 'package:flutter_capstone/screens/ui-payment/transaction_failed_screen.dart';
 import 'package:flutter_capstone/screens/ui-payment/detail_booking_screen.dart';
 
 class ShowModalPayment extends StatefulWidget {
@@ -674,7 +674,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                       MaterialStateProperty.all(PrimaryColor().primary),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8), // Bentuk border
+                      borderRadius: BorderRadius.circular(8),
                     ),
                   ),
                 ),
@@ -682,7 +682,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const DetailBookingScreen(),
+                      builder: (context) => const TransactionFailedScreen(),
                     ),
                   );
                 },
