@@ -4,6 +4,7 @@ import 'package:flutter_capstone/screens/bottom_nav/bottom_nav_screen.dart';
 import 'package:flutter_capstone/screens/card-search-bar/office_card_widget.dart';
 import 'package:flutter_capstone/screens/edit_profile/edit_profile_screen.dart';
 import 'package:flutter_capstone/screens/home/home_screen.dart';
+import 'package:flutter_capstone/screens/home/home_view_model.dart';
 import 'package:flutter_capstone/screens/login/login_screen.dart';
 import 'package:flutter_capstone/screens/login/login_view_model.dart';
 import 'package:flutter_capstone/screens/order/detail_schedule.dart';
@@ -21,7 +22,12 @@ void main() {
   runApp(
     MultiProvider(
       providers: [
-        ListenableProvider(create: (context) => LoginViewModel()),
+        ListenableProvider(
+          create: (context) => LoginViewModel(),
+        ),
+        ListenableProvider(
+          create: (context) => HomeViewModel(),
+        ),
       ],
       child: const MyApp(),
     ),
