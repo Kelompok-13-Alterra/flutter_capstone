@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_capstone/screens/ui-payment/widget/showmodal_payment.dart';
+import 'package:flutter_capstone/style/text_style.dart';
 
 class BottomBook extends StatefulWidget {
   final String textButton;
@@ -28,11 +29,15 @@ class _BottomBookState extends State<BottomBook> {
           child: ElevatedButton(
             style: ButtonStyle(
               elevation: MaterialStateProperty.all(0),
-              backgroundColor:
-                  MaterialStateProperty.all(const Color(0xFF005DB9)),
+              backgroundColor: MaterialStateProperty.all(
+                PrimaryColor().primary,
+              ),
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(100), // Bentuk border
+                  borderRadius: BorderRadius.circular(
+                      widget.textButton == 'Pilih Metode Pembayaran'
+                          ? 8
+                          : 100), // Bentuk border
                 ),
               ),
             ),
@@ -44,30 +49,28 @@ class _BottomBookState extends State<BottomBook> {
               // widget.function!();
               if (widget.buttonRoute != null) {
                 Navigator.pushNamed(context, '${widget.buttonRoute}');
-                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                    content: Text('Yay! Successfully booked an office!')));
               }
               if (widget.textButton == 'Pilih Metode Pembayaran') {
-                showBottomSheet(
+                showModalBottomSheet(
                   context: context,
+                  isScrollControlled: true,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(16),
+                      topRight: Radius.circular(16),
+                    ),
+                  ),
                   builder: (BuildContext context) {
-                    return Container(
-                      width: double.infinity,
-                      height: 500,
-                      child: Padding(
-                        padding: EdgeInsets.all(16.0),
-                        child: Text('Hello from the bottom sheet!'),
-                      ),
-                    );
+                    return const ShowModalPayment();
                   },
                 );
               }
             },
-            child: Text(widget.textButton,
-                style: GoogleFonts.roboto(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 14,
-                )),
+            child: Text(
+              widget.textButton,
+              style: setTextStyle(SourceColor().white)
+                  .copyWith(fontWeight: medium, fontSize: 14),
+            ),
           ),
         ),
       ),

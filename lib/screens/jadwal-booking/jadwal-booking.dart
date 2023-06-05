@@ -70,15 +70,14 @@ class _JadwalBookingState extends State<JadwalBooking> {
           ),
         ),
       );
+    } else {
+      Navigator.pop(context);
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('First Page'),
-      ),
       body: Container(
         color: Colors.white,
         child: const Center(
