@@ -28,11 +28,7 @@ class _FormLoginState extends State<FormLogin> {
   Widget build(BuildContext context) {
     LoginViewModel loginViewModel = Provider.of<LoginViewModel>(context);
 
-    // void Function()? tapHandler(  ) {
-    //   loginViewModel.setTogglePasswordVisibility = val;
-    // }
-
-    // ;
+    bool getObsecureText = loginViewModel.getObsecureText;
 
     return Form(
       key: formKey,
@@ -86,19 +82,10 @@ class _FormLoginState extends State<FormLogin> {
               ),
               suffixIcon: IconButton(
                 icon: Icon(
-                  loginViewModel.getObsecureText
-                      ? Icons.visibility_off
-                      : Icons.visibility,
+                  getObsecureText ? Icons.visibility_off : Icons.visibility,
                 ),
                 onPressed: () {
-                  // var val = loginViewModel.getObsecureText;
-                  // loginViewModel.setTogglePasswordVisibility(val);
-                  // // tapHandler(val);
-                  // // print(val);
-                  // setState(() {
-                  //   // loginViewModel.getObsecureText !=
-                  //   //     loginViewModel.getObsecureText;
-                  // });
+                  loginViewModel.setTogglePasswordVisibility(!getObsecureText);
                 },
               ),
               hintText: 'Input Password',
