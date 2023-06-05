@@ -3,7 +3,11 @@ import 'package:flutter_capstone/screens/booking/booking_screen.dart';
 import 'package:flutter_capstone/screens/bottom_nav/bottom_nav_screen.dart';
 import 'package:flutter_capstone/screens/card-search-bar/office_card_widget.dart';
 import 'package:flutter_capstone/screens/edit_profile/edit_profile_screen.dart';
+import 'package:flutter_capstone/screens/errors/connection_error.dart';
+import 'package:flutter_capstone/screens/errors/location_not_found.dart';
+import 'package:flutter_capstone/screens/errors/page_not_found.dart';
 import 'package:flutter_capstone/screens/home/home_screen.dart';
+import 'package:flutter_capstone/screens/home/home_view_model.dart';
 import 'package:flutter_capstone/screens/login/login_screen.dart';
 import 'package:flutter_capstone/screens/login/login_view_model.dart';
 import 'package:flutter_capstone/screens/order/detail_schedule.dart';
@@ -24,7 +28,12 @@ void main() {
   runApp(
     MultiProvider(
       providers: [
-        ListenableProvider(create: (context) => LoginViewModel()),
+        ListenableProvider(
+          create: (context) => LoginViewModel(),
+        ),
+        ListenableProvider(
+          create: (context) => HomeViewModel(),
+        ),
       ],
       child: const MyApp(),
     ),
@@ -44,7 +53,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => SplashScreen (),
+        '/': (context) => SplashScreen(),
         '/login': (context) => const LoginScreen(),
         '/sign-up': (context) => const SignUpScreen(),
         '/boarding': (context) => const BoardingScreen(),
@@ -60,10 +69,9 @@ class MyApp extends StatelessWidget {
         '/booking': (context) => const BookingScheduleScreen(),
         '/edit-profile': (context) => const EditProfileScreen(),
         '/page-not-found-screen': (context) => const PageNotFoundScreen(),
-      '/location-not-found-screen': (context) => const LocationNotFoundScreen(),
-      '/connection-error-screen': (context) => const ConnectionErrorScreen(),
-
-
+        '/location-not-found-screen': (context) =>
+            const LocationNotFoundScreen(),
+        '/connection-error-screen': (context) => const ConnectionErrorScreen(),
       },
     );
   }
