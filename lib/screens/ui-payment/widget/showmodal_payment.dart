@@ -3,6 +3,8 @@ import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_capstone/screens/ui-payment/detail_payment_screen.dart';
 
+import 'package:flutter_capstone/screens/ui-payment/detail_booking_screen.dart';
+
 class ShowModalPayment extends StatefulWidget {
   const ShowModalPayment({super.key});
 
@@ -680,7 +682,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const DetailPaymentScreen(),
+                      builder: (context) => const DetailBookingScreen(),
                     ),
                   );
                 },

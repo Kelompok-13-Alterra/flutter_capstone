@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter/services.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'dart:async';
-
 import 'package:flutter_svg/svg.dart';
 
 class DetailPaymentScreen extends StatefulWidget {
