@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_capstone/screens/detail/detail_screen.dart';
 
 class TransactionFailedScreen extends StatelessWidget {
   const TransactionFailedScreen({super.key});
@@ -19,7 +20,7 @@ class TransactionFailedScreen extends StatelessWidget {
             ),
             Text(
               'Transaksi Gagal',
-              style: setTextStyle(Color(0xFF101828))
+              style: setTextStyle(const Color(0xFF101828))
                   .copyWith(fontWeight: semiBold, fontSize: 16),
             ),
             const SizedBox(
@@ -27,7 +28,7 @@ class TransactionFailedScreen extends StatelessWidget {
             ),
             Text(
               'Maaf, transaksinya gagal, tapi kamu nggak perlu \n khawatir. Silahkan dicoba lagi ya.',
-              style: setTextStyle(Color(0xFF475467))
+              style: setTextStyle(const Color(0xFF475467))
                   .copyWith(fontWeight: medium, fontSize: 14),
               textAlign: TextAlign.center,
             ),
@@ -49,7 +50,17 @@ class TransactionFailedScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const DetailScreen(
+                        buttonRoute: null,
+                        textButton: 'Pilih Metode Pembayaran',
+                      ),
+                    ),
+                  );
+                },
                 child: Text(
                   'Booking Office',
                   style: setTextStyle(PrimaryColor().primary)

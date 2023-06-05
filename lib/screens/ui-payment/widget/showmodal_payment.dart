@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_capstone/screens/ui-payment/detail_payment_screen.dart';
-import 'package:flutter_capstone/screens/ui-payment/transaction_failed_screen.dart';
-import 'package:flutter_capstone/screens/ui-payment/detail_booking_screen.dart';
 
 class ShowModalPayment extends StatefulWidget {
   const ShowModalPayment({super.key});
@@ -21,256 +19,252 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
   String selectedValue = 'Virtual Account BNI';
 
   Widget buildListVirtualAccount(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          GestureDetector(
-            onTap: () {
-              setState(() {
-                selectedValue = 'Virtual Account BNI';
-              });
-            },
-            child: Container(
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                borderRadius: const BorderRadius.all(Radius.circular(4)),
-                border: Border.all(
-                  color: selectedValue == 'Virtual Account BNI'
-                      ? PrimaryColor().onPrimaryFixedVariant
-                      : NeutralColor().neutral90,
-                  width: 1.0,
-                ),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      SvgPicture.asset('assets/payment/BNI.svg'),
-                      const SizedBox(
-                        width: 12,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'BNI',
-                            style: setTextStyle(NeutralColor().neutral10)
-                                .copyWith(fontWeight: medium, fontSize: 16),
-                          ),
-                          Text(
-                            'Gratis Biaya Pembayaran',
-                            style: setTextStyle(
-                                    PrimaryColor().onPrimaryFixedVariant)
-                                .copyWith(fontWeight: semiBold, fontSize: 11),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  Radio<String>(
-                    value: 'Virtual Account BNI',
-                    visualDensity: const VisualDensity(
-                      horizontal: VisualDensity.minimumDensity,
-                      vertical: VisualDensity.minimumDensity,
-                    ),
-                    // activeColor: PrimaryColor().onPrimaryFixedVariant,
-                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    groupValue: selectedValue,
-                    onChanged: (value) {
-                      setState(() {
-                        selectedValue = value!;
-                      });
-                    },
-                  ),
-                ],
+    return Column(
+      children: [
+        GestureDetector(
+          onTap: () {
+            setState(() {
+              selectedValue = 'Virtual Account BNI';
+            });
+          },
+          child: Container(
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.all(Radius.circular(4)),
+              border: Border.all(
+                color: selectedValue == 'Virtual Account BNI'
+                    ? PrimaryColor().onPrimaryFixedVariant
+                    : NeutralColor().neutral90,
+                width: 1.0,
               ),
             ),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          GestureDetector(
-            onTap: () {
-              setState(() {
-                selectedValue = 'Virtual Account BCA';
-              });
-            },
-            child: Container(
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                borderRadius: const BorderRadius.all(Radius.circular(4)),
-                border: Border.all(
-                  color: selectedValue == 'Virtual Account BCA'
-                      ? PrimaryColor().onPrimaryFixedVariant
-                      : NeutralColor().neutral90,
-                  width: 1.0,
-                ),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      SvgPicture.asset('assets/payment/bca.svg'),
-                      const SizedBox(
-                        width: 12,
-                      ),
-                      Text(
-                        'BCA',
-                        style: setTextStyle(NeutralColor().neutral10)
-                            .copyWith(fontWeight: medium, fontSize: 16),
-                      ),
-                    ],
-                  ),
-                  Radio<String>(
-                    value: 'Virtual Account BCA',
-                    visualDensity: const VisualDensity(
-                      horizontal: VisualDensity.minimumDensity,
-                      vertical: VisualDensity.minimumDensity,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    SvgPicture.asset('assets/payment/BNI.svg'),
+                    const SizedBox(
+                      width: 12,
                     ),
-                    activeColor: PrimaryColor().onPrimaryFixedVariant,
-                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    groupValue: selectedValue,
-                    onChanged: (value) {
-                      setState(() {
-                        selectedValue = value!;
-                      });
-                    },
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'BNI',
+                          style: setTextStyle(NeutralColor().neutral10)
+                              .copyWith(fontWeight: medium, fontSize: 16),
+                        ),
+                        Text(
+                          'Gratis Biaya Pembayaran',
+                          style:
+                              setTextStyle(PrimaryColor().onPrimaryFixedVariant)
+                                  .copyWith(fontWeight: semiBold, fontSize: 11),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                Radio<String>(
+                  value: 'Virtual Account BNI',
+                  visualDensity: const VisualDensity(
+                    horizontal: VisualDensity.minimumDensity,
+                    vertical: VisualDensity.minimumDensity,
                   ),
-                ],
-              ),
+                  // activeColor: PrimaryColor().onPrimaryFixedVariant,
+                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  groupValue: selectedValue,
+                  onChanged: (value) {
+                    setState(() {
+                      selectedValue = value!;
+                    });
+                  },
+                ),
+              ],
             ),
           ),
-        ],
-      ),
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        GestureDetector(
+          onTap: () {
+            setState(() {
+              selectedValue = 'Virtual Account BCA';
+            });
+          },
+          child: Container(
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.all(Radius.circular(4)),
+              border: Border.all(
+                color: selectedValue == 'Virtual Account BCA'
+                    ? PrimaryColor().onPrimaryFixedVariant
+                    : NeutralColor().neutral90,
+                width: 1.0,
+              ),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    SvgPicture.asset('assets/payment/bca.svg'),
+                    const SizedBox(
+                      width: 12,
+                    ),
+                    Text(
+                      'BCA',
+                      style: setTextStyle(NeutralColor().neutral10)
+                          .copyWith(fontWeight: medium, fontSize: 16),
+                    ),
+                  ],
+                ),
+                Radio<String>(
+                  value: 'Virtual Account BCA',
+                  visualDensity: const VisualDensity(
+                    horizontal: VisualDensity.minimumDensity,
+                    vertical: VisualDensity.minimumDensity,
+                  ),
+                  activeColor: PrimaryColor().onPrimaryFixedVariant,
+                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  groupValue: selectedValue,
+                  onChanged: (value) {
+                    setState(() {
+                      selectedValue = value!;
+                    });
+                  },
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
     );
   }
 
   Widget buildListTransferBank(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          GestureDetector(
-            onTap: () {
-              setState(() {
-                selectedValue = 'Transfer Bank BNI';
-              });
-            },
-            child: Container(
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                borderRadius: const BorderRadius.all(Radius.circular(4)),
-                border: Border.all(
-                  color: selectedValue == 'Transfer Bank BNI'
-                      ? PrimaryColor().onPrimaryFixedVariant
-                      : NeutralColor().neutral90,
-                  width: 1.0,
-                ),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      SvgPicture.asset('assets/payment/BNI.svg'),
-                      const SizedBox(
-                        width: 12,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'BNI',
-                            style: setTextStyle(NeutralColor().neutral10)
-                                .copyWith(fontWeight: medium, fontSize: 16),
-                          ),
-                          // Text(
-                          //   'Gratis Biaya Pembayaran',
-                          //   style: setTextStyle(
-                          //           PrimaryColor().onPrimaryFixedVariant)
-                          //       .copyWith(fontWeight: semiBold, fontSize: 11),
-                          // ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  Radio<String>(
-                    value: 'Transfer Bank BNI',
-                    visualDensity: const VisualDensity(
-                      horizontal: VisualDensity.minimumDensity,
-                      vertical: VisualDensity.minimumDensity,
-                    ),
-                    // activeColor: PrimaryColor().onPrimaryFixedVariant,
-                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    groupValue: selectedValue,
-                    onChanged: (value) {
-                      setState(() {
-                        selectedValue = value!;
-                      });
-                    },
-                  ),
-                ],
+    return Column(
+      children: [
+        GestureDetector(
+          onTap: () {
+            setState(() {
+              selectedValue = 'Transfer Bank BNI';
+            });
+          },
+          child: Container(
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.all(Radius.circular(4)),
+              border: Border.all(
+                color: selectedValue == 'Transfer Bank BNI'
+                    ? PrimaryColor().onPrimaryFixedVariant
+                    : NeutralColor().neutral90,
+                width: 1.0,
               ),
             ),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          GestureDetector(
-            onTap: () {
-              setState(() {
-                selectedValue = 'Transfer Bank BCA';
-              });
-            },
-            child: Container(
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                borderRadius: const BorderRadius.all(Radius.circular(4)),
-                border: Border.all(
-                  color: selectedValue == 'Transfer Bank BCA'
-                      ? PrimaryColor().onPrimaryFixedVariant
-                      : NeutralColor().neutral90,
-                  width: 1.0,
-                ),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      SvgPicture.asset('assets/payment/bca.svg'),
-                      const SizedBox(
-                        width: 12,
-                      ),
-                      Text(
-                        'BCA',
-                        style: setTextStyle(NeutralColor().neutral10)
-                            .copyWith(fontWeight: medium, fontSize: 16),
-                      ),
-                    ],
-                  ),
-                  Radio<String>(
-                    value: 'Transfer Bank BCA',
-                    visualDensity: const VisualDensity(
-                      horizontal: VisualDensity.minimumDensity,
-                      vertical: VisualDensity.minimumDensity,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    SvgPicture.asset('assets/payment/BNI.svg'),
+                    const SizedBox(
+                      width: 12,
                     ),
-                    activeColor: PrimaryColor().onPrimaryFixedVariant,
-                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    groupValue: selectedValue,
-                    onChanged: (value) {
-                      setState(() {
-                        selectedValue = value!;
-                      });
-                    },
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'BNI',
+                          style: setTextStyle(NeutralColor().neutral10)
+                              .copyWith(fontWeight: medium, fontSize: 16),
+                        ),
+                        // Text(
+                        //   'Gratis Biaya Pembayaran',
+                        //   style: setTextStyle(
+                        //           PrimaryColor().onPrimaryFixedVariant)
+                        //       .copyWith(fontWeight: semiBold, fontSize: 11),
+                        // ),
+                      ],
+                    ),
+                  ],
+                ),
+                Radio<String>(
+                  value: 'Transfer Bank BNI',
+                  visualDensity: const VisualDensity(
+                    horizontal: VisualDensity.minimumDensity,
+                    vertical: VisualDensity.minimumDensity,
                   ),
-                ],
-              ),
+                  // activeColor: PrimaryColor().onPrimaryFixedVariant,
+                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  groupValue: selectedValue,
+                  onChanged: (value) {
+                    setState(() {
+                      selectedValue = value!;
+                    });
+                  },
+                ),
+              ],
             ),
           ),
-        ],
-      ),
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        GestureDetector(
+          onTap: () {
+            setState(() {
+              selectedValue = 'Transfer Bank BCA';
+            });
+          },
+          child: Container(
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.all(Radius.circular(4)),
+              border: Border.all(
+                color: selectedValue == 'Transfer Bank BCA'
+                    ? PrimaryColor().onPrimaryFixedVariant
+                    : NeutralColor().neutral90,
+                width: 1.0,
+              ),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    SvgPicture.asset('assets/payment/bca.svg'),
+                    const SizedBox(
+                      width: 12,
+                    ),
+                    Text(
+                      'BCA',
+                      style: setTextStyle(NeutralColor().neutral10)
+                          .copyWith(fontWeight: medium, fontSize: 16),
+                    ),
+                  ],
+                ),
+                Radio<String>(
+                  value: 'Transfer Bank BCA',
+                  visualDensity: const VisualDensity(
+                    horizontal: VisualDensity.minimumDensity,
+                    vertical: VisualDensity.minimumDensity,
+                  ),
+                  activeColor: PrimaryColor().onPrimaryFixedVariant,
+                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  groupValue: selectedValue,
+                  onChanged: (value) {
+                    setState(() {
+                      selectedValue = value!;
+                    });
+                  },
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
     );
   }
 
@@ -294,88 +288,86 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
   }
 
   Widget buildListTotalPembayaran(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'Harga Unit',
-                style: setTextStyle(
-                  Color(0xFF44474E),
-                ).copyWith(fontWeight: medium, fontSize: 12),
-              ),
-              Text(
-                'IDR 20.999',
-                style: setTextStyle(
-                  Color(0xFF44474E),
-                ).copyWith(fontWeight: semiBold, fontSize: 14),
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 5,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'Diskon',
-                style: setTextStyle(
-                  Color(0xFF44474E),
-                ).copyWith(fontWeight: medium, fontSize: 12),
-              ),
-              Text(
-                'IDR 0',
-                style: setTextStyle(
-                  Color(0xFF44474E),
-                ).copyWith(fontWeight: semiBold, fontSize: 14),
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 5,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'Pajak',
-                style: setTextStyle(
-                  Color(0xFF44474E),
-                ).copyWith(fontWeight: medium, fontSize: 12),
-              ),
-              Text(
-                'IDR 2.100',
-                style: setTextStyle(
-                  Color(0xFF44474E),
-                ).copyWith(fontWeight: semiBold, fontSize: 14),
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 5,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'Total',
-                style: setTextStyle(
-                  NeutralColor().neutral10,
-                ).copyWith(fontWeight: medium, fontSize: 12),
-              ),
-              Text(
-                'IDR 23.099',
-                style: setTextStyle(
-                  Color(0xFF44474E),
-                ).copyWith(fontWeight: semiBold, fontSize: 14),
-              ),
-            ],
-          )
-        ],
-      ),
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'Harga Unit',
+              style: setTextStyle(
+                const Color(0xFF44474E),
+              ).copyWith(fontWeight: medium, fontSize: 12),
+            ),
+            Text(
+              'IDR 20.999',
+              style: setTextStyle(
+                const Color(0xFF44474E),
+              ).copyWith(fontWeight: semiBold, fontSize: 14),
+            ),
+          ],
+        ),
+        const SizedBox(
+          height: 5,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'Diskon',
+              style: setTextStyle(
+                const Color(0xFF44474E),
+              ).copyWith(fontWeight: medium, fontSize: 12),
+            ),
+            Text(
+              'IDR 0',
+              style: setTextStyle(
+                const Color(0xFF44474E),
+              ).copyWith(fontWeight: semiBold, fontSize: 14),
+            ),
+          ],
+        ),
+        const SizedBox(
+          height: 5,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'Pajak',
+              style: setTextStyle(
+                const Color(0xFF44474E),
+              ).copyWith(fontWeight: medium, fontSize: 12),
+            ),
+            Text(
+              'IDR 2.100',
+              style: setTextStyle(
+                const Color(0xFF44474E),
+              ).copyWith(fontWeight: semiBold, fontSize: 14),
+            ),
+          ],
+        ),
+        const SizedBox(
+          height: 5,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'Total',
+              style: setTextStyle(
+                NeutralColor().neutral10,
+              ).copyWith(fontWeight: medium, fontSize: 12),
+            ),
+            Text(
+              'IDR 23.099',
+              style: setTextStyle(
+                const Color(0xFF44474E),
+              ).copyWith(fontWeight: semiBold, fontSize: 14),
+            ),
+          ],
+        )
+      ],
     );
   }
 
@@ -682,7 +674,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const TransactionFailedScreen(),
+                      builder: (context) => const DetailPaymentScreen(),
                     ),
                   );
                 },

@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'dart:async';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter_capstone/screens/ui-payment/transaction_failed_screen.dart';
 
 class DetailPaymentScreen extends StatefulWidget {
   const DetailPaymentScreen({super.key});
@@ -13,7 +14,7 @@ class DetailPaymentScreen extends StatefulWidget {
 
 class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
   Timer? _timer;
-  DateTime _targetTime = DateTime.now().add(Duration(days: 1));
+  final DateTime _targetTime = DateTime.now().add(const Duration(days: 1));
 
   final String rekening = '1234567890';
   final String jumlahTransfer = 'IDR 23.099';
@@ -22,13 +23,13 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
 
   void _copyRekening() {
     Clipboard.setData(ClipboardData(text: rekening));
-    final snackBar = SnackBar(content: Text('Rekening berhasil disalin'));
+    const snackBar = SnackBar(content: Text('Rekening berhasil disalin'));
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   void _copyJumlahTransfer() {
     Clipboard.setData(ClipboardData(text: rekening));
-    final snackBar =
+    const snackBar =
         SnackBar(content: Text('Jumlah transfer berhasil disalin'));
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
@@ -51,7 +52,12 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
         setState(() {});
       } else {
         stopCountdown();
-        Navigator.pop(context);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const TransactionFailedScreen(),
+          ),
+        );
       }
     });
   }
@@ -68,7 +74,7 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
     return '$hours : $minutes : $seconds ';
   }
 
-  Widget buildDetailTransaksi(BuildContext) {
+  Widget buildDetailTransaksi(BuildContext context) {
     return Column(
       children: [
         const SizedBox(
@@ -80,13 +86,13 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
             Text(
               'Harga Unit',
               style: setTextStyle(
-                Color(0xFF44474E),
+                const Color(0xFF44474E),
               ).copyWith(fontWeight: medium, fontSize: 12),
             ),
             Text(
               'IDR 20.999',
               style: setTextStyle(
-                Color(0xFF44474E),
+                const Color(0xFF44474E),
               ).copyWith(fontWeight: semiBold, fontSize: 14),
             ),
           ],
@@ -100,13 +106,13 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
             Text(
               'Diskon',
               style: setTextStyle(
-                Color(0xFF44474E),
+                const Color(0xFF44474E),
               ).copyWith(fontWeight: medium, fontSize: 12),
             ),
             Text(
               'IDR 0',
               style: setTextStyle(
-                Color(0xFF44474E),
+                const Color(0xFF44474E),
               ).copyWith(fontWeight: semiBold, fontSize: 14),
             ),
           ],
@@ -120,13 +126,13 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
             Text(
               'Pajak',
               style: setTextStyle(
-                Color(0xFF44474E),
+                const Color(0xFF44474E),
               ).copyWith(fontWeight: medium, fontSize: 12),
             ),
             Text(
               'IDR 2.100',
               style: setTextStyle(
-                Color(0xFF44474E),
+                const Color(0xFF44474E),
               ).copyWith(fontWeight: semiBold, fontSize: 14),
             ),
           ],
@@ -146,7 +152,7 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
             Text(
               'IDR 23.099',
               style: setTextStyle(
-                Color(0xFF44474E),
+                const Color(0xFF44474E),
               ).copyWith(fontWeight: semiBold, fontSize: 14),
             ),
           ],

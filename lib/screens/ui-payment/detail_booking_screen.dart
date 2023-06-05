@@ -28,29 +28,27 @@ class _DetailBookingScreenState extends State<DetailBookingScreen> {
         children: [
           // Transaksi sukses
           //===================================================================
-          Container(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SvgPicture.asset('assets/payment/check_circle.svg'),
-                const SizedBox(
-                  height: 16,
-                ),
-                Text(
-                  'TRANSACTION SUCCESSFUL',
-                  style: setTextStyle(NeutralColor().neutral20)
-                      .copyWith(fontWeight: bold, fontSize: 22),
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-                Text(
-                  'Booking ID : #ID20230506',
-                  style: setTextStyle(SourceColor().black)
-                      .copyWith(fontWeight: bold, fontSize: 14),
-                ),
-              ],
-            ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SvgPicture.asset('assets/payment/check_circle.svg'),
+              const SizedBox(
+                height: 16,
+              ),
+              Text(
+                'TRANSACTION SUCCESSFUL',
+                style: setTextStyle(NeutralColor().neutral20)
+                    .copyWith(fontWeight: bold, fontSize: 22),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              Text(
+                'Booking ID : #ID20230506',
+                style: setTextStyle(SourceColor().black)
+                    .copyWith(fontWeight: bold, fontSize: 14),
+              ),
+            ],
           ),
 
           // Detail Office Booking
@@ -186,13 +184,13 @@ class _DetailBookingScreenState extends State<DetailBookingScreen> {
                           Text(
                             'Harga Unit',
                             style: setTextStyle(
-                              Color(0xFF44474E),
+                              const Color(0xFF44474E),
                             ).copyWith(fontWeight: medium, fontSize: 12),
                           ),
                           Text(
                             'IDR 20.999',
                             style: setTextStyle(
-                              Color(0xFF44474E),
+                              const Color(0xFF44474E),
                             ).copyWith(fontWeight: semiBold, fontSize: 14),
                           ),
                         ],
@@ -206,13 +204,13 @@ class _DetailBookingScreenState extends State<DetailBookingScreen> {
                           Text(
                             'Diskon',
                             style: setTextStyle(
-                              Color(0xFF44474E),
+                              const Color(0xFF44474E),
                             ).copyWith(fontWeight: medium, fontSize: 12),
                           ),
                           Text(
                             'IDR 0',
                             style: setTextStyle(
-                              Color(0xFF44474E),
+                              const Color(0xFF44474E),
                             ).copyWith(fontWeight: semiBold, fontSize: 14),
                           ),
                         ],
@@ -226,13 +224,13 @@ class _DetailBookingScreenState extends State<DetailBookingScreen> {
                           Text(
                             'Pajak',
                             style: setTextStyle(
-                              Color(0xFF44474E),
+                              const Color(0xFF44474E),
                             ).copyWith(fontWeight: medium, fontSize: 12),
                           ),
                           Text(
                             'IDR 2.100',
                             style: setTextStyle(
-                              Color(0xFF44474E),
+                              const Color(0xFF44474E),
                             ).copyWith(fontWeight: semiBold, fontSize: 14),
                           ),
                         ],
@@ -252,7 +250,7 @@ class _DetailBookingScreenState extends State<DetailBookingScreen> {
                           Text(
                             'IDR 23.099',
                             style: setTextStyle(
-                              Color(0xFF44474E),
+                              const Color(0xFF44474E),
                             ).copyWith(fontWeight: semiBold, fontSize: 14),
                           ),
                         ],
