@@ -2,7 +2,7 @@
 
 // import 'package:easy_search_bar/easy_search_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/screens/card-search-bar/office_recommendation_widget.dart';
+//import 'package:flutter_capstone/screens/card-search-bar/office_recommendation_widget.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 
 //import 'package:flutter_capstone/widget/card_rekomendasi_kantor.dart';

@@ -1,12 +1,13 @@
 // ignore_for_file: avoid_print
 
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_capstone/errors/location_not_found.dart';
 import 'package:flutter_capstone/model/search_office/search_model.dart';
 import 'package:flutter_capstone/screens/card-search-bar/office_recommendation_widget.dart';
+import 'package:flutter_capstone/screens/card-search-bar/search_office_view_model.dart';
 import 'package:flutter_capstone/service/search_office/search_service.dart';
 import 'package:flutter_capstone/style/text_style.dart';
+import 'package:provider/provider.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -37,6 +38,13 @@ class _SearchScreenState extends State<SearchScreen> {
     'Co-Working Space',
   ];
 
+  List<String> statusKantor = [
+    'Close',
+    'Close',
+    'Close',
+    'Close',
+  ];
+
   List rating = [
     4.6,
     4.8,
@@ -44,26 +52,14 @@ class _SearchScreenState extends State<SearchScreen> {
     4.8,
   ];
 
-  final _searchBarController = TextEditingController();
   SearchModel? searchModel;
 
-  List data = [];
-
-  // @override
-  // void initState() {
-  //   _findOffice = searchModel.data;
-  //   super.initState();
-  // }
-
-  // void _filter(String inputKeywords) {
-  //   List results = [];
-  //   if (inputKeywords.isEmpty) {
-  //     results = searchModel.data;
-  //   }
-  // }
+  // var searchName = "";
 
   @override
   Widget build(BuildContext context) {
+    SearchOfficeViewModel searchOfficeProvider =
+        Provider.of<SearchOfficeViewModel>(context);
     return Scaffold(
       backgroundColor: SourceColor().white,
       appBar: AppBar(
@@ -77,18 +73,17 @@ class _SearchScreenState extends State<SearchScreen> {
           Padding(
             padding: const EdgeInsets.only(right: 16, left: 16),
             child: TextFormField(
-              onChanged: (text) {
-                text = text.toLowerCase();
-                print(text);
-                setState(() {
-                  data = searchModel!.data.where((element) {
-                    var finalLocation =
-                        element.location.toString().toLowerCase();
-                    return finalLocation.contains(text);
-                  }).toList();
-                });
+              onChanged: (value) {
+                searchOfficeProvider.onChange(value);
               },
-              controller: _searchBarController,
+              // onChanged: (value) {
+              //   if (value.length >= 3) {
+              //     setState(() {
+              //       searchName = value;
+              //     });
+              //   }
+              // },
+              controller: searchOfficeProvider.searchBarController,
               decoration: InputDecoration(
                 filled: true,
                 fillColor: NeutralColor().neutral96,
@@ -163,43 +158,48 @@ class _SearchScreenState extends State<SearchScreen> {
             ),
           ),
           FutureBuilder(
-            future: SearchService().getSearch(),
+            future: SearchService().getSearch(searchOfficeProvider.searchName),
             builder: (context, snapshot) {
-              if (snapshot.hasData) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Expanded(
+                  child: LocationNotFoundScreen(),
+                );
+              } else if (snapshot.hasData) {
                 var search = snapshot.data;
-                print(snapshot.error);
-                return ListView.builder(
-                  itemCount: search?.data.length,
-                  itemBuilder: (context, index) {
-                    var data = snapshot.data?.data[index];
-                    print("ini ${data}");
-                    return Column(
-                      children: [
-                        // Text(search!.data[index].name),
-                        Text(data?.deletedAt.toString() ?? 'Unavailable date'),
-                        Text('Ofice Name : ${data!.name}'),
-                      ],
-                    );
-                    // OfficeRecommendationWidget(
-                    //   img: imageKantor[index],
-                    //   statusKantor: data!.status,
-                    //   // statusKantor: search!.data[index].status,
-                    //   namaKantor: data.name,
-                    //   imgRating: iconImage[0],
-                    //   rating: rating[index],
-                    //   imgCoWorkingOffice: iconImage[1],
-                    //   office: office[index],
-                    //   imgLocation: iconImage[2],
-                    //   location: data.location,
-                    //   imgTime: iconImage[3],
-                    //   time: '${data.open} - ${data.close}',
-                    //   // price: search.data[index].price,
-                    //   price: data.price,
-                    // );
-                  },
+                print('ini eror ${snapshot.error}');
+                return Expanded(
+                  child: ListView.builder(
+                    itemCount: search?.data.length,
+                    itemBuilder: (context, index) {
+                      var data = snapshot.data?.data[index];
+                      return OfficeRecommendationWidget(
+                        img: imageKantor[index],
+                        statusKantor: statusKantor[index],
+                        namaKantor: data?.name ?? "",
+                        imgRating: iconImage[0],
+                        rating: rating[index],
+                        imgCoWorkingOffice: iconImage[1],
+                        office: data?.type ?? "",
+                        imgLocation: iconImage[2],
+                        location: data?.location ?? "",
+                        imgTime: iconImage[3],
+                        time: '${data?.open} - ${data?.close}',
+                        price: data?.price ?? 0,
+                      );
+                    },
+                  ),
                 );
               } else {
-                return CircularProgressIndicator();
+                return Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: const [
+                      CircularProgressIndicator(),
+                    ],
+                  ),
+                );
+                // LocationNotFoundScreen();
               }
             },
           ),
@@ -208,7 +208,16 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 }
+              //   text = text.toLowerCase();
+              //   // print(text);
+              //   setState(() {
+              //     data = searchModel!.data.where((element) {
+              //       var finalLocation =
+              //           element.location.toString().toLowerCase();
+              //       return finalLocation.contains(text);
+              //     }).toList();
 
+              //   });
 // ListView.builder(
 //                   itemCount: search?.data.length,
 //                   itemBuilder: (context, index) {

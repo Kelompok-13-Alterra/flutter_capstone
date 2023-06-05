@@ -1,12 +1,13 @@
 // ignore_for_file: prefer_const_declarations, unrelated_type_equality_checks, sized_box_for_whitespace
 
 import 'package:flutter/material.dart';
+//import 'package:flutter_capstone/model/search_office/search_model.dart';
 //import 'package:office_booking/model/search_office/search_model.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 
 class OfficeRecommendationWidget extends StatelessWidget {
   final String namaKantor;
-  final bool statusKantor;
+  final String statusKantor;
   final String img;
   final String imgRating;
   final double rating;
@@ -100,7 +101,7 @@ class OfficeRecommendationWidget extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(
                                 vertical: 4, horizontal: 16),
                             child: Text(
-                              statusKantor as String,
+                              statusKantor,
                               style: setTextStyle(SourceColor().white).copyWith(
                                 fontSize: 13,
                                 fontWeight: medium,
@@ -141,7 +142,7 @@ class OfficeRecommendationWidget extends StatelessWidget {
                         Image.asset(
                           imgCoWorkingOffice ==
                                       'assets/image/co_working_space.png' &&
-                                  office == 'Co-Working Space'
+                                  office == 'coworking'
                               ? 'assets/image/co_working_space.png'
                               : 'assets/image/office.png',
                           width: 13.33,

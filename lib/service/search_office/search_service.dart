@@ -6,7 +6,7 @@ import 'package:flutter_capstone/model/search_office/search_model.dart';
 
 class SearchService {
   // Get list od office
-  Future<SearchModel> getSearch() async {
+  Future<SearchModel> getSearch(String searchLocation) async {
     var headers = {
       'accept': 'application/json',
       'Authorization':
@@ -14,23 +14,24 @@ class SearchService {
     };
     try {
       final response = await Dio().get(
-        '$baseUrl/api/v1/office',
+        '$baseUrl/api/v1/office?location=$searchLocation',
         options: Options(headers: headers),
       );
-
-      if (response.statusCode == 200) {
-        var data = response.data;
-        print(data);
-      } else {
-        print('Required failed with status : ${response.statusCode}');
-      }
-
+      print(response.data);
       return SearchModel.fromJson(response.data);
     } on DioError catch (e) {
       print(e);
       throw Exception('Failed get list of office $e');
     }
   }
+}
+
+      // if (response.statusCode == 200) {
+        
+      // } else {
+      //   print('Required failed with status : ${response.statusCode}');
+      // }
+
   //   Future<SearchModel> getSearch() async {
   //   try {
   //     final response = await Dio().get('$baseUrl/api/v1/office');
@@ -45,8 +46,6 @@ class SearchService {
   //     throw Exception('Failed get list of office $e');
   //   }
   // }
-}
-
 
   // Future<List<OfficeListModel>> getOfficeList() async {
   //   final response = await Dio().get('$baseUrl/api/v1/office');

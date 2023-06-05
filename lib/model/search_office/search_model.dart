@@ -31,35 +31,35 @@ class SearchModel {
 
 class Datum {
   int id;
-  DateTime createdAt;
-  DateTime updatedAt;
-  DateTime deletedAt;
-  String name;
-  String description;
-  int capacity;
-  String type;
-  String open;
-  String close;
-  int price;
-  String location;
-  String facilities;
-  bool status;
+  DateTime? createdAt;
+  DateTime? updatedAt;
+  DateTime? deletedAt;
+  String? name;
+  String? description;
+  int? capacity;
+  String? type;
+  String? open;
+  String? close;
+  int? price;
+  String? location;
+  String? facilities;
+  bool? status;
 
   Datum({
-    required this.id,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.deletedAt,
-    required this.name,
-    required this.description,
-    required this.capacity,
-    required this.type,
-    required this.open,
-    required this.close,
-    required this.price,
-    required this.location,
-    required this.facilities,
-    required this.status,
+    this.id = 0,
+    this.createdAt,
+    this.updatedAt,
+    this.deletedAt,
+    this.name,
+    this.description,
+    this.capacity,
+    this.type,
+    this.open,
+    this.close,
+    this.price,
+    this.location,
+    this.facilities,
+    this.status,
   });
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
@@ -81,8 +81,8 @@ class Datum {
 
   Map<String, dynamic> toJson() => {
         "ID": id,
-        "CreatedAt": createdAt.toIso8601String(),
-        "UpdatedAt": updatedAt.toIso8601String(),
+        "CreatedAt": createdAt?.toIso8601String(),
+        "UpdatedAt": updatedAt?.toIso8601String(),
         "DeletedAt": deletedAt,
         "Name": name,
         "Description": description,
@@ -138,7 +138,7 @@ class Meta {
 //   Meta? meta;
 
 //   SearchModel({
-//     required this.data,
+//      this.data,
 //     this.meta,
 //   });
 
@@ -166,16 +166,16 @@ class Meta {
 //   String type;
 
 //   Datum({
-//     required this.capacity,
-//     required this.close,
-//     required this.description,
-//     required this.facilities,
-//     required this.location,
-//     required this.name,
-//     required this.open,
-//     required this.price,
-//     required this.status,
-//     required this.type,
+//      this.capacity,
+//      this.close,
+//      this.description,
+//      this.facilities,
+//      this.location,
+//      this.name,
+//      this.open,
+//      this.price,
+//      this.status,
+//      this.type,
 //   });
 
 //   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
@@ -219,9 +219,9 @@ class Meta {
 //   String message;
 
 //   Meta({
-//     required this.code,
-//     required this.isError,
-//     required this.message,
+//      this.code,
+//      this.isError,
+//      this.message,
 //   });
 
 //   factory Meta.fromJson(Map<String, dynamic> json) => Meta(
