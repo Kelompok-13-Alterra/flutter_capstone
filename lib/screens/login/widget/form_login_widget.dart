@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/model/login/login_model.dart';
+import 'package:flutter_capstone/core/init/utils/shared_preferences.dart';
+import 'package:flutter_capstone/screens/login/login_view_model.dart';
 import 'package:flutter_capstone/screens/login/widget/text_or_widget.dart';
 import 'package:flutter_capstone/services/login/login_services.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:email_validator/email_validator.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:provider/provider.dart';
 
 class FormLogin extends StatefulWidget {
   const FormLogin({super.key});
@@ -17,60 +18,6 @@ class FormLogin extends StatefulWidget {
 
 class _FormLoginState extends State<FormLogin> {
   final formKey = GlobalKey<FormState>();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  bool isChecked = false;
-
-  late bool newUser;
-
-  bool _obscureText = true;
-
-  void _togglePasswordVisibility() {
-    setState(() {
-      _obscureText = !_obscureText;
-    });
-  }
-
-  _submitLogin() async {
-    if (formKey.currentState!.validate()) {
-      // ScaffoldMessenger.of(context).showSnackBar(
-      //   SnackBar(
-      //     content: Text('Selamat ${_emailController.text} berhasil login'),
-      //   ),
-      // );
-
-      var res = await LoginService().postLogin(
-        email: _emailController.text,
-        password: _passwordController.text,
-      );
-      //Trying to get email value
-      print(LoginModel.fromJson(res).email);
-      if (res['meta']['is_error'] == false) {
-        // ignore: use_build_context_synchronously
-        String accessToken = res['data']['token'];
-
-        SharedPreferences prefs = await SharedPreferences.getInstance();
-        prefs.setString('email', _emailController.text);
-
-        // ignore: use_build_context_synchronously
-        Navigator.pushNamedAndRemoveUntil(
-            context, '/bottom-nav', arguments: accessToken, (route) => false);
-      }
-      // ignore: use_build_context_synchronously
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(
-        '${res['meta']['message']}',
-        style: setTextStyle(SourceColor().white),
-      )));
-    }
-  }
-
-  @override
-  void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
-    super.dispose();
-  }
 
   @override
   void initState() {
@@ -79,6 +26,14 @@ class _FormLoginState extends State<FormLogin> {
 
   @override
   Widget build(BuildContext context) {
+    LoginViewModel loginViewModel = Provider.of<LoginViewModel>(context);
+
+    // void Function()? tapHandler(  ) {
+    //   loginViewModel.setTogglePasswordVisibility = val;
+    // }
+
+    // ;
+
     return Form(
       key: formKey,
       autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -90,7 +45,7 @@ class _FormLoginState extends State<FormLogin> {
           //========================================================
           TextFormField(
             autovalidateMode: AutovalidateMode.onUserInteraction,
-            controller: _emailController,
+            controller: loginViewModel.getEmail,
             validator: (email) {
               if (email != null && !EmailValidator.validate(email)) {
                 return 'Enter a valid email';
@@ -114,8 +69,8 @@ class _FormLoginState extends State<FormLogin> {
           //========================================================
           TextFormField(
             autovalidateMode: AutovalidateMode.onUserInteraction,
-            obscureText: _obscureText,
-            controller: _passwordController,
+            obscureText: loginViewModel.getObsecureText,
+            controller: loginViewModel.getPassword,
             validator: (value) {
               if (value != null && value.length < 5) {
                 return 'Enter min. 5 characters';
@@ -131,9 +86,20 @@ class _FormLoginState extends State<FormLogin> {
               ),
               suffixIcon: IconButton(
                 icon: Icon(
-                  _obscureText ? Icons.visibility_off : Icons.visibility,
+                  loginViewModel.getObsecureText
+                      ? Icons.visibility_off
+                      : Icons.visibility,
                 ),
-                onPressed: _togglePasswordVisibility,
+                onPressed: () {
+                  // var val = loginViewModel.getObsecureText;
+                  // loginViewModel.setTogglePasswordVisibility(val);
+                  // // tapHandler(val);
+                  // // print(val);
+                  // setState(() {
+                  //   // loginViewModel.getObsecureText !=
+                  //   //     loginViewModel.getObsecureText;
+                  // });
+                },
               ),
               hintText: 'Input Password',
               floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -149,13 +115,10 @@ class _FormLoginState extends State<FormLogin> {
               SizedBox(
                 width: 24,
                 child: Checkbox(
-                  value: isChecked,
-                  onChanged: (value) {
-                    setState(() {
-                      isChecked = value!;
-                    });
-                  },
-                ),
+                    value: loginViewModel.getChecked,
+                    onChanged: (bool? val) {
+                      loginViewModel.setChecked = val!;
+                    }),
               ),
               const SizedBox(
                 width: 7,
@@ -188,7 +151,27 @@ class _FormLoginState extends State<FormLogin> {
                     ),
                   ),
                 ),
-                onPressed: _submitLogin,
+                onPressed: () async {
+                  var res = await LoginService().postLogin(
+                    email: loginViewModel.getEmail.text,
+                    password: loginViewModel.getPassword.text,
+                  );
+                  if (res['meta']['is_error'] == false) {
+                    String accessToken = res['data']['token'];
+
+                    saveToken(valueToken: accessToken);
+
+                    // ignore: use_build_context_synchronously
+                    Navigator.pushNamedAndRemoveUntil(
+                        context, '/bottom-nav', (route) => false);
+                  }
+                  // ignore: use_build_context_synchronously
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text(
+                    '${res['meta']['message']}',
+                    style: setTextStyle(SourceColor().white),
+                  )));
+                },
                 child: Text(
                   'Login',
                   style: GoogleFonts.roboto(),
