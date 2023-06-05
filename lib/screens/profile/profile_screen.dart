@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/screens/profile/widget/cards_profile_widget.dart';
 import 'package:flutter_capstone/screens/profile/widget/profiles_widget.dart';
+import 'package:flutter_capstone/services/login/login_services.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -11,6 +12,8 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  var res = LoginService().getDataUser();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -101,13 +104,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           bottom: 8,
                         ),
                         child: Text(
-                          "michaelabraham@gmail.com",
+                          'email',
                           style:
                               setTextStyle(NeutralColor().neutral40).copyWith(
                             fontSize: 16,
                             fontWeight: regular,
                           ),
                         ),
+                        // FutureBuilder(
+                        //   initialData: LoginService().getDataUser(),
+                        //   builder: (BuildContext context,
+                        //       AsyncSnapshot<dynamic> snapshot) {
+                        //     return Text(
+                        //       'email',
+                        //       style: setTextStyle(NeutralColor().neutral40)
+                        //           .copyWith(
+                        //         fontSize: 16,
+                        //         fontWeight: regular,
+                        //       ),
+                        //     );
+                        //   },
+                        // ),
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8.0),
