@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_capstone/screens/ui-payment/detail_payment_screen.dart';
 
 class ShowModalPayment extends StatefulWidget {
   const ShowModalPayment({super.key});
@@ -109,7 +110,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                 children: [
                   Row(
                     children: [
-                      SvgPicture.asset('assets/payment/BNI.svg'),
+                      SvgPicture.asset('assets/payment/bca.svg'),
                       const SizedBox(
                         width: 12,
                       ),
@@ -236,7 +237,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                 children: [
                   Row(
                     children: [
-                      SvgPicture.asset('assets/payment/BNI.svg'),
+                      SvgPicture.asset('assets/payment/bca.svg'),
                       const SizedBox(
                         width: 12,
                       ),
@@ -360,7 +361,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
               Text(
                 'Total',
                 style: setTextStyle(
-                  Color(0xFF44474E),
+                  NeutralColor().neutral10,
                 ).copyWith(fontWeight: medium, fontSize: 12),
               ),
               Text(
@@ -675,7 +676,14 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                     ),
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const DetailPaymentScreen(),
+                    ),
+                  );
+                },
                 child: Text(
                   "Bayar",
                   style: setTextStyle(SourceColor().white)
