@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_capstone/screens/ui-payment/success_booking_screen.dart';
 import 'dart:async';
 
 import 'package:flutter_capstone/screens/ui-payment/transaction_failed_screen.dart';
@@ -53,10 +54,10 @@ class PaymentViewModel extends ChangeNotifier {
   //Detail Payment
   //===========================================================================
   Timer? _timer;
-  final DateTime _timerOffice = DateTime.now().add(const Duration(seconds: 1));
   final String rekening = '1234567890';
   final String jumlahTransfer = 'IDR 23.099';
   bool isDetailTransaksi = true;
+  late DateTime _timerOffice;
 
   void copyRekening(BuildContext context) {
     Clipboard.setData(ClipboardData(text: rekening));
@@ -72,6 +73,8 @@ class PaymentViewModel extends ChangeNotifier {
   }
 
   void startCountdown(BuildContext context) {
+    _timerOffice = DateTime.now().add(const Duration(
+        days: 1)); // Inisialisasi _timerOffice saat countdown dimulai
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (DateTime.now().isBefore(_timerOffice)) {
         notifyListeners();
@@ -80,8 +83,7 @@ class PaymentViewModel extends ChangeNotifier {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            // builder: (context) => const TransactionFailedScreen(),
-            builder: (context) => const TransactionFailedScreen(),
+            builder: (context) => const SuccessBookingScreen(),
           ),
         );
       }

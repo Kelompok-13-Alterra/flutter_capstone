@@ -14,7 +14,7 @@ class _SuccessBookingScreenState extends State<SuccessBookingScreen> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        Navigator.pushReplacementNamed(context, '/home');
+        Navigator.pushReplacementNamed(context, '/bottom-nav');
         return false;
       },
       child: Scaffold(

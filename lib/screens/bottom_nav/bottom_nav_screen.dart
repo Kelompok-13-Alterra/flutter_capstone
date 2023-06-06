@@ -7,6 +7,7 @@ import 'package:flutter_capstone/screens/profile/profile_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_capstone/style/text_style.dart';
 
 class BottomNavScreen extends StatefulWidget {
   const BottomNavScreen({super.key});
@@ -43,23 +44,36 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        bool? exitApp = await showDialog(
+        showDialog(
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: const Text('Keluar dari Aplikasi'),
-              content: const Text('Apakah Anda yakin ingin keluar?'),
+              title: Text(
+                'Keluar dari Aplikasi',
+                style: setTextStyle(PrimaryColor().primary)
+                    .copyWith(fontWeight: semiBold, fontSize: 17),
+              ),
+              content: Text('Apakah Anda yakin ingin keluar?',
+                  style: setTextStyle(NeutralColor().neutral20)
+                      .copyWith(fontWeight: medium, fontSize: 14)),
               actions: [
                 TextButton(
-                  child: Text('Tidak'),
+                  child: Text(
+                    'Tidak',
+                    style: setTextStyle(PrimaryColor().primary)
+                        .copyWith(fontWeight: medium, fontSize: 12),
+                  ),
                   onPressed: () {
                     Navigator.of(context).pop(false);
                   },
                 ),
                 TextButton(
-                  child: Text('Ya'),
+                  child: Text(
+                    'Ya',
+                    style: setTextStyle(PrimaryColor().primary)
+                        .copyWith(fontWeight: medium, fontSize: 12),
+                  ),
                   onPressed: () {
-                    Navigator.of(context).pop(true);
                     SystemNavigator.pop();
                   },
                 ),
@@ -67,7 +81,7 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
             );
           },
         );
-        return exitApp ?? false;
+        return false; // Menahan tombol kembali saat dialog ditampilkan
       },
       child: Scaffold(
         appBar: null,
