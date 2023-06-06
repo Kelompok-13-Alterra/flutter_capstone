@@ -31,7 +31,7 @@ class LoginService {
         options: Options(headers: {
           "accept": "application/json",
           "Content-Type": "application/json",
-          "Authorization": "Bearer $getToken()"
+          "Authorization": "Bearer ${getToken()}"
         }),
       );
 
