@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_capstone/style/text_style.dart';
-import 'dart:async';
 import 'package:flutter_svg/svg.dart';
-import 'package:flutter_capstone/screens/ui-payment/transaction_failed_screen.dart';
+import 'package:provider/provider.dart';
+import 'payment-view-model.dart';
 
 class DetailPaymentScreen extends StatefulWidget {
   const DetailPaymentScreen({super.key});
@@ -13,66 +12,75 @@ class DetailPaymentScreen extends StatefulWidget {
 }
 
 class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
-  Timer? _timer;
-  final DateTime _targetTime = DateTime.now().add(const Duration(days: 1));
+  late PaymentViewModel paymentViewModel;
+  // Timer? _timer;
+  // final DateTime _targetTime = DateTime.now().add(const Duration(days: 1));
 
-  final String rekening = '1234567890';
-  final String jumlahTransfer = 'IDR 23.099';
+  // final String rekening = '1234567890';
+  // final String jumlahTransfer = 'IDR 23.099';
 
-  bool isDetailTransaksi = true;
+  // bool isDetailTransaksi = true;
 
-  void _copyRekening() {
-    Clipboard.setData(ClipboardData(text: rekening));
-    const snackBar = SnackBar(content: Text('Rekening berhasil disalin'));
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-  }
+  // void _copyRekening() {
+  //   Clipboard.setData(ClipboardData(text: rekening));
+  //   const snackBar = SnackBar(content: Text('Rekening berhasil disalin'));
+  //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  // }
 
-  void _copyJumlahTransfer() {
-    Clipboard.setData(ClipboardData(text: rekening));
-    const snackBar =
-        SnackBar(content: Text('Jumlah transfer berhasil disalin'));
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-  }
+  // void _copyJumlahTransfer() {
+  //   Clipboard.setData(ClipboardData(text: rekening));
+  //   const snackBar =
+  //       SnackBar(content: Text('Jumlah transfer berhasil disalin'));
+  //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  // }
 
   @override
-  void initState() {
-    super.initState();
-    startCountdown();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    paymentViewModel = Provider.of<PaymentViewModel>(context, listen: false);
+    paymentViewModel.startCountdown(context);
   }
+
+  // @override
+  // void initState() {
+  //   paymentViewModel = Provider.of<PaymentViewModel>(context);
+  //   super.initState();
+  //   paymentViewModel.startCountdown();
+  // }
 
   @override
   void dispose() {
-    stopCountdown();
+    paymentViewModel.stopCountdown();
     super.dispose();
   }
 
-  void startCountdown() {
-    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      if (DateTime.now().isBefore(_targetTime)) {
-        setState(() {});
-      } else {
-        stopCountdown();
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const TransactionFailedScreen(),
-          ),
-        );
-      }
-    });
-  }
+  // void startCountdown() {
+  //   _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+  //     if (DateTime.now().isBefore(_targetTime)) {
+  //       setState(() {});
+  //     } else {
+  //       stopCountdown();
+  //       Navigator.push(
+  //         context,
+  //         MaterialPageRoute(
+  //           builder: (context) => const TransactionFailedScreen(),
+  //         ),
+  //       );
+  //     }
+  //   });
+  // }
 
-  void stopCountdown() {
-    _timer?.cancel();
-  }
+  // void stopCountdown() {
+  //   _timer?.cancel();
+  // }
 
-  String getTimeRemaining() {
-    Duration remaining = _targetTime.difference(DateTime.now());
-    int hours = remaining.inHours;
-    int minutes = remaining.inMinutes % 60;
-    int seconds = remaining.inSeconds % 60;
-    return '$hours : $minutes : $seconds ';
-  }
+  // String getTimeRemaining() {
+  //   Duration remaining = _targetTime.difference(DateTime.now());
+  //   int hours = remaining.inHours;
+  //   int minutes = remaining.inMinutes % 60;
+  //   int seconds = remaining.inSeconds % 60;
+  //   return '$hours : $minutes : $seconds ';
+  // }
 
   Widget buildDetailTransaksi(BuildContext context) {
     return Column(
@@ -163,6 +171,7 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
 
   @override
   Widget build(BuildContext context) {
+    paymentViewModel = Provider.of<PaymentViewModel>(context, listen: false);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -196,7 +205,7 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                     width: 5,
                   ),
                   Text(
-                    'Menunggu pembayaran ${getTimeRemaining()}',
+                    'Menunggu pembayaran ${paymentViewModel.getTimeRemaining()}',
                     style: setTextStyle(PrimaryColor().onPrimary)
                         .copyWith(fontWeight: semiBold, fontSize: 10),
                   ),
@@ -379,7 +388,7 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  rekening,
+                                  paymentViewModel.rekening,
                                   style: setTextStyle(NeutralColor().neutral10)
                                       .copyWith(
                                           fontWeight: semiBold, fontSize: 22),
@@ -401,7 +410,9 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                                       ),
                                     ),
                                   ),
-                                  onPressed: _copyRekening,
+                                  onPressed: () {
+                                    paymentViewModel.copyRekening(context);
+                                  },
                                   child: Text(
                                     'Salin',
                                     style: setTextStyle(SourceColor().seed)
@@ -439,7 +450,7 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  jumlahTransfer,
+                                  paymentViewModel.jumlahTransfer,
                                   style: setTextStyle(NeutralColor().neutral10)
                                       .copyWith(
                                           fontWeight: semiBold, fontSize: 22),
@@ -461,7 +472,10 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                                       ),
                                     ),
                                   ),
-                                  onPressed: _copyJumlahTransfer,
+                                  onPressed: () {
+                                    paymentViewModel
+                                        .copyJumlahTransfer(context);
+                                  },
                                   child: Text(
                                     'Salin',
                                     style: setTextStyle(SourceColor().seed)
@@ -505,18 +519,15 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                               IconButton(
                                 constraints: const BoxConstraints(),
                                 padding: EdgeInsets.zero,
-                                onPressed: () {
-                                  setState(() {
-                                    isDetailTransaksi = !isDetailTransaksi;
-                                  });
-                                },
-                                icon: isDetailTransaksi
+                                onPressed:
+                                    paymentViewModel.toggleDetailTransaksi,
+                                icon: paymentViewModel.isDetailTransaksi
                                     ? const Icon(Icons.arrow_drop_up)
                                     : const Icon(Icons.arrow_drop_down),
                               )
                             ],
                           ),
-                          isDetailTransaksi
+                          paymentViewModel.isDetailTransaksi
                               ? buildDetailTransaksi(context)
                               : Container(),
                         ],
