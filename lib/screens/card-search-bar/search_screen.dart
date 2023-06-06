@@ -1,7 +1,7 @@
 // ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/errors/location_not_found.dart';
+//import 'package:flutter_capstone/errors/location_not_found.dart';
 import 'package:flutter_capstone/model/search_office/search_model.dart';
 import 'package:flutter_capstone/screens/card-search-bar/office_recommendation_widget.dart';
 import 'package:flutter_capstone/screens/card-search-bar/search_office_view_model.dart';
@@ -160,11 +160,7 @@ class _SearchScreenState extends State<SearchScreen> {
           FutureBuilder(
             future: SearchService().getSearch(searchOfficeProvider.searchName),
             builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return const Expanded(
-                  child: LocationNotFoundScreen(),
-                );
-              } else if (snapshot.hasData) {
+              if (snapshot.hasData) {
                 var search = snapshot.data;
                 print('ini eror ${snapshot.error}');
                 return Expanded(
@@ -208,6 +204,14 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 }
+
+
+              // if (snapshot.connectionState == ConnectionState.waiting) {
+              //   return const Expanded(
+              //     child: LocationNotFoundScreen(),
+              //   );
+              // }
+
               //   text = text.toLowerCase();
               //   // print(text);
               //   setState(() {

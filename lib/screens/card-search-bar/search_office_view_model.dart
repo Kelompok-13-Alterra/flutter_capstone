@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/errors/location_not_found.dart';
 import 'package:flutter_capstone/model/search_office/search_model.dart';
 
 class SearchOfficeViewModel with ChangeNotifier {
