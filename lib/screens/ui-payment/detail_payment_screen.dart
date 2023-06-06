@@ -13,74 +13,24 @@ class DetailPaymentScreen extends StatefulWidget {
 
 class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
   late PaymentViewModel paymentViewModel;
-  // Timer? _timer;
-  // final DateTime _targetTime = DateTime.now().add(const Duration(days: 1));
-
-  // final String rekening = '1234567890';
-  // final String jumlahTransfer = 'IDR 23.099';
-
-  // bool isDetailTransaksi = true;
-
-  // void _copyRekening() {
-  //   Clipboard.setData(ClipboardData(text: rekening));
-  //   const snackBar = SnackBar(content: Text('Rekening berhasil disalin'));
-  //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
-  // }
-
-  // void _copyJumlahTransfer() {
-  //   Clipboard.setData(ClipboardData(text: rekening));
-  //   const snackBar =
-  //       SnackBar(content: Text('Jumlah transfer berhasil disalin'));
-  //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
-  // }
-
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    paymentViewModel = Provider.of<PaymentViewModel>(context, listen: false);
+    paymentViewModel = Provider.of<PaymentViewModel>(context);
     paymentViewModel.startCountdown(context);
   }
 
-  // @override
-  // void initState() {
-  //   paymentViewModel = Provider.of<PaymentViewModel>(context);
-  //   super.initState();
-  //   paymentViewModel.startCountdown();
-  // }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   void dispose() {
     paymentViewModel.stopCountdown();
     super.dispose();
   }
-
-  // void startCountdown() {
-  //   _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-  //     if (DateTime.now().isBefore(_targetTime)) {
-  //       setState(() {});
-  //     } else {
-  //       stopCountdown();
-  //       Navigator.push(
-  //         context,
-  //         MaterialPageRoute(
-  //           builder: (context) => const TransactionFailedScreen(),
-  //         ),
-  //       );
-  //     }
-  //   });
-  // }
-
-  // void stopCountdown() {
-  //   _timer?.cancel();
-  // }
-
-  // String getTimeRemaining() {
-  //   Duration remaining = _targetTime.difference(DateTime.now());
-  //   int hours = remaining.inHours;
-  //   int minutes = remaining.inMinutes % 60;
-  //   int seconds = remaining.inSeconds % 60;
-  //   return '$hours : $minutes : $seconds ';
-  // }
 
   Widget buildDetailTransaksi(BuildContext context) {
     return Column(

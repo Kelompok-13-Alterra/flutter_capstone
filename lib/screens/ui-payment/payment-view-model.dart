@@ -10,10 +10,11 @@ class PaymentViewModel extends ChangeNotifier {
   final BuildContext context;
   PaymentViewModel(this.context);
   Timer? _timer;
-  final DateTime _targetTime = DateTime.now().add(const Duration(seconds: 1));
+  final DateTime _targetTime = DateTime.now().add(const Duration(days: 1));
   final String rekening = '1234567890';
   final String jumlahTransfer = 'IDR 23.099';
   bool isDetailTransaksi = true;
+  late String countDownPembayaran;
 
   void copyRekening(BuildContext context) {
     Clipboard.setData(ClipboardData(text: rekening));
@@ -31,6 +32,7 @@ class PaymentViewModel extends ChangeNotifier {
   void startCountdown(BuildContext context) {
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (DateTime.now().isBefore(_targetTime)) {
+        countDownPembayaran = getTimeRemaining();
         notifyListeners();
       } else {
         stopCountdown();
