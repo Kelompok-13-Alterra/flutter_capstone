@@ -21,6 +21,8 @@ class _LocationNotFoundScreenState extends State<LocationNotFoundScreen> {
         child: Padding(
           padding: const EdgeInsets.all(10),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: [
               Image.asset('assets/errors/location_not_found.png'),

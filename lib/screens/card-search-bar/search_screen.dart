@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
+import 'package:flutter_capstone/errors/location_not_found.dart';
 //import 'package:flutter_capstone/errors/location_not_found.dart';
 import 'package:flutter_capstone/model/search_office/search_model.dart';
 import 'package:flutter_capstone/screens/card-search-bar/office_recommendation_widget.dart';
@@ -141,49 +142,66 @@ class _SearchScreenState extends State<SearchScreen> {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 16, bottom: 13.63, left: 16),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Kantor yang cocok untuk kamu",
-                  style: setTextStyle(BlackColor().black).copyWith(
-                    fontSize: 16,
-                    fontWeight: regular,
-                  ),
-                ),
-              ],
-            ),
-          ),
           FutureBuilder(
             future: SearchService().getSearch(searchOfficeProvider.searchName),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 var search = snapshot.data;
                 print('ini eror ${snapshot.error}');
-                return Expanded(
-                  child: ListView.builder(
-                    itemCount: search?.data.length,
-                    itemBuilder: (context, index) {
-                      var data = snapshot.data?.data[index];
-                      return OfficeRecommendationWidget(
-                        img: imageKantor[index],
-                        statusKantor: statusKantor[index],
-                        namaKantor: data?.name ?? "",
-                        imgRating: iconImage[0],
-                        rating: rating[index],
-                        imgCoWorkingOffice: iconImage[1],
-                        office: data?.type ?? "",
-                        imgLocation: iconImage[2],
-                        location: data?.location ?? "",
-                        imgTime: iconImage[3],
-                        time: '${data?.open} - ${data?.close}',
-                        price: data?.price ?? 0,
-                      );
-                    },
-                  ),
+                return
+                    //snapshot.data == null
+                    // snapshot.data!.data.isEmpty
+                    //     ? const LocationNotFoundScreen()
+                    //     :
+                    Expanded(
+                  child: snapshot.data!.data.isEmpty
+                      ? const LocationNotFoundScreen()
+                      : Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  top: 16, bottom: 13.63, left: 16),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Kantor yang cocok untuk kamu",
+                                    style: setTextStyle(BlackColor().black)
+                                        .copyWith(
+                                      fontSize: 16,
+                                      fontWeight: regular,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            ListView.builder(
+                              shrinkWrap: true,
+                              scrollDirection: Axis.vertical,
+                              itemCount: search?.data.length,
+                              itemBuilder: (context, index) {
+                                var data = snapshot.data?.data[index];
+                                return OfficeRecommendationWidget(
+                                  img: imageKantor[index],
+                                  statusKantor: statusKantor[index],
+                                  namaKantor: data?.name ?? "",
+                                  imgRating: iconImage[0],
+                                  rating: rating[index],
+                                  imgCoWorkingOffice: iconImage[1],
+                                  office: data?.type ?? "",
+                                  imgLocation: iconImage[2],
+                                  location: data?.location ?? "",
+                                  imgTime: iconImage[3],
+                                  time: '${data?.open} - ${data?.close}',
+                                  price: data?.price ?? 0,
+                                );
+                              },
+                            ),
+                          ],
+                        ),
                 );
               } else {
                 return Center(
@@ -204,114 +222,3 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 }
-
-
-              // if (snapshot.connectionState == ConnectionState.waiting) {
-              //   return const Expanded(
-              //     child: LocationNotFoundScreen(),
-              //   );
-              // }
-
-              //   text = text.toLowerCase();
-              //   // print(text);
-              //   setState(() {
-              //     data = searchModel!.data.where((element) {
-              //       var finalLocation =
-              //           element.location.toString().toLowerCase();
-              //       return finalLocation.contains(text);
-              //     }).toList();
-
-              //   });
-// ListView.builder(
-//                   itemCount: search?.data.length,
-//                   itemBuilder: (context, index) {
-//                     return OfficeRecommendationWidget(
-//                       img: imageKantor[index],
-//                       statusKantor: search!.data[index].status,
-//                       namaKantor: search.data[index].name,
-//                       imgRating: iconImage[0],
-//                       rating: rating[index],
-//                       imgCoWorkingOffice: iconImage[1],
-//                       office: office[index],
-//                       imgLocation: iconImage[2],
-//                       location: search.data[index].location,
-//                       imgTime: iconImage[3],
-//                       time:
-//                           '${search.data[index].open} - ${search.data[index].close}',
-//                       price: search.data[index].price,
-//                     );
-//                   },
-//                 );
-
-          // ListView.builder(
-          //   shrinkWrap: true,
-          //   scrollDirection: Axis.vertical,
-          //   itemCount: listNamaKantor.length,
-          //   itemBuilder: (context, index) {
-          //     return OfficeRecommendationWidget(
-          //       img: imageKantor[index],
-          //       statusKantor: statusKantor[index],
-          //       namaKantor: listNamaKantor[index],
-          //       imgRating: iconImage[0],
-          //       rating: rating[index],
-          //       imgCoWorkingOffice: iconImage[1],
-          //       office: office[index],
-          //       imgLocation: iconImage[2],
-          //       location: location[index],
-          //       imgTime: iconImage[3],
-          //       time: time[index],
-          //       price: price[index],
-          //     );
-          //   },
-          // ),
-                    // OfficeRecommendationWidget(
-                    //   img: imageKantor[index],
-                    //   statusKantor: search!.data[index].status,
-                    //   // statusKantor: search!.data[index].status,
-                    //   namaKantor: search.data[index].name,
-                    //   imgRating: iconImage[0],
-                    //   rating: rating[index],
-                    //   imgCoWorkingOffice: iconImage[1],
-                    //   office: office[index],
-                    //   imgLocation: iconImage[2],
-                    //   location: search.data[index].location,
-                    //   imgTime: iconImage[3],
-                    //   time:
-                    //       '${search.data[index].open} - ${search.data[index].close}',
-                    //   // price: search.data[index].price,
-                    //   price: 200000,
-                    // );
-                    
-              // return CircularProgressIndicator();
-              // if (snapshot.hasData) {
-              //   var search = snapshot.data;
-              //   return ListView.builder(
-              //     itemCount: search?.data.length,
-              //     itemBuilder: (context, index) {
-              //       return OfficeRecommendationWidget(
-              //         img: imageKantor[index],
-              //         statusKantor: search!.data[index].status,
-              //         // statusKantor: search!.data[index].status,
-              //         namaKantor: search.data[index].name,
-              //         imgRating: iconImage[0],
-              //         rating: rating[index],
-              //         imgCoWorkingOffice: iconImage[1],
-              //         office: office[index],
-              //         imgLocation: iconImage[2],
-              //         location: search.data[index].location,
-              //         imgTime: iconImage[3],
-              //         time:
-              //             '${search.data[index].open} - ${search.data[index].close}',
-              //         price: search.data[index].price,
-              //       );
-              //     },
-              //   );
-              // }
-
-                            // if (snapshot.error != null) {
-              //   print('ini eror : ${snapshot.error}');
-              //   return Text("${snapshot.error}");
-              // }
-              // if (snapshot.connectionState == ConnectionState.waiting) {
-              //   return const CircularProgressIndicator();
-              // }
