@@ -72,7 +72,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                       horizontal: VisualDensity.minimumDensity,
                       vertical: VisualDensity.minimumDensity,
                     ),
-                    // activeColor: PrimaryColor().onPrimaryFixedVariant,
+                    activeColor: PrimaryColor().onPrimaryFixedVariant,
                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     groupValue: provider.selectedValue,
                     onChanged: (value) {
@@ -193,7 +193,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                       horizontal: VisualDensity.minimumDensity,
                       vertical: VisualDensity.minimumDensity,
                     ),
-                    // activeColor: PrimaryColor().onPrimaryFixedVariant,
+                    activeColor: PrimaryColor().onPrimaryFixedVariant,
                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     groupValue: provider.selectedValue,
                     onChanged: (value) {

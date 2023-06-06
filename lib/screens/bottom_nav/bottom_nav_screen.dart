@@ -6,6 +6,7 @@ import 'package:flutter_capstone/screens/order/order_screen.dart';
 import 'package:flutter_capstone/screens/profile/profile_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter/services.dart';
 
 class BottomNavScreen extends StatefulWidget {
   const BottomNavScreen({super.key});
@@ -40,75 +41,104 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: null,
-      backgroundColor: Colors.white,
-      body: _children[currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        elevation: 0,
-        type: BottomNavigationBarType.fixed,
-        unselectedLabelStyle: GoogleFonts.roboto(
-          fontSize: 14,
-          fontWeight: FontWeight.w500,
-          color: const Color(0xFFC7C6CA),
+    return WillPopScope(
+      onWillPop: () async {
+        bool? exitApp = await showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: const Text('Keluar dari Aplikasi'),
+              content: const Text('Apakah Anda yakin ingin keluar?'),
+              actions: [
+                TextButton(
+                  child: Text('Tidak'),
+                  onPressed: () {
+                    Navigator.of(context).pop(false);
+                  },
+                ),
+                TextButton(
+                  child: Text('Ya'),
+                  onPressed: () {
+                    Navigator.of(context).pop(true);
+                    SystemNavigator.pop();
+                  },
+                ),
+              ],
+            );
+          },
+        );
+        return exitApp ?? false;
+      },
+      child: Scaffold(
+        appBar: null,
+        backgroundColor: Colors.white,
+        body: _children[currentIndex],
+        bottomNavigationBar: BottomNavigationBar(
+          elevation: 0,
+          type: BottomNavigationBarType.fixed,
+          unselectedLabelStyle: GoogleFonts.roboto(
+            fontSize: 14,
+            fontWeight: FontWeight.w500,
+            color: const Color(0xFFC7C6CA),
+          ),
+          selectedLabelStyle: GoogleFonts.roboto(
+            fontSize: 14,
+            fontWeight: FontWeight.w500,
+            color: const Color(0xFF0074E5),
+          ),
+          currentIndex: currentIndex,
+          onTap: onTabTapped,
+          items: [
+            BottomNavigationBarItem(
+              icon: Column(
+                children: [
+                  SvgPicture.asset(
+                    currentIndex == 0 ? svgAssets[1] : svgAssets[0],
+                    height: 24,
+                    width: 24,
+                    fit: BoxFit.contain,
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  )
+                ],
+              ),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Column(
+                children: [
+                  SvgPicture.asset(
+                    currentIndex == 1 ? svgAssets[3] : svgAssets[2],
+                    height: 24,
+                    width: 24,
+                    fit: BoxFit.contain,
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  )
+                ],
+              ),
+              label: "Order",
+            ),
+            BottomNavigationBarItem(
+              icon: Column(
+                children: [
+                  SvgPicture.asset(
+                    currentIndex == 2 ? svgAssets[5] : svgAssets[4],
+                    height: 24,
+                    width: 24,
+                    fit: BoxFit.contain,
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  )
+                ],
+              ),
+              label: "Profile",
+            ),
+          ],
         ),
-        selectedLabelStyle: GoogleFonts.roboto(
-          fontSize: 14,
-          fontWeight: FontWeight.w500,
-          color: const Color(0xFF0074E5),
-        ),
-        currentIndex: currentIndex,
-        onTap: onTabTapped,
-        items: [
-          BottomNavigationBarItem(
-            icon: Column(
-              children: [
-                SvgPicture.asset(
-                  currentIndex == 0 ? svgAssets[1] : svgAssets[0],
-                  height: 24,
-                  width: 24,
-                  fit: BoxFit.contain,
-                ),
-                const SizedBox(
-                  height: 5,
-                )
-              ],
-            ),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Column(
-              children: [
-                SvgPicture.asset(
-                  currentIndex == 1 ? svgAssets[3] : svgAssets[2],
-                  height: 24,
-                  width: 24,
-                  fit: BoxFit.contain,
-                ),
-                const SizedBox(
-                  height: 5,
-                )
-              ],
-            ),
-            label: "Order",
-          ),
-          BottomNavigationBarItem(
-            icon: Column(
-              children: [
-                SvgPicture.asset(
-                  currentIndex == 2 ? svgAssets[5] : svgAssets[4],
-                  height: 24,
-                  width: 24,
-                  fit: BoxFit.contain,
-                ),
-                const SizedBox(
-                  height: 5,
-                )
-              ],
-            ),
-            label: "Profile",
-          ),
-        ],
       ),
     );
   }

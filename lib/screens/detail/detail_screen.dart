@@ -23,30 +23,48 @@ class DetailScreen extends StatefulWidget {
 class _DetailScreenState extends State<DetailScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            // Image Swipe
-            //================================================================
-            const ImageDetail(),
-            // Container Detail
-            //================================================================
-            const DetailCard(),
-            // Container Fasilitas
-            //================================================================
-            const OfficeFalicities(),
-            // Container Deskripsi
-            //================================================================
-            const OfficeDescription(),
-            // Button Book
-            //================================================================
-            BottomBook(
-              function: null,
-              buttonRoute: widget.buttonRoute,
-              textButton: widget.textButton,
+    return WillPopScope(
+      onWillPop: () async {
+        if (widget.textButton == 'Pilih Metode Pembayaran') {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const DetailScreen(
+                buttonRoute: '/jadwal-booking',
+                textButton: 'Book',
+              ),
             ),
-          ],
+          );
+        } else if (widget.textButton == 'Book') {
+          Navigator.pushReplacementNamed(context, '/bottom-nav');
+        }
+        return true;
+      },
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              // Image Swipe
+              //================================================================
+              const ImageDetail(),
+              // Container Detail
+              //================================================================
+              const DetailCard(),
+              // Container Fasilitas
+              //================================================================
+              const OfficeFalicities(),
+              // Container Deskripsi
+              //================================================================
+              const OfficeDescription(),
+              // Button Book
+              //================================================================
+              BottomBook(
+                function: null,
+                buttonRoute: widget.buttonRoute,
+                textButton: widget.textButton,
+              ),
+            ],
+          ),
         ),
       ),
     );

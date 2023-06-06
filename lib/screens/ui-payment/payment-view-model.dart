@@ -72,14 +72,15 @@ class PaymentViewModel extends ChangeNotifier {
   }
 
   void startCountdown(BuildContext context) {
-    _timer = Timer.periodic(const Duration(days: 1), (timer) {
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (DateTime.now().isBefore(_timerOffice)) {
         notifyListeners();
       } else {
         stopCountdown();
-        Navigator.push(
+        Navigator.pushReplacement(
           context,
           MaterialPageRoute(
+            // builder: (context) => const TransactionFailedScreen(),
             builder: (context) => const TransactionFailedScreen(),
           ),
         );

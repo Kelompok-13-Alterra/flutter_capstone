@@ -23,7 +23,15 @@ class _HomeWidgetState extends State<HomeWidget> {
               final data = office.listOffice[index];
               return GestureDetector(
                 onTap: () {
-                  Navigator.of(context).pushNamed('/detail');
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const DetailScreen(
+                        buttonRoute: '/jadwal-booking',
+                        textButton: 'Book',
+                      ),
+                    ),
+                  );
                 },
                 child: Container(
                   width: double.infinity,

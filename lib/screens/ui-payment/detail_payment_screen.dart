@@ -16,7 +16,7 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    paymentViewModel = Provider.of<PaymentViewModel>(context);
+    paymentViewModel = Provider.of<PaymentViewModel>(context, listen: false);
     paymentViewModel.startCountdown(context);
   }
 
