@@ -7,14 +7,56 @@ import 'package:flutter_capstone/screens/ui-payment/transaction_failed_screen.da
 class PaymentViewModel extends ChangeNotifier {
   //Detail Payment
   //===========================================================================
-  final BuildContext context;
-  PaymentViewModel(this.context);
+  bool isVirtualVisible = true;
+  bool isBankVisible = false;
+  bool isEWalletVisible = false;
+  bool isTotalPembayaranVisible = false;
+  String selectedValue = 'Virtual Account BNI';
+
+  void setSelectedValue(String value) {
+    selectedValue = value;
+    notifyListeners();
+  }
+
+  void toggleVirtualVisible() {
+    isVirtualVisible = !isVirtualVisible;
+    isBankVisible = false;
+    isEWalletVisible = false;
+    isTotalPembayaranVisible = false;
+    notifyListeners();
+  }
+
+  void toggleBankVisible() {
+    isVirtualVisible = false;
+    isBankVisible = !isBankVisible;
+    isEWalletVisible = false;
+    isTotalPembayaranVisible = false;
+    notifyListeners();
+  }
+
+  void toggleEWalletVisible() {
+    isVirtualVisible = false;
+    isBankVisible = false;
+    isEWalletVisible = !isEWalletVisible;
+    isTotalPembayaranVisible = false;
+    notifyListeners();
+  }
+
+  void toggleTotalPembayaranVisible() {
+    isVirtualVisible = false;
+    isBankVisible = false;
+    isEWalletVisible = false;
+    isTotalPembayaranVisible = !isTotalPembayaranVisible;
+    notifyListeners();
+  }
+
+  //Detail Payment
+  //===========================================================================
   Timer? _timer;
-  final DateTime _targetTime = DateTime.now().add(const Duration(days: 1));
+  final DateTime _timerOffice = DateTime.now().add(const Duration(seconds: 1));
   final String rekening = '1234567890';
   final String jumlahTransfer = 'IDR 23.099';
   bool isDetailTransaksi = true;
-  late String countDownPembayaran;
 
   void copyRekening(BuildContext context) {
     Clipboard.setData(ClipboardData(text: rekening));
@@ -30,9 +72,8 @@ class PaymentViewModel extends ChangeNotifier {
   }
 
   void startCountdown(BuildContext context) {
-    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      if (DateTime.now().isBefore(_targetTime)) {
-        countDownPembayaran = getTimeRemaining();
+    _timer = Timer.periodic(const Duration(days: 1), (timer) {
+      if (DateTime.now().isBefore(_timerOffice)) {
         notifyListeners();
       } else {
         stopCountdown();
@@ -51,7 +92,7 @@ class PaymentViewModel extends ChangeNotifier {
   }
 
   String getTimeRemaining() {
-    Duration remaining = _targetTime.difference(DateTime.now());
+    Duration remaining = _timerOffice.difference(DateTime.now());
     int hours = remaining.inHours;
     int minutes = remaining.inMinutes % 60;
     int seconds = remaining.inSeconds % 60;

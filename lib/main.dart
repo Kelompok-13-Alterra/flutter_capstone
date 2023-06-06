@@ -42,7 +42,7 @@ void main() {
           create: (context) => SignupViewModel(),
         ),
         ListenableProvider(
-          create: (context) => PaymentViewModel(context),
+          create: (context) => PaymentViewModel(),
         ),
       ],
       child: const MyApp(),

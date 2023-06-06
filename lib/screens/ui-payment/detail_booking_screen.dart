@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class DetailBookingScreen extends StatefulWidget {
-  const DetailBookingScreen({super.key});
+class SuccessBookingScreen extends StatefulWidget {
+  const SuccessBookingScreen({super.key});
 
   @override
-  State<DetailBookingScreen> createState() => _DetailBookingScreenState();
+  State<SuccessBookingScreen> createState() => _SuccessBookingScreenState();
 }
 
-class _DetailBookingScreenState extends State<DetailBookingScreen> {
+class _SuccessBookingScreenState extends State<SuccessBookingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
