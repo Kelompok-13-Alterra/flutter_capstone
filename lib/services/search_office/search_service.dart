@@ -1,0 +1,27 @@
+// ignore_for_file: avoid_print
+
+import 'package:dio/dio.dart';
+import 'package:flutter_capstone/core/init/const/api.dart';
+import 'package:flutter_capstone/core/init/utils/shared_preferences.dart';
+import 'package:flutter_capstone/model/search_office/search_model.dart';
+
+class SearchService {
+  // Get list office
+  Future<SearchModel> getSearch(String searchLocation) async {
+    var headers = {
+      'accept': 'application/json',
+      'Authorization': 'Bearer $getToken()'
+    };
+    try {
+      final response = await Dio().get(
+        '$baseUrl/api/v1/office?location=$searchLocation',
+        options: Options(headers: headers),
+      );
+      print(response.data);
+      return SearchModel.fromJson(response.data);
+    } on DioError catch (e) {
+      print(e);
+      throw Exception('Failed get list of office $e');
+    }
+  }
+}
