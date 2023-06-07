@@ -88,8 +88,8 @@ class _SearchScreenState extends State<SearchScreen> {
                   fontSize: 16,
                   fontWeight: regular,
                 ),
-                prefixIcon: const Padding(
-                  padding: EdgeInsets.symmetric(
+                prefixIcon: Padding(
+                  padding: const EdgeInsets.symmetric(
                     vertical: 22,
                     horizontal: 19,
                   ),
