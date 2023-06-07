@@ -230,6 +230,7 @@ class _BackgroundWidgetState extends State<BackgroundWidget> {
                           ),
                           GestureDetector(
                             onTap: () {
+                              Navigator.pushNamed(context, '/search');
                               //OnTab di Search
                             },
                             child: Container(

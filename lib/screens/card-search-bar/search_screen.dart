@@ -1,9 +1,6 @@
 // ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
-
-//import 'package:flutter_capstone/errors/location_not_found.dart';
-import 'package:flutter_capstone/model/search_office/search_model.dart';
 import 'package:flutter_capstone/screens/card-search-bar/office_recommendation_widget.dart';
 import 'package:flutter_capstone/screens/card-search-bar/empty_search.dart';
 import 'package:flutter_capstone/screens/card-search-bar/search_office_view_model.dart';
@@ -61,6 +58,7 @@ class _SearchScreenState extends State<SearchScreen> {
     SearchOfficeViewModel searchOfficeProvider =
         Provider.of<SearchOfficeViewModel>(context);
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: SourceColor().white,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -90,12 +88,17 @@ class _SearchScreenState extends State<SearchScreen> {
                   fontSize: 16,
                   fontWeight: regular,
                 ),
-                prefixIcon: const Padding(
-                  padding: EdgeInsets.symmetric(
+                prefixIcon: Padding(
+                  padding: const EdgeInsets.symmetric(
                     vertical: 22,
                     horizontal: 19,
                   ),
-                  child: Icon(Icons.arrow_back),
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: const Icon(Icons.arrow_back),
+                  ),
                 ),
                 suffixIcon: Padding(
                   padding: const EdgeInsets.only(
@@ -166,27 +169,29 @@ class _SearchScreenState extends State<SearchScreen> {
                                     ],
                                   ),
                                 ),
-                                ListView.builder(
-                                  shrinkWrap: true,
-                                  scrollDirection: Axis.vertical,
-                                  itemCount: search?.data.length,
-                                  itemBuilder: (context, index) {
-                                    var data = snapshot.data?.data[index];
-                                    return OfficeRecommendationWidget(
-                                      img: imageKantor[index],
-                                      statusKantor: statusKantor[index],
-                                      namaKantor: data?.name ?? "",
-                                      imgRating: iconImage[0],
-                                      rating: rating[index],
-                                      imgCoWorkingOffice: iconImage[1],
-                                      office: data?.type ?? "",
-                                      imgLocation: iconImage[2],
-                                      location: data?.location ?? "",
-                                      imgTime: iconImage[3],
-                                      time: '${data?.open} - ${data?.close}',
-                                      price: data?.price ?? 0,
-                                    );
-                                  },
+                                Expanded(
+                                  child: ListView.builder(
+                                    shrinkWrap: true,
+                                    scrollDirection: Axis.vertical,
+                                    itemCount: search?.data.length,
+                                    itemBuilder: (context, index) {
+                                      var data = snapshot.data?.data[index];
+                                      return OfficeRecommendationWidget(
+                                        img: imageKantor[index],
+                                        statusKantor: statusKantor[index],
+                                        namaKantor: data?.name ?? "",
+                                        imgRating: iconImage[0],
+                                        rating: rating[index],
+                                        imgCoWorkingOffice: iconImage[1],
+                                        office: data?.type ?? "",
+                                        imgLocation: iconImage[2],
+                                        location: data?.location ?? "",
+                                        imgTime: iconImage[3],
+                                        time: '${data?.open} - ${data?.close}',
+                                        price: data?.price ?? 0,
+                                      );
+                                    },
+                                  ),
                                 ),
                               ],
                             ),

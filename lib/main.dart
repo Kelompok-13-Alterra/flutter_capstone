@@ -69,6 +69,7 @@ class MyApp extends StatelessWidget {
         '/card-search-bar': (context) => const SearchScreen(),
         '/booking': (context) => const BookingScheduleScreen(),
         '/edit-profile': (context) => const EditProfileScreen(),
+        '/search': (context) => const SearchScreen(),
         '/page-not-found-screen': (context) => const PageNotFoundScreen(),
         '/location-not-found-screen': (context) =>
             const LocationNotFoundScreen(),

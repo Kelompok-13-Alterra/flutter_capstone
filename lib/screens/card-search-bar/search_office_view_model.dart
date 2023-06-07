@@ -4,7 +4,7 @@ import 'package:flutter_capstone/model/search_office/search_model.dart';
 class SearchOfficeViewModel with ChangeNotifier {
   final TextEditingController _searchBarController = TextEditingController();
   TextEditingController get searchBarController => _searchBarController;
-  String _searchName = "";
+  final String _searchName = "";
   String get searchName => _searchName;
   Datum? model;
 
