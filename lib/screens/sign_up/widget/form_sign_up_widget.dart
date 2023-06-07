@@ -20,19 +20,19 @@ class FormSignup extends StatefulWidget {
 
 class _FormSignupState extends State<FormSignup> {
   final formKey = GlobalKey<FormState>();
-@override
+  @override
   void initState() {
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-   SignupViewModel signupViewModel = Provider.of<SignupViewModel>(context);
+    SignupViewModel signupViewModel = Provider.of<SignupViewModel>(context);
 
     bool getObsecureText = signupViewModel.getObsecureText;
 
     return Form(
-      key: formKey,
+        key: formKey,
         autovalidateMode: AutovalidateMode.onUserInteraction,
         child: Column(
           children: [
@@ -102,14 +102,15 @@ class _FormSignupState extends State<FormSignup> {
                   fontWeight: FontWeight.w400,
                   fontSize: 16,
                 ),
-               suffixIcon: IconButton(
-                icon: Icon(
-                  getObsecureText ? Icons.visibility_off : Icons.visibility,
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    getObsecureText ? Icons.visibility_off : Icons.visibility,
+                  ),
+                  onPressed: () {
+                    signupViewModel
+                        .setTogglePasswordVisibility(!getObsecureText);
+                  },
                 ),
-                onPressed: () {
-                  signupViewModel.setTogglePasswordVisibility(!getObsecureText);
-                },
-              ),
                 hintText: 'Input Password',
                 floatingLabelBehavior: FloatingLabelBehavior.always,
                 border: const OutlineInputBorder(),
@@ -123,6 +124,8 @@ class _FormSignupState extends State<FormSignup> {
               validator: (value) {
                 if (value != null && value.length < 5) {
                   return 'Enter min. 5 characters';
+                } else if (value != signupViewModel.getPassword) {
+                  return 'Password didn\'t match';
                 } else {
                   return null; //form is valid
                 }
@@ -133,14 +136,15 @@ class _FormSignupState extends State<FormSignup> {
                   fontWeight: FontWeight.w400,
                   fontSize: 16,
                 ),
-               suffixIcon: IconButton(
-                icon: Icon(
-                  getObsecureText ? Icons.visibility_off : Icons.visibility,
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    getObsecureText ? Icons.visibility_off : Icons.visibility,
+                  ),
+                  onPressed: () {
+                    signupViewModel
+                        .setTogglePasswordVisibility(!getObsecureText);
+                  },
                 ),
-                onPressed: () {
-                  signupViewModel.setTogglePasswordVisibility(!getObsecureText);
-                },
-              ),
                 hintText: 'Input Password Again',
                 floatingLabelBehavior: FloatingLabelBehavior.always,
                 border: const OutlineInputBorder(),
@@ -154,13 +158,12 @@ class _FormSignupState extends State<FormSignup> {
               children: <Widget>[
                 SizedBox(
                   width: 24,
-                child: Checkbox(
-                    value: signupViewModel.getChecked,
-                    onChanged: (bool? val) {
-                      signupViewModel.setChecked = val!;
-                    }),
-                  ),
-
+                  child: Checkbox(
+                      value: signupViewModel.getChecked,
+                      onChanged: (bool? val) {
+                        signupViewModel.setChecked = val!;
+                      }),
+                ),
                 const SizedBox(
                   width: 7,
                 ),
@@ -193,30 +196,29 @@ class _FormSignupState extends State<FormSignup> {
                       ),
                     ),
                   ),
-                      onPressed: () async {
-                  var res = await  SignupService().postSignup(
-                    email: signupViewModel.getEmail.text,
+                  onPressed: () async {
+                    var res = await SignupService().postSignup(
+                      email: signupViewModel.getEmail.text,
+                      password: signupViewModel.getPassword.text,
+                      username: signupViewModel.getPassword.text,
+                      id: '',
+                    );
+                    if (res['meta']['is_error'] == false) {
+                      String accessToken = res['data']['token'];
 
-                    password: signupViewModel.getPassword.text,
-                    username: signupViewModel.getPassword.text,
-                    id: '',
-                  );
-                  if (res['meta']['is_error'] == false) {
-                    String accessToken = res['data']['token'];
+                      saveToken(valueToken: accessToken);
 
-                    saveToken(valueToken: accessToken);
-
+                      // ignore: use_build_context_synchronously
+                      Navigator.pushNamedAndRemoveUntil(
+                          context, '/bottom-nav', (route) => false);
+                    }
                     // ignore: use_build_context_synchronously
-                    Navigator.pushNamedAndRemoveUntil(
-                        context, '/bottom-nav', (route) => false);
-                  }
-                  // ignore: use_build_context_synchronously
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      content: Text(
-                    '${res['meta']['message']}',
-                    style: setTextStyle(SourceColor().white),
-                  )));
-                },
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text(
+                      '${res['meta']['message']}',
+                      style: setTextStyle(SourceColor().white),
+                    )));
+                  },
                   child: Text(
                     'Sign Up',
                     style: GoogleFonts.roboto(),
