@@ -7,8 +7,11 @@ void main() {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider<SearchOfficeViewModel>(
-          create: (_) => SearchOfficeViewModel(),
+        // ChangeNotifierProvider<SearchOfficeViewModel>(
+        //   create: (_) => SearchOfficeViewModel(),
+        // ),
+        ListenableProvider(
+          create: (context) => SearchOfficeViewModel(),
         ),
       ],
       child: const MyApp(),
@@ -28,7 +31,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const SearchScreen(),
+      home: SearchScreen(),
+      //const SearchScreen(),
     );
   }
 }
