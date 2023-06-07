@@ -12,8 +12,8 @@ saveToken({
 
 Future<String> getToken() async {
   final SharedPreferences prefs = await SharedPreferences.getInstance();
-  final dataToken = prefs.getString(token);
-  return dataToken ?? "";
+  final dataToken = prefs.getString(token).toString();
+  return dataToken;
 }
 
 void removeToken() async {

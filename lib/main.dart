@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/screens/booking/booking_screen.dart';
 import 'package:flutter_capstone/screens/bottom_nav/bottom_nav_screen.dart';
-import 'package:flutter_capstone/screens/card-search-bar/office_card_widget.dart';
+import 'package:flutter_capstone/screens/card-search-bar/search_office_view_model.dart';
+import 'package:flutter_capstone/screens/card-search-bar/search_screen.dart';
 import 'package:flutter_capstone/screens/edit_profile/edit_profile_screen.dart';
 import 'package:flutter_capstone/screens/errors/connection_error.dart';
 import 'package:flutter_capstone/screens/errors/location_not_found.dart';
@@ -19,9 +20,6 @@ import 'package:flutter_capstone/screens/sign_up/sign_up_screen.dart';
 import 'package:flutter_capstone/screens/detail/detail_screen.dart';
 import 'package:flutter_capstone/screens/splash/boarding_screen.dart';
 import 'package:flutter_capstone/screens/splash/splash_screen.dart';
-import 'package:flutter_capstone/screens/errors/connection_error.dart';
-import 'package:flutter_capstone/screens/errors/location_not_found.dart';
-import 'package:flutter_capstone/screens/errors/page_not_found.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -33,6 +31,9 @@ void main() {
         ),
         ListenableProvider(
           create: (context) => HomeViewModel(),
+        ),
+        ListenableProvider(
+          create: (context) => SearchOfficeViewModel(),
         ),
       ],
       child: const MyApp(),
@@ -53,7 +54,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => SplashScreen(),
+        '/': (context) => const SplashScreen(),
         '/login': (context) => const LoginScreen(),
         '/sign-up': (context) => const SignUpScreen(),
         '/boarding': (context) => const BoardingScreen(),
@@ -65,7 +66,7 @@ class MyApp extends StatelessWidget {
         '/image-picker': (context) => const ImagePickerRatingScreen(),
         '/detail': (context) => const DetailScreen(),
         '/detail-schedule': (context) => const DetailScheduleScreen(),
-        '/card-search-bar': (context) => const OfficeCardWidget(),
+        '/card-search-bar': (context) => const SearchScreen(),
         '/booking': (context) => const BookingScheduleScreen(),
         '/edit-profile': (context) => const EditProfileScreen(),
         '/page-not-found-screen': (context) => const PageNotFoundScreen(),

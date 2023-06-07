@@ -2,9 +2,10 @@
 
 import 'package:flutter/material.dart';
 
-
+//import 'package:flutter_capstone/errors/location_not_found.dart';
 import 'package:flutter_capstone/model/search_office/search_model.dart';
 import 'package:flutter_capstone/screens/card-search-bar/office_recommendation_widget.dart';
+import 'package:flutter_capstone/screens/card-search-bar/empty_search.dart';
 import 'package:flutter_capstone/screens/card-search-bar/search_office_view_model.dart';
 import 'package:flutter_capstone/screens/errors/location_not_found.dart';
 import 'package:flutter_capstone/services/search_office/search_service.dart';
@@ -55,10 +56,6 @@ class _SearchScreenState extends State<SearchScreen> {
     4.8,
   ];
 
-  SearchModel? searchModel;
-
-  // var searchName = "";
-
   @override
   Widget build(BuildContext context) {
     SearchOfficeViewModel searchOfficeProvider =
@@ -79,13 +76,6 @@ class _SearchScreenState extends State<SearchScreen> {
               onChanged: (value) {
                 searchOfficeProvider.onChange(value);
               },
-              // onChanged: (value) {
-              //   if (value.length >= 3) {
-              //     setState(() {
-              //       searchName = value;
-              //     });
-              //   }
-              // },
               controller: searchOfficeProvider.searchBarController,
               decoration: InputDecoration(
                 filled: true,
@@ -100,16 +90,12 @@ class _SearchScreenState extends State<SearchScreen> {
                   fontSize: 16,
                   fontWeight: regular,
                 ),
-                prefixIcon: Padding(
-                  padding: const EdgeInsets.symmetric(
+                prefixIcon: const Padding(
+                  padding: EdgeInsets.symmetric(
                     vertical: 22,
                     horizontal: 19,
                   ),
-                  child: Image.asset(
-                    "assets/image/icon.png",
-                    width: 18,
-                    height: 12,
-                  ),
+                  child: Icon(Icons.arrow_back),
                 ),
                 suffixIcon: Padding(
                   padding: const EdgeInsets.only(
@@ -145,77 +131,79 @@ class _SearchScreenState extends State<SearchScreen> {
             ),
           ),
           FutureBuilder(
-            future: SearchService().getSearch(searchOfficeProvider.searchName),
+            future: SearchService().getSearch(searchOfficeProvider.searchQuery),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 var search = snapshot.data;
                 print('ini eror ${snapshot.error}');
-                return
-                    //snapshot.data == null
-                    // snapshot.data!.data.isEmpty
-                    //     ? const LocationNotFoundScreen()
-                    //     :
-                    Expanded(
-                  child: snapshot.data!.data.isEmpty
-                      ? const LocationNotFoundScreen()
-                      : Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  top: 16, bottom: 13.63, left: 16),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Kantor yang cocok untuk kamu",
-                                    style: setTextStyle(BlackColor().black)
-                                        .copyWith(
-                                      fontSize: 16,
-                                      fontWeight: regular,
-                                    ),
+                return Expanded(
+                  child: searchOfficeProvider.searchQuery == '' &&
+                          searchOfficeProvider.isSearch == false
+                      ? const EmptySearch()
+                      : snapshot.data!.data.isEmpty &&
+                              searchOfficeProvider.isSearch == true
+                          ? const LocationNotFoundScreen()
+                          : Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      top: 16, bottom: 13.63, left: 16),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Kantor yang cocok untuk kamu",
+                                        style: setTextStyle(BlackColor().black)
+                                            .copyWith(
+                                          fontSize: 16,
+                                          fontWeight: regular,
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
+                                ),
+                                ListView.builder(
+                                  shrinkWrap: true,
+                                  scrollDirection: Axis.vertical,
+                                  itemCount: search?.data.length,
+                                  itemBuilder: (context, index) {
+                                    var data = snapshot.data?.data[index];
+                                    return OfficeRecommendationWidget(
+                                      img: imageKantor[index],
+                                      statusKantor: statusKantor[index],
+                                      namaKantor: data?.name ?? "",
+                                      imgRating: iconImage[0],
+                                      rating: rating[index],
+                                      imgCoWorkingOffice: iconImage[1],
+                                      office: data?.type ?? "",
+                                      imgLocation: iconImage[2],
+                                      location: data?.location ?? "",
+                                      imgTime: iconImage[3],
+                                      time: '${data?.open} - ${data?.close}',
+                                      price: data?.price ?? 0,
+                                    );
+                                  },
+                                ),
+                              ],
                             ),
-                            ListView.builder(
-                              shrinkWrap: true,
-                              scrollDirection: Axis.vertical,
-                              itemCount: search?.data.length,
-                              itemBuilder: (context, index) {
-                                var data = snapshot.data?.data[index];
-                                return OfficeRecommendationWidget(
-                                  img: imageKantor[index],
-                                  statusKantor: statusKantor[index],
-                                  namaKantor: data?.name ?? "",
-                                  imgRating: iconImage[0],
-                                  rating: rating[index],
-                                  imgCoWorkingOffice: iconImage[1],
-                                  office: data?.type ?? "",
-                                  imgLocation: iconImage[2],
-                                  location: data?.location ?? "",
-                                  imgTime: iconImage[3],
-                                  time: '${data?.open} - ${data?.close}',
-                                  price: data?.price ?? 0,
-                                );
-                              },
-                            ),
-                          ],
-                        ),
                 );
               } else {
-                return Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: const [
-                      CircularProgressIndicator(),
-                    ],
+                return Padding(
+                  padding: const EdgeInsets.only(top: 15),
+                  child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: const [
+                        CircularProgressIndicator(),
+                      ],
+                    ),
                   ),
                 );
-                // LocationNotFoundScreen();
               }
             },
           ),
