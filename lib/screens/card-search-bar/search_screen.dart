@@ -1,8 +1,8 @@
 // ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/screens/card-search-bar/office_recommendation_widget.dart';
 import 'package:flutter_capstone/screens/card-search-bar/empty_search.dart';
+import 'package:flutter_capstone/screens/card-search-bar/office_recommendation_widget.dart';
 import 'package:flutter_capstone/screens/card-search-bar/search_office_view_model.dart';
 import 'package:flutter_capstone/screens/errors/location_not_found.dart';
 import 'package:flutter_capstone/services/search_office/search_service.dart';
