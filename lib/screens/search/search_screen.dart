@@ -1,12 +1,11 @@
 // ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/screens/card-search-bar/empty_search.dart';
-import 'package:flutter_capstone/screens/card-search-bar/office_recommendation_widget.dart';
-import 'package:flutter_capstone/screens/card-search-bar/search_office_view_model.dart';
+import 'package:flutter_capstone/screens/search/search_office_view_model.dart';
 import 'package:flutter_capstone/screens/errors/location_not_found.dart';
+import 'package:flutter_capstone/screens/search/widget/empty_search.dart';
+import 'package:flutter_capstone/screens/search/widget/office_recommendation_widget.dart';
 import 'package:flutter_capstone/services/search_office/search_service.dart';
-
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:provider/provider.dart';
 
@@ -138,7 +137,6 @@ class _SearchScreenState extends State<SearchScreen> {
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 var search = snapshot.data;
-                print('ini eror ${snapshot.error}');
                 return Expanded(
                   child: searchOfficeProvider.searchQuery == '' &&
                           searchOfficeProvider.isSearch == false
@@ -176,20 +174,27 @@ class _SearchScreenState extends State<SearchScreen> {
                                     itemCount: search?.data.length,
                                     itemBuilder: (context, index) {
                                       var data = snapshot.data?.data[index];
-                                      return OfficeRecommendationWidget(
-                                        img: imageKantor[index],
-                                        statusKantor: statusKantor[index],
-                                        namaKantor: data?.name ?? "",
-                                        imgRating: iconImage[0],
-                                        rating: rating[index],
-                                        imgCoWorkingOffice: iconImage[1],
-                                        office: data?.type ?? "",
-                                        imgLocation: iconImage[2],
-                                        location: data?.location ?? "",
-                                        imgTime: iconImage[3],
-                                        time: '${data?.open} - ${data?.close}',
-                                        price: data?.price ?? 0,
-                                      );
+                                      //This means that you can't specify the exact amount of items because ListView works with Infinity lists
+
+                                      if (index <= search!.data.length) {
+                                        return OfficeRecommendationWidget(
+                                          img: imageKantor[index],
+                                          statusKantor: statusKantor[index],
+                                          namaKantor: data?.name ?? '',
+                                          imgRating: iconImage[0],
+                                          rating: rating[index],
+                                          imgCoWorkingOffice: iconImage[1],
+                                          office: data?.type ?? "",
+                                          imgLocation: iconImage[2],
+                                          location: data?.location ?? "",
+                                          imgTime: iconImage[3],
+                                          time:
+                                              '${data?.open} - ${data?.close}',
+                                          price: data?.price ?? 0,
+                                        );
+                                      } else {
+                                        return Container();
+                                      }
                                     },
                                   ),
                                 ),

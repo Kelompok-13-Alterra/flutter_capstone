@@ -196,9 +196,8 @@ Widget profilesWidget(BuildContext context) {
                 height: 16,
               ),
               GestureDetector(
-                onTap: () async {
+                onTap: () {
                   removeToken();
-
                   // ignore: use_build_context_synchronously
                   Navigator.pushNamedAndRemoveUntil(
                       context, '/login', (route) => false);

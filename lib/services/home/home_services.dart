@@ -2,15 +2,14 @@
 
 import 'package:dio/dio.dart';
 import 'package:flutter_capstone/core/init/const/api.dart';
+import 'package:flutter_capstone/core/init/utils/shared_preferences.dart';
 import 'package:flutter_capstone/model/home/home_model.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeService {
   final Dio _dio = Dio();
 
   Future<List<Office>> fetchHomeData() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    String token = prefs.getString('token').toString();
+    String token = await getToken();
     try {
       final response = await _dio.get('$baseUrl/api/v1/office',
           options: Options(headers: {

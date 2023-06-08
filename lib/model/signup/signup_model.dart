@@ -1,37 +1,34 @@
 import 'dart:convert';
 
-SignupModel signupModelfromJson(String str)=>
-  signupModelfromJson(json.decode(str));
+SignupModel signupModelfromJson(String str) =>
+    signupModelfromJson(json.decode(str));
 
-  String signupModelToJson(SignupModel data)=>json.encode(data.toJson());
+String signupModelToJson(SignupModel data) => json.encode(data.toJson());
 
-class SignupModel{
+class SignupModel {
   String email;
   String username;
   String password;
-
 
   SignupModel({
     required this.email,
     required this.username,
     required this.password,
-
   });
-  factory SignupModel.fromJson(Map<String, dynamic> json)=>SignupModel(
-    email: json["email"].toString(),
-    username: json["username"].toString(),
-    password: json["password"].toString(),
-    );
+  factory SignupModel.fromJson(Map<String, dynamic> json) => SignupModel(
+        email: json["email"].toString(),
+        username: json["username"].toString(),
+        password: json["password"].toString(),
+      );
 
-    Map<String, dynamic> toJson()=>{
-      "email": email,
-      "name": username,
-      "password": password,
-
-    };
-
+  Map<String, dynamic> toJson() => {
+        "email": email,
+        "name": username,
+        "password": password,
+      };
 }
-class Register{
+
+class Register {
   int id;
   String createdat;
   String updatedat;
@@ -57,38 +54,32 @@ class Register{
     required this.name,
     required this.role,
   });
-factory Register.fromJson(Map<String, dynamic> json) => Register(
-  id:json['ID'] ?? 32,
-  createdat: json['CreatedAt'] ?? DateTime.now(),
-  updatedat: json['UpdatedAt']?? DateTime.now(),
-  deletedat: json['DeletedAt']?? null,
-  company:json['company'] ?? 'null',
-  dateBirth: json['dateBirth']?? 'null',
-  email :json['email']?? String,
-  gender: json['gender']?? 'null',
-  isVerify : json['isVerify']?? false,
-  name : json['name']?? String,
-  role : json['role']?? 0,
-);
+  factory Register.fromJson(Map<String, dynamic> json) => Register(
+        id: json['ID'],
+        createdat: json['CreatedAt'] ?? DateTime.now(),
+        updatedat: json['UpdatedAt'] ?? '',
+        deletedat: json['DeletedAt'] ?? '',
+        company: json['company'] ?? '',
+        dateBirth: json['dateBirth'] ?? '',
+        email: json['email'] ?? '',
+        gender: json['gender'] ?? '',
+        isVerify: json['isVerify'] ?? false,
+        name: json['name'] ?? '',
+        role: json['role'] ?? 0,
+      );
 
-
-
- Map<String, dynamic> toJson() => {
-  "updatedat":updatedat,
-  "createdat" : createdat,
-  "deletedat":deletedat,
-  "company": company,
-    "dateBirth": dateBirth,
-    "email": email,
-    "gender": gender,
-    "isVerify": isVerify,
-    "name": name,
-    "role": role
-};
-
-
-
-
+  Map<String, dynamic> toJson() => {
+        "updatedat": updatedat,
+        "createdat": createdat,
+        "deletedat": deletedat,
+        "company": company,
+        "dateBirth": dateBirth,
+        "email": email,
+        "gender": gender,
+        "isVerify": isVerify,
+        "name": name,
+        "role": role
+      };
 }
 
 class Meta {
@@ -114,7 +105,3 @@ class Meta {
         "message": message,
       };
 }
-
-
-
-

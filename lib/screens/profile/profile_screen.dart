@@ -12,7 +12,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  var res = LoginService().getDataUser();
+  // var res = LoginService().getDataUser();
 
   @override
   Widget build(BuildContext context) {
