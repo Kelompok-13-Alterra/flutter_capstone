@@ -18,7 +18,6 @@ import 'package:flutter_capstone/screens/rating/image_picker_rating_screen.dart'
 import 'package:flutter_capstone/screens/review/review_screen.dart';
 import 'package:flutter_capstone/screens/sign_up/sign_up_screen.dart';
 import 'package:flutter_capstone/screens/detail/detail_screen.dart';
-import 'package:flutter_capstone/screens/sign_up/signup_view_model.dart';
 import 'package:flutter_capstone/screens/splash/boarding_screen.dart';
 import 'package:flutter_capstone/screens/splash/splash_screen.dart';
 import 'package:provider/provider.dart';
@@ -29,9 +28,6 @@ void main() {
       providers: [
         ListenableProvider(
           create: (context) => LoginViewModel(),
-        ),
-        ListenableProvider(
-          create: (context) => SignupViewModel(),
         ),
         ListenableProvider(
           create: (context) => HomeViewModel(),

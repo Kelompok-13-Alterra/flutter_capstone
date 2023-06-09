@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/core/init/utils/shared_preferences.dart';
-import 'package:flutter_capstone/screens/login/login_screen.dart';
 import 'package:flutter_capstone/screens/login/widget/text_or_widget.dart';
+import 'package:flutter_capstone/screens/sign_up/signup_view_model.dart';
 import 'package:flutter_capstone/style/text_style.dart';
-import 'package:flutter_capstone/screens/sign_up/sign_up_screen.dart';
-import 'package:flutter_capstone/services/signup/signup_service.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:provider/provider.dart';
-import '../signup_view_model.dart';
 
 class FormSignup extends StatefulWidget {
   const FormSignup({super.key});
@@ -20,6 +16,47 @@ class FormSignup extends StatefulWidget {
 
 class _FormSignupState extends State<FormSignup> {
   final formKey = GlobalKey<FormState>();
+
+  final _nameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
+  bool isChecked = false;
+
+  late bool newUser;
+
+  bool _obscureText = true;
+
+  void _togglePasswordVisibility() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
+  }
+
+  void _submitSignup() {
+    // Navigator.pushNamed(context, '/home');
+    if (formKey.currentState!.validate()) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Selamat ${_nameController.text} berhasil login'),
+        ),
+      );
+    }
+  }
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +71,7 @@ class _FormSignupState extends State<FormSignup> {
           children: [
             //form name
             TextFormField(
-              controller: signupViewModel.getUsername,
+              controller: _nameController,
               validator: (value) {
                 if (value != null && value.length < 5) {
                   return 'Enter min. 4 characters';
@@ -49,7 +86,8 @@ class _FormSignupState extends State<FormSignup> {
                 ),
                 hintText: 'Input Full Name',
                 floatingLabelBehavior: FloatingLabelBehavior.always,
-                border: const OutlineInputBorder(),
+                border: OutlineInputBorder(
+                    borderSide: BorderSide(color: PrimaryColor().primary)),
               ),
             ),
             const SizedBox(height: 20.0),
@@ -58,7 +96,7 @@ class _FormSignupState extends State<FormSignup> {
             // Input Email
             //========================================================
             TextFormField(
-              controller: signupViewModel.getEmail,
+              controller: _emailController,
               validator: (email) {
                 // 5 install package email_validator
                 if (email != null && !EmailValidator.validate(email)) {
@@ -98,12 +136,9 @@ class _FormSignupState extends State<FormSignup> {
                 ),
                 suffixIcon: IconButton(
                   icon: Icon(
-                    getObsecureText ? Icons.visibility_off : Icons.visibility,
+                    _obscureText ? Icons.visibility_off : Icons.visibility,
                   ),
-                  onPressed: () {
-                    signupViewModel
-                        .setTogglePasswordVisibility(!getObsecureText);
-                  },
+                  onPressed: _togglePasswordVisibility,
                 ),
                 hintText: 'Input Password',
                 floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -154,10 +189,13 @@ class _FormSignupState extends State<FormSignup> {
                 SizedBox(
                   width: 24,
                   child: Checkbox(
-                      value: signupViewModel.getChecked,
-                      onChanged: (bool? val) {
-                        signupViewModel.setChecked = val!;
-                      }),
+                    value: isChecked,
+                    onChanged: (value) {
+                      setState(() {
+                        isChecked = value!;
+                      });
+                    },
+                  ),
                 ),
                 const SizedBox(
                   width: 7,
