@@ -30,6 +30,15 @@ class _FormLoginState extends State<FormLogin> {
 
     bool getObsecureText = loginViewModel.getObsecureText;
 
+    @override
+    void dispose() {
+      // TODO: implement dispose
+
+      super.dispose();
+      loginViewModel.getEmail;
+      loginViewModel.getPassword;
+    }
+
     return Form(
       key: formKey,
       autovalidateMode: AutovalidateMode.onUserInteraction,

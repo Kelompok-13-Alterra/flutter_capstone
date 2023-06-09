@@ -1,12 +1,11 @@
 // ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/screens/card-search-bar/office_recommendation_widget.dart';
-import 'package:flutter_capstone/screens/card-search-bar/empty_search.dart';
-import 'package:flutter_capstone/screens/card-search-bar/search_office_view_model.dart';
+import 'package:flutter_capstone/screens/search/search_office_view_model.dart';
 import 'package:flutter_capstone/screens/errors/location_not_found.dart';
+import 'package:flutter_capstone/screens/search/widget/empty_search.dart';
+import 'package:flutter_capstone/screens/search/widget/office_recommendation_widget.dart';
 import 'package:flutter_capstone/services/search_office/search_service.dart';
-
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:provider/provider.dart';
 
@@ -175,12 +174,13 @@ class _SearchScreenState extends State<SearchScreen> {
                                     itemCount: search?.data.length,
                                     itemBuilder: (context, index) {
                                       var data = snapshot.data?.data[index];
+
                                       return OfficeRecommendationWidget(
-                                        img: imageKantor[index],
-                                        statusKantor: statusKantor[index],
-                                        namaKantor: data?.name ?? "",
+                                        img: imageKantor[0],
+                                        statusKantor: statusKantor[0],
+                                        namaKantor: data?.name ?? '',
                                         imgRating: iconImage[0],
-                                        rating: rating[index],
+                                        rating: rating[0],
                                         imgCoWorkingOffice: iconImage[1],
                                         office: data?.type ?? "",
                                         imgLocation: iconImage[2],

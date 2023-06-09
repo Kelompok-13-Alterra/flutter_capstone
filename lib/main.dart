@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/screens/booking/booking_screen.dart';
 import 'package:flutter_capstone/screens/bottom_nav/bottom_nav_screen.dart';
-import 'package:flutter_capstone/screens/card-search-bar/search_office_view_model.dart';
-import 'package:flutter_capstone/screens/card-search-bar/search_screen.dart';
+import 'package:flutter_capstone/screens/search/search_office_view_model.dart';
+import 'package:flutter_capstone/screens/search/search_screen.dart';
 import 'package:flutter_capstone/screens/edit_profile/edit_profile_screen.dart';
 import 'package:flutter_capstone/screens/errors/connection_error.dart';
 import 'package:flutter_capstone/screens/errors/location_not_found.dart';
@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Office Booking (Capstone Project Kel 13)',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: color,
       ),
       initialRoute: '/',
       routes: {
@@ -78,3 +78,16 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+const MaterialColor color = MaterialColor(0xff005DB9, <int, Color>{
+  50: Color(0xff005DB9),
+  100: Color(0xff005DB9),
+  200: Color(0xff005DB9),
+  300: Color(0xff005DB9),
+  400: Color(0xff005DB9),
+  500: Color(0xff005DB9),
+  600: Color(0xff005DB9),
+  700: Color(0xff005DB9),
+  800: Color(0xff005DB9),
+  900: Color(0xff005DB9),
+});

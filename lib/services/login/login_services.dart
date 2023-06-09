@@ -24,20 +24,20 @@ class LoginService {
     }
   }
 
-  Future<LoginModel> getDataUser() async {
-    try {
-      Response response = await Dio().get(
-        '$baseUrl/api/v1/auth/login',
-        options: Options(headers: {
-          "accept": "application/json",
-          "Content-Type": "application/json",
-          "Authorization": "Bearer ${getToken()}"
-        }),
-      );
+  // Future<LoginModel> getDataUser() async {
+  //   try {
+  //     Response response = await Dio().get(
+  //       '$baseUrl/api/v1/auth/login',
+  //       options: Options(headers: {
+  //         "accept": "application/json",
+  //         "Content-Type": "application/json",
+  //         "Authorization": "Bearer ${getToken()}"
+  //       }),
+  //     );
 
-      return LoginModel.fromJson(response.data);
-    } on DioError catch (e) {
-      return e.response!.data;
-    }
-  }
+  //     return LoginModel.fromJson(response.data);
+  //   } on DioError catch (e) {
+  //     return e.response!.data;
+  //   }
+  // }
 }

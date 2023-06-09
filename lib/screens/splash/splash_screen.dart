@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/core/init/utils/shared_preferences.dart';
 import 'package:flutter_capstone/screens/bottom_nav/bottom_nav_screen.dart';
@@ -20,14 +21,17 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
 
     Timer(const Duration(seconds: 3), () async {
-      WidgetsFlutterBinding.ensureInitialized();
+      // WidgetsFlutterBinding.ensureInitialized();
       var token = await getToken();
-      if (token.isNotEmpty) {
-        Navigator.pushNamedAndRemoveUntil(
-            context, '/bottom-nav', (route) => false);
-      } else {
+      // ignore: unnecessary_null_comparison
+      if (token != null) {
+        // ignore: use_build_context_synchronously
         Navigator.pushNamedAndRemoveUntil(
             context, '/boarding', (route) => false);
+      } else {
+        // ignore: use_build_context_synchronously
+        Navigator.pushNamedAndRemoveUntil(
+            context, '/bottom-nav', (route) => false);
       }
     });
   }
