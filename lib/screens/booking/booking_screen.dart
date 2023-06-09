@@ -12,6 +12,7 @@ class BookingScheduleScreen extends StatefulWidget {
 class _BookingScheduleScreenState extends State<BookingScheduleScreen> {
   DateTimeRange? selectedDateRange;
 
+  @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -71,6 +72,7 @@ class _BookingScheduleScreenState extends State<BookingScheduleScreen> {
         ),
       );
     } else {
+      // ignore: use_build_context_synchronously
       Navigator.pop(context);
     }
   }

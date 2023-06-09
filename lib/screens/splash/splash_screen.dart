@@ -1,11 +1,7 @@
 import 'dart:async';
-import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/core/init/utils/shared_preferences.dart';
-import 'package:flutter_capstone/screens/bottom_nav/bottom_nav_screen.dart';
-import 'package:flutter_capstone/screens/splash/boarding_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:your_app/home_screen.dart'; // Ganti dengan nama halaman utama aplikasi Anda
 
 class SplashScreen extends StatefulWidget {
@@ -23,14 +19,14 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(const Duration(seconds: 3), () async {
       // WidgetsFlutterBinding.ensureInitialized();
       var token = await getToken();
-      print(token);
-      // ignore: unnecessary_null_comparison
-      if (token != null) {
-        await Navigator.pushNamedAndRemoveUntil(
-            context, '/bottom-nav', (route) => false);
-      } else {
-        await Navigator.pushNamedAndRemoveUntil(
+      if (token.toString() == 'null') {
+        // ignore: use_build_context_synchronously
+        Navigator.pushNamedAndRemoveUntil(
             context, '/boarding', (route) => false);
+      } else {
+        // ignore: use_build_context_synchronously
+        Navigator.pushNamedAndRemoveUntil(
+            context, '/bottom-nav', (route) => true);
       }
     });
   }
@@ -52,6 +48,7 @@ class _SplashScreenState extends State<SplashScreen> {
         ),
         child: Stack(
           children: [
+            // ignore: avoid_unnecessary_containers
             Container(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,

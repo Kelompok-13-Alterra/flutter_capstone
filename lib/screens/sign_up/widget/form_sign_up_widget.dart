@@ -17,11 +17,6 @@ class FormSignup extends StatefulWidget {
 
 class _FormSignupState extends State<FormSignup> {
   final formKey = GlobalKey<FormState>();
-
-  final _nameController = TextEditingController();
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
-  final _confirmPasswordController = TextEditingController();
   bool isChecked = false;
 
   late bool newUser;
@@ -34,25 +29,26 @@ class _FormSignupState extends State<FormSignup> {
     });
   }
 
-  void _submitSignup() {
-    // Navigator.pushNamed(context, '/home');
-    if (formKey.currentState!.validate()) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Selamat ${_nameController.text} berhasil login'),
-        ),
-      );
-    }
-  }
+  // ignore: unused_element
+  // void _submitSignup() {
+  //   // Navigator.pushNamed(context, '/home');
+  //   if (formKey.currentState!.validate()) {
+  //     ScaffoldMessenger.of(context).showSnackBar(
+  //       SnackBar(
+  //         content: Text('Selamat ${_nameController.text} berhasil login'),
+  //       ),
+  //     );
+  //   }
+  // }
 
-  @override
-  void dispose() {
-    _nameController.dispose();
-    _emailController.dispose();
-    _passwordController.dispose();
-    _confirmPasswordController.dispose();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   _nameController.dispose();
+  //   _emailController.dispose();
+  //   _passwordController.dispose();
+  //   _confirmPasswordController.dispose();
+  //   super.dispose();
+  // }
 
   @override
   void initState() {
@@ -72,7 +68,7 @@ class _FormSignupState extends State<FormSignup> {
           children: [
             //form name
             TextFormField(
-              controller: _nameController,
+              controller: signupViewModel.getUsername,
               validator: (value) {
                 if (value != null && value.length < 5) {
                   return 'Enter min. 4 characters';
@@ -97,7 +93,7 @@ class _FormSignupState extends State<FormSignup> {
             // Input Email
             //========================================================
             TextFormField(
-              controller: _emailController,
+              controller: signupViewModel.getEmail,
               validator: (email) {
                 // 5 install package email_validator
                 if (email != null && !EmailValidator.validate(email)) {
@@ -339,7 +335,7 @@ class _FormSignupState extends State<FormSignup> {
                         } else if (res['meta']['code'] == 400) {
                           // ignore: use_build_context_synchronously
                           ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text('Fill the form!')));
+                              const SnackBar(content: Text('Fill the form!')));
                         }
                       }
                     }

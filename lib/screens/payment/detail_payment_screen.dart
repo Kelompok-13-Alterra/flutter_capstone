@@ -20,7 +20,6 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     paymentViewModel = Provider.of<PaymentViewModel>(context, listen: false);
     paymentViewModel.startCountdown(context);
     super.initState();

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/screens/profile/widget/cards_profile_widget.dart';
 import 'package:flutter_capstone/screens/profile/widget/profiles_widget.dart';
-import 'package:flutter_capstone/services/login/login_services.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 
 class ProfileScreen extends StatefulWidget {

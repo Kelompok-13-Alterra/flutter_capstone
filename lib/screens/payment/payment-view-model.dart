@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-// import 'package:flutter_capstone/screens/ui-payment/success_booking_screen.dart';
 import 'dart:async';
-
 import 'package:flutter_capstone/screens/payment/transaction_failed_screen.dart';
 
 class PaymentViewModel extends ChangeNotifier {

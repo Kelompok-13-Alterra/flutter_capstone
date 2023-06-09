@@ -1,7 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_capstone/core/init/const/api.dart';
-import 'package:flutter_capstone/core/init/utils/shared_preferences.dart';
-import 'package:flutter_capstone/model/login/login_model.dart';
 
 class LoginService {
   Future postLogin({
@@ -18,7 +16,6 @@ class LoginService {
             "email": email,
             "password": password,
           });
-      print(response.data);
       return response.data;
     } on DioError catch (e) {
       return e.response!.data;
