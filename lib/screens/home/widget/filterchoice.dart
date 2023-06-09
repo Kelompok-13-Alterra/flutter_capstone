@@ -19,6 +19,7 @@ class _FilterChoiceState extends State<FilterChoice> {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
+      automaticallyImplyLeading: false,
       backgroundColor: Colors.white,
       elevation: 0,
       // expandedHeight: 60,

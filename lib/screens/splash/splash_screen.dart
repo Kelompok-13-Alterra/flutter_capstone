@@ -23,15 +23,14 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(const Duration(seconds: 3), () async {
       // WidgetsFlutterBinding.ensureInitialized();
       var token = await getToken();
+      print(token);
       // ignore: unnecessary_null_comparison
       if (token != null) {
-        // ignore: use_build_context_synchronously
-        Navigator.pushNamedAndRemoveUntil(
-            context, '/boarding', (route) => false);
-      } else {
-        // ignore: use_build_context_synchronously
-        Navigator.pushNamedAndRemoveUntil(
+        await Navigator.pushNamedAndRemoveUntil(
             context, '/bottom-nav', (route) => false);
+      } else {
+        await Navigator.pushNamedAndRemoveUntil(
+            context, '/boarding', (route) => false);
       }
     });
   }

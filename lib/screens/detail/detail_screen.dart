@@ -8,7 +8,13 @@ import 'package:flutter_capstone/screens/detail/widget/image_detail.dart';
 import 'package:flutter_capstone/screens/detail/widget/office_description.dart';
 
 class DetailScreen extends StatefulWidget {
-  const DetailScreen({super.key});
+  final String? buttonRoute;
+  final String textButton;
+  const DetailScreen({
+    super.key,
+    required this.buttonRoute,
+    required this.textButton,
+  });
 
   @override
   State<DetailScreen> createState() => _DetailScreenState();
@@ -17,29 +23,48 @@ class DetailScreen extends StatefulWidget {
 class _DetailScreenState extends State<DetailScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: const <Widget>[
-            // Image Swipe
-            //================================================================
-            ImageDetail(),
-            // Container Detail
-            //================================================================
-            DetailCard(),
-            // Container Fasilitas
-            //================================================================
-            OfficeFalicities(),
-            // Container Deskripsi
-            //================================================================
-            OfficeDescription(),
-            // Button Book
-            //================================================================
-            BottomBook(
-              buttonRoute: null,
-              textButton: 'Book',
+    return WillPopScope(
+      onWillPop: () async {
+        if (widget.textButton == 'Pilih Metode Pembayaran') {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const DetailScreen(
+                buttonRoute: '/booking',
+                textButton: 'Book',
+              ),
             ),
-          ],
+          );
+        } else if (widget.textButton == 'Book') {
+          Navigator.pushReplacementNamed(context, '/bottom-nav');
+        }
+        return true;
+      },
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              // Image Swipe
+              //================================================================
+              const ImageDetail(),
+              // Container Detail
+              //================================================================
+              const DetailCard(),
+              // Container Fasilitas
+              //================================================================
+              const OfficeFalicities(),
+              // Container Deskripsi
+              //================================================================
+              const OfficeDescription(),
+              // Button Book
+              //================================================================
+              BottomBook(
+                function: null,
+                buttonRoute: widget.buttonRoute,
+                textButton: widget.textButton,
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -17,10 +17,10 @@ import 'package:flutter_capstone/screens/profile/profile_screen.dart';
 import 'package:flutter_capstone/screens/rating/image_picker_rating_screen.dart';
 import 'package:flutter_capstone/screens/review/review_screen.dart';
 import 'package:flutter_capstone/screens/sign_up/sign_up_screen.dart';
-import 'package:flutter_capstone/screens/detail/detail_screen.dart';
 import 'package:flutter_capstone/screens/sign_up/signup_view_model.dart';
 import 'package:flutter_capstone/screens/splash/boarding_screen.dart';
 import 'package:flutter_capstone/screens/splash/splash_screen.dart';
+import 'package:flutter_capstone/screens/payment/payment-view-model.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -38,6 +38,9 @@ void main() {
         ),
         ListenableProvider(
           create: (context) => SignupViewModel(),
+        ),
+        ListenableProvider(
+          create: (context) => PaymentViewModel(),
         ),
       ],
       child: const MyApp(),
@@ -68,7 +71,6 @@ class MyApp extends StatelessWidget {
         '/order': (context) => const OrderScreen(),
         '/review': (context) => const ReviewScreen(),
         '/image-picker': (context) => const ImagePickerRatingScreen(),
-        '/detail': (context) => const DetailScreen(),
         '/detail-schedule': (context) => const DetailScheduleScreen(),
         '/card-search-bar': (context) => const SearchScreen(),
         '/booking': (context) => const BookingScheduleScreen(),

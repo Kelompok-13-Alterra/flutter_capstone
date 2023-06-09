@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_capstone/screens/detail/detail_screen.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 
 class BookingScheduleScreen extends StatefulWidget {
@@ -8,8 +9,18 @@ class BookingScheduleScreen extends StatefulWidget {
   State<BookingScheduleScreen> createState() => _BookingScheduleScreenState();
 }
 
-Future selectDateRange(BuildContext context) async {
-  DateTimeRange? pickedRange = await showDateRangePicker(
+class _BookingScheduleScreenState extends State<BookingScheduleScreen> {
+  DateTimeRange? selectedDateRange;
+
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _selectDateRange(context);
+    });
+  }
+
+  Future<void> _selectDateRange(BuildContext context) async {
+    final pickedDateRange = await showDateRangePicker(
       context: context,
       builder: (context, child) {
         return Theme(
@@ -42,25 +53,37 @@ Future selectDateRange(BuildContext context) async {
       errorInvalidText: 'Out of range.',
       errorInvalidRangeText: 'Invalid range.',
       fieldStartHintText: 'Start Date',
-      fieldEndLabelText: 'End Date');
+      fieldEndLabelText: 'End Date',
+    );
 
-  if (pickedRange != null) {
-    // ignore: avoid_print
-    print(
-        'picked range ${pickedRange.start} ${pickedRange.end} ${pickedRange.duration.inDays}');
-  }
-}
-
-class _BookingScheduleScreenState extends State<BookingScheduleScreen> {
-  @override
-  void initState() {
-    WidgetsBinding.instance
-        .addPostFrameCallback((_) => selectDateRange(context));
-    super.initState();
+    if (pickedDateRange != null) {
+      setState(() {
+        selectedDateRange = pickedDateRange;
+      });
+      // ignore: use_build_context_synchronously
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const DetailScreen(
+            buttonRoute: null,
+            textButton: 'Pilih Metode Pembayaran',
+          ),
+        ),
+      );
+    } else {
+      Navigator.pop(context);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return Scaffold(
+      body: Container(
+        color: Colors.white,
+        child: const Center(
+          child: CircularProgressIndicator(), // Tampilkan loading indicator
+        ),
+      ),
+    );
   }
 }

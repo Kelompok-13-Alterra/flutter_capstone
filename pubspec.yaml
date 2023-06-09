@@ -42,6 +42,7 @@ dependencies:
   intl: ^0.18.1
   provider: ^6.0.5
   shared_preferences: ^2.1.1
+  slide_countdown: ^0.6.0
   smooth_page_indicator: ^1.1.0
 
 dev_dependencies:
@@ -69,6 +70,7 @@ flutter:
     - assets/image/
     - assets/detail/
     - assets/image/
+    - assets/payment/
     - assets/errors/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
