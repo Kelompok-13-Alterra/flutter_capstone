@@ -1,5 +1,8 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_capstone/model/home/home_model.dart';
 import 'package:flutter_capstone/screens/order/widget/order_widget.dart';
+import 'package:flutter_capstone/view_model/home/home_view_model.dart';
 import 'package:flutter_capstone/view_model/order/history_view_model.dart';
 
 import 'package:provider/provider.dart';
@@ -18,12 +21,15 @@ class _HistoryOrderScreenState extends State<HistoryOrderScreen> {
     final historyViewModel =
         Provider.of<HistoryViewModel>(context, listen: false);
     historyViewModel.getBooked();
+    historyViewModel.getOffices();
   }
 
   @override
   Widget build(BuildContext context) {
     final historyViewModel = Provider.of<HistoryViewModel>(context);
     final historyList = historyViewModel.listHistory;
+    final homeViewModel = Provider.of<HomeViewModel>(context);
+    final officeList = homeViewModel.listOffice;
 
     return historyList.isEmpty
         ? const Center(
@@ -33,13 +39,37 @@ class _HistoryOrderScreenState extends State<HistoryOrderScreen> {
             itemCount: historyList.length,
             itemBuilder: (context, index) {
               final history = historyList[index];
+              final office = historyViewModel.listOffice.firstWhere(
+                (office) => office.id == history.officeId,
+                orElse: () => Office(
+                  id: 0,
+                  name: '',
+                  description: '',
+                  capacity: 0,
+                  type: '',
+                  open: '',
+                  close: '',
+                  price: 0,
+                  location: '',
+                  facilities: '',
+                  status: false,
+                ),
+              );
+
+              String status = 'Booked';
+              if (history.status) {
+                status = 'Booked';
+              } else if (history.status == false) {
+                status = 'Cancelled';
+              }
+
               return OrderWidget(
                 urlImg: 'assets/office1.png',
-                title: "Wellspace",
+                title: office.name,
                 rating: 4.6,
-                type: "",
+                type: '',
                 duration: '${history.start} - ${history.end}',
-                status: history.status ? 'Booked' : 'Cancelled',
+                status: status,
                 route: '/detail-schedule',
                 buttonText1: 'Book Again',
                 routeButton1: '/detail',
