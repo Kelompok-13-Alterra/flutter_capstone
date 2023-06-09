@@ -30,7 +30,7 @@ class _DetailScreenState extends State<DetailScreen> {
             context,
             MaterialPageRoute(
               builder: (context) => const DetailScreen(
-                buttonRoute: '/jadwal-booking',
+                buttonRoute: '/booking',
                 textButton: 'Book',
               ),
             ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_capstone/screens/ui-payment/detail_payment_screen.dart';
+import 'package:flutter_capstone/screens/payment/detail_payment_screen.dart';
 import 'package:provider/provider.dart';
 import '../payment-view-model.dart';
 

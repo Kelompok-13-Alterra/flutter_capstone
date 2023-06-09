@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/screens/ui-payment/widget/showmodal_payment.dart';
+import 'package:flutter_capstone/screens/payment/widget/showmodal_payment.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 
 class BottomBook extends StatefulWidget {

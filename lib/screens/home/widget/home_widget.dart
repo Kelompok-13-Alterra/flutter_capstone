@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_capstone/screens/detail/detail_screen.dart';
 import 'package:flutter_capstone/screens/home/home_view_model.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -27,7 +28,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                     context,
                     MaterialPageRoute(
                       builder: (context) => const DetailScreen(
-                        buttonRoute: '/jadwal-booking',
+                        buttonRoute: '/booking',
                         textButton: 'Book',
                       ),
                     ),
