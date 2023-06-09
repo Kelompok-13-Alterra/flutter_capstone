@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/screens/login/widget/text_or_widget.dart';
 import 'package:flutter_capstone/screens/sign_up/signup_view_model.dart';
+import 'package:flutter_capstone/services/signup/signup_service.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
