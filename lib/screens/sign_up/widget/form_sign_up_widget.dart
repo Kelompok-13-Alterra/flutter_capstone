@@ -25,6 +25,7 @@ class _FormSignupState extends State<FormSignup> {
   Widget build(BuildContext context) {
     SignupViewModel signupViewModel = Provider.of<SignupViewModel>(context);
     bool getObsecureText = signupViewModel.getObsecureText;
+    bool getObsecureText2 = signupViewModel.getObsecureText2;
 
     return Form(
         key: formKey,
@@ -82,6 +83,7 @@ class _FormSignupState extends State<FormSignup> {
             TextFormField(
               autovalidateMode: AutovalidateMode.onUserInteraction,
               controller: signupViewModel.getPassword,
+              obscureText: signupViewModel.getObsecureText,
               validator: (value) {
                 if (value != null && value.length < 5) {
                   return 'Enter min. 5 characters';
@@ -112,8 +114,9 @@ class _FormSignupState extends State<FormSignup> {
 
             //confirmpassword
             TextFormField(
+              obscureText: signupViewModel.getObsecureText2,
               autovalidateMode: AutovalidateMode.onUserInteraction,
-              controller: signupViewModel.getconfirmPasswordController,
+              controller: signupViewModel.getconfirmPassword,
               validator: (value) {
                 if (value != null && value.length < 5) {
                   return 'Enter min. 5 characters';
@@ -130,11 +133,11 @@ class _FormSignupState extends State<FormSignup> {
                 ),
                 suffixIcon: IconButton(
                   icon: Icon(
-                    getObsecureText ? Icons.visibility_off : Icons.visibility,
+                    getObsecureText2 ? Icons.visibility_off : Icons.visibility,
                   ),
                   onPressed: () {
                     signupViewModel
-                        .setTogglePasswordVisibility(!getObsecureText);
+                        .setTogglePasswordVisibility2(!getObsecureText2);
                   },
                 ),
                 hintText: 'Input Password Again',
@@ -246,6 +249,11 @@ class _FormSignupState extends State<FormSignup> {
                                         height: 50,
                                         child: ElevatedButton(
                                           onPressed: () {
+                                            signupViewModel.getUsername.clear();
+                                            signupViewModel.getEmail.clear();
+                                            signupViewModel.getPassword.clear();
+                                            signupViewModel.getconfirmPassword
+                                                .clear();
                                             Navigator.pushNamedAndRemoveUntil(
                                                 context,
                                                 '/login',
@@ -282,119 +290,21 @@ class _FormSignupState extends State<FormSignup> {
                                 ),
                               );
                             });
+                      } else {
+                        if (res['meta']['code'] == 500) {
+                          // ignore: use_build_context_synchronously
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                  content: Text(
+                                      'Account already exist, please login!')));
+                        } else if (res['meta']['code'] == 400) {
+                          // ignore: use_build_context_synchronously
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(content: Text('Fill the form!')));
+                        }
                       }
-                    } else {
-                      null;
                     }
-                  }
-                  // ? () async {
-
-                  //     var res = await SignUpService().postSignup(
-                  //       email: signupViewModel.getEmail.text,
-                  //       password: signupViewModel.getPassword.text,
-                  //       username: signupViewModel.getPassword.text,
-                  //     );
-                  //     if (res['meta']['is_error'] == false) {
-                  //       // ignore: use_build_context_synchronously
-                  //       return showModalBottomSheet(
-                  //           context: context,
-                  //           isScrollControlled: true,
-                  //           builder: (context) {
-                  //             return Padding(
-                  //               padding: const EdgeInsets.all(16),
-                  //               child: FractionallySizedBox(
-                  //                 heightFactor: 0.4,
-                  //                 child: Column(
-                  //                   mainAxisAlignment:
-                  //                       MainAxisAlignment.center,
-                  //                   crossAxisAlignment:
-                  //                       CrossAxisAlignment.center,
-                  //                   children: [
-                  //                     SizedBox(
-                  //                       width: 127.5,
-                  //                       height: 130,
-                  //                       child: Image.asset(
-                  //                           'assets/retro_mac.png'),
-                  //                     ),
-                  //                     const Padding(
-                  //                         padding: EdgeInsets.only(top: 8)),
-                  //                     Text(
-                  //                       'Akunmu berhasil dibuat!',
-                  //                       style: setTextStyle(
-                  //                               NeutralColor().neutral17)
-                  //                           .copyWith(
-                  //                               fontSize: 16,
-                  //                               fontWeight: semiBold),
-                  //                     ),
-                  //                     Padding(
-                  //                       padding: const EdgeInsets.only(
-                  //                           top: 6, bottom: 16),
-                  //                       child: Text(
-                  //                         'Selamat akun kamu berhasil dibuat! Silahkan\nlogin untuk masuk ke Office Buddy!',
-                  //                         textAlign: TextAlign.center,
-                  //                         style: setTextStyle(
-                  //                                 NeutralColor().neutral17)
-                  //                             .copyWith(
-                  //                           fontSize: 12,
-                  //                           fontWeight: regular,
-                  //                         ),
-                  //                       ),
-                  //                     ),
-                  //                     SizedBox(
-                  //                       width: double.infinity,
-                  //                       height: 50,
-                  //                       child: ElevatedButton(
-                  //                         onPressed: () {
-                  //                           Navigator
-                  //                               .pushNamedAndRemoveUntil(
-                  //                                   context,
-                  //                                   '/login',
-                  //                                   (route) => false);
-                  //                         },
-                  //                         style: ButtonStyle(
-                  //                           elevation:
-                  //                               MaterialStateProperty.all(
-                  //                                   0),
-                  //                           backgroundColor:
-                  //                               MaterialStateProperty.all(
-                  //                                   PrimaryColor().primary),
-                  //                           shape:
-                  //                               MaterialStateProperty.all<
-                  //                                   RoundedRectangleBorder>(
-                  //                             RoundedRectangleBorder(
-                  //                               borderRadius:
-                  //                                   BorderRadius.circular(
-                  //                                       100), // Bentuk border
-                  //                             ),
-                  //                           ),
-                  //                         ),
-                  //                         child: Text(
-                  //                           'Login',
-                  //                           style: setTextStyle(
-                  //                                   PrimaryColor()
-                  //                                       .onPrimary)
-                  //                               .copyWith(
-                  //                             fontSize: 14,
-                  //                             fontWeight: semiBold,
-                  //                           ),
-                  //                         ),
-                  //                       ),
-                  //                     )
-                  //                   ],
-                  //                 ),
-                  //               ),
-                  //             );
-                  //           });
-                  //     } else {
-                  //       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                  //           content: Text(
-                  //         '${res['meta']['message']}',
-                  //         style: setTextStyle(SourceColor().white),
-                  //       )));
-                  //     }
-                  //   }
-                  // : null,
-                  ,
+                  },
                   child: Text(
                     'Sign Up',
                     style: GoogleFonts.roboto(),

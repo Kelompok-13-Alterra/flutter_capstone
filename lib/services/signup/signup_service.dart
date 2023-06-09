@@ -18,7 +18,6 @@ class SignUpService {
             "name": username,
             "password": password,
           });
-      print(response.data);
       return response.data;
     } on DioError catch (e) {
       return e.response!.data;

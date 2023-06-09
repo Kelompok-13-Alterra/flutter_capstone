@@ -54,7 +54,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Office Booking (Capstone Project Kel 13)',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: color,
       ),
       initialRoute: '/',
       routes: {
@@ -82,3 +82,16 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+const MaterialColor color = MaterialColor(0xff005DB9, <int, Color>{
+  50: Color(0xff005DB9),
+  100: Color(0xff005DB9),
+  200: Color(0xff005DB9),
+  300: Color(0xff005DB9),
+  400: Color(0xff005DB9),
+  500: Color(0xff005DB9),
+  600: Color(0xff005DB9),
+  700: Color(0xff005DB9),
+  800: Color(0xff005DB9),
+  900: Color(0xff005DB9),
+});

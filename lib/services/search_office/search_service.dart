@@ -22,7 +22,6 @@ class SearchService {
         options: Options(headers: headers),
       );
 
-      print(response.data);
       return SearchModel.fromJson(response.data);
     } on DioError catch (e) {
       print(e);

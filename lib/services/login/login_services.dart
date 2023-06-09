@@ -18,7 +18,6 @@ class LoginService {
             "email": email,
             "password": password,
           });
-      print(response.data);
       return response.data;
     } on DioError catch (e) {
       return e.response!.data;

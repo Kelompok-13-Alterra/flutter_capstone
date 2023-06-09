@@ -174,27 +174,21 @@ class _SearchScreenState extends State<SearchScreen> {
                                     itemCount: search?.data.length,
                                     itemBuilder: (context, index) {
                                       var data = snapshot.data?.data[index];
-                                      //This means that you can't specify the exact amount of items because ListView works with Infinity lists
 
-                                      if (index <= search!.data.length) {
-                                        return OfficeRecommendationWidget(
-                                          img: imageKantor[index],
-                                          statusKantor: statusKantor[index],
-                                          namaKantor: data?.name ?? '',
-                                          imgRating: iconImage[0],
-                                          rating: rating[index],
-                                          imgCoWorkingOffice: iconImage[1],
-                                          office: data?.type ?? "",
-                                          imgLocation: iconImage[2],
-                                          location: data?.location ?? "",
-                                          imgTime: iconImage[3],
-                                          time:
-                                              '${data?.open} - ${data?.close}',
-                                          price: data?.price ?? 0,
-                                        );
-                                      } else {
-                                        return Container();
-                                      }
+                                      return OfficeRecommendationWidget(
+                                        img: imageKantor[0],
+                                        statusKantor: statusKantor[0],
+                                        namaKantor: data?.name ?? '',
+                                        imgRating: iconImage[0],
+                                        rating: rating[0],
+                                        imgCoWorkingOffice: iconImage[1],
+                                        office: data?.type ?? "",
+                                        imgLocation: iconImage[2],
+                                        location: data?.location ?? "",
+                                        imgTime: iconImage[3],
+                                        time: '${data?.open} - ${data?.close}',
+                                        price: data?.price ?? 0,
+                                      );
                                     },
                                   ),
                                 ),
