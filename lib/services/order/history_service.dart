@@ -35,8 +35,6 @@ class HistoryService {
         final responseData = response.data;
         print(responseData); // Log the response data for debugging
 
-        // TODO: Ensure that the responseData matches the expected format
-
         HistoryModel history = HistoryModel.fromJson(responseData);
         if (history.data.isEmpty) {
           return [];

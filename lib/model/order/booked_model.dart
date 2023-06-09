@@ -58,7 +58,7 @@ class Booked {
         end: json["end"] ?? "",
         price: json["price"] ?? 0,
         start: json["start"] ?? "",
-        status: json["status"] ?? false,
+        status: json["status"] == true ? true : false,
         tax: json["tax"] ?? 0,
         totalPrice: json["totalPrice"] ?? 0,
         userId: json["userID"] ?? 0,

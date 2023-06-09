@@ -56,11 +56,9 @@ class _HistoryOrderScreenState extends State<HistoryOrderScreen> {
                 ),
               );
 
-              String status = 'Booked';
-              if (history.status) {
-                status = 'Booked';
-              } else if (history.status == false) {
-                status = 'Cancelled';
+              if (!history.status) {
+                return const SizedBox
+                    .shrink(); // Return an empty SizedBox if the status is "Cancelled"
               }
 
               return OrderWidget(
@@ -69,7 +67,7 @@ class _HistoryOrderScreenState extends State<HistoryOrderScreen> {
                 rating: 4.6,
                 type: '',
                 duration: '${history.start} - ${history.end}',
-                status: status,
+                status: 'Booked',
                 route: '/detail-schedule',
                 buttonText1: 'Book Again',
                 routeButton1: '/detail',
