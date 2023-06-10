@@ -3,6 +3,8 @@ import 'package:flutter_capstone/screens/booking/booking_screen.dart';
 import 'package:flutter_capstone/screens/bottom_nav/bottom_nav_screen.dart';
 import 'package:flutter_capstone/screens/card-search-bar/search_office_view_model.dart';
 import 'package:flutter_capstone/screens/card-search-bar/search_screen.dart';
+import 'package:flutter_capstone/screens/detail/detail_card_view_model.dart';
+import 'package:flutter_capstone/screens/detail/detail_view_model.dart';
 import 'package:flutter_capstone/screens/edit_profile/edit_profile_screen.dart';
 import 'package:flutter_capstone/screens/errors/connection_error.dart';
 import 'package:flutter_capstone/screens/errors/location_not_found.dart';
@@ -34,6 +36,12 @@ void main() {
         ),
         ListenableProvider(
           create: (context) => SearchOfficeViewModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => DetailViewModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => DetailCardViewModel(),
         ),
       ],
       child: const MyApp(),

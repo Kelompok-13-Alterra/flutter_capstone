@@ -23,7 +23,8 @@ class _HomeWidgetState extends State<HomeWidget> {
               final data = office.listOffice[index];
               return GestureDetector(
                 onTap: () {
-                  Navigator.of(context).pushNamed('/detail');
+                  Navigator.of(context)
+                      .pushNamed('/detail', arguments: data.id);
                 },
                 child: Container(
                   width: double.infinity,

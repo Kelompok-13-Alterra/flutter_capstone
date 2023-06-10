@@ -3,7 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 
 class OfficeDescription extends StatefulWidget {
-  const OfficeDescription({super.key});
+  final String description;
+  const OfficeDescription({super.key, required this.description});
 
   @override
   State<OfficeDescription> createState() => _OfficeDescriptionState();
@@ -52,17 +53,16 @@ class _OfficeDescriptionState extends State<OfficeDescription> {
         text: TextSpan(
           children: [
             TextSpan(
-              text:
-                  'Ruang rapat sendiri dapat dipesan melalui aplikasi atau situs office buddy. Kami selalu menyarankan pemesanan ruang rapat dilakukan 2 x 24 jam sebelum jadwal pemesanan.',
+              text: widget.description,
               style: setTextStyle(BlackColor().black)
                   .copyWith(fontWeight: regular, fontSize: 12),
             ),
-            TextSpan(
-              text:
-                  '\n\nSetelah pemesanan dibuat mohon tunggu hingga pesanan dikonfirmasi. Ketika sampai di lokasi mohon tunjukkan bukti pemesanan kepada admin setempat.',
-              style: setTextStyle(BlackColor().black)
-                  .copyWith(fontWeight: regular, fontSize: 12),
-            ),
+            // TextSpan(
+            //   text:
+            //       '\n\nSetelah pemesanan dibuat mohon tunggu hingga pesanan dikonfirmasi. Ketika sampai di lokasi mohon tunjukkan bukti pemesanan kepada admin setempat.',
+            //   style: setTextStyle(BlackColor().black)
+            //       .copyWith(fontWeight: regular, fontSize: 12),
+            // ),
           ],
         ),
       );

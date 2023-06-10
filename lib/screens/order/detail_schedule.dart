@@ -27,13 +27,20 @@ class _DetailScheduleScreenState extends State<DetailScheduleScreen> {
             const ImageDetail(),
             // Container Detail
             //================================================================
-            const DetailCard(),
+            const DetailCard(
+              name: "Athena Office",
+              price: 150000,
+              open: "07:00:00",
+              close: "21:00:00",
+              capacity: 20,
+              location: "Jakarta",
+            ),
             // Container Fasilitas
             //================================================================
             const OfficeFalicities(),
             // Container Deskripsi
             //================================================================
-            const OfficeDescription(),
+            const OfficeDescription(description: "Lorem Ipsum Dolor sit amet"),
             // Button Book
             //================================================================
             BottomBook(
