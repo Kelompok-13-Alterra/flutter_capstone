@@ -39,6 +39,12 @@ class _DetailScreenState extends State<DetailScreen> {
           Provider.of<DetailViewModel>(context, listen: false);
       final data = detailViewModel.getOfficeDetail(widget.officeId);
       completer.complete(data);
+      completer.future.then((data) {
+        final detailViewModel =
+            Provider.of<DetailViewModel>(context, listen: false);
+        detailViewModel.checkOpeningStatus(detailViewModel.detailData!.open,
+            detailViewModel.detailData!.close);
+      });
     });
     detailDataFuture = completer.future;
     super.initState();
