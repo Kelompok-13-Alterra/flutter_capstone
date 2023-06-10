@@ -22,12 +22,14 @@ class _HomeWidgetState extends State<HomeWidget> {
             childCount: office.listOffice.length,
             (BuildContext context, int index) {
               final data = office.listOffice[index];
+
               return GestureDetector(
                 onTap: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const DetailScreen(
+                      builder: (context) => DetailScreen(
+                        officeId: index,
                         buttonRoute: '/booking',
                         textButton: 'Book',
                       ),

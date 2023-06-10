@@ -19,37 +19,6 @@ class _FormSignupState extends State<FormSignup> {
   final formKey = GlobalKey<FormState>();
   bool isChecked = false;
 
-  late bool newUser;
-
-  bool _obscureText = true;
-
-  void _togglePasswordVisibility() {
-    setState(() {
-      _obscureText = !_obscureText;
-    });
-  }
-
-  // ignore: unused_element
-  // void _submitSignup() {
-  //   // Navigator.pushNamed(context, '/home');
-  //   if (formKey.currentState!.validate()) {
-  //     ScaffoldMessenger.of(context).showSnackBar(
-  //       SnackBar(
-  //         content: Text('Selamat ${_nameController.text} berhasil login'),
-  //       ),
-  //     );
-  //   }
-  // }
-
-  // @override
-  // void dispose() {
-  //   _nameController.dispose();
-  //   _emailController.dispose();
-  //   _passwordController.dispose();
-  //   _confirmPasswordController.dispose();
-  //   super.dispose();
-  // }
-
   @override
   void initState() {
     super.initState();
@@ -133,9 +102,12 @@ class _FormSignupState extends State<FormSignup> {
                 ),
                 suffixIcon: IconButton(
                   icon: Icon(
-                    _obscureText ? Icons.visibility_off : Icons.visibility,
+                    getObsecureText ? Icons.visibility_off : Icons.visibility,
                   ),
-                  onPressed: _togglePasswordVisibility,
+                  onPressed: () {
+                    signupViewModel
+                        .setTogglePasswordVisibility(!getObsecureText);
+                  },
                 ),
                 hintText: 'Input Password',
                 floatingLabelBehavior: FloatingLabelBehavior.always,

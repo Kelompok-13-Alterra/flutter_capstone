@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_capstone/screens/booking/booking_screen.dart';
 import 'package:flutter_capstone/screens/payment/widget/showmodal_payment.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 
@@ -6,11 +7,13 @@ class BottomBook extends StatefulWidget {
   final String textButton;
   final String? buttonRoute;
   final VoidCallback? function;
+  final int? officeId;
   const BottomBook({
     super.key,
     required this.textButton,
     this.buttonRoute,
     this.function,
+    this.officeId,
   });
 
   @override
@@ -18,6 +21,7 @@ class BottomBook extends StatefulWidget {
 }
 
 class _BottomBookState extends State<BottomBook> {
+  DateTimeRange? selectedDateRange;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -47,13 +51,23 @@ class _BottomBookState extends State<BottomBook> {
                 widget.function!();
               }
               // widget.function!();
-              if (widget.buttonRoute != null) {
-                Navigator.pushNamed(context, '${widget.buttonRoute}');
-              }
-              if (widget.textButton == 'Pilih Metode Pembayaran') {
+              // if (widget.buttonRoute != null) {
+              //   print(widget.officeId);
+              //   Navigator.pushNamed(context, '${widget.buttonRoute}',
+              //           arguments:
+              //               BookingScheduleArgument(officeId: widget.officeId!))
+              //       .then((value) {
+              //     setState(() {
+              //       selectedDateRange = value.toString();
+              //     });
+              //   });
+              // }
+              if (selectedDateRange != null) {
                 showModalBottomSheet(
                   context: context,
-                  isScrollControlled: true,
+                  enableDrag: false,
+                  isScrollControlled: false,
+                  isDismissible: false,
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(16),
@@ -61,13 +75,45 @@ class _BottomBookState extends State<BottomBook> {
                     ),
                   ),
                   builder: (BuildContext context) {
-                    return const ShowModalPayment();
+                    return ShowModalPayment(
+                      officeId: widget.officeId!,
+                      selectedDateRange: selectedDateRange,
+                      onPressed: () {
+                        selectedDateRange = null;
+                        Navigator.pop(context);
+                        setState(() {});
+                      },
+                    );
                   },
                 );
+              } else {
+                Navigator.pushNamed(context, '${widget.buttonRoute}',
+                        arguments:
+                            BookingScheduleArgument(officeId: widget.officeId!))
+                    .then((value) {
+                  setState(() {
+                    selectedDateRange = value as DateTimeRange;
+                  });
+                });
               }
+              // if (widget.textButton == 'Pilih Metode Pembayaran') {
+              //   showModalBottomSheet(
+              //     context: context,
+              //     isScrollControlled: true,
+              //     shape: const RoundedRectangleBorder(
+              //       borderRadius: BorderRadius.only(
+              //         topLeft: Radius.circular(16),
+              //         topRight: Radius.circular(16),
+              //       ),
+              //     ),
+              //     builder: (BuildContext context) {
+              //       return const ShowModalPayment();
+              //     },
+              //   );
+              // }
             },
             child: Text(
-              widget.textButton,
+              selectedDateRange != null ? 'Pilih metode pembayaran' : 'Booking',
               style: setTextStyle(SourceColor().white)
                   .copyWith(fontWeight: medium, fontSize: 14),
             ),
