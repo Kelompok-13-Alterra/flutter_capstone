@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_capstone/screens/detail/detail_screen.dart';
 import 'package:flutter_capstone/screens/home/home_view_model.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -21,10 +22,19 @@ class _HomeWidgetState extends State<HomeWidget> {
             childCount: office.listOffice.length,
             (BuildContext context, int index) {
               final data = office.listOffice[index];
+
               return GestureDetector(
                 onTap: () {
-                  Navigator.of(context)
-                      .pushNamed('/detail', arguments: data.id);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => DetailScreen(
+                        officeId: index,
+                        buttonRoute: '/booking',
+                        textButton: 'Book',
+                      ),
+                    ),
+                  );
                 },
                 child: Container(
                   width: double.infinity,

@@ -15,7 +15,15 @@ import 'package:flutter_capstone/screens/detail/detail_view_model.dart';
 import 'dart:async';
 
 class DetailScreen extends StatefulWidget {
-  const DetailScreen({super.key});
+  final String? buttonRoute;
+  final String textButton;
+  final int officeId;
+  const DetailScreen({
+    super.key,
+    required this.buttonRoute,
+    required this.textButton,
+    required this.officeId,
+  });
 
   @override
   State<DetailScreen> createState() => _DetailScreenState();
@@ -29,9 +37,7 @@ class _DetailScreenState extends State<DetailScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final detailViewModel =
           Provider.of<DetailViewModel>(context, listen: false);
-      final arguments = ModalRoute.of(context)?.settings.arguments;
-      int idDataDetail = arguments as int;
-      final data = detailViewModel.getOfficeDetail(idDataDetail);
+      final data = detailViewModel.getOfficeDetail(widget.officeId);
       completer.complete(data);
     });
     detailDataFuture = completer.future;
@@ -67,7 +73,7 @@ class _DetailScreenState extends State<DetailScreen> {
                     ),
                     // Container Fasilitas
                     //================================================================
-                    OfficeFalicities(),
+                    const OfficeFalicities(),
                     // Container Deskripsi
                     //================================================================
                     OfficeDescription(
@@ -76,8 +82,10 @@ class _DetailScreenState extends State<DetailScreen> {
                     // Button Book
                     //================================================================
                     BottomBook(
-                      buttonRoute: null,
-                      textButton: 'Book',
+                      function: null,
+                      officeId: widget.officeId,
+                      buttonRoute: widget.buttonRoute,
+                      textButton: widget.textButton,
                     ),
                   ],
                 ),

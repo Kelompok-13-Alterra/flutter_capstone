@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 
+class BookingScheduleArgument {
+  final int officeId;
+
+  BookingScheduleArgument({required this.officeId});
+}
+
 class BookingScheduleScreen extends StatefulWidget {
   const BookingScheduleScreen({super.key});
 
@@ -8,8 +14,19 @@ class BookingScheduleScreen extends StatefulWidget {
   State<BookingScheduleScreen> createState() => _BookingScheduleScreenState();
 }
 
-Future selectDateRange(BuildContext context) async {
-  DateTimeRange? pickedRange = await showDateRangePicker(
+class _BookingScheduleScreenState extends State<BookingScheduleScreen> {
+  DateTimeRange? selectedDateRange;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _selectDateRange(context);
+    });
+  }
+
+  Future<void> _selectDateRange(BuildContext context) async {
+    final pickedDateRange = await showDateRangePicker(
       context: context,
       builder: (context, child) {
         return Theme(
@@ -34,6 +51,7 @@ Future selectDateRange(BuildContext context) async {
       ),
       firstDate: DateTime.now(),
       lastDate: DateTime(DateTime.now().year + 2),
+      // locale: const Locale('ind', 'id'),
       helpText: 'Start - End Date',
       cancelText: 'CANCEL',
       confirmText: 'OK',
@@ -42,25 +60,42 @@ Future selectDateRange(BuildContext context) async {
       errorInvalidText: 'Out of range.',
       errorInvalidRangeText: 'Invalid range.',
       fieldStartHintText: 'Start Date',
-      fieldEndLabelText: 'End Date');
+      fieldEndLabelText: 'End Date',
+    );
 
-  if (pickedRange != null) {
-    // ignore: avoid_print
-    print(
-        'picked range ${pickedRange.start} ${pickedRange.end} ${pickedRange.duration.inDays}');
-  }
-}
+    if (pickedDateRange != null) {
+      setState(() {
+        selectedDateRange = pickedDateRange;
+        Navigator.pop(context, selectedDateRange);
+      });
 
-class _BookingScheduleScreenState extends State<BookingScheduleScreen> {
-  @override
-  void initState() {
-    WidgetsBinding.instance
-        .addPostFrameCallback((_) => selectDateRange(context));
-    super.initState();
+      //   // ignore: use_build_context_synchronously
+      //   Navigator.pushReplacement(
+      //     context,
+      //     MaterialPageRoute(
+      //       builder: (context) => DetailScreen(
+      //         index: args.officeId,
+      //         buttonRoute: null,
+      //         textButton: 'Pilih Metode Pembayaran',
+      //       ),
+      //     ),
+      //   );
+    }
+    //else {
+    //   // ignore: use_build_context_synchronously
+    //   Navigator.pop(context);
+    // }
   }
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return Scaffold(
+      body: Container(
+        color: Colors.white,
+        child: const Center(
+          child: CircularProgressIndicator(), // Tampilkan loading indicator
+        ),
+      ),
+    );
   }
 }

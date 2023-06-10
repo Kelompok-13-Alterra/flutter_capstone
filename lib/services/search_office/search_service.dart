@@ -9,12 +9,11 @@ class SearchService {
   // Get list office
   Future<SearchModel> getSearch(String searchLocation) async {
     String token = await getToken();
-
+    print(token);
     var headers = {
       'accept': 'application/json',
       'Content-Type': "aplication/json",
-      'Authorization':
-          'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVsZmFsZHl5QGdtYWlsLmNvbSIsImlkIjo3LCJpc192ZXJpZnkiOmZhbHNlLCJyb2xlIjowfQ.IriX0fkwCCt_u9dZAXO-muMuq_76XhcyROPXGCwNYpE'
+      'Authorization': 'Bearer $token'
     };
     try {
       final response = await Dio().get(
@@ -22,7 +21,6 @@ class SearchService {
         options: Options(headers: headers),
       );
 
-      print(response.data);
       return SearchModel.fromJson(response.data);
     } on DioError catch (e) {
       print(e);

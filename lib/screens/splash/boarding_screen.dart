@@ -194,6 +194,7 @@ class _OnBoardingScreenState extends State<BoardingScreen> {
                           controller: _pageControllerDescription,
                           itemCount: boardingData['boarding'].length,
                           itemBuilder: (BuildContext context, int index) {
+                            // ignore: avoid_unnecessary_containers
                             return Container(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,

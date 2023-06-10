@@ -15,6 +15,7 @@ class _BackgroundWidgetState extends State<BackgroundWidget> {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
+      automaticallyImplyLeading: false,
       expandedHeight: 465,
       centerTitle: false,
       elevation: 0,

@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_capstone/screens/booking/booking_screen.dart';
+import 'package:flutter_capstone/screens/payment/widget/showmodal_payment.dart';
+import 'package:flutter_capstone/style/text_style.dart';
 
 class BottomBook extends StatefulWidget {
   final String textButton;
   final String? buttonRoute;
   final VoidCallback? function;
+  final int? officeId;
   const BottomBook({
     super.key,
     required this.textButton,
     this.buttonRoute,
     this.function,
+    this.officeId,
   });
 
   @override
@@ -17,6 +21,7 @@ class BottomBook extends StatefulWidget {
 }
 
 class _BottomBookState extends State<BottomBook> {
+  DateTimeRange? selectedDateRange;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -28,30 +33,90 @@ class _BottomBookState extends State<BottomBook> {
           child: ElevatedButton(
             style: ButtonStyle(
               elevation: MaterialStateProperty.all(0),
-              backgroundColor:
-                  MaterialStateProperty.all(const Color(0xFF005DB9)),
+              backgroundColor: MaterialStateProperty.all(
+                PrimaryColor().primary,
+              ),
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(100), // Bentuk border
+                  borderRadius: BorderRadius.circular(
+                      widget.textButton == 'Pilih Metode Pembayaran'
+                          ? 8
+                          : 100), // Bentuk border
                 ),
               ),
             ),
             // onPressed: widget.function,
             onPressed: () {
-              widget.function!();
-
+              if (widget.function != null) {
+                widget.function!();
+              }
+              // widget.function!();
               // if (widget.buttonRoute != null) {
-              //   Navigator.pushNamedAndRemoveUntil(
-              //       context, widget.buttonRoute!, (route) => false);
-              //   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-              //       content: Text('Yay! Successfully booked an office!')));
+              //   print(widget.officeId);
+              //   Navigator.pushNamed(context, '${widget.buttonRoute}',
+              //           arguments:
+              //               BookingScheduleArgument(officeId: widget.officeId!))
+              //       .then((value) {
+              //     setState(() {
+              //       selectedDateRange = value.toString();
+              //     });
+              //   });
+              // }
+              if (selectedDateRange != null) {
+                showModalBottomSheet(
+                  context: context,
+                  enableDrag: false,
+                  isScrollControlled: false,
+                  isDismissible: false,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(16),
+                      topRight: Radius.circular(16),
+                    ),
+                  ),
+                  builder: (BuildContext context) {
+                    return ShowModalPayment(
+                      officeId: widget.officeId!,
+                      selectedDateRange: selectedDateRange,
+                      onPressed: () {
+                        selectedDateRange = null;
+                        Navigator.pop(context);
+                        setState(() {});
+                      },
+                    );
+                  },
+                );
+              } else {
+                Navigator.pushNamed(context, '${widget.buttonRoute}',
+                        arguments:
+                            BookingScheduleArgument(officeId: widget.officeId!))
+                    .then((value) {
+                  setState(() {
+                    selectedDateRange = value as DateTimeRange;
+                  });
+                });
+              }
+              // if (widget.textButton == 'Pilih Metode Pembayaran') {
+              //   showModalBottomSheet(
+              //     context: context,
+              //     isScrollControlled: true,
+              //     shape: const RoundedRectangleBorder(
+              //       borderRadius: BorderRadius.only(
+              //         topLeft: Radius.circular(16),
+              //         topRight: Radius.circular(16),
+              //       ),
+              //     ),
+              //     builder: (BuildContext context) {
+              //       return const ShowModalPayment();
+              //     },
+              //   );
               // }
             },
-            child: Text(widget.textButton,
-                style: GoogleFonts.roboto(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 14,
-                )),
+            child: Text(
+              selectedDateRange != null ? 'Pilih metode pembayaran' : 'Booking',
+              style: setTextStyle(SourceColor().white)
+                  .copyWith(fontWeight: medium, fontSize: 14),
+            ),
           ),
         ),
       ),

@@ -28,4 +28,13 @@ class DetailViewModel extends ChangeNotifier {
   void notifyListeners() {
     super.notifyListeners();
   }
+
+  int? _index;
+  int get getIndex => _index!;
+
+  setIndex(int val) {
+    print(_index);
+    _index = val;
+    notifyListeners();
+  }
 }

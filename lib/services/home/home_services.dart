@@ -4,7 +4,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter_capstone/core/init/const/api.dart';
 import 'package:flutter_capstone/core/init/utils/shared_preferences.dart';
 import 'package:flutter_capstone/model/home/home_model.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeService {
   final Dio _dio = Dio();
@@ -18,6 +17,7 @@ class HomeService {
             "Content-Type": "application/json",
             "Authorization": "Bearer $token",
           }));
+      print(response.data);
       if (response.statusCode == 200 || response.statusCode == 201) {
         HomeModel offices = HomeModel.fromJson(response.data);
         return offices.data;
