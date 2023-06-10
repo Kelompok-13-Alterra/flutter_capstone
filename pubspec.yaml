@@ -40,7 +40,6 @@ dependencies:
   google_fonts: ^4.0.4
   image_picker: ^0.8.7+5
   intl: ^0.18.1
-  jiffy: ^4.1.0
   provider: ^6.0.5
   shared_preferences: ^2.1.1
   slide_countdown: ^0.6.0

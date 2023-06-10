@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/screens/detail/detail_card_view_model.dart';
-import 'package:flutter_capstone/screens/detail/detail_view_model.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
