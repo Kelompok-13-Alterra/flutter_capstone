@@ -1,24 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_capstone/screens/booking/booking_screen.dart';
+import 'package:flutter_capstone/services/order/order_service.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_capstone/screens/payment/detail_payment_screen.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import '../payment-view-model.dart';
 
 class ShowModalPayment extends StatefulWidget {
-  const ShowModalPayment({super.key});
+  final Function() onPressed;
+  final DateTimeRange? selectedDateRange;
+  final int officeId;
+  const ShowModalPayment(
+      {super.key,
+      required this.onPressed,
+      required this.selectedDateRange,
+      required this.officeId});
 
   @override
   State<ShowModalPayment> createState() => _ShowModalPaymentState();
 }
 
 class _ShowModalPaymentState extends State<ShowModalPayment> {
-  // bool isVirtualVisible = true;
-  // bool isBankVisible = false;
-  // bool isEWalletVisible = false;
-  // bool isTotalPembayaranVisible = false;
-
-  // String selectedValue = 'Virtual Account BNI';
+  String convertDateTime(String date) {
+    final DateFormat displayFormater = DateFormat('yyyy-MM-dd HH:mm:ss.SSS');
+    final DateFormat serverFormater = DateFormat('yyyy-MM-dd');
+    final DateTime displayDate = displayFormater.parse(date);
+    final String formatted = serverFormater.format(displayDate);
+    return formatted;
+  }
 
   Widget buildListVirtualAccount(BuildContext context) {
     return Consumer<PaymentViewModel>(builder: (context, provider, _) {
@@ -387,9 +398,10 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                   Row(
                     children: [
                       IconButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
+                        onPressed: widget.onPressed,
+                        // () {
+                        //   Navigator.pop(context);
+                        // },
                         icon: const Icon(Icons.arrow_back),
                         constraints: const BoxConstraints(),
                         padding: EdgeInsets.zero,
@@ -403,14 +415,6 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                             .copyWith(fontWeight: semiBold, fontSize: 14),
                       ),
                     ],
-                  ),
-                  IconButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    icon: const Icon(Icons.close),
-                    constraints: const BoxConstraints(),
-                    padding: EdgeInsets.zero,
                   ),
                 ],
               ),
@@ -658,11 +662,55 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                       ),
                     ),
                   ),
-                  onPressed: () {
+                  onPressed: () async {
+                    var res = OrderService().createOrder(
+                      officeId: widget.officeId,
+                      startDate: convertDateTime(
+                          widget.selectedDateRange!.start.toString()),
+                      endDate: convertDateTime(
+                          widget.selectedDateRange!.end.toString()),
+                      paymentId: 'va-bni',
+                    );
+                    var transactionId = res.then((value) {
+                      return value.data.idTransaction;
+                    });
+
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const DetailPaymentScreen(),
+                        builder: (context) => FutureBuilder(
+                          future: transactionId,
+                          builder: (context, snapshot) {
+                            if (snapshot.hasData) {
+                              return DetailPaymentScreen(
+                                  paymentId: snapshot.data!);
+                            } else {
+                              return Scaffold(
+                                appBar: AppBar(
+                                  iconTheme:
+                                      const IconThemeData(color: Colors.black),
+                                  title: Text(
+                                    'Detail Pembayaran',
+                                    style:
+                                        setTextStyle(NeutralColor().neutral12)
+                                            .copyWith(
+                                                fontWeight: semiBold,
+                                                fontSize: 16),
+                                  ),
+                                  backgroundColor: Colors.transparent,
+                                  elevation: 0,
+                                ),
+                                body: Container(
+                                  color: Colors.white,
+                                  child: const Center(
+                                    child:
+                                        CircularProgressIndicator(), // Tampilkan loading indicator
+                                  ),
+                                ),
+                              );
+                            }
+                          },
+                        ),
                       ),
                     );
                   },

@@ -5,7 +5,8 @@ import 'package:provider/provider.dart';
 import 'payment-view-model.dart';
 
 class DetailPaymentScreen extends StatefulWidget {
-  const DetailPaymentScreen({super.key});
+  final int paymentId;
+  const DetailPaymentScreen({super.key, required this.paymentId});
 
   @override
   State<DetailPaymentScreen> createState() => _DetailPaymentScreenState();
@@ -172,6 +173,7 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      //Utk API get detail office
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
@@ -284,7 +286,8 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                               .copyWith(fontWeight: semiBold, fontSize: 14),
                         ),
                       ),
-                      //Transfer Pembayaran
+                      //Transfer Pembayaran - Get Midtrans API
+
                       Container(
                         padding: const EdgeInsets.all(16),
                         width: double.infinity,
@@ -345,7 +348,7 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    paymentViewModel.rekening,
+                                    widget.paymentId.toString(),
                                     style:
                                         setTextStyle(NeutralColor().neutral10)
                                             .copyWith(
