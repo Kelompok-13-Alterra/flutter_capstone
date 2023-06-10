@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/screens/detail/detail_card_view_model.dart';
 import 'package:flutter_capstone/screens/detail/detail_view_model.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:intl/intl.dart';
@@ -27,16 +26,6 @@ class DetailCard extends StatefulWidget {
 }
 
 class _DetailCardState extends State<DetailCard> {
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   WidgetsBinding.instance.addPostFrameCallback((_) {
-  //     final detailCardViewModel =
-  //         Provider.of<DetailCardViewModel>(context, listen: false);
-  //     detailCardViewModel.checkOpeningStatus(widget.open, widget.close);
-  //   });
-  // }
-
   @override
   Widget build(BuildContext context) {
     final priceFormat = NumberFormat('#,###,###');

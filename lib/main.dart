@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/screens/booking/booking_screen.dart';
 import 'package:flutter_capstone/screens/bottom_nav/bottom_nav_screen.dart';
-import 'package:flutter_capstone/screens/detail/detail_card_view_model.dart';
 import 'package:flutter_capstone/screens/detail/detail_view_model.dart';
 import 'package:flutter_capstone/screens/search/search_office_view_model.dart';
 import 'package:flutter_capstone/screens/search/search_screen.dart';
@@ -40,9 +39,6 @@ void main() {
         ),
         ChangeNotifierProvider(
           create: (context) => DetailViewModel(),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => DetailCardViewModel(),
         ),
         ListenableProvider(
           create: (context) => SignupViewModel(),
