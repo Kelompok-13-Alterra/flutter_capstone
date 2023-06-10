@@ -10,15 +10,15 @@ class TransactionFailedScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const DetailScreen(
-              buttonRoute: null,
-              textButton: 'Pilih Metode Pembayaran',
-            ),
-          ),
-        );
+        // Navigator.pushReplacement(
+        //   context,
+        //   MaterialPageRoute(
+        //     builder: (context) => DetailScreen(
+        //       buttonRoute: null,
+        //       textButton: 'Pilih Metode Pembayaran',
+        //     ),
+        //   ),
+        // );
         return false;
       },
       child: Scaffold(
@@ -65,15 +65,15 @@ class TransactionFailedScreen extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const DetailScreen(
-                          buttonRoute: null,
-                          textButton: 'Pilih Metode Pembayaran',
-                        ),
-                      ),
-                    );
+                    // Navigator.pushReplacement(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (context) => const DetailScreen(
+                    //       buttonRoute: null,
+                    //       textButton: 'Pilih Metode Pembayaran',
+                    //     ),
+                    //   ),
+                    // );
                   },
                   child: Text(
                     'Booking Office',
