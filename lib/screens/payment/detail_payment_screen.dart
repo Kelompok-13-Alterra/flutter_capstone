@@ -187,7 +187,7 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(12),
                               child: Image.asset(
-                                "assets/homescreen/office-list.jpg",
+                                "assets/home/office-list.jpg",
                                 fit: BoxFit.fill,
                               ),
                             ),
@@ -304,7 +304,8 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                           children: [
                             Row(
                               children: [
-                                SvgPicture.asset('assets/payment/BNI.svg'),
+                                SvgPicture.asset(
+                                    'assets/icons/payment/BNI.svg'),
                                 const SizedBox(
                                   width: 12,
                                 ),

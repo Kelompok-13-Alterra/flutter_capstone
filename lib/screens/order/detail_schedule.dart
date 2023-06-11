@@ -92,7 +92,8 @@ class _DetailScheduleScreenState extends State<DetailScheduleScreen> {
                                 SizedBox(
                                   width: 127.5,
                                   height: 130,
-                                  child: Image.asset('assets/retro_mac.png'),
+                                  child: Image.asset(
+                                      'assets/images/modal_bottom/retro_mac.png'),
                                 ),
                                 const Padding(padding: EdgeInsets.only(top: 8)),
                                 Text(

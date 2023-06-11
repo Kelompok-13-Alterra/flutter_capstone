@@ -204,7 +204,7 @@ class _FormLoginState extends State<FormLogin> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SvgPicture.asset('assets/img/google.svg'),
+                    SvgPicture.asset('assets/icons/auth/google.svg'),
                     const SizedBox(
                       width: 8,
                     ),

@@ -27,7 +27,7 @@ class TransactionFailedScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SvgPicture.asset('assets/payment/124.svg'),
+              SvgPicture.asset('assets/icons/payment/124.svg'),
               const SizedBox(
                 height: 25,
               ),

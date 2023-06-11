@@ -13,11 +13,13 @@ class DetailScreen extends StatefulWidget {
   final String? buttonRoute;
   final String textButton;
   final int? officeId;
+  final DateTimeRange? selectedDateRange;
   const DetailScreen({
     super.key,
-    required this.buttonRoute,
+    this.buttonRoute,
     required this.textButton,
     this.officeId,
+    this.selectedDateRange,
   });
 
   @override
@@ -74,6 +76,7 @@ class _DetailScreenState extends State<DetailScreen> {
               officeId: widget.officeId,
               buttonRoute: widget.buttonRoute,
               textButton: widget.textButton,
+              selectedDateRange: widget.selectedDateRange,
             ),
           ],
         ),

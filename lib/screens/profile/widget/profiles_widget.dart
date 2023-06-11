@@ -30,17 +30,17 @@ List<String> subMenuInformation = [
 
 List iconSubMenuAccount = [
   Image.asset(
-    'assets/image/meeting_room_fill.png',
+    'assets/icons/profile/meeting_room_fill.png',
     // width: 15,
     // height: 15,
   ),
   Image.asset(
-    'assets/image/lock.png',
+    'assets/icons/profile/lock.png',
     // width: 15,
     // height: 15,
   ),
   Image.asset(
-    'assets/image/delete_forever.png',
+    'assets/icons/profile/delete_forever.png',
     // width: 15,
     // height: 15,
   ),
@@ -48,17 +48,17 @@ List iconSubMenuAccount = [
 
 List iconSubMenuInformation = [
   Image.asset(
-    'assets/image/privacy_tip.png',
+    'assets/icons/profile/privacy_tip.png',
     // width: 15,
     // height: 15,
   ),
   Image.asset(
-    'assets/image/local_police.png',
+    'assets/icons/profile/local_police.png',
     // width: 15,
     // height: 15,
   ),
   Image.asset(
-    'assets/image/help_center.png',
+    'assets/icons/profile/help_center.png',
     // width: 15,
     // height: 15,
   ),

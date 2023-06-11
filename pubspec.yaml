@@ -62,16 +62,24 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/
-    - assets/homescreen/
-    - assets/icon-botton-navigation-bar/
-    - assets/img/
+    - assets/icons/
+    - assets/icons/auth/
+    - assets/icons/profile/
+    - assets/icons/detail/
+    - assets/icons/errors/
+    - assets/icons/office_card/
+    - assets/icons/payment/
+    - assets/icons/bottom_navigation_bar/
+   
+    - assets/images/
+    - assets/images/notification/
+    - assets/images/profile/
+    - assets/images/office_image/
+    - assets/images/modal_bottom/
+    - assets/home/
     - assets/on_boarding/
     - assets/progress_indicator/
-    - assets/image/
-    - assets/detail/
-    - assets/image/
-    - assets/payment/
-    - assets/errors/
+   
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
   # For details regarding adding assets from package dependencies, see
