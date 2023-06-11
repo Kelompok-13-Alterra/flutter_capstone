@@ -8,12 +8,14 @@ class BottomBook extends StatefulWidget {
   final String? buttonRoute;
   final VoidCallback? function;
   final int? officeId;
-  const BottomBook({
+  DateTimeRange? selectedDateRange;
+  BottomBook({
     super.key,
     required this.textButton,
     this.buttonRoute,
     this.function,
     this.officeId,
+    this.selectedDateRange,
   });
 
   @override
@@ -21,9 +23,10 @@ class BottomBook extends StatefulWidget {
 }
 
 class _BottomBookState extends State<BottomBook> {
-  DateTimeRange? selectedDateRange;
+  // DateTimeRange? selectedDateRange;
   @override
   Widget build(BuildContext context) {
+    print('date range in bottom book ${widget.selectedDateRange}');
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: FractionallySizedBox(
@@ -62,7 +65,7 @@ class _BottomBookState extends State<BottomBook> {
               //     });
               //   });
               // }
-              if (selectedDateRange != null) {
+              if (widget.selectedDateRange != null) {
                 showModalBottomSheet(
                   context: context,
                   enableDrag: false,
@@ -77,9 +80,9 @@ class _BottomBookState extends State<BottomBook> {
                   builder: (BuildContext context) {
                     return ShowModalPayment(
                       officeId: widget.officeId!,
-                      selectedDateRange: selectedDateRange,
+                      selectedDateRange: widget.selectedDateRange,
                       onPressed: () {
-                        selectedDateRange = null;
+                        widget.selectedDateRange = null;
                         Navigator.pop(context);
                         setState(() {});
                       },
@@ -88,11 +91,12 @@ class _BottomBookState extends State<BottomBook> {
                 );
               } else {
                 Navigator.pushNamed(context, '${widget.buttonRoute}',
-                        arguments:
-                            BookingScheduleArgument(officeId: widget.officeId!))
+                        arguments: BookingScheduleArgument(
+                            officeId: widget.officeId!,
+                            selectedDateRange: widget.selectedDateRange))
                     .then((value) {
                   setState(() {
-                    selectedDateRange = value as DateTimeRange;
+                    widget.selectedDateRange = (value ?? '') as DateTimeRange?;
                   });
                 });
               }
@@ -113,7 +117,10 @@ class _BottomBookState extends State<BottomBook> {
               // }
             },
             child: Text(
-              selectedDateRange != null ? 'Pilih metode pembayaran' : 'Booking',
+              // widget.textButton,
+              widget.selectedDateRange != null
+                  ? 'Pilih metode pembayaran'
+                  : 'Booking',
               style: setTextStyle(SourceColor().white)
                   .copyWith(fontWeight: medium, fontSize: 14),
             ),

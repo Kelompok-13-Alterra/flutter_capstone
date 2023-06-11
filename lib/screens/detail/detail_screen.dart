@@ -18,11 +18,13 @@ class DetailScreen extends StatefulWidget {
   final String? buttonRoute;
   final String textButton;
   final int officeId;
+  final DateTimeRange? selectedDateRange;
   const DetailScreen({
     super.key,
-    required this.buttonRoute,
+    this.buttonRoute,
     required this.textButton,
     required this.officeId,
+    this.selectedDateRange,
   });
 
   @override
@@ -52,6 +54,26 @@ class _DetailScreenState extends State<DetailScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // WillPopScope(
+    //   onWillPop: () async {
+    //     if (widget.textButton == 'Pilih Metode Pembayaran') {
+    //       Navigator.pushReplacement(
+    //         context,
+    //         MaterialPageRoute(
+    //           builder: (context) => DetailScreen(
+    //             officeId: widget.officeId,
+    //             buttonRoute: '/booking',
+    //             textButton: 'Book',
+    //           ),
+    //         ),
+    //       );
+    //     } else if (widget.textButton == 'Book') {
+    //       Navigator.pushReplacementNamed(context, '/bottom-nav',
+    //           arguments: widget.officeId);
+    //     }
+    //     return true;
+    //   },
+    // child:
     // final detailViewModel = Provider.of<DetailViewModel>(context);
     // final dataOffice = detailViewModel.detailData;
     return Scaffold(
@@ -92,6 +114,7 @@ class _DetailScreenState extends State<DetailScreen> {
                       officeId: widget.officeId,
                       buttonRoute: widget.buttonRoute,
                       textButton: widget.textButton,
+                      selectedDateRange: widget.selectedDateRange,
                     ),
                   ],
                 ),

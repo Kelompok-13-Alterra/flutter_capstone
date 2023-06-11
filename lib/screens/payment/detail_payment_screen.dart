@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_capstone/services/midtrans/midtrans_service.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
@@ -187,7 +188,7 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(12),
                               child: Image.asset(
-                                "assets/homescreen/office-list.jpg",
+                                "assets/home/office-list.jpg",
                                 fit: BoxFit.fill,
                               ),
                             ),
@@ -287,177 +288,199 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                         ),
                       ),
                       //Transfer Pembayaran - Get Midtrans API
+                      FutureBuilder(
+                        future: MidtransService()
+                            .getPayment(transactionId: widget.paymentId),
+                        builder: (context, snapshot) {
+                          var res = MidtransService()
+                              .getPayment(transactionId: widget.paymentId);
 
-                      Container(
-                        padding: const EdgeInsets.all(16),
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(4)),
-                          border: Border.all(
-                            color: NeutralColor().neutral90,
-                            width: 1.0,
-                          ),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
+                          var virtualAccountNumber = res.then(
+                            (value) {
+                              provider.setRekeningValue =
+                                  value.data.paymentData.vaNumber;
+                            },
+                          );
+
+                          return Container(
+                            padding: const EdgeInsets.all(16),
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(4)),
+                              border: Border.all(
+                                color: NeutralColor().neutral90,
+                                width: 1.0,
+                              ),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                SvgPicture.asset('assets/payment/BNI.svg'),
-                                const SizedBox(
-                                  width: 12,
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                Row(
                                   children: [
-                                    Text(
-                                      'BNI VA',
-                                      style:
-                                          setTextStyle(NeutralColor().neutral10)
+                                    SvgPicture.asset(
+                                        'assets/icons/payment/BNI.svg'),
+                                    const SizedBox(
+                                      width: 12,
+                                    ),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'BNI VA',
+                                          style: setTextStyle(
+                                                  NeutralColor().neutral10)
                                               .copyWith(
                                                   fontWeight: medium,
                                                   fontSize: 16),
-                                    ),
-                                    Text(
-                                      'PT OFFICE BUDDY',
-                                      style:
-                                          setTextStyle(NeutralColor().neutral50)
+                                        ),
+                                        Text(
+                                          'PT OFFICE BUDDY',
+                                          style: setTextStyle(
+                                                  NeutralColor().neutral50)
                                               .copyWith(
                                                   fontWeight: semiBold,
                                                   fontSize: 11),
+                                        ),
+                                      ],
                                     ),
                                   ],
                                 ),
+                                const SizedBox(
+                                  height: 18,
+                                ),
+                                Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 16, vertical: 14),
+                                  decoration: const BoxDecoration(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(16),
+                                    ),
+                                    color: Color(0xFFE8F2FF),
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        provider.getRekening,
+                                        style: setTextStyle(
+                                                NeutralColor().neutral10)
+                                            .copyWith(
+                                                fontWeight: semiBold,
+                                                fontSize: 22),
+                                      ),
+                                      ElevatedButton(
+                                        style: ButtonStyle(
+                                          backgroundColor:
+                                              MaterialStateProperty.all<Color>(
+                                                  Colors.transparent),
+                                          elevation:
+                                              const MaterialStatePropertyAll(0),
+                                          shape: MaterialStateProperty.all<
+                                              RoundedRectangleBorder>(
+                                            RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(50),
+                                              side: BorderSide(
+                                                  color: SourceColor().seed,
+                                                  width: 1),
+                                            ),
+                                          ),
+                                        ),
+                                        onPressed: () {
+                                          paymentViewModel
+                                              .copyRekening(context);
+                                        },
+                                        child: Text(
+                                          'Salin',
+                                          style:
+                                              setTextStyle(SourceColor().seed)
+                                                  .copyWith(
+                                                      fontWeight: semiBold,
+                                                      fontSize: 11),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 16,
+                                ),
+                                // Detail Jumlaj Transfer
+                                //====================================================
+                                Text(
+                                  'Jumlah Transfer',
+                                  style: setTextStyle(NeutralVariantColor()
+                                          .neutralVariant30)
+                                      .copyWith(
+                                          fontWeight: semiBold, fontSize: 14),
+                                ),
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 16, vertical: 14),
+                                  decoration: const BoxDecoration(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(16),
+                                    ),
+                                    color: Color(0xFFE8F2FF),
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        paymentViewModel.jumlahTransfer,
+                                        style: setTextStyle(
+                                                NeutralColor().neutral10)
+                                            .copyWith(
+                                                fontWeight: semiBold,
+                                                fontSize: 22),
+                                      ),
+                                      ElevatedButton(
+                                        style: ButtonStyle(
+                                          backgroundColor:
+                                              MaterialStateProperty.all<Color>(
+                                                  Colors.transparent),
+                                          elevation:
+                                              const MaterialStatePropertyAll(0),
+                                          shape: MaterialStateProperty.all<
+                                              RoundedRectangleBorder>(
+                                            RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(50),
+                                              side: BorderSide(
+                                                  color: SourceColor().seed,
+                                                  width: 1),
+                                            ),
+                                          ),
+                                        ),
+                                        onPressed: () {
+                                          paymentViewModel
+                                              .copyJumlahTransfer(context);
+                                        },
+                                        child: Text(
+                                          'Salin',
+                                          style:
+                                              setTextStyle(SourceColor().seed)
+                                                  .copyWith(
+                                                      fontWeight: semiBold,
+                                                      fontSize: 11),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                )
                               ],
                             ),
-                            const SizedBox(
-                              height: 18,
-                            ),
-                            Container(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 16, vertical: 14),
-                              decoration: const BoxDecoration(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(16),
-                                ),
-                                color: Color(0xFFE8F2FF),
-                              ),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    widget.paymentId.toString(),
-                                    style:
-                                        setTextStyle(NeutralColor().neutral10)
-                                            .copyWith(
-                                                fontWeight: semiBold,
-                                                fontSize: 22),
-                                  ),
-                                  ElevatedButton(
-                                    style: ButtonStyle(
-                                      backgroundColor:
-                                          MaterialStateProperty.all<Color>(
-                                              Colors.transparent),
-                                      elevation:
-                                          const MaterialStatePropertyAll(0),
-                                      shape: MaterialStateProperty.all<
-                                          RoundedRectangleBorder>(
-                                        RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(50),
-                                          side: BorderSide(
-                                              color: SourceColor().seed,
-                                              width: 1),
-                                        ),
-                                      ),
-                                    ),
-                                    onPressed: () {
-                                      paymentViewModel.copyRekening(context);
-                                    },
-                                    child: Text(
-                                      'Salin',
-                                      style: setTextStyle(SourceColor().seed)
-                                          .copyWith(
-                                              fontWeight: semiBold,
-                                              fontSize: 11),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 16,
-                            ),
-                            // Detail Jumlaj Transfer
-                            //====================================================
-                            Text(
-                              'Jumlah Transfer',
-                              style: setTextStyle(
-                                      NeutralVariantColor().neutralVariant30)
-                                  .copyWith(fontWeight: semiBold, fontSize: 14),
-                            ),
-                            const SizedBox(
-                              height: 5,
-                            ),
-                            Container(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 16, vertical: 14),
-                              decoration: const BoxDecoration(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(16),
-                                ),
-                                color: Color(0xFFE8F2FF),
-                              ),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    paymentViewModel.jumlahTransfer,
-                                    style:
-                                        setTextStyle(NeutralColor().neutral10)
-                                            .copyWith(
-                                                fontWeight: semiBold,
-                                                fontSize: 22),
-                                  ),
-                                  ElevatedButton(
-                                    style: ButtonStyle(
-                                      backgroundColor:
-                                          MaterialStateProperty.all<Color>(
-                                              Colors.transparent),
-                                      elevation:
-                                          const MaterialStatePropertyAll(0),
-                                      shape: MaterialStateProperty.all<
-                                          RoundedRectangleBorder>(
-                                        RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(50),
-                                          side: BorderSide(
-                                              color: SourceColor().seed,
-                                              width: 1),
-                                        ),
-                                      ),
-                                    ),
-                                    onPressed: () {
-                                      paymentViewModel
-                                          .copyJumlahTransfer(context);
-                                    },
-                                    child: Text(
-                                      'Salin',
-                                      style: setTextStyle(SourceColor().seed)
-                                          .copyWith(
-                                              fontWeight: semiBold,
-                                              fontSize: 11),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
+                          );
+                        },
                       ),
+
                       const SizedBox(
                         height: 16,
                       ),

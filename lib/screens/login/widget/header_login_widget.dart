@@ -13,7 +13,7 @@ class HeaderLogin extends StatelessWidget {
       children: [
         SizedBox(
           width: MediaQuery.of(context).size.width,
-          child: SvgPicture.asset('assets/img/logo-sign.svg'),
+          child: SvgPicture.asset('assets/icons/auth/logo-sign.svg'),
         ),
         const SizedBox(height: 25.0),
         Text(

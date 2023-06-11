@@ -52,26 +52,26 @@ class PaymentViewModel extends ChangeNotifier {
   //Detail Payment
   //===========================================================================
   Timer? _timer;
-  int rekening = 0;
+  String rekening = '';
   final String jumlahTransfer = 'IDR 23.099';
   bool isDetailTransaksi = true;
   late DateTime _timerOffice;
 
-  int get getRekening => rekening;
+  String get getRekening => rekening;
 
-  setRekeningValue(int val) {
+  set setRekeningValue(String val) {
     rekening = val;
     notifyListeners();
   }
 
   void copyRekening(BuildContext context) {
-    Clipboard.setData(ClipboardData(text: rekening.toString()));
+    Clipboard.setData(ClipboardData(text: rekening));
     const snackBar = SnackBar(content: Text('Rekening berhasil disalin'));
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   void copyJumlahTransfer(BuildContext context) {
-    Clipboard.setData(ClipboardData(text: rekening.toString()));
+    Clipboard.setData(ClipboardData(text: rekening));
     const snackBar =
         SnackBar(content: Text('Jumlah transfer berhasil disalin'));
     ScaffoldMessenger.of(context).showSnackBar(snackBar);

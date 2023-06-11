@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_capstone/core/init/utils/date_convert.dart';
 import 'package:flutter_capstone/screens/booking/booking_screen.dart';
 import 'package:flutter_capstone/services/order/order_service.dart';
 import 'package:flutter_capstone/style/text_style.dart';
+import 'package:flutter_capstone/widgets/modal_bottom.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_capstone/screens/payment/detail_payment_screen.dart';
 import 'package:intl/intl.dart';
@@ -23,14 +25,6 @@ class ShowModalPayment extends StatefulWidget {
 }
 
 class _ShowModalPaymentState extends State<ShowModalPayment> {
-  String convertDateTime(String date) {
-    final DateFormat displayFormater = DateFormat('yyyy-MM-dd HH:mm:ss.SSS');
-    final DateFormat serverFormater = DateFormat('yyyy-MM-dd');
-    final DateTime displayDate = displayFormater.parse(date);
-    final String formatted = serverFormater.format(displayDate);
-    return formatted;
-  }
-
   Widget buildListVirtualAccount(BuildContext context) {
     return Consumer<PaymentViewModel>(builder: (context, provider, _) {
       return Column(
@@ -55,7 +49,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                 children: [
                   Row(
                     children: [
-                      SvgPicture.asset('assets/payment/BNI.svg'),
+                      SvgPicture.asset('assets/icons/payment/BNI.svg'),
                       const SizedBox(
                         width: 12,
                       ),
@@ -117,7 +111,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                 children: [
                   Row(
                     children: [
-                      SvgPicture.asset('assets/payment/bca.svg'),
+                      SvgPicture.asset('assets/icons/payment/bca.svg'),
                       const SizedBox(
                         width: 12,
                       ),
@@ -176,7 +170,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                 children: [
                   Row(
                     children: [
-                      SvgPicture.asset('assets/payment/BNI.svg'),
+                      SvgPicture.asset('assets/icons/payment/BNI.svg'),
                       const SizedBox(
                         width: 12,
                       ),
@@ -240,7 +234,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                 children: [
                   Row(
                     children: [
-                      SvgPicture.asset('assets/payment/bca.svg'),
+                      SvgPicture.asset('assets/icons/payment/bca.svg'),
                       const SizedBox(
                         width: 12,
                       ),
@@ -402,7 +396,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                         // () {
                         //   Navigator.pop(context);
                         // },
-                        icon: const Icon(Icons.arrow_back),
+                        icon: const Icon(Icons.close),
                         constraints: const BoxConstraints(),
                         padding: EdgeInsets.zero,
                       ),
@@ -425,6 +419,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
               thickness: 3,
             ),
             SingleChildScrollView(
+              scrollDirection: Axis.vertical,
               child: Padding(
                 padding:
                     const EdgeInsets.only(top: 18.0, right: 18.0, left: 18.0),
@@ -442,7 +437,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                               Row(
                                 children: [
                                   SvgPicture.asset(
-                                      'assets/payment/credit_card.svg'),
+                                      'assets/icons/payment/credit_card.svg'),
                                   const SizedBox(
                                     width: 10,
                                   ),
@@ -476,9 +471,10 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                                   provider.toggleVirtualVisible();
                                 },
                                 icon: provider.isVirtualVisible
-                                    ? SvgPicture.asset("assets/detail/up.svg")
+                                    ? SvgPicture.asset(
+                                        "assets/icons/detail/up.svg")
                                     : SvgPicture.asset(
-                                        "assets/detail/down.svg"),
+                                        "assets/icons/detail/down.svg"),
                                 constraints: const BoxConstraints(),
                                 padding: EdgeInsets.zero,
                               ),
@@ -502,7 +498,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                               Row(
                                 children: [
                                   SvgPicture.asset(
-                                      'assets/payment/account_balance.svg'),
+                                      'assets/icons/payment/account_balance.svg'),
                                   const SizedBox(
                                     width: 10,
                                   ),
@@ -527,9 +523,10 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                                   provider.toggleBankVisible();
                                 },
                                 icon: provider.isBankVisible
-                                    ? SvgPicture.asset("assets/detail/up.svg")
+                                    ? SvgPicture.asset(
+                                        "assets/icons/detail/up.svg")
                                     : SvgPicture.asset(
-                                        "assets/detail/down.svg"),
+                                        "assets/icons/detail/down.svg"),
                                 constraints: const BoxConstraints(),
                                 padding: EdgeInsets.zero,
                               ),
@@ -553,7 +550,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                               Row(
                                 children: [
                                   SvgPicture.asset(
-                                      'assets/payment/account_balance_wallet.svg'),
+                                      'assets/icons/payment/account_balance_wallet.svg'),
                                   const SizedBox(
                                     width: 10,
                                   ),
@@ -578,9 +575,10 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                                   provider.toggleEWalletVisible();
                                 },
                                 icon: provider.isEWalletVisible
-                                    ? SvgPicture.asset("assets/detail/up.svg")
+                                    ? SvgPicture.asset(
+                                        "assets/icons/detail/up.svg")
                                     : SvgPicture.asset(
-                                        "assets/detail/down.svg"),
+                                        "assets/icons/detail/down.svg"),
                                 constraints: const BoxConstraints(),
                                 padding: EdgeInsets.zero,
                               ),
@@ -627,9 +625,9 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                                     },
                                     icon: provider.isTotalPembayaranVisible
                                         ? SvgPicture.asset(
-                                            "assets/detail/up.svg")
+                                            "assets/icons/detail/up.svg")
                                         : SvgPicture.asset(
-                                            "assets/detail/down.svg"),
+                                            "assets/icons/detail/down.svg"),
                                     constraints: const BoxConstraints(),
                                     padding: EdgeInsets.zero,
                                   ),

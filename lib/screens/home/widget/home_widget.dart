@@ -51,7 +51,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(12),
                           child: Image.asset(
-                            "assets/homescreen/office-list.jpg",
+                            "assets/home/office-list.jpg",
                             fit: BoxFit.fill,
                           ),
                         ),
