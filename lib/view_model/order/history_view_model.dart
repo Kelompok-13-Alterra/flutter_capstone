@@ -11,7 +11,7 @@ class HistoryViewModel with ChangeNotifier {
 
   HistoryService historyService = HistoryService();
 
-  Future<void> getBooked() async {
+  Future<void> getBooked(BuildContext context) async { 
     try {
       _listHistory = await historyService.fetchHistoryData();
       notifyListeners();

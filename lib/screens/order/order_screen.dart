@@ -26,11 +26,11 @@ class _OrderScreenState extends State<OrderScreen>
 
     final historyViewModel =
         Provider.of<HistoryViewModel>(context, listen: false);
-    historyViewModel.getBooked();
+    historyViewModel.getBooked(context);
 
     final bookedViewModel =
         Provider.of<BookedViewModel>(context, listen: false);
-    bookedViewModel.getBooked();
+    bookedViewModel.getBooked(context);
   }
 
   @override

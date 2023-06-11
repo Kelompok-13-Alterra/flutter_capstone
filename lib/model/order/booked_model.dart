@@ -54,15 +54,15 @@ class Booked {
   });
 
   factory Booked.fromJson(Map<String, dynamic> json) => Booked(
-        discount: json["discount"] ?? 0,
-        end: json["end"] ?? "",
-        price: json["price"] ?? 0,
-        start: json["start"] ?? "",
-        status: json["status"] == true ? true : false,
-        tax: json["tax"] ?? 0,
-        totalPrice: json["totalPrice"] ?? 0,
-        userId: json["userID"] ?? 0,
-        officeId: json["officeID"] ?? 0,
+        discount: json["Discount"] ?? 0,
+        end: json["End"] ?? "",
+        price: json["Price"] ?? 0,
+        start: json["Start"] ?? "",
+        status: json["Status"] == true ? true : false,
+        tax: json["Tax"] ?? 0,
+        totalPrice: json["TotalPrice"] ?? 0,
+        userId: json["UserID"] ?? 0,
+        officeId: json["OfficeID"] ?? 0,
       );
   Map<String, dynamic> toJson() => {
         "discount": discount,
@@ -103,16 +103,16 @@ class Office {
   });
 
   factory Office.fromJson(Map<String, dynamic> json) => new Office(
-        capacity: json["capacity"],
-        close: Close.fromJson(json["close"]),
-        description: json["description"],
-        facilities: json["facilities"],
-        location: json["location"],
-        name: json["name"],
-        open: Close.fromJson(json["open"]),
-        price: json["price"],
-        status: json["status"],
-        type: json["type"],
+        capacity: json["Capacity"],
+        close: Close.fromJson(json["Close"]),
+        description: json["Description"],
+        facilities: json["Facilities"],
+        location: json["Location"],
+        name: json["Name"],
+        open: Close.fromJson(json["Open"]),
+        price: json["Price"],
+        status: json["Status"],
+        type: json["Type"],
       );
 
   Map<String, dynamic> toJson() => {
