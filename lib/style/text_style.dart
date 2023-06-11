@@ -115,7 +115,6 @@ class NeutralColor {
   Color neutral98 = const Color(0xffFAF9FD);
   Color neutral99 = const Color(0xffFDFBFF);
   Color neutral100 = const Color(0xffFFFFFF);
-
 }
 
 class NeutralVariantColor {

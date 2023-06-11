@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class LocationNotFoundScreen extends StatefulWidget {
@@ -12,32 +11,6 @@ class _LocationNotFoundScreenState extends State<LocationNotFoundScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Cari Lokasi"),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.more_vert),
-          )
-        ],
-        elevation: 0,
-        bottom: AppBar(
-          leading: IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.arrow_back),
-          ),
-          title: TextField(
-            decoration: InputDecoration(
-              prefixIcon: const Icon(Icons.search),
-              suffixIcon: const Icon(CupertinoIcons.xmark_circle_fill),
-              contentPadding: const EdgeInsets.all(0),
-              border:
-                  OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-            ),
-          ),
-          elevation: 0,
-        ),
-      ),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(10),

@@ -33,18 +33,18 @@ class HomeModel {
 class Office {
   int id;
   int capacity;
-  String close; 
+  String close; // Change
   String description;
   String facilities;
   String location;
   String name;
-  String open; 
+  String open; // Change
   int price;
   bool status;
   String type;
 
   Office({
-    required this.id,
+    required this.id, // Change
     required this.capacity,
     required this.close,
     required this.description,
@@ -58,6 +58,7 @@ class Office {
   });
 
   factory Office.fromJson(Map<String, dynamic> json) => Office(
+        // Change All
         id: json['ID'] ?? 0,
         capacity: json["Capacity"] ?? 0,
         close: json["Close"] ?? DateTime.now(),
@@ -75,12 +76,12 @@ class Office {
 
   Map<String, dynamic> toJson() => {
         "capacity": capacity,
-        "close": close, 
+        "close": close, // Change
         "description": description,
         "facilities": facilities,
         "location": location,
         "name": name,
-        "open": open, 
+        "open": open, // Change
         "price": price,
         "status": status,
         "type": type,

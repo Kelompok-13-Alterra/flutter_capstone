@@ -8,7 +8,15 @@ import 'package:flutter_capstone/screens/detail/widget/image_detail.dart';
 import 'package:flutter_capstone/screens/detail/widget/office_description.dart';
 
 class DetailScreen extends StatefulWidget {
-  const DetailScreen({super.key});
+  final String? buttonRoute;
+  final String textButton;
+  final int? officeId;
+  const DetailScreen({
+    super.key,
+    required this.buttonRoute,
+    required this.textButton,
+    this.officeId,
+  });
 
   @override
   State<DetailScreen> createState() => _DetailScreenState();
@@ -17,31 +25,58 @@ class DetailScreen extends StatefulWidget {
 class _DetailScreenState extends State<DetailScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    // var detailViewModel = Provider.of<DetailViewModel>(context);
+    print('Passed officeId ${widget.officeId}');
+    return
+
+        // WillPopScope(
+        //   onWillPop: () async {
+        //     if (widget.textButton == 'Pilih Metode Pembayaran') {
+        //       Navigator.pushReplacement(
+        //         context,
+        //         MaterialPageRoute(
+        //           builder: (context) => DetailScreen(
+        //             officeId: widget.officeId,
+        //             buttonRoute: '/booking',
+        //             textButton: 'Book',
+        //           ),
+        //         ),
+        //       );
+        //     } else if (widget.textButton == 'Book') {
+        //       Navigator.pushReplacementNamed(context, '/bottom-nav',
+        //           arguments: widget.officeId);
+        //     }
+        //     return true;
+        //   },
+        // child:
+        Scaffold(
       body: SingleChildScrollView(
         child: Column(
-          children: const <Widget>[
+          children: <Widget>[
             // Image Swipe
             //================================================================
-            ImageDetail(),
+            const ImageDetail(),
             // Container Detail
             //================================================================
-            DetailCard(),
+            const DetailCard(),
             // Container Fasilitas
             //================================================================
-            OfficeFalicities(),
+            const OfficeFalicities(),
             // Container Deskripsi
             //================================================================
-            OfficeDescription(),
+            const OfficeDescription(),
             // Button Book
             //================================================================
             BottomBook(
-              buttonRoute: null,
-              textButton: 'Book',
+              function: null,
+              officeId: widget.officeId,
+              buttonRoute: widget.buttonRoute,
+              textButton: widget.textButton,
             ),
           ],
         ),
       ),
+      // ),
     );
   }
 }

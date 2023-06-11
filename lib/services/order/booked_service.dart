@@ -1,8 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_capstone/core/init/const/api.dart';
-import 'package:flutter_capstone/model/home/home_model.dart';
 import 'package:flutter_capstone/model/order/booked_model.dart';
-import 'package:flutter_capstone/services/home/home_services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class BookedService {

@@ -15,6 +15,7 @@ class _BackgroundWidgetState extends State<BackgroundWidget> {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
+      automaticallyImplyLeading: false,
       expandedHeight: 465,
       centerTitle: false,
       elevation: 0,
@@ -230,6 +231,7 @@ class _BackgroundWidgetState extends State<BackgroundWidget> {
                           ),
                           GestureDetector(
                             onTap: () {
+                              Navigator.pushNamed(context, '/search');
                               //OnTab di Search
                             },
                             child: Container(

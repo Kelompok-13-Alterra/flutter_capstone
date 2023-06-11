@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/view_model/home/home_view_model.dart';
+import 'package:flutter_capstone/screens/home/home_view_model.dart';
 import 'package:flutter_capstone/screens/home/widget/background_widget.dart';
 import 'package:flutter_capstone/screens/home/widget/filterchoice.dart';
 import 'package:flutter_capstone/screens/home/widget/home_widget.dart';

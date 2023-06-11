@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/core/init/utils/shared_preferences.dart';
+import 'package:flutter_capstone/screens/login/login_view_model.dart';
 import 'package:flutter_capstone/style/text_style.dart';
+import 'package:provider/provider.dart';
 
 class IconSubMenu {
   final String urlImg;
@@ -63,6 +65,8 @@ List iconSubMenuInformation = [
 ];
 
 Widget profilesWidget(BuildContext context) {
+  LoginViewModel loginViewModel = Provider.of<LoginViewModel>(context);
+
   return Column(
     mainAxisAlignment: MainAxisAlignment.start,
     crossAxisAlignment: CrossAxisAlignment.start,
@@ -136,7 +140,7 @@ Widget profilesWidget(BuildContext context) {
       Container(
         width: MediaQuery.of(context).size.width,
         // width: 360,
-        height: 272,
+        height: 280,
         color: SourceColor().white,
         child: Padding(
           padding: const EdgeInsets.all(16),
@@ -196,9 +200,10 @@ Widget profilesWidget(BuildContext context) {
                 height: 16,
               ),
               GestureDetector(
-                onTap: () async {
+                onTap: () {
                   removeToken();
-
+                  loginViewModel.getEmail.clear();
+                  loginViewModel.getPassword.clear();
                   // ignore: use_build_context_synchronously
                   Navigator.pushNamedAndRemoveUntil(
                       context, '/login', (route) => false);

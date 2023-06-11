@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/screens/login/login_screen.dart';
 import 'package:flutter_capstone/style/text_style.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class BoardingScreen extends StatefulWidget {
@@ -195,6 +194,7 @@ class _OnBoardingScreenState extends State<BoardingScreen> {
                           controller: _pageControllerDescription,
                           itemCount: boardingData['boarding'].length,
                           itemBuilder: (BuildContext context, int index) {
+                            // ignore: avoid_unnecessary_containers
                             return Container(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
