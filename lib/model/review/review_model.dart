@@ -11,11 +11,11 @@ String reviewModelToJson(ReviewModel data) => json.encode(data.toJson());
 
 class ReviewModel {
   Meta? meta;
-  Data data;
+  Data? data;
 
   ReviewModel({
-    required this.meta,
-    required this.data,
+    this.meta,
+    this.data,
   });
 
   factory ReviewModel.fromJson(Map<String, dynamic> json) => ReviewModel(
@@ -25,33 +25,33 @@ class ReviewModel {
 
   Map<String, dynamic> toJson() => {
         "meta": meta?.toJson(),
-        "data": data.toJson(),
+        "data": data?.toJson(),
       };
 }
 
 class Data {
-  int id;
-  DateTime createdAt;
-  DateTime updatedAt;
+  int? id;
+  DateTime? createdAt;
+  DateTime? updatedAt;
   DateTime? deletedAt;
-  int userId;
-  int officeId;
-  int transactionId;
-  int star;
-  String tags;
-  String description;
+  int? userId;
+  int? officeId;
+  int? transactionId;
+  double? star;
+  String? tags;
+  String? description;
 
   Data({
-    required this.id,
-    required this.createdAt,
-    required this.updatedAt,
+    this.id,
+    this.createdAt,
+    this.updatedAt,
     this.deletedAt,
-    required this.userId,
-    required this.officeId,
-    required this.transactionId,
-    required this.star,
-    required this.tags,
-    required this.description,
+    this.userId,
+    this.officeId,
+    this.transactionId,
+    this.star,
+    this.tags,
+    this.description,
   });
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
@@ -69,8 +69,8 @@ class Data {
 
   Map<String, dynamic> toJson() => {
         "ID": id,
-        "CreatedAt": createdAt.toIso8601String(),
-        "UpdatedAt": updatedAt.toIso8601String(),
+        "CreatedAt": createdAt?.toIso8601String(),
+        "UpdatedAt": updatedAt?.toIso8601String(),
         "DeletedAt": deletedAt,
         "UserID": userId,
         "OfficeID": officeId,

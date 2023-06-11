@@ -1,10 +1,18 @@
-// ignore_for_file: prefer_typing_uninitialized_variables, deprecated_member_use, unused_local_variable
+// ignore_for_file: prefer_typing_uninitialized_variables, unused_local_variable, deprecated_member_use
+
+import 'dart:js';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/services/review/review_service.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ReviewViewModel extends ChangeNotifier {
+  final int _transactionId = 0;
+  int get transactionId => _transactionId;
+
+  static int? _index;
+  int get index => _index!;
+
   int _selectedFilterIndex = 0;
   int get selectedFilterIndex => _selectedFilterIndex;
 
@@ -22,11 +30,14 @@ class ReviewViewModel extends ChangeNotifier {
   final TextEditingController _reviewController = TextEditingController();
   TextEditingController get reviewController => _reviewController;
 
-  final double _rating = 0.0;
+  double _rating = 0.0;
   double get rating => _rating;
 
-  final int _transactionId = 0;
-  int get transactionId => _transactionId;
+  final _firstIndex = _index! * 2;
+  get firstIndex => _firstIndex;
+
+  final _secondIndex = _index! * 2 + 1;
+  get secondIndex => _secondIndex;
 
   final ImagePicker _imgPicker = ImagePicker();
   ImagePicker get imgPicker => _imgPicker;
@@ -34,19 +45,24 @@ class ReviewViewModel extends ChangeNotifier {
   final List<XFile> _imgFileList = [];
   List<XFile> get imgFileList => _imgFileList;
 
+  _pickImageFromCamera() async {
+    final picker = ImagePicker();
+    final pickedImage = await picker.getImage(source: ImageSource.camera);
+  }
+
+  get pickImageFromCamera => _pickImageFromCamera();
+
   onRatingUpdate(rating) {
-    rating = _rating;
+    _rating = rating;
     notifyListeners();
   }
 
   onSelected(bool selected) {
-    var firstIndex;
     _selectedFilterIndex = selected ? firstIndex : 0;
     notifyListeners();
   }
 
-  onSelectedSeconIndex(bool selected) {
-    var secondIndex;
+  onSelectedSecondIndex(bool selected) {
     _selectedFilterIndex = selected ? secondIndex : 0;
     notifyListeners();
   }
@@ -59,15 +75,31 @@ class ReviewViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  deleteImage(data) {
-    imgFileList.remove(data);
-    notifyListeners();
-  }
+  // deleteImage(data) {
+  //   imgFileList.remove(data);
+  //   notifyListeners();
+  // }
 
-  controllerReviewClear() {
+  _submitReview(context) {
+    if (_reviewController.text.isEmpty) {
+      const snackBar = SnackBar(
+        content: Text("Please check what you input"),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    } else {
+      return ReviewService().addPosted(
+        context,
+        transactionId: _transactionId,
+        star: _rating,
+        description: reviewController.text,
+        tags: ['$_selectedFilterIndex'],
+      );
+    }
     _reviewController.clear();
     notifyListeners();
   }
+
+  get submitReview => _submitReview(context);
 
   // submitReview(transactionId) async {
   //   _reviewController.clear();

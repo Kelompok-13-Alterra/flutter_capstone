@@ -7,7 +7,7 @@ void main() {
   runApp(
     MultiProvider(
       providers: [
-        ListenableProvider(
+        ChangeNotifierProvider(
           create: (context) => ReviewViewModel(),
         ),
       ],
