@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/core/init/utils/date_convert.dart';
 import 'package:flutter_capstone/screens/booking/booking_screen.dart';
+import 'package:flutter_capstone/screens/review/review_view_model.dart';
 import 'package:flutter_capstone/services/order/order_service.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_capstone/widgets/modal_bottom.dart';
@@ -27,6 +28,7 @@ class ShowModalPayment extends StatefulWidget {
 class _ShowModalPaymentState extends State<ShowModalPayment> {
   Widget buildListVirtualAccount(BuildContext context) {
     return Consumer<PaymentViewModel>(builder: (context, provider, _) {
+      ReviewViewModel providerReview = Provider.of<ReviewViewModel>(context);
       return Column(
         children: [
           GestureDetector(

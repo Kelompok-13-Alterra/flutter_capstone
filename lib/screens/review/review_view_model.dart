@@ -1,13 +1,18 @@
-// ignore_for_file: prefer_typing_uninitialized_variables, unused_local_variable, deprecated_member_use, avoid_web_libraries_in_flutter
+// ignore_for_file: prefer_typing_uninitialized_variables, unused_local_variable, deprecated_member_use, avoid_web_libraries_in_flutter, await_only_futures
 
 import 'dart:js';
 import 'package:flutter/material.dart';
+import 'package:flutter_capstone/model/midtrans/midtrans_model.dart';
+import 'package:flutter_capstone/screens/payment/detail_payment_screen.dart';
+import 'package:flutter_capstone/screens/payment/payment-view-model.dart';
+import 'package:flutter_capstone/services/midtrans/midtrans_service.dart';
 import 'package:flutter_capstone/services/review/review_service.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
 
 class ReviewViewModel extends ChangeNotifier {
-  final int _transactionId = 0;
-  int get transactionId => _transactionId;
+  // final int _transactionId = 0;
+  // int get transactionId => _transactionId;
 
   static int? _index;
   int get index => _index!;
@@ -79,8 +84,31 @@ class ReviewViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  _submitReview(context) {
-    if (_reviewController.text.isEmpty) {
+  late final int _paymentId;
+  int get paymentId => _paymentId;
+
+  String rekening = '';
+  String get getRekening => rekening;
+  set setRekeningValue(String val) {
+    rekening = val;
+    notifyListeners();
+  }
+
+  int transactionID = 0;
+  int get getTransactionID => transactionID;
+  set setTransactionID(int val) {
+    transactionID = val;
+    notifyListeners();
+  }
+
+  _submitReview(context) async {
+    ReviewViewModel reviewProvider = Provider.of<ReviewViewModel>(context);
+    var review = MidtransService().getPayment(transactionId: _paymentId);
+    var virtualAccountNumber = review.then((value) => {
+          setRekeningValue = value.data.paymentData.vaNumber,
+        });
+
+    if (_reviewController.text.isEmpty && imgFileList.isNotEmpty) {
       const snackBar = SnackBar(
         content: Text("Please check what you input"),
       );
@@ -88,17 +116,19 @@ class ReviewViewModel extends ChangeNotifier {
     } else {
       return ReviewService().addPosted(
         context,
-        transactionId: _transactionId,
+        transactionId: reviewProvider.transactionID,
         star: _rating,
         description: reviewController.text,
         tags: ['$_selectedFilterIndex'],
       );
     }
+    var res = reviewProvider.setTransactionID = await transactionID;
     _reviewController.clear();
     notifyListeners();
   }
 
   get submitReview => _submitReview(context);
+}
 
   // submitReview(transactionId) async {
   //   _reviewController.clear();
@@ -116,4 +146,3 @@ class ReviewViewModel extends ChangeNotifier {
   //   }
   //   notifyListeners();
   // }
-}
