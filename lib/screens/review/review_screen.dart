@@ -3,7 +3,9 @@
 // ignore_for_file: library_private_types_in_public_api, unused_field, deprecated_member_use, avoid_unnecessary_containers, unused_local_variable, prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
+import 'package:flutter_capstone/screens/payment/payment-view-model.dart';
 import 'package:flutter_capstone/screens/review/review_view_model.dart';
+import 'package:flutter_capstone/services/review/review_service.dart';
 //import 'package:flutter_capstone/services/review/review_service.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -38,25 +40,6 @@ class _ReviewScreenState extends State<ReviewScreen> {
   //   final pickedImage = await picker.getImage(source: ImageSource.camera);
   // }
 
-  // _submitReview() {
-  //   if (_reviewController.text.isEmpty) {
-  //     const snackBar = SnackBar(
-  //       content: Text("Please check what you input"),
-  //     );
-  //     ScaffoldMessenger.of(context).showSnackBar(snackBar);
-  //   } else {
-  //     return ReviewService().addPosted(
-  //       context,
-  //       transactionId: 21,
-  //       star: 4.5,
-  //       description: "The place is very cozy and the facilities are complete.",
-  //       tags: ['Terdekat'],
-  //     );
-  //   }
-  //   _reviewController.clear();
-  //   setState(() {});
-  // }
-
   // ReviewService().addPost(
   //   // _rating,
   //   // _reviewController.text,
@@ -75,11 +58,38 @@ class _ReviewScreenState extends State<ReviewScreen> {
   //   }
   //   setState(() {});
   // }
+  late PaymentViewModel paymentViewModel;
+  @override
+  void initState() {
+    paymentViewModel = Provider.of<PaymentViewModel>(context, listen: false);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    //Provider
     ReviewViewModel reviewProvider = Provider.of<ReviewViewModel>(context);
+    _submitReview() async {
+      if (reviewProvider.reviewController.text.isEmpty
+          // && imgFileList.isNotEmpty
+          ) {
+        const snackBar = SnackBar(
+          content: Text("Please check what you input"),
+        );
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      } else {
+        return ReviewService().addPosted(
+          context,
+          transactionId: paymentViewModel.getTransactionID,
+          star: reviewProvider.rating,
+          description: reviewProvider.reviewController.text,
+          tags: ['${reviewProvider.selectedFilterIndex}'],
+        );
+      }
+      var res =
+          reviewProvider.setTransactionID = await reviewProvider.transactionID;
+      reviewProvider.reviewController.clear();
+    }
+    //Provider
 
     return Scaffold(
       appBar: AppBar(
@@ -371,7 +381,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
               ),
               SizedBox(
                 child: ElevatedButton(
-                  onPressed: reviewProvider.submitReview,
+                  onPressed: _submitReview,
                   style: ElevatedButton.styleFrom(
                     fixedSize: const Size(365, 50),
                     backgroundColor: PrimaryColor().primary,

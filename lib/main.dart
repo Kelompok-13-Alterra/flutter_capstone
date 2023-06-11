@@ -30,24 +30,24 @@ void main() {
   runApp(
     MultiProvider(
       providers: [
-        ListenableProvider(
-          create: (context) => LoginViewModel(),
-        ),
-        ListenableProvider(
-          create: (context) => HomeViewModel(),
-        ),
-        ListenableProvider(
-          create: (context) => SearchOfficeViewModel(),
-        ),
-        ListenableProvider(
-          create: (context) => SignupViewModel(),
-        ),
+        // ListenableProvider(
+        //   create: (context) => LoginViewModel(),
+        // ),
+        // ListenableProvider(
+        //   create: (context) => HomeViewModel(),
+        // ),
+        // ListenableProvider(
+        //   create: (context) => SearchOfficeViewModel(),
+        // ),
+        // ListenableProvider(
+        //   create: (context) => SignupViewModel(),
+        // ),
         ListenableProvider(
           create: (context) => PaymentViewModel(),
         ),
-        ListenableProvider(
-          create: (context) => DetailViewModel(),
-        ),
+        // ListenableProvider(
+        //   create: (context) => DetailViewModel(),
+        // ),
         ListenableProvider(
           create: (context) => ReviewViewModel(),
         ),

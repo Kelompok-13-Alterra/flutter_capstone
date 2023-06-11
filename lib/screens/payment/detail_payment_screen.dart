@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_capstone/screens/review/review_view_model.dart';
 import 'package:flutter_capstone/services/midtrans/midtrans_service.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_svg/svg.dart';
@@ -123,6 +124,7 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
   @override
   Widget build(BuildContext context) {
     return Consumer<PaymentViewModel>(builder: (context, provider, _) {
+      ReviewViewModel reviewProvider = Provider.of<ReviewViewModel>(context);
       return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -287,6 +289,7 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                               .copyWith(fontWeight: semiBold, fontSize: 14),
                         ),
                       ),
+
                       //Transfer Pembayaran - Get Midtrans API
                       FutureBuilder(
                         future: MidtransService()
@@ -294,13 +297,18 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                         builder: (context, snapshot) {
                           var res = MidtransService()
                               .getPayment(transactionId: widget.paymentId);
-
-                          var virtualAccountNumber = res.then(
-                            (value) {
-                              provider.setRekeningValue =
-                                  value.data.paymentData.vaNumber;
-                            },
-                          );
+                          res.then((value) => {
+                                provider.setRekeningValue =
+                                    value.data.paymentData.vaNumber,
+                                reviewProvider.setTransactionID =
+                                    widget.paymentId,
+                              });
+                          // var virtualAccountNumber = res.then(
+                          //   (value) {
+                          //     provider.setRekeningValue =
+                          //         value.data.paymentData.vaNumber;
+                          //   },
+                          // );
 
                           return Container(
                             padding: const EdgeInsets.all(16),

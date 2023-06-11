@@ -2,9 +2,9 @@
 
 import 'dart:js';
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/model/midtrans/midtrans_model.dart';
-import 'package:flutter_capstone/screens/payment/detail_payment_screen.dart';
-import 'package:flutter_capstone/screens/payment/payment-view-model.dart';
+// import 'package:flutter_capstone/model/midtrans/midtrans_model.dart';
+// import 'package:flutter_capstone/screens/payment/detail_payment_screen.dart';
+// import 'package:flutter_capstone/screens/payment/payment-view-model.dart';
 import 'package:flutter_capstone/services/midtrans/midtrans_service.dart';
 import 'package:flutter_capstone/services/review/review_service.dart';
 import 'package:image_picker/image_picker.dart';
@@ -103,12 +103,10 @@ class ReviewViewModel extends ChangeNotifier {
 
   _submitReview(context) async {
     ReviewViewModel reviewProvider = Provider.of<ReviewViewModel>(context);
-    var review = MidtransService().getPayment(transactionId: _paymentId);
-    var virtualAccountNumber = review.then((value) => {
-          setRekeningValue = value.data.paymentData.vaNumber,
-        });
 
-    if (_reviewController.text.isEmpty && imgFileList.isNotEmpty) {
+    if (_reviewController.text.isEmpty
+        // && imgFileList.isNotEmpty
+        ) {
       const snackBar = SnackBar(
         content: Text("Please check what you input"),
       );
@@ -130,6 +128,10 @@ class ReviewViewModel extends ChangeNotifier {
   get submitReview => _submitReview(context);
 }
 
+    // var review = MidtransService().getPayment(transactionId: _paymentId);
+    // var virtualAccountNumber = review.then((value) => {
+    //       setRekeningValue = value.data.paymentData.vaNumber,
+    //     });
   // submitReview(transactionId) async {
   //   _reviewController.clear();
   //   var review = await ReviewService().postReview(
