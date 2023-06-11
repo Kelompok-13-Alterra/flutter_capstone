@@ -302,7 +302,7 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                             },
                           );
 
-                          Container(
+                          return Container(
                             padding: const EdgeInsets.all(16),
                             width: double.infinity,
                             decoration: BoxDecoration(
