@@ -1,7 +1,6 @@
-// ignore_for_file: prefer_typing_uninitialized_variables, unused_local_variable, deprecated_member_use
+// ignore_for_file: prefer_typing_uninitialized_variables, unused_local_variable, deprecated_member_use, avoid_web_libraries_in_flutter
 
 import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/services/review/review_service.dart';
 import 'package:image_picker/image_picker.dart';
@@ -75,10 +74,10 @@ class ReviewViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  // deleteImage(data) {
-  //   imgFileList.remove(data);
-  //   notifyListeners();
-  // }
+  deleteImage(data) {
+    _imgFileList.remove(data);
+    notifyListeners();
+  }
 
   _submitReview(context) {
     if (_reviewController.text.isEmpty) {
