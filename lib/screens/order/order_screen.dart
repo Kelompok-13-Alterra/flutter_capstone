@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_capstone/screens/order/booked_screen.dart';
 import 'package:flutter_capstone/screens/order/history_screen.dart';
 import 'package:flutter_capstone/style/text_style.dart';
+import 'package:flutter_capstone/view_model/order/history_view_model.dart';
+import 'package:flutter_capstone/view_model/order/booked_view_model.dart';
+import 'package:provider/provider.dart';
 
 class OrderScreen extends StatefulWidget {
   const OrderScreen({Key? key}) : super(key: key);
@@ -20,6 +23,14 @@ class _OrderScreenState extends State<OrderScreen>
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
     _tabController.addListener(_handleTabSelection);
+
+    final historyViewModel =
+        Provider.of<HistoryViewModel>(context, listen: false);
+    historyViewModel.getBooked();
+
+    final bookedViewModel =
+        Provider.of<BookedViewModel>(context, listen: false);
+    bookedViewModel.getBooked();
   }
 
   @override
@@ -89,9 +100,20 @@ class _OrderScreenState extends State<OrderScreen>
                 Expanded(
                   child: TabBarView(
                     controller: _tabController,
-                    children: const <Widget>[
-                      BookedOrderScreen(),
-                      HistoryOrderScreen(),
+                    children: <Widget>[
+                      Consumer<BookedViewModel>(
+                          builder: (context, provider, child) {
+                        return BookedOrderScreen(
+                          bookedList: provider.listBooked,
+                        );
+                      }),
+                      Consumer<HistoryViewModel>(
+                        builder: (context, provider, child) {
+                          return HistoryOrderScreen(
+                            historyList: provider.listHistory,
+                          );
+                        },
+                      ),
                     ],
                   ),
                 ),

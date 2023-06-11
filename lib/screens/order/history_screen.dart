@@ -1,14 +1,12 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/model/home/home_model.dart';
-import 'package:flutter_capstone/screens/order/widget/order_widget.dart';
-import 'package:flutter_capstone/view_model/home/home_view_model.dart';
+import 'package:flutter_capstone/model/order/history_model.dart';
 import 'package:flutter_capstone/view_model/order/history_view_model.dart';
-
+import 'package:flutter_capstone/screens/order/widget/order_widget.dart';
 import 'package:provider/provider.dart';
 
 class HistoryOrderScreen extends StatefulWidget {
-  const HistoryOrderScreen({Key? key});
+  const HistoryOrderScreen({Key? key, required List<History> historyList})
+      : super(key: key);
 
   @override
   State<HistoryOrderScreen> createState() => _HistoryOrderScreenState();
@@ -16,20 +14,10 @@ class HistoryOrderScreen extends StatefulWidget {
 
 class _HistoryOrderScreenState extends State<HistoryOrderScreen> {
   @override
-  void initState() {
-    super.initState();
-    final historyViewModel =
-        Provider.of<HistoryViewModel>(context, listen: false);
-    historyViewModel.getBooked();
-    historyViewModel.getOffices();
-  }
-
-  @override
   Widget build(BuildContext context) {
     final historyViewModel = Provider.of<HistoryViewModel>(context);
     final historyList = historyViewModel.listHistory;
-    final homeViewModel = Provider.of<HomeViewModel>(context);
-    final officeList = homeViewModel.listOffice;
+    final officeList = historyViewModel.listOffice;
 
     return historyList.isEmpty
         ? const Center(
@@ -39,35 +27,22 @@ class _HistoryOrderScreenState extends State<HistoryOrderScreen> {
             itemCount: historyList.length,
             itemBuilder: (context, index) {
               final history = historyList[index];
-              final office = historyViewModel.listOffice.firstWhere(
-                (office) => office.id == history.officeId,
-                orElse: () => Office(
-                  id: 0,
-                  name: '',
-                  description: '',
-                  capacity: 0,
-                  type: '',
-                  open: '',
-                  close: '',
-                  price: 0,
-                  location: '',
-                  facilities: '',
-                  status: false,
-                ),
-              );
+              final office =
+                  officeList.length > index ? officeList[index] : null;
 
+              String status = 'Booked';
               if (!history.status) {
-                return const SizedBox
-                    .shrink(); // Return an empty SizedBox if the status is "Cancelled"
+                status = 'Cancelled';
               }
 
               return OrderWidget(
                 urlImg: 'assets/office1.png',
-                title: office.name,
+                title: office != null ? office.name : '',
                 rating: 4.6,
-                type: '',
-                duration: '${history.start} - ${history.end}',
-                status: 'Booked',
+                type: office != null ? office.type : '',
+                duration:
+                    office != null ? '${office.open} - ${office.close}' : '',
+                status: status,
                 route: '/detail-schedule',
                 buttonText1: 'Book Again',
                 routeButton1: '/detail',

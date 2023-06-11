@@ -8,23 +8,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 class BookedService {
   final Dio _dio = Dio();
 
-  HomeService homeService = HomeService();
-
-  Future<List<Office>> fetchOfficeData() async {
-    try {
-      final response = await homeService.fetchHomeData();
-      return response;
-    } catch (error) {
-      throw Exception('Failed to fetch office data: $error');
-    }
-  }
-
   Future<List<Booked>> fetchBookedData() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     String token = prefs.getString('token').toString();
     try {
-      final officeData = await fetchOfficeData();
-
       final response = await _dio.get('$baseUrl/api/v1/transaction/booked',
           options: Options(headers: {
             "accept": "application/json",

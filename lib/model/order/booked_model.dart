@@ -77,6 +77,66 @@ class Booked {
       };
 }
 
+class Office {
+  int capacity;
+  Close close;
+  String description;
+  String facilities;
+  String location;
+  String name;
+  Close open;
+  int price;
+  bool status;
+  String type;
+
+  Office({
+    required this.capacity,
+    required this.close,
+    required this.description,
+    required this.facilities,
+    required this.location,
+    required this.name,
+    required this.open,
+    required this.price,
+    required this.status,
+    required this.type,
+  });
+
+  factory Office.fromJson(Map<String, dynamic> json) => new Office(
+        capacity: json["capacity"],
+        close: Close.fromJson(json["close"]),
+        description: json["description"],
+        facilities: json["facilities"],
+        location: json["location"],
+        name: json["name"],
+        open: Close.fromJson(json["open"]),
+        price: json["price"],
+        status: json["status"],
+        type: json["type"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "capacity": capacity,
+        "close": close.toJson(),
+        "description": description,
+        "facilities": facilities,
+        "location": location,
+        "name": name,
+        "open": open.toJson(),
+        "price": price,
+        "status": status,
+        "type": type,
+      };
+}
+
+class Close {
+  Close();
+
+  factory Close.fromJson(Map<String, dynamic> json) => new Close();
+
+  Map<String, dynamic> toJson() => {};
+}
+
 class Meta {
   int code;
   bool isError;
