@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:flutter_capstone/model/home/home_model.dart';
+
 BookedModel bookedModelFromJson(String str) {
   final jsonData = json.decode(str);
   return BookedModel.fromJson(jsonData);
@@ -33,6 +35,7 @@ class BookedModel {
 class Booked {
   int discount;
   String end;
+  Office office;
   int officeId;
   int price;
   String start;
@@ -44,6 +47,7 @@ class Booked {
   Booked({
     required this.discount,
     required this.end,
+    required this.office,
     required this.officeId,
     required this.price,
     required this.start,
@@ -56,17 +60,19 @@ class Booked {
   factory Booked.fromJson(Map<String, dynamic> json) => Booked(
         discount: json["Discount"] ?? 0,
         end: json["End"] ?? "",
+        office: Office.fromJson(json["Office"]),
+        officeId: json["OfficeID"] ?? 0,
         price: json["Price"] ?? 0,
         start: json["Start"] ?? "",
         status: json["Status"] == true ? true : false,
         tax: json["Tax"] ?? 0,
         totalPrice: json["TotalPrice"] ?? 0,
         userId: json["UserID"] ?? 0,
-        officeId: json["OfficeID"] ?? 0,
       );
   Map<String, dynamic> toJson() => {
         "discount": discount,
         "end": end,
+        "office": office.toJson(),
         "officeID": officeId,
         "price": price,
         "start": start,
@@ -75,66 +81,6 @@ class Booked {
         "totalPrice": totalPrice,
         "userID": userId,
       };
-}
-
-class Office {
-  int capacity;
-  Close close;
-  String description;
-  String facilities;
-  String location;
-  String name;
-  Close open;
-  int price;
-  bool status;
-  String type;
-
-  Office({
-    required this.capacity,
-    required this.close,
-    required this.description,
-    required this.facilities,
-    required this.location,
-    required this.name,
-    required this.open,
-    required this.price,
-    required this.status,
-    required this.type,
-  });
-
-  factory Office.fromJson(Map<String, dynamic> json) => new Office(
-        capacity: json["Capacity"],
-        close: Close.fromJson(json["Close"]),
-        description: json["Description"],
-        facilities: json["Facilities"],
-        location: json["Location"],
-        name: json["Name"],
-        open: Close.fromJson(json["Open"]),
-        price: json["Price"],
-        status: json["Status"],
-        type: json["Type"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "capacity": capacity,
-        "close": close.toJson(),
-        "description": description,
-        "facilities": facilities,
-        "location": location,
-        "name": name,
-        "open": open.toJson(),
-        "price": price,
-        "status": status,
-        "type": type,
-      };
-}
-
-class Close {
-  Close();
-
-  factory Close.fromJson(Map<String, dynamic> json) => new Close();
-
-  Map<String, dynamic> toJson() => {};
 }
 
 class Meta {

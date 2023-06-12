@@ -26,11 +26,11 @@ class _OrderScreenState extends State<OrderScreen>
 
     final historyViewModel =
         Provider.of<HistoryViewModel>(context, listen: false);
-    historyViewModel.getBooked(context);
+    historyViewModel.getOffice();
 
     final bookedViewModel =
         Provider.of<BookedViewModel>(context, listen: false);
-    bookedViewModel.getBooked(context);
+    bookedViewModel.getOffice();
   }
 
   @override
@@ -100,20 +100,9 @@ class _OrderScreenState extends State<OrderScreen>
                 Expanded(
                   child: TabBarView(
                     controller: _tabController,
-                    children: <Widget>[
-                      Consumer<BookedViewModel>(
-                          builder: (context, provider, child) {
-                        return BookedOrderScreen(
-                          bookedList: provider.listBooked,
-                        );
-                      }),
-                      Consumer<HistoryViewModel>(
-                        builder: (context, provider, child) {
-                          return HistoryOrderScreen(
-                            historyList: provider.listHistory,
-                          );
-                        },
-                      ),
+                    children: const <Widget>[
+                      BookedOrderScreen(),
+                      HistoryOrderScreen(),
                     ],
                   ),
                 ),

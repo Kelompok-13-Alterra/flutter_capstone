@@ -1,46 +1,61 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/model/order/booked_model.dart';
 import 'package:flutter_capstone/screens/order/widget/order_widget.dart';
+import 'package:flutter_capstone/view_model/order/booked_view_model.dart';
 import 'package:provider/provider.dart';
 
-import '../../view_model/home/home_view_model.dart';
-
 class BookedOrderScreen extends StatefulWidget {
-  final List<Booked> bookedList;
-  const BookedOrderScreen({Key? key, required this.bookedList})
-      : super(key: key);
+  const BookedOrderScreen({Key? key}) : super(key: key);
 
   @override
   State<BookedOrderScreen> createState() => _BookedOrderScreenState();
 }
 
 class _BookedOrderScreenState extends State<BookedOrderScreen> {
+  late Future<dynamic> bookedDataViewModel;
+  @override
+  void initState() {
+    final bookedViewModel =
+        Provider.of<BookedViewModel>(context, listen: false);
+    bookedDataViewModel = bookedViewModel.getOffice();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Consumer<HomeViewModel>(
+    return Consumer<BookedViewModel>(
       builder: (context, office, child) => Container(
-        margin: const EdgeInsets.all(16),
-        child: ListView.builder(
-          itemCount: widget.bookedList.length,
-          itemBuilder: (context, index) {
-            var data = widget.bookedList[index];
-            return OrderWidget(
-              urlImg: 'assets/office1.png',
-              title: office.listOffice
-                  .map((e) => e.name)
-                  .where((element) =>
-                      element.toString().contains(data.officeId.toString()))
-                  .toString(),
-              rating: 4.6,
-              type: data.price.toString(),
-              duration: '${data.start} - ${data.end}',
-              status: 'Booked',
-              route: '/detail-schedule',
-              buttonText1: 'Change Schedule',
-              routeButton1: '/detail-schedule',
-              buttonText2: 'Cancel Book',
-              routeButton2: '',
-            );
+        child: FutureBuilder(
+          future: bookedDataViewModel,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const CircularProgressIndicator();
+            } else if (!snapshot.hasData) {
+              //final homeViewModel = Provider.of<HomeViewModel>(context);
+              return ListView.builder(
+                  itemCount: office.listBooked.length,
+                  itemBuilder: (context, index) {
+                    var data = office.listBooked[index];
+                    return OrderWidget(
+                      urlImg: 'assets/office1.png',
+                      title: office.listBooked[index].office.name,
+                      rating: 4.6,
+                      type: office.listBooked[index].office.type,
+                      duration:
+                          '${office.listBooked[index].office.open} - ${office.listBooked[index].office.close}',
+                      status: 'Booked',
+                      route: '/detail-schedule',
+                      buttonText1: 'Change Schedule',
+                      routeButton1: '/detail-schedule',
+                      buttonText2: 'Cancel Book',
+                      routeButton2: '',
+                    );
+                  });
+            } else {
+              return const Center(
+                child: Text('Data Tidak Ada atau Error'),
+              );
+            }
           },
         ),
       ),

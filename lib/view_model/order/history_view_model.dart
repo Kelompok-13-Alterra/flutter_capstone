@@ -4,16 +4,11 @@ import 'package:flutter_capstone/services/order/history_service.dart';
 
 class HistoryViewModel with ChangeNotifier {
   List<History> _listHistory = [];
-  List<Office> _listOffice = [];
-
   List<History> get listHistory => _listHistory;
-  List<Office> get listOffice => _listOffice;
 
-  HistoryService historyService = HistoryService();
-
-  Future<void> getBooked(BuildContext context) async { 
+  Future<void> getOffice() async {
     try {
-      _listHistory = await historyService.fetchHistoryData();
+      _listHistory = await HistoryService().fetchHistoryData();
       notifyListeners();
     } catch (e) {
       rethrow;
