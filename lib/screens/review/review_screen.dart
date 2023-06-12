@@ -1,6 +1,6 @@
 // // ignore_for_file: library_private_types_in_public_api, unused_field, deprecated_member_use, avoid_unnecessary_containers, unused_local_variable, use_build_context_synchronously, prefer_typing_uninitialized_variables
 
-// ignore_for_file: library_private_types_in_public_api, unused_field, deprecated_member_use, avoid_unnecessary_containers, unused_local_variable, prefer_typing_uninitialized_variables
+// ignore_for_file: library_private_types_in_public_api, unused_field, deprecated_member_use, avoid_unnecessary_containers, unused_local_variable, prefer_typing_uninitialized_variables, no_leading_underscores_for_local_identifiers
 
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/screens/payment/payment-view-model.dart';
@@ -9,6 +9,7 @@ import 'package:flutter_capstone/services/review/review_service.dart';
 //import 'package:flutter_capstone/services/review/review_service.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:image_picker/image_picker.dart';
 // import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
@@ -22,7 +23,7 @@ class ReviewScreen extends StatefulWidget {
 }
 
 class _ReviewScreenState extends State<ReviewScreen> {
-  // int _selectedFilterIndex = 0;
+  int selectedFilterIndex = 0;
   // final List<String> _filters = [
   //   'Terdekat',
   //   'Rating Baik',
@@ -35,10 +36,10 @@ class _ReviewScreenState extends State<ReviewScreen> {
 
   // double _rating = 0.0;
 
-  // Future<void> _pickImageFromCamera() async {
-  //   final picker = ImagePicker();
-  //   final pickedImage = await picker.getImage(source: ImageSource.camera);
-  // }
+  Future<void> _pickImageFromCamera() async {
+    final picker = ImagePicker();
+    final pickedImage = await picker.getImage(source: ImageSource.camera);
+  }
 
   // ReviewService().addPost(
   //   // _rating,
@@ -48,16 +49,17 @@ class _ReviewScreenState extends State<ReviewScreen> {
   //   "The place is very cozy and the facilities are complete.",
   //   ["Terdekat"],
   // );
-  // final ImagePicker imgPicker = ImagePicker();
-  // List<XFile> imgFileList = [];
+  final ImagePicker _imgPicker = ImagePicker();
+  final List<XFile> _imgFileList = [];
 
-  // void selectImg() async {
-  //   final List<XFile> selectImg = await imgPicker.pickMultiImage();
-  //   if (selectImg.isNotEmpty) {
-  //     imgFileList.addAll(selectImg);
-  //   }
-  //   setState(() {});
-  // }
+  void selectImg() async {
+    final List<XFile> selectImg = await _imgPicker.pickMultiImage();
+    if (selectImg.isNotEmpty) {
+      _imgFileList.addAll(selectImg);
+    }
+    setState(() {});
+  }
+
   late PaymentViewModel paymentViewModel;
   @override
   void initState() {
@@ -72,21 +74,24 @@ class _ReviewScreenState extends State<ReviewScreen> {
       if (reviewProvider.reviewController.text.isEmpty
           // && imgFileList.isNotEmpty
           ) {
+        // print("tes : ${reviewProvider.reviewController.text.isEmpty}");
         const snackBar = SnackBar(
           content: Text("Please check what you input"),
         );
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       } else {
+        // print("tes 1 : ${paymentViewModel.getTransactionID}");
+        // print("ini : ${paymentViewModel.getTransactionID}");
         return ReviewService().addPosted(
           context,
           transactionId: paymentViewModel.getTransactionID,
           star: reviewProvider.rating,
           description: reviewProvider.reviewController.text,
-          tags: ['${reviewProvider.selectedFilterIndex}'],
+          tags: ['$selectedFilterIndex'],
         );
       }
-      var res =
-          reviewProvider.setTransactionID = await reviewProvider.transactionID;
+      // var res =
+      //     reviewProvider.setTransactionID = await reviewProvider.transactionID;
       reviewProvider.reviewController.clear();
     }
     //Provider
@@ -165,10 +170,11 @@ class _ReviewScreenState extends State<ReviewScreen> {
                         color: SourceColor().yellow,
                       ),
                       onRatingUpdate: (rating) {
-                        setState(() {
-                          var rate = reviewProvider.rating;
-                          rate = rating;
-                        });
+                        reviewProvider.onRatingUpdate(rating);
+                        // setState(() {
+                        //    rating = rating ;
+                        //   // rate = rating;
+                        // });
                       },
                     ),
                     const SizedBox(
@@ -193,31 +199,28 @@ class _ReviewScreenState extends State<ReviewScreen> {
                     spacing: 8.0,
                     children: List<Widget>.generate(
                         reviewProvider.filters.length ~/ 2, (int index) {
-                      // final firstIndex = index * 2;
-                      // final secondIndex = index * 2 + 1;
-                      final firstIndex = reviewProvider.firstIndex;
-                      final secondIndex = reviewProvider.secondIndex;
+                      final firstIndex = index * 2;
+                      final secondIndex = index * 2 + 1;
+                      // final firstIndex = reviewProvider.firstIndex;
+                      // final secondIndex = reviewProvider.secondIndex;
                       return Row(
                         children: [
                           ChoiceChip(
                             label: Text(
                               reviewProvider.filters[firstIndex],
                               style: TextStyle(
-                                color: reviewProvider.selectedFilterIndex ==
-                                        firstIndex
+                                color: selectedFilterIndex == firstIndex
                                     ? NeutralColor().neutral100
                                     : NeutralColor().neutral60,
                               ),
                             ),
-                            selected: reviewProvider.selectedFilterIndex ==
-                                firstIndex,
+                            selected: selectedFilterIndex == firstIndex,
                             selectedColor: SourceColor().seed,
                             onSelected: (bool selected) {
-                              reviewProvider.onSelected(selected);
-                              // setState(() {
-                              //   _selectedFilterIndex =
-                              //       selected ? firstIndex : 0;
-                              // });
+                              //reviewProvider.onSelected(selected);
+                              setState(() {
+                                selectedFilterIndex = selected ? firstIndex : 0;
+                              });
                             },
                           ),
                           const SizedBox(width: 8.0),
@@ -225,21 +228,19 @@ class _ReviewScreenState extends State<ReviewScreen> {
                             label: Text(
                               reviewProvider.filters[secondIndex],
                               style: TextStyle(
-                                color: reviewProvider.selectedFilterIndex ==
-                                        secondIndex
+                                color: selectedFilterIndex == secondIndex
                                     ? NeutralColor().neutral100
                                     : NeutralColor().neutral60,
                               ),
                             ),
-                            selected: reviewProvider.selectedFilterIndex ==
-                                secondIndex,
+                            selected: selectedFilterIndex == secondIndex,
                             selectedColor: SourceColor().seed,
                             onSelected: (bool selected) {
-                              reviewProvider.onSelectedSecondIndex(selected);
-                              // setState(() {
-                              //   _selectedFilterIndex =
-                              //       selected ? secondIndex : 0;
-                              // });
+                              //reviewProvider.onSelectedSecondIndex(selected);
+                              setState(() {
+                                selectedFilterIndex =
+                                    selected ? secondIndex : 0;
+                              });
                             },
                           ),
                         ],
@@ -256,7 +257,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                 child: GridView.builder(
                   shrinkWrap: true,
                   scrollDirection: Axis.vertical,
-                  itemCount: reviewProvider.imgFileList.length,
+                  itemCount: _imgFileList.length,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 4,
                     mainAxisSpacing: 4,
@@ -268,7 +269,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                         ClipRRect(
                           borderRadius: BorderRadius.circular(10),
                           child: Image.file(
-                            File(reviewProvider.imgFileList[index].path),
+                            File(_imgFileList[index].path),
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -276,11 +277,11 @@ class _ReviewScreenState extends State<ReviewScreen> {
                           right: 1,
                           child: GestureDetector(
                             onTap: () {
-                              var data;
-                              reviewProvider.deleteImage(data);
-                              // deleteImage(
-                              //   reviewProvider.imgFileList[index],
-                              // );
+                              // var data;
+                              // deleteImage();
+                              deleteImage(
+                                reviewProvider.imgFileList[index],
+                              );
                             },
                             child: Image.asset(
                               "assets/image/delete.png",
@@ -348,7 +349,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                                         color: PrimaryColor().primary,
                                       ),
                                       onPressed: () {
-                                        reviewProvider.selectImg();
+                                        selectImg();
                                         // Navigator.pushNamed(
                                         //     context, '/image-picker');
                                       },
@@ -365,8 +366,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                                         Icons.camera_alt_outlined,
                                         color: PrimaryColor().primary,
                                       ),
-                                      onPressed:
-                                          reviewProvider.pickImageFromCamera,
+                                      onPressed: _pickImageFromCamera,
                                     ),
                                   ),
                                 ],
@@ -399,11 +399,11 @@ class _ReviewScreenState extends State<ReviewScreen> {
     );
   }
 
-  // void deleteImage(data) {
-  //   setState(() {
-  //     imgFileList.remove(data);
-  //   });
-  // }
+  void deleteImage(data) {
+    setState(() {
+      _imgFileList.remove(data);
+    });
+  }
 }
 
 

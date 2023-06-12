@@ -303,12 +303,14 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                                 reviewProvider.setTransactionID =
                                     widget.paymentId,
                               });
-                          // var virtualAccountNumber = res.then(
-                          //   (value) {
-                          //     provider.setRekeningValue =
-                          //         value.data.paymentData.vaNumber;
-                          //   },
-                          // );
+                          var virtualAccountNumber = res.then(
+                            (value) {
+                              provider.setRekeningValue =
+                                  value.data.paymentData.vaNumber;
+                              reviewProvider.setTransactionID =
+                                  widget.paymentId;
+                            },
+                          );
 
                           return Container(
                             padding: const EdgeInsets.all(16),

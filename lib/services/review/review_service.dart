@@ -11,7 +11,7 @@ import 'package:flutter_capstone/widgets/modal_bottom.dart';
 class ReviewService {
   // int transactionId = 21;
 
-  Future<ReviewModel> addPosted(
+  Future<void> addPosted(
     BuildContext context, {
     required int transactionId,
     required double star,
@@ -20,20 +20,25 @@ class ReviewService {
   }) async {
     String token = await getToken();
     try {
-      final response = await Dio().post('$baseUrl/api/v1/rating/$transactionId',
+      final response = await Dio().post('$baseUrl/api/v1/rating/23',
           options: Options(headers: {
             'accept': 'application/json',
             'Content-Type': "aplication/json",
-            'Authorization': 'Bearer $token'
-            //'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVsZmFsZHl5QGdtYWlsLmNvbSIsImlkIjo3LCJpc192ZXJpZnkiOmZhbHNlLCJyb2xlIjowfQ.IriX0fkwCCt_u9dZAXO-muMuq_76XhcyROPXGCwNYpE'
+            'Authorization':
+                // 'Bearer $token'
+                'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVsZmFsZHl5QGdtYWlsLmNvbSIsImlkIjo3LCJpc192ZXJpZnkiOmZhbHNlLCJyb2xlIjowfQ.IriX0fkwCCt_u9dZAXO-muMuq_76XhcyROPXGCwNYpE'
           }),
           data: jsonEncode({
             "description": description,
             "star": star,
             "tags": tags,
           }));
-
-      if (response.statusCode == 200) {
+      print("id : ${transactionId}");
+      print("desc : ${description}}");
+      print("star : ${star}");
+      print("tags : ${tags}");
+      if (response.statusCode == 201) {
+        print("Berhasil ${response.data}");
         return ModalBottomSheet(
           context,
           img: 'assets/image/success_to_rate.png',
@@ -45,9 +50,10 @@ class ReviewService {
           },
           buttonText: 'Okay!',
         );
+        // return ReviewModel.fromJson(response.data);
       }
-      return ReviewModel.fromJson(response.data);
     } on DioError catch (e) {
+      print(e.response?.data);
       if (e.response!.statusCode == 500) {
         return ModalBottomSheet(
           context,
