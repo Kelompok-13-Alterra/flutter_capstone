@@ -15,10 +15,10 @@ class HistoryViewModel with ChangeNotifier {
     }
   }
 
-  int transactionID = 0;
-  int get getTransactionID => transactionID;
-  set setTransactionID(int val) {
-    transactionID = val;
-    notifyListeners();
-  }
+  // int transactionID = 0;
+  // int get getTransactionID => transactionID;
+  // set setTransactionID(int val) {
+  //   transactionID = val;
+  //   notifyListeners();
+  // }
 }

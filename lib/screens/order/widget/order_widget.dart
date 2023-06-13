@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_brace_in_string_interps
+
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/screens/review/review_screen.dart';
 import 'package:flutter_capstone/style/text_style.dart';
@@ -181,7 +183,7 @@ class OrderWidget extends StatelessWidget {
                         child: ElevatedButton(
                           onPressed: () {
                             // Navigator.pushNamed(context, routeButton2);
-                            print('id transaksi 1 : ${transactionId}');
+                            // print('id transaksiiii : ${transactionId}');
                             Navigator.pushNamed(
                               context,
                               routeButton2,

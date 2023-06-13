@@ -45,7 +45,7 @@ class ReviewService {
           desc:
               'Selamat! kamu berhasil menilai office! Silahkan lanjutkan submit!',
           path: () {
-            Navigator.pushReplacementNamed(context, '/order');
+            Navigator.pushReplacementNamed(context, '/home');
           },
           buttonText: 'Okay!',
         );

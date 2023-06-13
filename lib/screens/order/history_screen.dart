@@ -1,8 +1,8 @@
 // ignore_for_file: avoid_unnecessary_containers, unused_local_variable
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/screens/order/widget/order_widget.dart';
-import 'package:flutter_capstone/screens/review/review_screen.dart';
 import 'package:flutter_capstone/view_model/order/history_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -32,6 +32,7 @@ class _HistoryOrderScreenState extends State<HistoryOrderScreen> {
         child: FutureBuilder(
           future: historyDataViewModel,
           builder: (context, snapshot) {
+
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const CircularProgressIndicator();
             } else if (!snapshot.hasData) {
@@ -40,6 +41,10 @@ class _HistoryOrderScreenState extends State<HistoryOrderScreen> {
                   itemCount: office.listHistory.length,
                   itemBuilder: (context, index) {
                     var data = office.listHistory[index];
+                    // var datas = data.id;
+                    // print("ID TRANSAKSIII : ${datas}");
+
+                    //office.listHistory[index].id
                     return OrderWidget(
                       urlImg: 'assets/office1.png',
                       title: office.listHistory[index].office.name,
@@ -53,7 +58,9 @@ class _HistoryOrderScreenState extends State<HistoryOrderScreen> {
                       routeButton1: '/detail',
                       buttonText2: 'Give Review',
                       routeButton2: '/review',
-                      transactionId: office.listHistory[index].id,
+                      transactionId: data.id,
+
+                      // office.listHistory[index].id,
                     );
                   });
             } else {

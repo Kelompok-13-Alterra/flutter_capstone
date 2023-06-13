@@ -1,4 +1,4 @@
-// ignore_for_file: library_private_types_in_public_api, unused_field, deprecated_member_use, avoid_unnecessary_containers, unused_local_variable, use_build_context_synchronously, prefer_typing_uninitialized_variables, no_leading_underscores_for_local_identifiers
+// ignore_for_file: library_private_types_in_public_api, unused_field, deprecated_member_use, avoid_unnecessary_containers, unused_local_variable, use_build_context_synchronously, prefer_typing_uninitialized_variables, no_leading_underscores_for_local_identifiers, avoid_print
 
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/screens/review/review_view_model.dart';
@@ -43,10 +43,11 @@ class _ReviewScreenState extends State<ReviewScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final args = ModalRoute.of(context)?.settings.arguments as ReviewArguments;
+    final args = ModalRoute.of(context)?.settings.arguments as ReviewArguments?;
+
     //Provider
     ReviewViewModel reviewProvider = Provider.of<ReviewViewModel>(context);
-    print("tes : ${args.transactionId}");
+    print("tes : ${args?.transactionId}");
 
     //Submit review
     _submitReview() async {
@@ -54,24 +55,26 @@ class _ReviewScreenState extends State<ReviewScreen> {
           // && imgFileList.isNotEmpty
           ) {
         const snackBar = SnackBar(
-          content: Text("Please check what you input"),
+          content: Text("Please check what you input !"),
         );
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       } else {
         return ReviewService().addPosted(
           context,
-          transactionId: args.transactionId,
+          transactionId: args!.transactionId,
           star: reviewProvider.rating,
           description: reviewProvider.reviewController.text,
           tags: ['$selectedFilterIndex'],
         );
       }
+      print("args : ${args?.transactionId}");
       setState(() {
         reviewProvider.reviewController.clear();
       });
     }
 
-    print('Id Traksaksi : ${args.transactionId}');
+    print('Id Traksaksi : ${args?.transactionId}');
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
