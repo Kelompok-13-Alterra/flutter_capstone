@@ -16,9 +16,9 @@ class OrderWidget extends StatelessWidget {
   final String routeButton1;
   final String buttonText2;
   final String routeButton2;
-  final int transactionId;
+  int? transactionId;
 
-  const OrderWidget({
+  OrderWidget({
     super.key,
     required this.title,
     required this.urlImg,
@@ -31,7 +31,7 @@ class OrderWidget extends StatelessWidget {
     required this.routeButton1,
     required this.buttonText2,
     required this.routeButton2,
-    required this.transactionId,
+    this.transactionId,
   });
 
   @override
@@ -157,7 +157,10 @@ class OrderWidget extends StatelessWidget {
                         height: 40,
                         child: ElevatedButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, routeButton1);
+                            //Trying catch paymentId on detail_schedule with arguments
+                            Navigator.pushNamed(context, routeButton1,
+                                arguments: ReviewArguments(
+                                    transactionId: transactionId!));
                           },
                           style: ElevatedButton.styleFrom(
                             foregroundColor: SourceColor().white,
@@ -169,7 +172,7 @@ class OrderWidget extends StatelessWidget {
                             visualDensity: VisualDensity.compact,
                           ),
                           child: Text(
-                            buttonText1,
+                            buttonText2,
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight: medium,
@@ -187,8 +190,8 @@ class OrderWidget extends StatelessWidget {
                             Navigator.pushNamed(
                               context,
                               routeButton2,
-                              arguments:
-                                  ReviewArguments(transactionId: transactionId),
+                              arguments: ReviewArguments(
+                                  transactionId: transactionId!),
                             );
                           },
                           style: ElevatedButton.styleFrom(
