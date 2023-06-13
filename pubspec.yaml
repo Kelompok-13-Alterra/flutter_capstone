@@ -70,6 +70,7 @@ flutter:
     - assets/icons/office_card/
     - assets/icons/payment/
     - assets/icons/bottom_navigation_bar/
+    - assets/image/
     - assets/images/
     - assets/images/notification/
     - assets/images/profile/

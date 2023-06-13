@@ -90,9 +90,10 @@ class _ReviewScreenState extends State<ReviewScreen> {
           tags: ['$selectedFilterIndex'],
         );
       }
-      // var res =
-      //     reviewProvider.setTransactionID = await reviewProvider.transactionID;
-      reviewProvider.reviewController.clear();
+    
+      setState(() {
+        reviewProvider.reviewController.clear();
+      });
     }
     //Provider
 
@@ -280,7 +281,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                               // var data;
                               // deleteImage();
                               deleteImage(
-                                reviewProvider.imgFileList[index],
+                                _imgFileList[index],
                               );
                             },
                             child: Image.asset(
