@@ -1,8 +1,6 @@
 // ignore_for_file: prefer_const_declarations, unrelated_type_equality_checks, sized_box_for_whitespace
 
 import 'package:flutter/material.dart';
-//import 'package:flutter_capstone/model/search_office/search_model.dart';
-//import 'package:office_booking/model/search_office/search_model.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 
 class OfficeRecommendationWidget extends StatelessWidget {
@@ -17,7 +15,7 @@ class OfficeRecommendationWidget extends StatelessWidget {
   final String location;
   final String imgTime;
   final String time;
-  final int price;
+  final double price;
 
   const OfficeRecommendationWidget({
     super.key,
@@ -37,9 +35,6 @@ class OfficeRecommendationWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //   SearchModel searchModel;
-    bool isStatus = false;
-
     return Padding(
       padding: const EdgeInsets.only(bottom: 19.26, right: 19.09, left: 16),
       child: Container(
@@ -86,17 +81,11 @@ class OfficeRecommendationWidget extends StatelessWidget {
                         Container(
                           alignment: Alignment.topRight,
                           decoration: BoxDecoration(
-                            color: isStatus == false
-                                ? WarningColor().red
-                                : SuccessColor().green,
+                            color: statusKantor == 'Open'
+                                ? SuccessColor().green
+                                : WarningColor().red,
                             borderRadius: BorderRadius.circular(12),
                           ),
-                          // decoration: BoxDecoration(
-                          //   color: statusKantor == 'Open'
-                          //       ? SuccessColor().green
-                          //       : WarningColor().red,
-                          //   borderRadius: BorderRadius.circular(12),
-                          // ),
                           child: Padding(
                             padding: const EdgeInsets.symmetric(
                                 vertical: 4, horizontal: 16),
@@ -141,17 +130,10 @@ class OfficeRecommendationWidget extends StatelessWidget {
                       children: [
                         Image.asset(
                           imgCoWorkingOffice ==
-<<<<<<< HEAD
-                                      'assets/icons/office_card/co_working_space.png' &&
-                                  office == 'coworking'
-                              ? 'assets/icons/office_card/co_working_space.png'
-                              : 'assets/icons/office_card/office.png',
-=======
                                       'assets/image/co_working_space.png' &&
-                                  office == 'coworking'
+                                  office == 'Co-Working Space'
                               ? 'assets/image/co_working_space.png'
                               : 'assets/image/office.png',
->>>>>>> 2c2d70ebeda089e1c0e3646b86a7049caee38dc1
                           width: 13.33,
                           height: 12.67,
                         ),
@@ -239,3 +221,169 @@ class OfficeRecommendationWidget extends StatelessWidget {
     );
   }
 }
+// Padding(
+//       padding: const EdgeInsets.only(
+//         bottom: 19.26,
+//       ),
+//       child: Row(
+//         children: [
+//           Image(
+//             image: AssetImage(img),
+            // width: 116.87,
+            // height: 128,
+//           ),
+//           const SizedBox(
+//             width: 16,
+//           ),
+//           Column(
+//             mainAxisAlignment: MainAxisAlignment.start,
+//             crossAxisAlignment: CrossAxisAlignment.start,
+//             children: [
+//               Row(
+//                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                 children: [
+//                   Text(
+//                     namaKantor,
+//                     style: setTextStyle(NeutralColor().neutral20).copyWith(
+//                       fontSize: 16,
+//                       fontWeight: semiBold,
+//                     ),
+//                   ),
+//                   Container(
+//                     alignment: Alignment.topRight,
+//                     decoration: BoxDecoration(
+//                       color: statusKantor == 'Open'
+//                           ? SuccessColor().green
+//                           : WarningColor().red,
+//                       borderRadius: BorderRadius.circular(12),
+//                     ),
+//                     child: Padding(
+//                       padding: const EdgeInsets.symmetric(
+//                           vertical: 4, horizontal: 16),
+//                       child: Text(
+//                         statusKantor,
+//                         style: setTextStyle(SourceColor().white).copyWith(
+//                           fontSize: 13,
+//                           fontWeight: medium,
+//                         ),
+//                       ),
+//                     ),
+//                   ),
+//                 ],
+//               ),
+//               const SizedBox(
+//                 height: 7.67,
+//               ),
+//               Row(
+//                 children: [
+//                   Image(
+//                     image: AssetImage(imgRating
+//                         //'assets/image/star_purple500.png'
+//                         ),
+//                     width: 13.33,
+//                     height: 12.67,
+//                   ),
+//                   const SizedBox(
+//                     width: 4.33,
+//                   ),
+//                   Text(
+//                     rating.toString(),
+//                     style: setTextStyle(NeutralColor().neutral17).copyWith(
+//                       fontSize: 13,
+//                       fontWeight: medium,
+//                     ),
+//                   ),
+//                 ],
+//               ),
+//               const SizedBox(
+//                 height: 7.67,
+//               ),
+//               Row(
+//                 children: [
+//                   Image(
+//                     image: AssetImage(
+//                       imgCoWorkingOffice,
+//                       // == office &&
+//                       //         office == 'Co-Working Space'
+//                       //     ? 'assets/image/co_working_space.png'
+//                       //     : 'assets/image/office.png',
+//                       // 'assets/image/co_working_space.png'
+//                     ),
+//                     width: 13.33,
+//                     height: 12.67,
+//                   ),
+//                   const SizedBox(
+//                     width: 4.33,
+//                   ),
+//                   Text(
+//                     office,
+//                     style: setTextStyle(NeutralColor().neutral60).copyWith(
+//                       fontSize: 12,
+//                       fontWeight: regular,
+//                     ),
+//                   ),
+//                 ],
+//               ),
+//               const SizedBox(
+//                 height: 7.67,
+//               ),
+//               Row(
+//                 children: [
+//                   Image(
+//                     image: AssetImage(imgLocation
+//                         //'assets/image/location.png'
+//                         ),
+//                     width: 13.33,
+//                     height: 12.67,
+//                   ),
+//                   const SizedBox(
+//                     width: 4.33,
+//                   ),
+//                   Text(
+//                     location,
+//                     style: setTextStyle(NeutralColor().neutral60).copyWith(
+//                       fontSize: 12,
+//                       fontWeight: regular,
+//                     ),
+//                   ),
+//                 ],
+//               ),
+//               const SizedBox(
+//                 height: 7.67,
+//               ),
+//               Row(
+//                 children: [
+//                   Image(
+//                     image: AssetImage(imgTime
+//                         //'assets/image/time.png'
+//                         ),
+//                     width: 13.33,
+//                     height: 12.67,
+//                   ),
+//                   const SizedBox(
+//                     width: 4.33,
+//                   ),
+//                   Text(
+//                     time,
+//                     style: setTextStyle(NeutralColor().neutral60).copyWith(
+//                       fontSize: 12,
+//                       fontWeight: regular,
+//                     ),
+//                   ),
+//                 ],
+//               ),
+//               const SizedBox(
+//                 height: 7,
+//               ),
+//               Text(
+//                 "IDR ${price.toString()}",
+//                 style: setTextStyle(NeutralColor().neutral20).copyWith(
+//                   fontSize: 16,
+//                   fontWeight: regular,
+//                 ),
+//               ),
+//             ],
+//           ),
+//         ],
+//       ),
+//     );

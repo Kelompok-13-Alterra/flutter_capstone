@@ -115,7 +115,7 @@ Widget cardAllBookingNotificationWidget(BuildContext context) {
                   bottom: 31.96,
                 ),
                 child: Image.asset(
-                  "assets/images/notification/120.png",
+                  "assets/120.png",
                   width: 70,
                   height: 60.07,
                 ),
@@ -193,8 +193,8 @@ Widget cardAllBookingNotificationWidget(BuildContext context) {
                 ),
                 child: Image.asset(
                   "assets/images/notification/79.png",
-                  width: 70,
-                  height: 60.07,
+
+ 
                 ),
               ),
             ],
@@ -246,7 +246,7 @@ Widget cardAllBookingNotificationWidget(BuildContext context) {
                   bottom: 31.96,
                 ),
                 child: Image.asset(
-                  "assets/images/modal_bottom/retro_mac.png",
+                  "assets/Retro_Mac_happy_face.png",
                   width: 70,
                   height: 60.07,
                 ),

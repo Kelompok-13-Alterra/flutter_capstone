@@ -18,6 +18,7 @@ class SearchScreen extends StatefulWidget {
 
 class _SearchScreenState extends State<SearchScreen> {
   List iconImage = [
+<<<<<<< HEAD
     'assets/icons/office_card/star_purple500.png',
     'assets/icons/office_card/co_working_space.png',
     'assets/icons/office_card/location.png',
@@ -29,6 +30,19 @@ class _SearchScreenState extends State<SearchScreen> {
     'assets/images/office_image/seo_office.png',
     'assets/images/office_image/pase_office.png',
     'assets/images/office_image/agung_space.png',
+=======
+    'assets/image/star_purple500.png',
+    'assets/image/co_working_space.png',
+    'assets/image/location.png',
+    'assets/image/time.png',
+  ];
+
+  List imageKantor = [
+    'assets/image/wellspace.png',
+    'assets/image/seo_office.png',
+    'assets/image/pase_office.png',
+    'assets/image/agung_space.png',
+>>>>>>> 2c2d70ebeda089e1c0e3646b86a7049caee38dc1
   ];
 
   List<String> office = [

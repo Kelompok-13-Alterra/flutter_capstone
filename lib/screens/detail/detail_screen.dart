@@ -1,25 +1,21 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, avoid_print
 
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/screens/detail/detail_view_model.dart';
 import 'package:flutter_capstone/screens/detail/widget/bottom_book.dart';
 import 'package:flutter_capstone/screens/detail/widget/detail_card.dart';
 import 'package:flutter_capstone/screens/detail/widget/fasilities.dart';
 import 'package:flutter_capstone/screens/detail/widget/image_detail.dart';
 import 'package:flutter_capstone/screens/detail/widget/office_description.dart';
-import 'package:provider/provider.dart';
 
 class DetailScreen extends StatefulWidget {
   final String? buttonRoute;
   final String textButton;
   final int? officeId;
-  final DateTimeRange? selectedDateRange;
   const DetailScreen({
     super.key,
-    this.buttonRoute,
+    required this.buttonRoute,
     required this.textButton,
     this.officeId,
-    this.selectedDateRange,
   });
 
   @override
@@ -76,7 +72,6 @@ class _DetailScreenState extends State<DetailScreen> {
               officeId: widget.officeId,
               buttonRoute: widget.buttonRoute,
               textButton: widget.textButton,
-              selectedDateRange: widget.selectedDateRange,
             ),
           ],
         ),

@@ -2,7 +2,7 @@
 
 // import 'package:easy_search_bar/easy_search_bar.dart';
 import 'package:flutter/material.dart';
-//import 'package:flutter_capstone/screens/card-search-bar/office_recommendation_widget.dart';
+import 'package:flutter_capstone/screens/card-search-bar/office_recommendation_widget.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 
 //import 'package:flutter_capstone/widget/card_rekomendasi_kantor.dart';
@@ -55,19 +55,6 @@ class _OfficeCardWidgetState extends State<OfficeCardWidget> {
     4.8,
   ];
   List iconImage = [
-<<<<<<< HEAD
-    'assets/icons/office_card/star_purple500.png',
-    'assets/icons/office_card/co_working_space.png',
-    'assets/icons/office_card/location.png',
-    'assets/icons/office_card/time.png',
-  ];
-
-  List imageKantor = [
-    'assets/images/office_image/wellspace.png',
-    'assets/images/office_image/seo_office.png',
-    'assets/images/office_image/pase_office.png',
-    'assets/images/office_image/agung_space.png',
-=======
     'assets/image/star_purple500.png',
     'assets/image/co_working_space.png',
     'assets/image/location.png',
@@ -79,7 +66,6 @@ class _OfficeCardWidgetState extends State<OfficeCardWidget> {
     'assets/image/seo_office.png',
     'assets/image/pase_office.png',
     'assets/image/agung_space.png',
->>>>>>> 2c2d70ebeda089e1c0e3646b86a7049caee38dc1
   ];
   List<String> statusKantor = [
     'Open',
@@ -177,27 +163,27 @@ class _OfficeCardWidgetState extends State<OfficeCardWidget> {
               ],
             ),
           ),
-          // ListView.builder(
-          //   shrinkWrap: true,
-          //   scrollDirection: Axis.vertical,
-          //   itemCount: listNamaKantor.length,
-          //   itemBuilder: (context, index) {
-          //     return OfficeRecommendationWidget(
-          //       img: imageKantor[index],
-          //       statusKantor: statusKantor[index],
-          //       namaKantor: listNamaKantor[index],
-          //       imgRating: iconImage[0],
-          //       rating: rating[index],
-          //       imgCoWorkingOffice: iconImage[1],
-          //       office: office[index],
-          //       imgLocation: iconImage[2],
-          //       location: location[index],
-          //       imgTime: iconImage[3],
-          //       time: time[index],
-          //       price: price[index],
-          //     );
-          //   },
-          // ),
+          ListView.builder(
+            shrinkWrap: true,
+            scrollDirection: Axis.vertical,
+            itemCount: listNamaKantor.length,
+            itemBuilder: (context, index) {
+              return OfficeRecommendationWidget(
+                img: imageKantor[index],
+                statusKantor: statusKantor[index],
+                namaKantor: listNamaKantor[index],
+                imgRating: iconImage[0],
+                rating: rating[index],
+                imgCoWorkingOffice: iconImage[1],
+                office: office[index],
+                imgLocation: iconImage[2],
+                location: location[index],
+                imgTime: iconImage[3],
+                time: time[index],
+                price: price[index],
+              );
+            },
+          ),
         ],
       ),
     );

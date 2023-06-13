@@ -1,9 +1,13 @@
+<<<<<<< HEAD
 // ignore_for_file: deprecated_member_use
 
 import 'package:dio/dio.dart';
 import 'package:flutter_capstone/init/utils/shared_preferences.dart';
 
 import 'package:flutter_capstone/model/login/login_model.dart';
+=======
+import 'package:dio/dio.dart';
+>>>>>>> 2c2d70ebeda089e1c0e3646b86a7049caee38dc1
 import 'package:flutter_capstone/core/init/const/api.dart';
 
 class LoginService {
@@ -27,6 +31,7 @@ class LoginService {
     }
   }
 
+<<<<<<< HEAD
   Future<LoginModel> getDataUser() async {
     try {
       Response response = await Dio().get(
@@ -43,6 +48,8 @@ class LoginService {
       return e.response!.data;
     }
   }
+=======
+>>>>>>> 2c2d70ebeda089e1c0e3646b86a7049caee38dc1
   // Future<LoginModel> getDataUser() async {
   //   try {
   //     Response response = await Dio().get(

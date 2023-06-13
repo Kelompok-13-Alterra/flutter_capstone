@@ -1,11 +1,10 @@
-// ignore_for_file: deprecated_member_use, avoid_print, prefer_typing_uninitialized_variables, use_build_context_synchronously, unused_local_variable
+// ignore_for_file: deprecated_member_use, avoid_print, prefer_typing_uninitialized_variables, use_build_context_synchronously, unused_local_variable, unnecessary_brace_in_string_interps
 
 import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/init/const/api.dart';
 import 'package:flutter_capstone/init/utils/shared_preferences.dart';
-import 'package:flutter_capstone/model/review/review_model.dart';
 import 'package:flutter_capstone/widgets/modal_bottom.dart';
 
 class ReviewService {

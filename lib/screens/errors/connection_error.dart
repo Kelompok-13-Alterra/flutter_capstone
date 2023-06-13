@@ -12,7 +12,7 @@ class ConnectionErrorScreen extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Image.asset('assets/icons/errors/connection_error.png'),
+              Image.asset('assets/errors/connection_error.png'),
               const SizedBox(
                 height: 20,
               ),

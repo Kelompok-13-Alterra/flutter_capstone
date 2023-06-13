@@ -1,4 +1,6 @@
 //Check if the date available or not
+// ignore_for_file: unused_import, avoid_print
+
 import 'dart:convert';
 
 import 'package:dio/dio.dart';

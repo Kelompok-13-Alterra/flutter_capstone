@@ -98,7 +98,7 @@ class _BackgroundWidgetState extends State<BackgroundWidget> {
                           //OnTab di Notifikasi
                         },
                         child: SvgPicture.asset(
-                          "assets/home/notification-home.svg",
+                          "assets/homescreen/notification-home.svg",
                           height: 32,
                           width: 32,
                         ),
@@ -111,11 +111,10 @@ class _BackgroundWidgetState extends State<BackgroundWidget> {
                       //         //OnTab di Notifikasi
                       //       },
                       //       child: SvgPicture.asset(
-                      //         "assets/home/notification-home.svg",
-                      //         height: 32,
-                      //         width: 32,
+
+
+                      //         "assets/homescreen/notification-home.svg",
                       //       ),
-                      //     ),
                       //     const SizedBox(
                       //       width: 10,
                       //     ),

@@ -90,7 +90,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
           tags: ['$selectedFilterIndex'],
         );
       }
-    
+
       setState(() {
         reviewProvider.reviewController.clear();
       });

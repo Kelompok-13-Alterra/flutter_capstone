@@ -17,11 +17,7 @@ class _LocationNotFoundScreenState extends State<LocationNotFoundScreen> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              SizedBox(
-                  width: 166,
-                  height: 141,
-                  child: Image.asset(
-                      'assets/icons/errors/location_not_found.png')),
+              Image.asset('assets/errors/location_not_found.png'),
               const SizedBox(
                 height: 20,
               ),

@@ -36,7 +36,7 @@ class _SuccessBookingScreenState extends State<SuccessBookingScreen> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SvgPicture.asset('assets/icons/payment/check_circle.svg'),
+                SvgPicture.asset('assets/payment/check_circle.svg'),
                 const SizedBox(
                   height: 16,
                 ),
@@ -75,7 +75,7 @@ class _SuccessBookingScreenState extends State<SuccessBookingScreen> {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(12),
                           child: Image.asset(
-                            "assets/home/office-list.jpg",
+                            "assets/homescreen/office-list.jpg",
                             fit: BoxFit.fill,
                           ),
                         ),

@@ -32,8 +32,8 @@ class _OfficeDescriptionState extends State<OfficeDescription> {
                   });
                 },
                 child: isDescriptionVisible
-                    ? SvgPicture.asset("assets/icons/detail/up.svg")
-                    : SvgPicture.asset("assets/icons/detail/down.svg"),
+                    ? SvgPicture.asset("assets/detail/up.svg")
+                    : SvgPicture.asset("assets/detail/down.svg"),
               )
             ],
           ),

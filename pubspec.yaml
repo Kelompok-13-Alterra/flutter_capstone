@@ -79,7 +79,16 @@ flutter:
     - assets/home/
     - assets/on_boarding/
     - assets/progress_indicator/
-   
+    - assets/homescreen/
+    - assets/icon-botton-navigation-bar/
+    - assets/img/
+    - assets/on_boarding/
+    - assets/progress_indicator/
+    - assets/image/
+    - assets/detail/
+    - assets/image/
+    - assets/payment/
+    - assets/errors/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
   # For details regarding adding assets from package dependencies, see
