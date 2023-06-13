@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_capstone/screens/review/review_screen.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 
 class OrderWidget extends StatelessWidget {
@@ -13,10 +14,12 @@ class OrderWidget extends StatelessWidget {
   final String routeButton1;
   final String buttonText2;
   final String routeButton2;
+  final int transactionId;
+
   const OrderWidget({
     super.key,
-    required this.urlImg,
     required this.title,
+    required this.urlImg,
     required this.rating,
     required this.type,
     required this.duration,
@@ -26,6 +29,7 @@ class OrderWidget extends StatelessWidget {
     required this.routeButton1,
     required this.buttonText2,
     required this.routeButton2,
+    required this.transactionId,
   });
 
   @override
@@ -176,7 +180,14 @@ class OrderWidget extends StatelessWidget {
                         height: 40,
                         child: ElevatedButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, routeButton2);
+                            // Navigator.pushNamed(context, routeButton2);
+                            print('id transaksi 1 : ${transactionId}');
+                            Navigator.pushNamed(
+                              context,
+                              routeButton2,
+                              arguments:
+                                  ReviewArguments(transactionId: transactionId),
+                            );
                           },
                           style: ElevatedButton.styleFrom(
                             foregroundColor: buttonText2 == 'Cancel Book'

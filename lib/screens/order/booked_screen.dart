@@ -50,6 +50,7 @@ class _BookedOrderScreenState extends State<BookedOrderScreen> {
                       routeButton1: '/detail-schedule',
                       buttonText2: 'Cancel Book',
                       routeButton2: '',
+                      transactionId: office.listBooked[index].office.id,
                     );
                   });
             } else {

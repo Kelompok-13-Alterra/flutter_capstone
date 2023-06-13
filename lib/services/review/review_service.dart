@@ -5,7 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/init/const/api.dart';
 import 'package:flutter_capstone/init/utils/shared_preferences.dart';
-import 'package:flutter_capstone/widgets/modal_bottom.dart';
+import 'package:flutter_capstone/screens/modal_bottom.dart';
 
 class ReviewService {
   // int transactionId = 21;
@@ -19,7 +19,7 @@ class ReviewService {
   }) async {
     String token = await getToken();
     try {
-      final response = await Dio().post('$baseUrl/api/v1/rating/22',
+      final response = await Dio().post('$baseUrl/api/v1/rating/$transactionId',
           options: Options(headers: {
             'accept': 'application/json',
             'Content-Type': "aplication/json",

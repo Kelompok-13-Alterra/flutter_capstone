@@ -55,19 +55,6 @@ class _OfficeCardWidgetState extends State<OfficeCardWidget> {
     4.8,
   ];
   List iconImage = [
-<<<<<<< HEAD
-    'assets/icons/office_card/star_purple500.png',
-    'assets/icons/office_card/co_working_space.png',
-    'assets/icons/office_card/location.png',
-    'assets/icons/office_card/time.png',
-  ];
-
-  List imageKantor = [
-    'assets/images/office_image/wellspace.png',
-    'assets/images/office_image/seo_office.png',
-    'assets/images/office_image/pase_office.png',
-    'assets/images/office_image/agung_space.png',
-=======
     'assets/image/star_purple500.png',
     'assets/image/co_working_space.png',
     'assets/image/location.png',
@@ -79,7 +66,6 @@ class _OfficeCardWidgetState extends State<OfficeCardWidget> {
     'assets/image/seo_office.png',
     'assets/image/pase_office.png',
     'assets/image/agung_space.png',
->>>>>>> 2c2d70ebeda089e1c0e3646b86a7049caee38dc1
   ];
   List<String> statusKantor = [
     'Open',

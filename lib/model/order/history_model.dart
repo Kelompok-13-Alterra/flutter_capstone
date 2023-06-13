@@ -32,6 +32,7 @@ class HistoryModel {
 }
 
 class History {
+  int id;
   int discount;
   String end;
   Office office;
@@ -44,6 +45,7 @@ class History {
   int userId;
 
   History({
+    required this.id,
     required this.discount,
     required this.end,
     required this.office,
@@ -57,6 +59,7 @@ class History {
   });
 
   factory History.fromJson(Map<String, dynamic> json) => History(
+        id: json["id"],
         discount: json["Discount"] ?? 0,
         end: json["End"] ?? "",
         office: Office.fromJson(json["Office"]),
@@ -70,6 +73,7 @@ class History {
       );
 
   Map<String, dynamic> toJson() => {
+        "id": id,
         "discount": discount,
         "end": end,
         "office": office.toJson(),

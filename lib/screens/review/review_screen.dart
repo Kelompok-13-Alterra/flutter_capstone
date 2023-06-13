@@ -1,19 +1,19 @@
-// // ignore_for_file: library_private_types_in_public_api, unused_field, deprecated_member_use, avoid_unnecessary_containers, unused_local_variable, use_build_context_synchronously, prefer_typing_uninitialized_variables
-
-// ignore_for_file: library_private_types_in_public_api, unused_field, deprecated_member_use, avoid_unnecessary_containers, unused_local_variable, prefer_typing_uninitialized_variables, no_leading_underscores_for_local_identifiers
+// ignore_for_file: library_private_types_in_public_api, unused_field, deprecated_member_use, avoid_unnecessary_containers, unused_local_variable, use_build_context_synchronously, prefer_typing_uninitialized_variables, no_leading_underscores_for_local_identifiers
 
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/screens/payment/payment-view-model.dart';
 import 'package:flutter_capstone/screens/review/review_view_model.dart';
 import 'package:flutter_capstone/services/review/review_service.dart';
-//import 'package:flutter_capstone/services/review/review_service.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:image_picker/image_picker.dart';
-// import 'package:image_picker/image_picker.dart';
 import 'dart:io';
-
 import 'package:provider/provider.dart';
+
+class ReviewArguments {
+  final int transactionId;
+
+  ReviewArguments({required this.transactionId});
+}
 
 class ReviewScreen extends StatefulWidget {
   const ReviewScreen({Key? key}) : super(key: key);
@@ -24,31 +24,12 @@ class ReviewScreen extends StatefulWidget {
 
 class _ReviewScreenState extends State<ReviewScreen> {
   int selectedFilterIndex = 0;
-  // final List<String> _filters = [
-  //   'Terdekat',
-  //   'Rating Baik',
-  //   'Termurah',
-  //   'Fasilitas Lengkap'
-  // ];
-  // final List<Widget> _reviewList = [];
-
-  // final TextEditingController _reviewController = TextEditingController();
-
-  // double _rating = 0.0;
 
   Future<void> _pickImageFromCamera() async {
     final picker = ImagePicker();
     final pickedImage = await picker.getImage(source: ImageSource.camera);
   }
 
-  // ReviewService().addPost(
-  //   // _rating,
-  //   // _reviewController.text,
-  //   // _filters,
-  //   4.5,
-  //   "The place is very cozy and the facilities are complete.",
-  //   ["Terdekat"],
-  // );
   final ImagePicker _imgPicker = ImagePicker();
   final List<XFile> _imgFileList = [];
 
@@ -60,43 +41,37 @@ class _ReviewScreenState extends State<ReviewScreen> {
     setState(() {});
   }
 
-  late PaymentViewModel paymentViewModel;
-  @override
-  void initState() {
-    paymentViewModel = Provider.of<PaymentViewModel>(context, listen: false);
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
+    final args = ModalRoute.of(context)?.settings.arguments as ReviewArguments;
+    //Provider
     ReviewViewModel reviewProvider = Provider.of<ReviewViewModel>(context);
+    print("tes : ${args.transactionId}");
+
+    //Submit review
     _submitReview() async {
       if (reviewProvider.reviewController.text.isEmpty
           // && imgFileList.isNotEmpty
           ) {
-        // print("tes : ${reviewProvider.reviewController.text.isEmpty}");
         const snackBar = SnackBar(
           content: Text("Please check what you input"),
         );
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       } else {
-        // print("tes 1 : ${paymentViewModel.getTransactionID}");
-        // print("ini : ${paymentViewModel.getTransactionID}");
         return ReviewService().addPosted(
           context,
-          transactionId: paymentViewModel.getTransactionID,
+          transactionId: args.transactionId,
           star: reviewProvider.rating,
           description: reviewProvider.reviewController.text,
           tags: ['$selectedFilterIndex'],
         );
       }
-
       setState(() {
         reviewProvider.reviewController.clear();
       });
     }
-    //Provider
 
+    print('Id Traksaksi : ${args.transactionId}');
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
@@ -408,7 +383,25 @@ class _ReviewScreenState extends State<ReviewScreen> {
 }
 
 
+// final List<String> _filters = [
+  //   'Terdekat',
+  //   'Rating Baik',
+  //   'Termurah',
+  //   'Fasilitas Lengkap'
+  // ];
+  // final List<Widget> _reviewList = [];
 
+  // final TextEditingController _reviewController = TextEditingController();
+
+  // double _rating = 0.0;
+  // ReviewService().addPost(
+  //   // _rating,
+  //   // _reviewController.text,
+  //   // _filters,
+  //   4.5,
+  //   "The place is very cozy and the facilities are complete.",
+  //   ["Terdekat"],
+  // );
 // import 'package:flutter/material.dart';
 // import 'package:flutter_capstone/model/review/review_model.dart';
 // import 'package:flutter_capstone/screens/review/review_view_model.dart';

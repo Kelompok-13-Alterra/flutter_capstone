@@ -224,13 +224,8 @@ class _FormSignupState extends State<FormSignup> {
                                       SizedBox(
                                         width: 127.5,
                                         height: 130,
-<<<<<<< HEAD
-                                        child: Image.asset(
-                                            'assets/images/modal_bottom/retro_mac.png'),
-=======
                                         child:
                                             Image.asset('assets/retro_mac.png'),
->>>>>>> 2c2d70ebeda089e1c0e3646b86a7049caee38dc1
                                       ),
                                       const Padding(
                                           padding: EdgeInsets.only(top: 8)),
@@ -354,11 +349,7 @@ class _FormSignupState extends State<FormSignup> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-<<<<<<< HEAD
-                      SvgPicture.asset('assets/icons/auth/google.svg'),
-=======
                       SvgPicture.asset('assets/img/google.svg'),
->>>>>>> 2c2d70ebeda089e1c0e3646b86a7049caee38dc1
                       const SizedBox(
                         width: 8,
                       ),

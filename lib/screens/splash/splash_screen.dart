@@ -54,11 +54,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   SvgPicture.asset(
-<<<<<<< HEAD
-                    "assets/home/background-homescreen.svg",
-=======
                     "assets/homescreen/background-homescreen.svg",
->>>>>>> 2c2d70ebeda089e1c0e3646b86a7049caee38dc1
                     fit: BoxFit.none,
                   ),
                   Container(

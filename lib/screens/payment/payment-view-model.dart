@@ -114,10 +114,10 @@ class PaymentViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  int transactionID = 0;
-  int get getTransactionID => transactionID;
-  set setTransactionID(int val) {
-    transactionID = val;
-    notifyListeners();
-  }
+  // int transactionID = 0;
+  // int get getTransactionID => transactionID;
+  // set setTransactionID(int val) {
+  //   transactionID = val;
+  //   notifyListeners();
+  // }
 }

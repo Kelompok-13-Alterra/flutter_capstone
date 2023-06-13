@@ -11,8 +11,8 @@ import 'package:flutter_capstone/model/booking/booking_availability_model.dart';
 import 'package:flutter_capstone/model/order/order_model.dart';
 import 'package:flutter_capstone/screens/booking/booking_screen.dart';
 import 'package:flutter_capstone/screens/errors/page_not_found.dart';
+import 'package:flutter_capstone/screens/modal_bottom.dart';
 import 'package:flutter_capstone/screens/payment/detail_payment_screen.dart';
-import 'package:flutter_capstone/widgets/modal_bottom.dart';
 
 class BookingAvailabilityService {
   Future<BookingAvailabilityModel> checkDate(

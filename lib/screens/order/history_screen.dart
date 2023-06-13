@@ -2,11 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/screens/order/widget/order_widget.dart';
+import 'package:flutter_capstone/screens/review/review_screen.dart';
 import 'package:flutter_capstone/view_model/order/history_view_model.dart';
 import 'package:provider/provider.dart';
 
 class HistoryOrderScreen extends StatefulWidget {
-  const HistoryOrderScreen({Key? key}) : super(key: key);
+  final int? id;
+  const HistoryOrderScreen({Key? key, this.id}) : super(key: key);
 
   @override
   State<HistoryOrderScreen> createState() => _HistoryOrderScreenState();
@@ -51,6 +53,7 @@ class _HistoryOrderScreenState extends State<HistoryOrderScreen> {
                       routeButton1: '/detail',
                       buttonText2: 'Give Review',
                       routeButton2: '/review',
+                      transactionId: office.listHistory[index].id,
                     );
                   });
             } else {
