@@ -17,6 +17,13 @@ class _ImageDetailState extends State<ImageDetail> {
   ];
 
   @override
+  void setState(fn) {
+    if (mounted) {
+      super.setState(fn);
+    }
+  }
+
+  @override
   void dispose() {
     _pageController.dispose();
     super.dispose();
@@ -57,7 +64,9 @@ class _ImageDetailState extends State<ImageDetail> {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            Navigator.pop(context);
+                            if (mounted) {
+                              Navigator.pop(context);
+                            }
                           },
                           child: Container(
                             height: 32,

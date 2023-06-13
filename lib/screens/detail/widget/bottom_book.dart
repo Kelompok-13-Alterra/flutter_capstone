@@ -25,6 +25,13 @@ class BottomBook extends StatefulWidget {
 class _BottomBookState extends State<BottomBook> {
   // DateTimeRange? selectedDateRange;
   @override
+  void setState(fn) {
+    if (mounted) {
+      super.setState(fn);
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     print('date range in bottom book ${widget.selectedDateRange}');
     return Padding(
@@ -41,10 +48,7 @@ class _BottomBookState extends State<BottomBook> {
               ),
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(
-                      widget.textButton == 'Pilih Metode Pembayaran'
-                          ? 8
-                          : 100), // Bentuk border
+                  borderRadius: BorderRadius.circular(100), // Bentuk border
                 ),
               ),
             ),
@@ -90,14 +94,20 @@ class _BottomBookState extends State<BottomBook> {
                   },
                 );
               } else {
-                Navigator.pushNamed(context, '${widget.buttonRoute}',
+                // setState(() {
+                //   widget.officeId != widget.officeId;
+                //   widget.selectedDateRange != widget.selectedDateRange;
+                // });
+                Navigator.pushReplacementNamed(context, '${widget.buttonRoute}',
                         arguments: BookingScheduleArgument(
-                            officeId: widget.officeId!,
+                            officeId: widget.officeId ?? 0,
                             selectedDateRange: widget.selectedDateRange))
                     .then((value) {
-                  setState(() {
-                    widget.selectedDateRange = (value ?? '') as DateTimeRange?;
-                  });
+                  if (mounted) {
+                    setState(() {
+                      widget.selectedDateRange = value as DateTimeRange?;
+                    });
+                  }
                 });
               }
               // if (widget.textButton == 'Pilih Metode Pembayaran') {

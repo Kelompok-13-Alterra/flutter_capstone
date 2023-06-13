@@ -3,7 +3,8 @@ import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SuccessBookingScreen extends StatefulWidget {
-  const SuccessBookingScreen({super.key});
+  final int totalPrice;
+  const SuccessBookingScreen({super.key, required this.totalPrice});
 
   @override
   State<SuccessBookingScreen> createState() => _SuccessBookingScreenState();
@@ -256,7 +257,7 @@ class _SuccessBookingScreenState extends State<SuccessBookingScreen> {
                               ).copyWith(fontWeight: medium, fontSize: 12),
                             ),
                             Text(
-                              'IDR 23.099',
+                              '${widget.totalPrice}',
                               style: setTextStyle(
                                 const Color(0xFF44474E),
                               ).copyWith(fontWeight: semiBold, fontSize: 14),

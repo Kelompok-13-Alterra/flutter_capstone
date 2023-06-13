@@ -14,7 +14,8 @@ class DetailScreen extends StatefulWidget {
   final String textButton;
   final int? officeId;
   final DateTimeRange? selectedDateRange;
-  const DetailScreen({
+
+  DetailScreen({
     super.key,
     this.buttonRoute,
     required this.textButton,

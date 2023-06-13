@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_capstone/screens/payment/success_booking_screen.dart';
 import 'package:flutter_capstone/services/midtrans/midtrans_service.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
-import 'payment-view-model.dart';
+import 'payment_view_model.dart';
 
 class DetailPaymentScreen extends StatefulWidget {
   final int paymentId;
@@ -14,7 +16,7 @@ class DetailPaymentScreen extends StatefulWidget {
 }
 
 class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
-  late PaymentViewModel paymentViewModel;
+  // late PaymentViewModel? paymentViewModel;
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -22,107 +24,119 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
 
   @override
   void initState() {
-    paymentViewModel = Provider.of<PaymentViewModel>(context, listen: false);
-    paymentViewModel.startCountdown(context);
+    Future.microtask(() => Provider.of<PaymentViewModel>(context, listen: false)
+        .getMidtrans(paymentId: widget.paymentId));
+    Future.microtask(() => Provider.of<PaymentViewModel>(context, listen: false)
+        .startCountdown(context));
+
+    // paymentViewModel?.startCountdown(context);
     super.initState();
   }
 
   @override
   void dispose() {
-    paymentViewModel.stopCountdown();
+    Future.microtask(() =>
+        Provider.of<PaymentViewModel>(context, listen: false).stopCountdown());
     super.dispose();
   }
 
   Widget buildDetailTransaksi(BuildContext context) {
-    return Column(
-      children: [
-        const SizedBox(
-          height: 17,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              'Harga Unit',
-              style: setTextStyle(
-                const Color(0xFF44474E),
-              ).copyWith(fontWeight: medium, fontSize: 12),
-            ),
-            Text(
-              'IDR 20.999',
-              style: setTextStyle(
-                const Color(0xFF44474E),
-              ).copyWith(fontWeight: semiBold, fontSize: 14),
-            ),
-          ],
-        ),
-        const SizedBox(
-          height: 5,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              'Diskon',
-              style: setTextStyle(
-                const Color(0xFF44474E),
-              ).copyWith(fontWeight: medium, fontSize: 12),
-            ),
-            Text(
-              'IDR 0',
-              style: setTextStyle(
-                const Color(0xFF44474E),
-              ).copyWith(fontWeight: semiBold, fontSize: 14),
-            ),
-          ],
-        ),
-        const SizedBox(
-          height: 5,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              'Pajak',
-              style: setTextStyle(
-                const Color(0xFF44474E),
-              ).copyWith(fontWeight: medium, fontSize: 12),
-            ),
-            Text(
-              'IDR 2.100',
-              style: setTextStyle(
-                const Color(0xFF44474E),
-              ).copyWith(fontWeight: semiBold, fontSize: 14),
-            ),
-          ],
-        ),
-        const SizedBox(
-          height: 5,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              'Total',
-              style: setTextStyle(
-                NeutralColor().neutral10,
-              ).copyWith(fontWeight: medium, fontSize: 12),
-            ),
-            Text(
-              'IDR 23.099',
-              style: setTextStyle(
-                const Color(0xFF44474E),
-              ).copyWith(fontWeight: semiBold, fontSize: 14),
-            ),
-          ],
-        )
-      ],
-    );
+    return Consumer<PaymentViewModel>(builder: (context, provider, _) {
+      return Column(
+        children: [
+          const SizedBox(
+            height: 17,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Harga Unit',
+                style: setTextStyle(
+                  const Color(0xFF44474E),
+                ).copyWith(fontWeight: medium, fontSize: 12),
+              ),
+              Text(
+                'IDR ${provider.getMidtransModel.data.paymentData.price}',
+                style: setTextStyle(
+                  const Color(0xFF44474E),
+                ).copyWith(fontWeight: semiBold, fontSize: 14),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Diskon',
+                style: setTextStyle(
+                  const Color(0xFF44474E),
+                ).copyWith(fontWeight: medium, fontSize: 12),
+              ),
+              Text(
+                'IDR ${provider.getMidtransModel.data.paymentData.discount}',
+                style: setTextStyle(
+                  const Color(0xFF44474E),
+                ).copyWith(fontWeight: semiBold, fontSize: 14),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Pajak',
+                style: setTextStyle(
+                  const Color(0xFF44474E),
+                ).copyWith(fontWeight: medium, fontSize: 12),
+              ),
+              Text(
+                'IDR ${provider.getMidtransModel.data.paymentData.tax}',
+                style: setTextStyle(
+                  const Color(0xFF44474E),
+                ).copyWith(fontWeight: semiBold, fontSize: 14),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Total',
+                style: setTextStyle(
+                  NeutralColor().neutral10,
+                ).copyWith(fontWeight: medium, fontSize: 12),
+              ),
+              Text(
+                'IDR ${provider.getMidtransModel.data.paymentData.totalPrice}',
+                style: setTextStyle(
+                  const Color(0xFF44474E),
+                ).copyWith(fontWeight: semiBold, fontSize: 14),
+              ),
+            ],
+          )
+        ],
+      );
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+    print('This is payment ID in Detail Payment Screen ${widget.paymentId}');
+
     return Consumer<PaymentViewModel>(builder: (context, provider, _) {
+      provider.setPaymentStatus = provider.getMidtransModel.data.status;
+      // print(provider.getMidtrans(paymentId: widget.paymentId));
+
       return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -288,198 +302,406 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                         ),
                       ),
                       //Transfer Pembayaran - Get Midtrans API
-                      FutureBuilder(
-                        future: MidtransService()
-                            .getPayment(transactionId: widget.paymentId),
-                        builder: (context, snapshot) {
-                          var res = MidtransService()
-                              .getPayment(transactionId: widget.paymentId);
 
-                          var virtualAccountNumber = res.then(
-                            (value) {
-                              provider.setRekeningValue =
-                                  value.data.paymentData.vaNumber;
-                            },
-                          );
-
-                          return Container(
-                            padding: const EdgeInsets.all(16),
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(4)),
-                              border: Border.all(
-                                color: NeutralColor().neutral90,
-                                width: 1.0,
-                              ),
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                      Container(
+                        padding: const EdgeInsets.all(16),
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(4)),
+                          border: Border.all(
+                            color: NeutralColor().neutral90,
+                            width: 1.0,
+                          ),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
                               children: [
-                                Row(
+                                SvgPicture.asset(
+                                    'assets/icons/payment/BNI.svg'),
+                                const SizedBox(
+                                  width: 12,
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    SvgPicture.asset(
-                                        'assets/icons/payment/BNI.svg'),
-                                    const SizedBox(
-                                      width: 12,
-                                    ),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          'BNI VA',
-                                          style: setTextStyle(
-                                                  NeutralColor().neutral10)
+                                    Text(
+                                      'BNI VA',
+                                      style:
+                                          setTextStyle(NeutralColor().neutral10)
                                               .copyWith(
                                                   fontWeight: medium,
                                                   fontSize: 16),
-                                        ),
-                                        Text(
-                                          'PT OFFICE BUDDY',
-                                          style: setTextStyle(
-                                                  NeutralColor().neutral50)
+                                    ),
+                                    Text(
+                                      'PT OFFICE BUDDY',
+                                      style:
+                                          setTextStyle(NeutralColor().neutral50)
                                               .copyWith(
                                                   fontWeight: semiBold,
                                                   fontSize: 11),
-                                        ),
-                                      ],
                                     ),
                                   ],
                                 ),
-                                const SizedBox(
-                                  height: 18,
-                                ),
-                                Container(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 16, vertical: 14),
-                                  decoration: const BoxDecoration(
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(16),
-                                    ),
-                                    color: Color(0xFFE8F2FF),
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        provider.getRekening,
-                                        style: setTextStyle(
-                                                NeutralColor().neutral10)
-                                            .copyWith(
-                                                fontWeight: semiBold,
-                                                fontSize: 22),
-                                      ),
-                                      ElevatedButton(
-                                        style: ButtonStyle(
-                                          backgroundColor:
-                                              MaterialStateProperty.all<Color>(
-                                                  Colors.transparent),
-                                          elevation:
-                                              const MaterialStatePropertyAll(0),
-                                          shape: MaterialStateProperty.all<
-                                              RoundedRectangleBorder>(
-                                            RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(50),
-                                              side: BorderSide(
-                                                  color: SourceColor().seed,
-                                                  width: 1),
-                                            ),
-                                          ),
-                                        ),
-                                        onPressed: () {
-                                          paymentViewModel
-                                              .copyRekening(context);
-                                        },
-                                        child: Text(
-                                          'Salin',
-                                          style:
-                                              setTextStyle(SourceColor().seed)
-                                                  .copyWith(
-                                                      fontWeight: semiBold,
-                                                      fontSize: 11),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: 16,
-                                ),
-                                // Detail Jumlaj Transfer
-                                //====================================================
-                                Text(
-                                  'Jumlah Transfer',
-                                  style: setTextStyle(NeutralVariantColor()
-                                          .neutralVariant30)
-                                      .copyWith(
-                                          fontWeight: semiBold, fontSize: 14),
-                                ),
-                                const SizedBox(
-                                  height: 5,
-                                ),
-                                Container(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 16, vertical: 14),
-                                  decoration: const BoxDecoration(
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(16),
-                                    ),
-                                    color: Color(0xFFE8F2FF),
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        paymentViewModel.jumlahTransfer,
-                                        style: setTextStyle(
-                                                NeutralColor().neutral10)
-                                            .copyWith(
-                                                fontWeight: semiBold,
-                                                fontSize: 22),
-                                      ),
-                                      ElevatedButton(
-                                        style: ButtonStyle(
-                                          backgroundColor:
-                                              MaterialStateProperty.all<Color>(
-                                                  Colors.transparent),
-                                          elevation:
-                                              const MaterialStatePropertyAll(0),
-                                          shape: MaterialStateProperty.all<
-                                              RoundedRectangleBorder>(
-                                            RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(50),
-                                              side: BorderSide(
-                                                  color: SourceColor().seed,
-                                                  width: 1),
-                                            ),
-                                          ),
-                                        ),
-                                        onPressed: () {
-                                          paymentViewModel
-                                              .copyJumlahTransfer(context);
-                                        },
-                                        child: Text(
-                                          'Salin',
-                                          style:
-                                              setTextStyle(SourceColor().seed)
-                                                  .copyWith(
-                                                      fontWeight: semiBold,
-                                                      fontSize: 11),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                )
                               ],
                             ),
-                          );
-                        },
+                            const SizedBox(
+                              height: 18,
+                            ),
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 16, vertical: 14),
+                              decoration: const BoxDecoration(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(16),
+                                ),
+                                color: Color(0xFFE8F2FF),
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    provider.getMidtransModel.data.paymentData
+                                        .vaNumber,
+                                    style:
+                                        setTextStyle(NeutralColor().neutral10)
+                                            .copyWith(
+                                                fontWeight: semiBold,
+                                                fontSize: 22),
+                                  ),
+                                  ElevatedButton(
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all<Color>(
+                                              Colors.transparent),
+                                      elevation:
+                                          const MaterialStatePropertyAll(0),
+                                      shape: MaterialStateProperty.all<
+                                          RoundedRectangleBorder>(
+                                        RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(50),
+                                          side: BorderSide(
+                                              color: SourceColor().seed,
+                                              width: 1),
+                                        ),
+                                      ),
+                                    ),
+                                    onPressed: () {
+                                      Clipboard.setData(ClipboardData(
+                                          text: provider.getMidtransModel.data
+                                              .paymentData.vaNumber));
+                                      const snackBar = SnackBar(
+                                          content: Text(
+                                              'Rekening berhasil disalin'));
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(snackBar);
+                                    },
+                                    child: Text(
+                                      'Salin',
+                                      style: setTextStyle(SourceColor().seed)
+                                          .copyWith(
+                                              fontWeight: semiBold,
+                                              fontSize: 11),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 16,
+                            ),
+                            // Detail Jumlaj Transfer
+                            //====================================================
+                            Text(
+                              'Jumlah Transfer',
+                              style: setTextStyle(
+                                      NeutralVariantColor().neutralVariant30)
+                                  .copyWith(fontWeight: semiBold, fontSize: 14),
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 16, vertical: 14),
+                              decoration: const BoxDecoration(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(16),
+                                ),
+                                color: Color(0xFFE8F2FF),
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    provider.getMidtransModel.data.paymentData
+                                        .totalPrice
+                                        .toString(),
+                                    style:
+                                        setTextStyle(NeutralColor().neutral10)
+                                            .copyWith(
+                                                fontWeight: semiBold,
+                                                fontSize: 22),
+                                  ),
+                                  ElevatedButton(
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all<Color>(
+                                              Colors.transparent),
+                                      elevation:
+                                          const MaterialStatePropertyAll(0),
+                                      shape: MaterialStateProperty.all<
+                                          RoundedRectangleBorder>(
+                                        RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(50),
+                                          side: BorderSide(
+                                              color: SourceColor().seed,
+                                              width: 1),
+                                        ),
+                                      ),
+                                    ),
+                                    onPressed: () {
+                                      Clipboard.setData(ClipboardData(
+                                          text: provider.getMidtransModel.data
+                                              .paymentData.price
+                                              .toString()));
+                                      const snackBar = SnackBar(
+                                          content: Text(
+                                              'Rekening berhasil disalin'));
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(snackBar);
+                                    },
+                                    child: Text(
+                                      'Salin',
+                                      style: setTextStyle(SourceColor().seed)
+                                          .copyWith(
+                                              fontWeight: semiBold,
+                                              fontSize: 11),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
                       ),
+                      // SliverList(delegate: sliver)
+                      // FutureBuilder(
+                      //   future: MidtransService()
+                      //       .getPayment(transactionId: widget.paymentId),
+                      //   builder: (context, AsyncSnapshot snapshot) {
+                      //     if (snapshot.hasData) {
+                      //       print(snapshot);
+                      //       // var res = MidtransService()
+                      //       //     .getPayment(transactionId: widget.paymentId);
+
+                      //       // res.then((value) {
+                      //       //   print('Hello ${value.data.status}');
+                      //       //   provider.setTransactionId = widget.paymentId;
+                      //       //   provider.setRekeningValue =
+                      //       //       value.data.paymentData.vaNumber;
+                      //       //   provider.setPaymentStatus = value.data.status;
+                      //       //   provider.setPrice =
+                      //       //       value.data.paymentData.price;
+                      //       //   provider.setDiscount =
+                      //       //       value.data.paymentData.discount;
+                      //       //   provider.setTax = value.data.paymentData.tax;
+                      //       //   provider.setTotalPrice =
+                      //       //       value.data.paymentData.totalPrice;
+                      //       // });
+
+                      //       return Container(
+                      //         padding: const EdgeInsets.all(16),
+                      //         width: double.infinity,
+                      //         decoration: BoxDecoration(
+                      //           borderRadius: const BorderRadius.all(
+                      //               Radius.circular(4)),
+                      //           border: Border.all(
+                      //             color: NeutralColor().neutral90,
+                      //             width: 1.0,
+                      //           ),
+                      //         ),
+                      //         child: Column(
+                      //           crossAxisAlignment: CrossAxisAlignment.start,
+                      //           children: [
+                      //             Row(
+                      //               children: [
+                      //                 SvgPicture.asset(
+                      //                     'assets/icons/payment/BNI.svg'),
+                      //                 const SizedBox(
+                      //                   width: 12,
+                      //                 ),
+                      //                 Column(
+                      //                   crossAxisAlignment:
+                      //                       CrossAxisAlignment.start,
+                      //                   children: [
+                      //                     Text(
+                      //                       'BNI VA',
+                      //                       style: setTextStyle(
+                      //                               NeutralColor().neutral10)
+                      //                           .copyWith(
+                      //                               fontWeight: medium,
+                      //                               fontSize: 16),
+                      //                     ),
+                      //                     Text(
+                      //                       'PT OFFICE BUDDY',
+                      //                       style: setTextStyle(
+                      //                               NeutralColor().neutral50)
+                      //                           .copyWith(
+                      //                               fontWeight: semiBold,
+                      //                               fontSize: 11),
+                      //                     ),
+                      //                   ],
+                      //                 ),
+                      //               ],
+                      //             ),
+                      //             const SizedBox(
+                      //               height: 18,
+                      //             ),
+                      //             Container(
+                      //               padding: const EdgeInsets.symmetric(
+                      //                   horizontal: 16, vertical: 14),
+                      //               decoration: const BoxDecoration(
+                      //                 borderRadius: BorderRadius.all(
+                      //                   Radius.circular(16),
+                      //                 ),
+                      //                 color: Color(0xFFE8F2FF),
+                      //               ),
+                      //               child: Row(
+                      //                 mainAxisAlignment:
+                      //                     MainAxisAlignment.spaceBetween,
+                      //                 children: [
+                      //                   Text(
+                      //                     provider.getRekening,
+                      //                     style: setTextStyle(
+                      //                             NeutralColor().neutral10)
+                      //                         .copyWith(
+                      //                             fontWeight: semiBold,
+                      //                             fontSize: 22),
+                      //                   ),
+                      //                   ElevatedButton(
+                      //                     style: ButtonStyle(
+                      //                       backgroundColor:
+                      //                           MaterialStateProperty.all<
+                      //                                   Color>(
+                      //                               Colors.transparent),
+                      //                       elevation:
+                      //                           const MaterialStatePropertyAll(
+                      //                               0),
+                      //                       shape: MaterialStateProperty.all<
+                      //                           RoundedRectangleBorder>(
+                      //                         RoundedRectangleBorder(
+                      //                           borderRadius:
+                      //                               BorderRadius.circular(50),
+                      //                           side: BorderSide(
+                      //                               color: SourceColor().seed,
+                      //                               width: 1),
+                      //                         ),
+                      //                       ),
+                      //                     ),
+                      //                     onPressed: () {
+                      //                       provider
+                      //                           .copyRekening(context);
+                      //                     },
+                      //                     child: Text(
+                      //                       'Salin',
+                      //                       style: setTextStyle(
+                      //                               SourceColor().seed)
+                      //                           .copyWith(
+                      //                               fontWeight: semiBold,
+                      //                               fontSize: 11),
+                      //                     ),
+                      //                   ),
+                      //                 ],
+                      //               ),
+                      //             ),
+                      //             const SizedBox(
+                      //               height: 16,
+                      //             ),
+                      //             // Detail Jumlaj Transfer
+                      //             //====================================================
+                      //             Text(
+                      //               'Jumlah Transfer',
+                      //               style: setTextStyle(NeutralVariantColor()
+                      //                       .neutralVariant30)
+                      //                   .copyWith(
+                      //                       fontWeight: semiBold,
+                      //                       fontSize: 14),
+                      //             ),
+                      //             const SizedBox(
+                      //               height: 5,
+                      //             ),
+                      //             Container(
+                      //               padding: const EdgeInsets.symmetric(
+                      //                   horizontal: 16, vertical: 14),
+                      //               decoration: const BoxDecoration(
+                      //                 borderRadius: BorderRadius.all(
+                      //                   Radius.circular(16),
+                      //                 ),
+                      //                 color: Color(0xFFE8F2FF),
+                      //               ),
+                      //               child: Row(
+                      //                 mainAxisAlignment:
+                      //                     MainAxisAlignment.spaceBetween,
+                      //                 children: [
+                      //                   Text(
+                      //                     paymentViewModel.jumlahTransfer,
+                      //                     style: setTextStyle(
+                      //                             NeutralColor().neutral10)
+                      //                         .copyWith(
+                      //                             fontWeight: semiBold,
+                      //                             fontSize: 22),
+                      //                   ),
+                      //                   ElevatedButton(
+                      //                     style: ButtonStyle(
+                      //                       backgroundColor:
+                      //                           MaterialStateProperty.all<
+                      //                                   Color>(
+                      //                               Colors.transparent),
+                      //                       elevation:
+                      //                           const MaterialStatePropertyAll(
+                      //                               0),
+                      //                       shape: MaterialStateProperty.all<
+                      //                           RoundedRectangleBorder>(
+                      //                         RoundedRectangleBorder(
+                      //                           borderRadius:
+                      //                               BorderRadius.circular(50),
+                      //                           side: BorderSide(
+                      //                               color: SourceColor().seed,
+                      //                               width: 1),
+                      //                         ),
+                      //                       ),
+                      //                     ),
+                      //                     onPressed: () {
+                      //                       paymentViewModel
+                      //                           .copyJumlahTransfer(context);
+                      //                     },
+                      //                     child: Text(
+                      //                       'Salin',
+                      //                       style: setTextStyle(
+                      //                               SourceColor().seed)
+                      //                           .copyWith(
+                      //                               fontWeight: semiBold,
+                      //                               fontSize: 11),
+                      //                     ),
+                      //                   )
+                      //                 ],
+                      //               ),
+                      //             )
+                      //           ],
+                      //         ),
+                      //       );
+                      //     } else {
+                      //       return CircularProgressIndicator();
+                      //     }
+                      //   },
+                      // ),
 
                       const SizedBox(
                         height: 16,
@@ -511,17 +733,40 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                                 IconButton(
                                   constraints: const BoxConstraints(),
                                   padding: EdgeInsets.zero,
-                                  onPressed:
-                                      paymentViewModel.toggleDetailTransaksi,
-                                  icon: paymentViewModel.isDetailTransaksi
+                                  onPressed: provider.toggleDetailTransaksi,
+                                  icon: provider.isDetailTransaksi == true
                                       ? const Icon(Icons.arrow_drop_up)
                                       : const Icon(Icons.arrow_drop_down),
                                 )
                               ],
                             ),
-                            paymentViewModel.isDetailTransaksi
+                            provider.isDetailTransaksi == true
                                 ? buildDetailTransaksi(context)
                                 : Container(),
+                            ElevatedButton(
+                                onPressed: () async {
+                                  final res = await MidtransService()
+                                      .getPayment(
+                                          transactionId: widget.paymentId);
+
+                                  provider.setPaymentStatus = res.data.status;
+
+                                  if (provider.getPaymentStatus == 'success') {
+                                    provider.setPaymentStatus = '';
+                                    Navigator.of(context)
+                                        .pushReplacement(MaterialPageRoute(
+                                      builder: (context) =>
+                                          SuccessBookingScreen(
+                                        totalPrice: provider.getMidtransModel
+                                            .data.paymentData.totalPrice,
+                                      ),
+                                    ));
+                                    // Navigator.pushReplacement(
+
+                                    // );
+                                  }
+                                },
+                                child: Text('Refresh')),
                           ],
                         ),
                       )

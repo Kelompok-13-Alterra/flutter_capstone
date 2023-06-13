@@ -1,21 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_capstone/screens/booking/booking_screen.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_capstone/screens/detail/detail_screen.dart';
 
-class TransactionFailedScreen extends StatelessWidget {
+class TransactionFailedScreen extends StatefulWidget {
   const TransactionFailedScreen({super.key});
 
   @override
+  State<TransactionFailedScreen> createState() =>
+      _TransactionFailedScreenState();
+}
+
+class _TransactionFailedScreenState extends State<TransactionFailedScreen> {
+  @override
+  void setState(fn) {
+    if (mounted) {
+      super.setState(fn);
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
+    // final args =
+    //     ModalRoute.of(context)?.settings.arguments as BookingScheduleArgument;
     return WillPopScope(
       onWillPop: () async {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => const DetailScreen(
+            builder: (context) => DetailScreen(
+              // function: () {
+              //   Navigator.pop(context);
+              // },
               buttonRoute: null,
-              textButton: 'Pilih Metode Pembayaran',
+              textButton: 'Booking',
+              selectedDateRange: null,
             ),
           ),
         );
@@ -65,15 +85,23 @@ class TransactionFailedScreen extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                    Navigator.pushReplacement(
+                    // if (mounted) {
+                    Navigator.pushAndRemoveUntil(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const DetailScreen(
-                          buttonRoute: null,
-                          textButton: 'Pilih Metode Pembayaran',
+                        builder: (context) => DetailScreen(
+                          // function: () {
+                          //   Navigator.pop(context);
+                          // },
+                          buttonRoute: '/booking',
+                          textButton: 'Booking',
+                          selectedDateRange: null,
+                          // officeId: null,
                         ),
                       ),
+                      (route) => false,
                     );
+                    // }
                   },
                   child: Text(
                     'Booking Office',

@@ -1,5 +1,5 @@
 // ignore_for_file: file_names
-
+//Ini utk reschedule
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/screens/detail/widget/bottom_book.dart';
 import 'package:flutter_capstone/screens/detail/widget/detail_card.dart';
@@ -37,6 +37,7 @@ class _DetailScheduleScreenState extends State<DetailScheduleScreen> {
             // Button Book
             //================================================================
             BottomBook(
+              officeId: 0,
               function: () async {
                 // Future selectDateRange(BuildContext context) async {
                 DateTimeRange? pickedRange = await showDateRangePicker(
