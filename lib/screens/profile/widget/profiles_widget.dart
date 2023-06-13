@@ -230,7 +230,7 @@ Widget profilesWidget(BuildContext context) {
                                 maxHeight: 20,
                               ),
                               child: Image.asset(
-                                'assets/image/logout.png',
+                                'assets/icons/profile/logout.png',
                               ),
                             ),
                             const SizedBox(

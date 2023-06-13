@@ -33,7 +33,7 @@ class _BottomBookState extends State<BottomBook> {
 
   @override
   Widget build(BuildContext context) {
-    print('date range in bottom book ${widget.selectedDateRange}');
+    // print('date range in bottom book ${widget.selectedDateRange}');
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: FractionallySizedBox(
@@ -73,7 +73,7 @@ class _BottomBookState extends State<BottomBook> {
                 showModalBottomSheet(
                   context: context,
                   enableDrag: false,
-                  isScrollControlled: false,
+                  isScrollControlled: true,
                   isDismissible: false,
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.only(
@@ -98,17 +98,22 @@ class _BottomBookState extends State<BottomBook> {
                 //   widget.officeId != widget.officeId;
                 //   widget.selectedDateRange != widget.selectedDateRange;
                 // });
-                Navigator.pushReplacementNamed(context, '${widget.buttonRoute}',
+                Navigator.pushNamedAndRemoveUntil(
+                        context, '${widget.buttonRoute}', (route) => false,
                         arguments: BookingScheduleArgument(
                             officeId: widget.officeId ?? 0,
                             selectedDateRange: widget.selectedDateRange))
-                    .then((value) {
-                  if (mounted) {
-                    setState(() {
-                      widget.selectedDateRange = value as DateTimeRange?;
-                    });
-                  }
-                });
+                    .then(
+                  (value) {
+                    if (mounted) {
+                      setState(
+                        () {
+                          widget.selectedDateRange = value as DateTimeRange?;
+                        },
+                      );
+                    }
+                  },
+                );
               }
               // if (widget.textButton == 'Pilih Metode Pembayaran') {
               //   showModalBottomSheet(

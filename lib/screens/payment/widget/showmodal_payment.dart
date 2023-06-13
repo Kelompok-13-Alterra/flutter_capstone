@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/core/init/utils/date_convert.dart';
-import 'package:flutter_capstone/screens/booking/booking_screen.dart';
 import 'package:flutter_capstone/services/order/order_service.dart';
 import 'package:flutter_capstone/style/text_style.dart';
-import 'package:flutter_capstone/widgets/modal_bottom.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_capstone/screens/payment/detail_payment_screen.dart';
-import 'package:intl/intl.dart';
+
 import 'package:provider/provider.dart';
 import '../payment_view_model.dart';
 

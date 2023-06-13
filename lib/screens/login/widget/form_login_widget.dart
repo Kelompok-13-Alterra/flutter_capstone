@@ -1,3 +1,5 @@
+// ignore_for_file: unused_element
+
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/core/init/utils/shared_preferences.dart';
 import 'package:flutter_capstone/screens/login/login_view_model.dart';
@@ -32,8 +34,6 @@ class _FormLoginState extends State<FormLogin> {
 
     @override
     void dispose() {
-      // TODO: implement dispose
-
       super.dispose();
       loginViewModel.getEmail;
       loginViewModel.getPassword;

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_capstone/model/midtrans/midtrans_model.dart';
 import 'dart:async';
 import 'package:flutter_capstone/screens/payment/transaction_failed_screen.dart';
-import 'package:flutter_capstone/services/booking/booking_availability_service.dart';
 import 'package:flutter_capstone/services/midtrans/midtrans_service.dart';
 
 class PaymentViewModel extends ChangeNotifier {
@@ -58,14 +56,14 @@ class PaymentViewModel extends ChangeNotifier {
   // String rekening = '';
   final String jumlahTransfer = 'IDR 23.099';
   bool isDetailTransaksi = true;
-  late DateTime _timerOffice;
+  DateTime? _timerOffice;
   int? price;
   int? discount;
   int? tax;
   int? totalPrice;
   String paymentStatus = '';
   int transactionId = 0;
-  MidtransPaymentModel? _midtransModel;
+  late MidtransPaymentModel _midtransModel;
 
   // String get getRekening => rekening;
   int get getPrice => price!;
@@ -74,7 +72,7 @@ class PaymentViewModel extends ChangeNotifier {
   int get getTotalPrice => totalPrice!;
   String get getPaymentStatus => paymentStatus;
   int get getTransactionId => transactionId;
-  MidtransPaymentModel get getMidtransModel => _midtransModel!;
+  MidtransPaymentModel get getMidtransModel => _midtransModel;
 
   MidtransService midtransService = MidtransService();
 
@@ -126,11 +124,13 @@ class PaymentViewModel extends ChangeNotifier {
   //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
   // }
 
-  void startCountdown(BuildContext context) async {
-    _timerOffice = DateTime.now().add(const Duration(
-        seconds: 10)); // Inisialisasi _timerOffice saat countdown dimulai
-    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      if (DateTime.now().isBefore(_timerOffice)) {
+  void startCountdown(BuildContext context) {
+    _timerOffice = DateTime.now().add(const Duration(minutes: 1));
+    // _timer?.cancel();
+
+    // Inisialisasi _timerOffice saat countdown dimulai
+    _timer = Timer.periodic(const Duration(seconds: 2), (timer) {
+      if (DateTime.now().isBefore(_timerOffice!)) {
         notifyListeners();
       } else {
         stopCountdown();
@@ -144,11 +144,12 @@ class PaymentViewModel extends ChangeNotifier {
   }
 
   void stopCountdown() {
-    _timer?.cancel();
+    // notifyListeners();
+    return _timer?.cancel();
   }
 
-  String getTimeRemaining() {
-    Duration remaining = _timerOffice.difference(DateTime.now());
+  String? getTimeRemaining() {
+    Duration remaining = _timerOffice!.difference(DateTime.now());
     int hours = remaining.inHours;
     int minutes = remaining.inMinutes % 60;
     int seconds = remaining.inSeconds % 60;
@@ -165,6 +166,7 @@ class PaymentViewModel extends ChangeNotifier {
       _midtransModel =
           await midtransService.getPayment(transactionId: paymentId);
       notifyListeners();
+      return _midtransModel;
     } catch (e) {
       rethrow;
     }

@@ -1,13 +1,11 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/screens/detail/detail_view_model.dart';
 import 'package:flutter_capstone/screens/detail/widget/bottom_book.dart';
 import 'package:flutter_capstone/screens/detail/widget/detail_card.dart';
 import 'package:flutter_capstone/screens/detail/widget/fasilities.dart';
 import 'package:flutter_capstone/screens/detail/widget/image_detail.dart';
 import 'package:flutter_capstone/screens/detail/widget/office_description.dart';
-import 'package:provider/provider.dart';
 
 class DetailScreen extends StatefulWidget {
   final String? buttonRoute;
@@ -15,7 +13,7 @@ class DetailScreen extends StatefulWidget {
   final int? officeId;
   final DateTimeRange? selectedDateRange;
 
-  DetailScreen({
+  const DetailScreen({
     super.key,
     this.buttonRoute,
     required this.textButton,
@@ -31,7 +29,7 @@ class _DetailScreenState extends State<DetailScreen> {
   @override
   Widget build(BuildContext context) {
     // var detailViewModel = Provider.of<DetailViewModel>(context);
-    print('Passed officeId ${widget.officeId}');
+    // print('Passed officeId ${widget.officeId}');
     return
 
         // WillPopScope(

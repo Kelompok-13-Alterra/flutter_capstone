@@ -79,7 +79,7 @@ class _BookingScheduleScreenState extends State<BookingScheduleScreen> {
     );
 
     if (pickedDateRange != null) {
-      print('Office ID in booking screen ${args.officeId}');
+      // print('Office ID in booking screen ${args.officeId}');
       // ignore: use_build_context_synchronously
       var res = await BookingAvailabilityService().checkDate(
         context,
@@ -123,7 +123,7 @@ class _BookingScheduleScreenState extends State<BookingScheduleScreen> {
           Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(
-              builder: (context) => DetailScreen(
+              builder: (context) => const DetailScreen(
                 // function: () {
                 //   Navigator.pop(context);
                 // },

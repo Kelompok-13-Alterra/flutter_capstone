@@ -5,7 +5,7 @@ class DetailViewModel extends ChangeNotifier {
   int get getIndex => _index!;
 
   setIndex(int val) {
-    print(_index);
+    // print(_index);
     _index = val;
     notifyListeners();
   }

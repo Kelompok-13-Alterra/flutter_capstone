@@ -29,7 +29,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                     context,
                     MaterialPageRoute(
                       builder: (context) => DetailScreen(
-                        officeId: index,
+                        officeId: data.id,
                         buttonRoute: '/booking',
                         textButton: 'Book',
                       ),

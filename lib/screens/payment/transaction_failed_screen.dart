@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/screens/booking/booking_screen.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_capstone/screens/detail/detail_screen.dart';
@@ -29,7 +28,7 @@ class _TransactionFailedScreenState extends State<TransactionFailedScreen> {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => DetailScreen(
+            builder: (context) => const DetailScreen(
               // function: () {
               //   Navigator.pop(context);
               // },
@@ -89,7 +88,7 @@ class _TransactionFailedScreenState extends State<TransactionFailedScreen> {
                     Navigator.pushAndRemoveUntil(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => DetailScreen(
+                        builder: (context) => const DetailScreen(
                           // function: () {
                           //   Navigator.pop(context);
                           // },
