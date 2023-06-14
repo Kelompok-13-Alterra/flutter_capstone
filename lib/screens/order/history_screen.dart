@@ -3,12 +3,12 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/screens/order/widget/order_widget.dart';
+import 'package:flutter_capstone/screens/review/review_screen.dart';
 import 'package:flutter_capstone/view_model/order/history_view_model.dart';
 import 'package:provider/provider.dart';
 
 class HistoryOrderScreen extends StatefulWidget {
-  final int? id;
-  const HistoryOrderScreen({Key? key, this.id}) : super(key: key);
+  const HistoryOrderScreen({Key? key}) : super(key: key);
 
   @override
   State<HistoryOrderScreen> createState() => _HistoryOrderScreenState();
@@ -32,7 +32,6 @@ class _HistoryOrderScreenState extends State<HistoryOrderScreen> {
         child: FutureBuilder(
           future: historyDataViewModel,
           builder: (context, snapshot) {
-
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const CircularProgressIndicator();
             } else if (!snapshot.hasData) {
@@ -41,8 +40,6 @@ class _HistoryOrderScreenState extends State<HistoryOrderScreen> {
                   itemCount: office.listHistory.length,
                   itemBuilder: (context, index) {
                     var data = office.listHistory[index];
-                    // var datas = data.id;
-                    // print("ID TRANSAKSIII : ${datas}");
 
                     //office.listHistory[index].id
                     return OrderWidget(
@@ -58,7 +55,8 @@ class _HistoryOrderScreenState extends State<HistoryOrderScreen> {
                       routeButton1: '/detail',
                       buttonText2: 'Give Review',
                       routeButton2: '/review',
-                      transactionId: data.id,
+                      // transactionId: data.id,
+                      transactionId: office.listHistory[index].id,
 
                       // office.listHistory[index].id,
                     );
