@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class ImageDetail extends StatefulWidget {
-  const ImageDetail({super.key});
+  const ImageDetail({
+    super.key,
+  });
 
   @override
   State<ImageDetail> createState() => _ImageDetailState();

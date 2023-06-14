@@ -53,83 +53,108 @@ class _DetailScreenState extends State<DetailScreen> {
     super.initState();
   }
 
+  // @override
+  // void didChangeDependencies() {
+  //   super.didChangeDependencies();
+  //   final ModalRoute<Object?> currentRoute = ModalRoute.of(context)!;
+  //   currentRoute.addScopedWillPopCallback(() async {
+  //     if (widget.textButton == 'Pilih Metode Pembayaran') {
+  //       Navigator.push(
+  //         context,
+  //         MaterialPageRoute(
+  //           builder: (context) => DetailScreen(
+  //             officeId: widget.officeId,
+  //             buttonRoute: '/booking',
+  //             textButton: 'Book',
+  //           ),
+  //         ),
+  //       );
+  //     } else if (widget.textButton == 'Book') {
+  //       Navigator.pushNamed(context, '/bottom-nav');
+  //     }
+  //     return true;
+  //   });
+  // }
+
   @override
   Widget build(BuildContext context) {
-    // WillPopScope(
-    //   onWillPop: () async {
-    //     if (widget.textButton == 'Pilih Metode Pembayaran') {
-    //       Navigator.pushReplacement(
-    //         context,
-    //         MaterialPageRoute(
-    //           builder: (context) => DetailScreen(
-    //             officeId: widget.officeId,
-    //             buttonRoute: '/booking',
-    //             textButton: 'Book',
-    //           ),
-    //         ),
-    //       );
-    //     } else if (widget.textButton == 'Book') {
-    //       Navigator.pushReplacementNamed(context, '/bottom-nav',
-    //           arguments: widget.officeId);
-    //     }
-    //     return true;
-    //   },
-    // child:
+    return WillPopScope(
+      onWillPop: () async {
+        if (widget.textButton == 'Pilih Metode Pembayaran') {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => DetailScreen(
+                officeId: widget.officeId,
+                buttonRoute: '/booking',
+                textButton: 'Book',
+              ),
+            ),
+          );
+        } else if (widget.textButton == 'Book') {
+          Navigator.pushReplacementNamed(context, '/bottom-nav',
+              arguments: widget.officeId);
+        }
+        return true;
+      },
+      child: Scaffold(
+        body: Consumer<DetailViewModel>(
+          builder: (context, provider, _) {
+            return FutureBuilder(
+              future: detailDataFuture,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.done) {
+                  final detail = provider.detailData;
+                  return SingleChildScrollView(
+                    child: Column(
+                      children: <Widget>[
+                        // Image Swipe
+                        //================================================================
+                        ImageDetail(),
+                        // Container Detail
+                        //================================================================
+                        DetailCard(
+                          name: detail!.name,
+                          price: detail.price,
+                          open: detail.open,
+                          close: detail.close,
+                          capacity: detail.capacity,
+                          location: detail.location,
+                        ),
+                        // Container Fasilitas
+                        //================================================================
+                        const OfficeFalicities(),
+                        // Container Deskripsi
+                        //================================================================
+                        OfficeDescription(
+                          description: detail.description,
+                        ),
+                        // Button Book
+                        //================================================================
+                        BottomBook(
+                          function: null,
+                          officeId: widget.officeId,
+                          buttonRoute: widget.buttonRoute,
+                          textButton: widget.textButton,
+                          selectedDateRange: widget.selectedDateRange,
+                        ),
+                      ],
+                    ),
+                  );
+                } else if (snapshot.hasError) {
+                  return const ConnectionErrorScreen();
+                } else {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+              },
+            );
+          },
+        ),
+      ),
+    );
     // final detailViewModel = Provider.of<DetailViewModel>(context);
     // final dataOffice = detailViewModel.detailData;
-    return Scaffold(
-      body: Consumer<DetailViewModel>(builder: (context, provider, _) {
-        return FutureBuilder(
-          future: detailDataFuture,
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.done) {
-              final detail = provider.detailData;
-              return SingleChildScrollView(
-                child: Column(
-                  children: <Widget>[
-                    // Image Swipe
-                    //================================================================
-                    const ImageDetail(),
-                    // Container Detail
-                    //================================================================
-                    DetailCard(
-                      name: detail!.name,
-                      price: detail.price,
-                      open: detail.open,
-                      close: detail.close,
-                      capacity: detail.capacity,
-                      location: detail.location,
-                    ),
-                    // Container Fasilitas
-                    //================================================================
-                    const OfficeFalicities(),
-                    // Container Deskripsi
-                    //================================================================
-                    OfficeDescription(
-                      description: detail.description,
-                    ),
-                    // Button Book
-                    //================================================================
-                    BottomBook(
-                      function: null,
-                      officeId: widget.officeId,
-                      buttonRoute: widget.buttonRoute,
-                      textButton: widget.textButton,
-                      selectedDateRange: widget.selectedDateRange,
-                    ),
-                  ],
-                ),
-              );
-            } else if (snapshot.hasError) {
-              return const ConnectionErrorScreen();
-            } else {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-          },
-        );
-      }),
-    );
   }
 }

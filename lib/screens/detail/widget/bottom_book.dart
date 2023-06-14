@@ -98,8 +98,7 @@ class _BottomBookState extends State<BottomBook> {
                 //   widget.officeId != widget.officeId;
                 //   widget.selectedDateRange != widget.selectedDateRange;
                 // });
-                Navigator.pushNamedAndRemoveUntil(
-                        context, '${widget.buttonRoute}', (route) => false,
+                Navigator.pushNamed(context, '${widget.buttonRoute}',
                         arguments: BookingScheduleArgument(
                             officeId: widget.officeId ?? 0,
                             selectedDateRange: widget.selectedDateRange))

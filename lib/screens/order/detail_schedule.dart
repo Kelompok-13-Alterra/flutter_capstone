@@ -24,7 +24,7 @@ class _DetailScheduleScreenState extends State<DetailScheduleScreen> {
           children: <Widget>[
             // Image Swipe
             //================================================================
-            const ImageDetail(),
+            ImageDetail(),
             // Container Detail
             //================================================================
             const DetailCard(

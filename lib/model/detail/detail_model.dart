@@ -11,6 +11,7 @@ class DetailModel {
   final int price;
   final String location;
   final String facilities;
+  String? deletedAt;
 
   DetailModel({
     required this.id,
@@ -25,22 +26,24 @@ class DetailModel {
     required this.price,
     required this.location,
     required this.facilities,
+    this.deletedAt,
   });
 
   factory DetailModel.fromJson(Map<String, dynamic> json) {
     return DetailModel(
-      id: json['ID'],
+      id: json['ID'] ?? 0,
       createdAt: DateTime.parse(json['CreatedAt']),
       updatedAt: DateTime.parse(json['UpdatedAt']),
-      name: json['Name'],
-      description: json['Description'],
-      capacity: json['Capacity'],
-      type: json['Type'],
-      open: json['Open'],
-      close: json['Close'],
-      price: json['Price'],
-      location: json['Location'],
-      facilities: json['Facilities'],
+      name: json['Name'] ?? '',
+      description: json['Description'] ?? '',
+      capacity: json['Capacity'] ?? 0,
+      type: json['Type'] ?? '',
+      open: json['Open'] ?? '',
+      close: json['Close'] ?? '',
+      price: json['Price'] ?? 0,
+      location: json['Location'] ?? '',
+      facilities: json['Facilities'] ?? '',
+      deletedAt: json['DeletedAt'],
     );
   }
 }
