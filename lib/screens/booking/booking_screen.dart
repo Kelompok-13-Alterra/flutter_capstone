@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/core/init/utils/date_convert.dart';
 import 'package:flutter_capstone/screens/detail/detail_screen.dart';
-import 'package:flutter_capstone/screens/payment/detail_payment_screen.dart';
 import 'package:flutter_capstone/services/booking/booking_availability_service.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_capstone/widgets/modal_bottom.dart';
@@ -41,7 +40,6 @@ class _BookingScheduleScreenState extends State<BookingScheduleScreen> {
   Future<void> _selectDateRange(BuildContext context) async {
     final args =
         ModalRoute.of(context)?.settings.arguments as BookingScheduleArgument;
-    print('Office id in booking screen ${args.officeId}');
 
     final pickedDateRange = await showDateRangePicker(
       context: context,
@@ -81,15 +79,15 @@ class _BookingScheduleScreenState extends State<BookingScheduleScreen> {
     );
 
     if (pickedDateRange != null) {
+      // print('Office ID in booking screen ${args.officeId}');
       // ignore: use_build_context_synchronously
       var res = await BookingAvailabilityService().checkDate(
         context,
-        // officeId: 0, startDate: "2023-06-12", endDate: "2023-06-14"
         officeId: args.officeId,
         startDate: convertDateTime(pickedDateRange.start.toString()),
         endDate: convertDateTime(pickedDateRange.end.toString()),
       );
-      var getStatus = res.meta.code;
+      var getStatus = res?.meta.code;
       if (getStatus == 201) {
         // ignore: use_build_context_synchronously
         ModalBottomSheet(context,
@@ -99,22 +97,44 @@ class _BookingScheduleScreenState extends State<BookingScheduleScreen> {
           setState(() {
             selectedDateRange = pickedDateRange;
           });
-          Navigator.pop(context);
-
-          print('Move to detail screen ${selectedDateRange}');
-          Navigator.pushReplacement(
+          // Navigator.pop(context);
+          // Navigator.pushReplacement(
+          //   context,
+          //   MaterialPageRoute(
+          //     builder: (context) => DetailScreen(
+          //       officeId: args.officeId,
+          //       buttonRoute: '/booking',
+          //       textButton: 'Pilih metode pembayaran',
+          //       selectedDateRange: selectedDateRange,
+          //     ),
+          //   ),
+          // );
+          Navigator.pop(context, selectedDateRange);
+        }, buttonText: 'Selanjutnya');
+      } else if (getStatus == 500) {
+        // ignore: use_build_context_synchronously
+        return ModalBottomSheet(context,
+            img: 'assets/images/modal_bottom/retro_mac_error.png',
+            title: 'Waduh?!',
+            desc:
+                'Tanggal yang kamu pilih tidak tersedia. Coba pilih\ntanggal yang lain.',
+            path: () {
+          // Navigator.pop(context);
+          Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(
-              builder: (context) => DetailScreen(
-                officeId: args.officeId,
+              builder: (context) => const DetailScreen(
+                // function: () {
+                //   Navigator.pop(context);
+                // },
                 buttonRoute: '/booking',
-                textButton: 'Pilih metode pembayaran',
-                selectedDateRange: selectedDateRange,
+                textButton: 'Booking',
+                selectedDateRange: null,
               ),
             ),
+            (route) => false,
           );
-          // Navigator.pop(context, selectedDateRange);
-        }, buttonText: 'Selanjutnya');
+        }, buttonText: 'Pilih tanggal lain');
       }
     }
   }

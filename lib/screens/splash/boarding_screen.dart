@@ -1,3 +1,5 @@
+// ignore_for_file: unused_field
+
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/screens/login/login_screen.dart';
 import 'package:flutter_capstone/style/text_style.dart';
@@ -14,6 +16,7 @@ class _OnBoardingScreenState extends State<BoardingScreen> {
   final PageController _pageControllerImg = PageController();
   final PageController _pageControllerDescription = PageController();
   bool isLastPage = false;
+
   double _currentPage1 = 0;
   double _currentPage2 = 0;
 

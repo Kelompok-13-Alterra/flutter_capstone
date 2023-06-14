@@ -11,7 +11,7 @@ class OfficeFalicities extends StatelessWidget {
       'facilities': [
         {
           'logo': "assets/icons/detail/water.svg",
-          'text': 'Revil Water',
+          'text': 'Refill Water',
         },
         {
           'logo': "assets/icons/detail/mic.svg",

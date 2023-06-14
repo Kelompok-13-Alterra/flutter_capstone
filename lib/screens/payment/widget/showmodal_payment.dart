@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/core/init/utils/date_convert.dart';
-import 'package:flutter_capstone/screens/booking/booking_screen.dart';
 import 'package:flutter_capstone/services/order/order_service.dart';
 import 'package:flutter_capstone/style/text_style.dart';
-import 'package:flutter_capstone/widgets/modal_bottom.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_capstone/screens/payment/detail_payment_screen.dart';
-import 'package:intl/intl.dart';
+
 import 'package:provider/provider.dart';
-import '../payment-view-model.dart';
+import '../payment_view_model.dart';
 
 class ShowModalPayment extends StatefulWidget {
   final Function() onPressed;
@@ -72,7 +70,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                     ],
                   ),
                   Radio<String>(
-                    value: 'Virtual Account BNI',
+                    value: 'va-bni',
                     visualDensity: const VisualDensity(
                       horizontal: VisualDensity.minimumDensity,
                       vertical: VisualDensity.minimumDensity,
@@ -123,7 +121,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                     ],
                   ),
                   Radio<String>(
-                    value: 'Virtual Account BCA',
+                    value: 'va-bca',
                     visualDensity: const VisualDensity(
                       horizontal: VisualDensity.minimumDensity,
                       vertical: VisualDensity.minimumDensity,
@@ -193,7 +191,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                     ],
                   ),
                   Radio<String>(
-                    value: 'Transfer Bank BNI',
+                    value: 'bni',
                     visualDensity: const VisualDensity(
                       horizontal: VisualDensity.minimumDensity,
                       vertical: VisualDensity.minimumDensity,
@@ -246,7 +244,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                     ],
                   ),
                   Radio<String>(
-                    value: 'Transfer Bank BCA',
+                    value: 'bca',
                     visualDensity: const VisualDensity(
                       horizontal: VisualDensity.minimumDensity,
                       vertical: VisualDensity.minimumDensity,
@@ -661,54 +659,59 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                     ),
                   ),
                   onPressed: () async {
-                    var res = OrderService().createOrder(
+                    var res = await OrderService().createOrder(
                       officeId: widget.officeId,
                       startDate: convertDateTime(
                           widget.selectedDateRange!.start.toString()),
                       endDate: convertDateTime(
                           widget.selectedDateRange!.end.toString()),
-                      paymentId: 'va-bni',
+                      paymentId: provider.selectedValue,
                     );
-                    var transactionId = res.then((value) {
-                      return value.data.idTransaction;
-                    });
 
+                    var transactionId = res.data.idTransaction;
+
+                    // ignore: use_build_context_synchronously
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => FutureBuilder(
-                          future: transactionId,
-                          builder: (context, snapshot) {
-                            if (snapshot.hasData) {
-                              return DetailPaymentScreen(
-                                  paymentId: snapshot.data!);
-                            } else {
-                              return Scaffold(
-                                appBar: AppBar(
-                                  iconTheme:
-                                      const IconThemeData(color: Colors.black),
-                                  title: Text(
-                                    'Detail Pembayaran',
-                                    style:
-                                        setTextStyle(NeutralColor().neutral12)
-                                            .copyWith(
-                                                fontWeight: semiBold,
-                                                fontSize: 16),
-                                  ),
-                                  backgroundColor: Colors.transparent,
-                                  elevation: 0,
-                                ),
-                                body: Container(
-                                  color: Colors.white,
-                                  child: const Center(
-                                    child:
-                                        CircularProgressIndicator(), // Tampilkan loading indicator
-                                  ),
-                                ),
-                              );
-                            }
-                          },
-                        ),
+                        builder: (context) =>
+                            DetailPaymentScreen(paymentId: transactionId),
+
+                        // FutureBuilder(
+                        //   future: transactionId,
+                        //   builder: (context, snapshot) {
+                        //     print('ID Transaction: ${snapshot.data}');
+                        //     if (snapshot.hasData) {
+                        //       return DetailPaymentScreen(
+                        //           // ignore: null_check_always_fails
+                        //           paymentId: snapshot.data!);
+                        //     } else {
+                        //       return Scaffold(
+                        //         appBar: AppBar(
+                        //           iconTheme:
+                        //               const IconThemeData(color: Colors.black),
+                        //           title: Text(
+                        //             'Detail Pembayaran',
+                        //             style:
+                        //                 setTextStyle(NeutralColor().neutral12)
+                        //                     .copyWith(
+                        //                         fontWeight: semiBold,
+                        //                         fontSize: 16),
+                        //           ),
+                        //           backgroundColor: Colors.transparent,
+                        //           elevation: 0,
+                        //         ),
+                        //         body: Container(
+                        //           color: Colors.white,
+                        //           child: const Center(
+                        //             child:
+                        //                 CircularProgressIndicator(), // Tampilkan loading indicator
+                        //           ),
+                        //         ),
+                        //       );
+                        //     }
+                        //   },
+                        // ),
                       ),
                     );
                   },
