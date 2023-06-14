@@ -11,7 +11,6 @@ class DetailModel {
   final int price;
   final String location;
   final String facilities;
-  final bool status;
 
   DetailModel({
     required this.id,
@@ -26,7 +25,6 @@ class DetailModel {
     required this.price,
     required this.location,
     required this.facilities,
-    required this.status,
   });
 
   factory DetailModel.fromJson(Map<String, dynamic> json) {
@@ -43,7 +41,6 @@ class DetailModel {
       price: json['Price'],
       location: json['Location'],
       facilities: json['Facilities'],
-      status: json['Status'],
     );
   }
 }

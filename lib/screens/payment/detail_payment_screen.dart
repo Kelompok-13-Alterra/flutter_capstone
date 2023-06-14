@@ -27,7 +27,7 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
     Future.microtask(() => Provider.of<PaymentViewModel>(context, listen: false)
         .getMidtrans(paymentId: widget.paymentId));
     Future.microtask(() => Provider.of<PaymentViewModel>(context, listen: false)
-        .startCountdown(context));
+        .startCountdown(context, widget.paymentId));
 
     // paymentViewModel?.startCountdown(context);
     super.initState();

@@ -56,7 +56,7 @@ class PaymentViewModel extends ChangeNotifier {
   // String rekening = '';
   final String jumlahTransfer = 'IDR 23.099';
   bool isDetailTransaksi = true;
-  DateTime? _timerOffice;
+  late DateTime? _timerOffice;
   int? price;
   int? discount;
   int? tax;
@@ -124,7 +124,7 @@ class PaymentViewModel extends ChangeNotifier {
   //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
   // }
 
-  void startCountdown(BuildContext context) {
+  void startCountdown(BuildContext context, int officeId) {
     _timerOffice = DateTime.now().add(const Duration(minutes: 1));
     // _timer?.cancel();
 
@@ -136,7 +136,7 @@ class PaymentViewModel extends ChangeNotifier {
         stopCountdown();
         Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(
             MaterialPageRoute(
-              builder: (context) => const TransactionFailedScreen(),
+              builder: (context) => TransactionFailedScreen(officeId: officeId),
             ),
             (route) => false);
       }

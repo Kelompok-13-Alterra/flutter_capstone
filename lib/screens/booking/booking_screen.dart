@@ -123,11 +123,12 @@ class _BookingScheduleScreenState extends State<BookingScheduleScreen> {
           Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(
-              builder: (context) => const DetailScreen(
+              builder: (context) => DetailScreen(
                 // function: () {
                 //   Navigator.pop(context);
                 // },
                 buttonRoute: '/booking',
+                officeId: args.officeId,
                 textButton: 'Booking',
                 selectedDateRange: null,
               ),
