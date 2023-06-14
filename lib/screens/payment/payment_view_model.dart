@@ -56,14 +56,14 @@ class PaymentViewModel extends ChangeNotifier {
   // String rekening = '';
   final String jumlahTransfer = 'IDR 23.099';
   bool isDetailTransaksi = true;
-  late DateTime? _timerOffice;
+  DateTime? _timerOffice;
   int? price;
   int? discount;
   int? tax;
   int? totalPrice;
   String paymentStatus = '';
   int transactionId = 0;
-  late MidtransPaymentModel _midtransModel;
+  MidtransPaymentModel? _midtransModel;
 
   // String get getRekening => rekening;
   int get getPrice => price!;
@@ -72,7 +72,8 @@ class PaymentViewModel extends ChangeNotifier {
   int get getTotalPrice => totalPrice!;
   String get getPaymentStatus => paymentStatus;
   int get getTransactionId => transactionId;
-  MidtransPaymentModel get getMidtransModel => _midtransModel;
+  MidtransPaymentModel get getMidtransModel =>
+      _midtransModel ?? MidtransPaymentModel();
 
   MidtransService midtransService = MidtransService();
 
@@ -125,7 +126,7 @@ class PaymentViewModel extends ChangeNotifier {
   // }
 
   void startCountdown(BuildContext context, int officeId) {
-    _timerOffice = DateTime.now().add(const Duration(minutes: 1));
+    _timerOffice = DateTime.now().add(const Duration(seconds: 3));
     // _timer?.cancel();
 
     // Inisialisasi _timerOffice saat countdown dimulai
@@ -134,11 +135,11 @@ class PaymentViewModel extends ChangeNotifier {
         notifyListeners();
       } else {
         stopCountdown();
-        Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(
-            MaterialPageRoute(
-              builder: (context) => TransactionFailedScreen(officeId: officeId),
-            ),
-            (route) => false);
+        Navigator.of(context, rootNavigator: true).pushReplacement(
+          MaterialPageRoute(
+            builder: (context) => TransactionFailedScreen(officeId: officeId),
+          ),
+        );
       }
     });
   }
@@ -149,7 +150,7 @@ class PaymentViewModel extends ChangeNotifier {
   }
 
   String? getTimeRemaining() {
-    Duration remaining = _timerOffice!.difference(DateTime.now());
+    Duration remaining = _timerOffice?.difference(DateTime.now()) ?? Duration();
     int hours = remaining.inHours;
     int minutes = remaining.inMinutes % 60;
     int seconds = remaining.inSeconds % 60;

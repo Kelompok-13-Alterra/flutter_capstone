@@ -98,7 +98,7 @@ class _BottomBookState extends State<BottomBook> {
                 //   widget.officeId != widget.officeId;
                 //   widget.selectedDateRange != widget.selectedDateRange;
                 // });
-                Navigator.pushNamed(context, '${widget.buttonRoute}',
+                Navigator.pushReplacementNamed(context, '${widget.buttonRoute}',
                         arguments: BookingScheduleArgument(
                             officeId: widget.officeId ?? 0,
                             selectedDateRange: widget.selectedDateRange))
@@ -114,21 +114,6 @@ class _BottomBookState extends State<BottomBook> {
                   },
                 );
               }
-              // if (widget.textButton == 'Pilih Metode Pembayaran') {
-              //   showModalBottomSheet(
-              //     context: context,
-              //     isScrollControlled: true,
-              //     shape: const RoundedRectangleBorder(
-              //       borderRadius: BorderRadius.only(
-              //         topLeft: Radius.circular(16),
-              //         topRight: Radius.circular(16),
-              //       ),
-              //     ),
-              //     builder: (BuildContext context) {
-              //       return const ShowModalPayment();
-              //     },
-              //   );
-              // }
             },
             child: Text(
               // widget.textButton,

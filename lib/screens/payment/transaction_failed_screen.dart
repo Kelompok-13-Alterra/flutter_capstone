@@ -35,17 +35,18 @@ class _TransactionFailedScreenState extends State<TransactionFailedScreen> {
         //     ),
         //   ),
         // );
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => DetailScreen(
-              textButton: 'Booking',
-              officeId: widget.officeId,
-              selectedDateRange: null,
-              buttonRoute: null,
-            ),
-          ),
-        );
+        Navigator.pop(context);
+        // Navigator.pushReplacement(
+        //   context,
+        //   MaterialPageRoute(
+        //     builder: (context) => DetailScreen(
+        //       textButton: 'Booking',
+        //       officeId: widget.officeId,
+        //       selectedDateRange: null,
+        //       buttonRoute: null,
+        //     ),
+        //   ),
+        // );
         return false;
       },
       child: Scaffold(
@@ -102,21 +103,18 @@ class _TransactionFailedScreenState extends State<TransactionFailedScreen> {
                     //   ),
                     // );
                     // if (mounted) {
-                    Navigator.pushAndRemoveUntil(
+                    Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
                         builder: (context) => DetailScreen(
-                          // function: () {
-                          //   Navigator.pop(context);
-                          // },
-                          buttonRoute: '/booking',
+                          buttonRoute: '/bottom-nav',
                           textButton: 'Booking',
                           officeId: widget.officeId,
                           selectedDateRange: null,
                           // officeId: null,
                         ),
                       ),
-                      (route) => false,
+                      // (route) => false,
                     );
                     // }
                   },

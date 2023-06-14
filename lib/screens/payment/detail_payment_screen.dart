@@ -37,7 +37,6 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
   void dispose() {
     // Connectivity().onConnectivityChanged.cancel();
     if (mounted) {
-      setState(() {});
       Future.microtask(() =>
           Provider.of<PaymentViewModel>(context, listen: false)
               .stopCountdown());
@@ -64,7 +63,7 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                 ).copyWith(fontWeight: medium, fontSize: 12),
               ),
               Text(
-                'IDR ${provider.getMidtransModel.data.paymentData.price}',
+                'IDR ${provider.getMidtransModel.data?.paymentData.price ?? 0}',
                 style: setTextStyle(
                   const Color(0xFF44474E),
                 ).copyWith(fontWeight: semiBold, fontSize: 14),
@@ -84,7 +83,7 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                 ).copyWith(fontWeight: medium, fontSize: 12),
               ),
               Text(
-                'IDR ${provider.getMidtransModel.data.paymentData.discount}',
+                'IDR ${provider.getMidtransModel.data?.paymentData.discount ?? 0}',
                 style: setTextStyle(
                   const Color(0xFF44474E),
                 ).copyWith(fontWeight: semiBold, fontSize: 14),
@@ -104,7 +103,7 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                 ).copyWith(fontWeight: medium, fontSize: 12),
               ),
               Text(
-                'IDR ${provider.getMidtransModel.data.paymentData.tax}',
+                'IDR ${provider.getMidtransModel.data?.paymentData.tax ?? 0}',
                 style: setTextStyle(
                   const Color(0xFF44474E),
                 ).copyWith(fontWeight: semiBold, fontSize: 14),
@@ -124,7 +123,7 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                 ).copyWith(fontWeight: medium, fontSize: 12),
               ),
               Text(
-                'IDR ${provider.getMidtransModel.data.paymentData.totalPrice}',
+                'IDR ${provider.getMidtransModel.data?.paymentData.totalPrice ?? 0}',
                 style: setTextStyle(
                   const Color(0xFF44474E),
                 ).copyWith(fontWeight: semiBold, fontSize: 14),
@@ -138,13 +137,14 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // print('This is payment ID in Detail Payment Screen ${widget.paymentId}');
+    print('This is payment ID in Detail Payment Screen ${widget.paymentId}');
 
     return Consumer<PaymentViewModel>(builder: (context, provider, _) {
       // provider.setPaymentStatus = provider.getMidtransModel.data.status;
       paymenStatus() async {
         await provider.getMidtrans(paymentId: widget.paymentId);
-        provider.setPaymentStatus = provider.getMidtransModel.data.status;
+        provider.setPaymentStatus =
+            provider.getMidtransModel.data?.status ?? '';
         return provider.getPaymentStatus;
       }
 
@@ -152,7 +152,7 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
 
       // ignore: unrelated_type_equality_checks
       if (provider.getPaymentStatus == 'success') {
-        provider.getMidtransModel.data.status = '';
+        provider.getMidtransModel.data?.status = '';
         provider.stopCountdown();
         // Navigator.of(context).pushReplacement(MaterialPageRoute(
         //   builder: (context) => SuccessBookingScreen(
@@ -161,7 +161,8 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
         // ));
         // Navigator.pushReplacement(
         return SuccessBookingScreen(
-          totalPrice: provider.getMidtransModel.data.paymentData.totalPrice,
+          totalPrice:
+              provider.getMidtransModel.data?.paymentData.totalPrice ?? 0,
         );
 
         // );
@@ -199,7 +200,7 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                         width: 5,
                       ),
                       Text(
-                        'Menunggu pembayaran ${provider.getTimeRemaining()}',
+                        'Menunggu pembayaran ${provider.getTimeRemaining() ?? ''}',
                         style: setTextStyle(PrimaryColor().onPrimary)
                             .copyWith(fontWeight: semiBold, fontSize: 10),
                       ),
@@ -394,8 +395,9 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      provider.getMidtransModel.data.paymentData
-                                          .vaNumber,
+                                      provider.getMidtransModel.data
+                                              ?.paymentData.vaNumber ??
+                                          '',
                                       style:
                                           setTextStyle(NeutralColor().neutral10)
                                               .copyWith(
@@ -421,9 +423,13 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                                         ),
                                       ),
                                       onPressed: () {
-                                        Clipboard.setData(ClipboardData(
+                                        Clipboard.setData(
+                                          ClipboardData(
                                             text: provider.getMidtransModel.data
-                                                .paymentData.vaNumber));
+                                                    ?.paymentData.vaNumber ??
+                                                '',
+                                          ),
+                                        );
                                         const snackBar = SnackBar(
                                             content: Text(
                                                 'Rekening berhasil disalin'));
@@ -470,9 +476,10 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      provider.getMidtransModel.data.paymentData
-                                          .totalPrice
-                                          .toString(),
+                                      provider.getMidtransModel.data
+                                              ?.paymentData.totalPrice
+                                              .toString() ??
+                                          '',
                                       style:
                                           setTextStyle(NeutralColor().neutral10)
                                               .copyWith(
@@ -498,10 +505,13 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                                         ),
                                       ),
                                       onPressed: () {
-                                        Clipboard.setData(ClipboardData(
-                                            text: provider.getMidtransModel.data
-                                                .paymentData.price
-                                                .toString()));
+                                        Clipboard.setData(
+                                          ClipboardData(
+                                              text: provider.getMidtransModel
+                                                      .data?.paymentData.price
+                                                      .toString() ??
+                                                  ''),
+                                        );
                                         const snackBar = SnackBar(
                                             content: Text(
                                                 'Rekening berhasil disalin'));

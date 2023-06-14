@@ -11,12 +11,12 @@ String midtransPaymentModelToJson(MidtransPaymentModel data) =>
     json.encode(data.toJson());
 
 class MidtransPaymentModel {
-  Meta meta;
-  Data data;
+  Meta? meta;
+  Data? data;
 
   MidtransPaymentModel({
-    required this.meta,
-    required this.data,
+    this.meta,
+    this.data,
   });
 
   factory MidtransPaymentModel.fromJson(Map<String, dynamic> json) =>
@@ -26,8 +26,8 @@ class MidtransPaymentModel {
       );
 
   Map<String, dynamic> toJson() => {
-        "meta": meta.toJson(),
-        "data": data.toJson(),
+        "meta": meta!.toJson(),
+        "data": data!.toJson(),
       };
 }
 

@@ -669,6 +669,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                     );
 
                     var transactionId = res.data.idTransaction;
+                    // Navigator.pop(context);
 
                     // ignore: use_build_context_synchronously
                     Navigator.push(
