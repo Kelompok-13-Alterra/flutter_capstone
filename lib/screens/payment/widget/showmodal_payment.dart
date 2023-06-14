@@ -1,5 +1,7 @@
+// ignore_for_file: unused_element
+
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/screens/booking/booking_screen.dart';
+import 'package:flutter_capstone/core/init/utils/date_convert.dart';
 import 'package:flutter_capstone/services/order/order_service.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -23,16 +25,15 @@ class ShowModalPayment extends StatefulWidget {
 }
 
 class _ShowModalPaymentState extends State<ShowModalPayment> {
-  String convertDateTime(String date) {
+  Widget buildListVirtualAccount(BuildContext context) {
+    return Consumer<PaymentViewModel>(builder: (context, provider, _) {
+        String convertDateTime(String date) {
     final DateFormat displayFormater = DateFormat('yyyy-MM-dd HH:mm:ss.SSS');
     final DateFormat serverFormater = DateFormat('yyyy-MM-dd');
     final DateTime displayDate = displayFormater.parse(date);
     final String formatted = serverFormater.format(displayDate);
     return formatted;
   }
-
-  Widget buildListVirtualAccount(BuildContext context) {
-    return Consumer<PaymentViewModel>(builder: (context, provider, _) {
       return Column(
         children: [
           GestureDetector(

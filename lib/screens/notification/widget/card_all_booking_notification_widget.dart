@@ -192,9 +192,9 @@ Widget cardAllBookingNotificationWidget(BuildContext context) {
                   bottom: 31.96,
                 ),
                 child: Image.asset(
-                  "assets/79.png",
-                  width: 70,
-                  height: 60.07,
+                  "assets/images/notification/79.png",
+
+ 
                 ),
               ),
             ],

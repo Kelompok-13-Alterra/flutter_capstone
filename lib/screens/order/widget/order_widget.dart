@@ -1,4 +1,7 @@
+// ignore_for_file: unnecessary_brace_in_string_interps
+
 import 'package:flutter/material.dart';
+import 'package:flutter_capstone/screens/review/review_screen.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 
 class OrderWidget extends StatelessWidget {
@@ -13,10 +16,12 @@ class OrderWidget extends StatelessWidget {
   final String routeButton1;
   final String buttonText2;
   final String routeButton2;
-  const OrderWidget({
+  int? transactionId;
+
+  OrderWidget({
     super.key,
-    required this.urlImg,
     required this.title,
+    required this.urlImg,
     required this.rating,
     required this.type,
     required this.duration,
@@ -26,6 +31,7 @@ class OrderWidget extends StatelessWidget {
     required this.routeButton1,
     required this.buttonText2,
     required this.routeButton2,
+    this.transactionId,
   });
 
   @override
@@ -126,7 +132,7 @@ class OrderWidget extends StatelessWidget {
                     padding:
                         const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                     decoration: BoxDecoration(
-                      color: TertiaryColor().tertiary,
+                      color: SuccessColor().green,
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Center(
@@ -151,7 +157,10 @@ class OrderWidget extends StatelessWidget {
                         height: 40,
                         child: ElevatedButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, routeButton1);
+                            //Trying catch paymentId on detail_schedule with arguments
+                            Navigator.pushNamed(context, routeButton1,
+                                arguments: ReviewArguments(
+                                    transactionId: transactionId!));
                           },
                           style: ElevatedButton.styleFrom(
                             foregroundColor: SourceColor().white,
@@ -163,7 +172,7 @@ class OrderWidget extends StatelessWidget {
                             visualDensity: VisualDensity.compact,
                           ),
                           child: Text(
-                            buttonText1,
+                            buttonText2,
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight: medium,
@@ -176,7 +185,14 @@ class OrderWidget extends StatelessWidget {
                         height: 40,
                         child: ElevatedButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, routeButton2);
+                            // Navigator.pushNamed(context, routeButton2);
+                            // print('id transaksiiii : ${transactionId}');
+                            Navigator.pushNamed(
+                              context,
+                              routeButton2,
+                              arguments: ReviewArguments(
+                                  transactionId: transactionId!),
+                            );
                           },
                           style: ElevatedButton.styleFrom(
                             foregroundColor: buttonText2 == 'Cancel Book'

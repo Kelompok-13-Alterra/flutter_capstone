@@ -40,7 +40,7 @@ class _BackgroundWidgetState extends State<BackgroundWidget> {
                   child: Align(
                     alignment: Alignment.bottomCenter,
                     child: SvgPicture.asset(
-                      "assets/homescreen/background-homescreen.svg",
+                      "assets/home/background-homescreen.svg",
                       fit: BoxFit.none,
                     ),
                   ),
@@ -111,11 +111,10 @@ class _BackgroundWidgetState extends State<BackgroundWidget> {
                       //         //OnTab di Notifikasi
                       //       },
                       //       child: SvgPicture.asset(
+
+
                       //         "assets/homescreen/notification-home.svg",
-                      //         height: 32,
-                      //         width: 32,
                       //       ),
-                      //     ),
                       //     const SizedBox(
                       //       width: 10,
                       //     ),
@@ -184,7 +183,7 @@ class _BackgroundWidgetState extends State<BackgroundWidget> {
                             child: Row(
                               children: [
                                 SvgPicture.asset(
-                                  'assets/homescreen/icon-location.svg',
+                                  'assets/home/icon-location.svg',
                                   height: 24,
                                   width: 24,
                                 ),
@@ -197,7 +196,7 @@ class _BackgroundWidgetState extends State<BackgroundWidget> {
                                   ),
                                 ),
                                 SvgPicture.asset(
-                                  'assets/homescreen/icon-right.svg',
+                                  'assets/home/icon-right.svg',
                                   height: 24,
                                   width: 24,
                                 ),
@@ -220,7 +219,7 @@ class _BackgroundWidgetState extends State<BackgroundWidget> {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(12),
                                 child: Image.asset(
-                                  'assets/homescreen/maps.png',
+                                  'assets/home/maps.png',
                                   fit: BoxFit.cover,
                                 ),
                               ),

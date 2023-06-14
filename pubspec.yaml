@@ -62,6 +62,23 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/
+    - assets/icons/
+    - assets/icons/auth/
+    - assets/icons/profile/
+    - assets/icons/detail/
+    - assets/icons/errors/
+    - assets/icons/office_card/
+    - assets/icons/payment/
+    - assets/icons/bottom_navigation_bar/
+    - assets/image/
+    - assets/images/
+    - assets/images/notification/
+    - assets/images/profile/
+    - assets/images/office_image/
+    - assets/images/modal_bottom/
+    - assets/home/
+    - assets/on_boarding/
+    - assets/progress_indicator/
     - assets/homescreen/
     - assets/icon-botton-navigation-bar/
     - assets/img/

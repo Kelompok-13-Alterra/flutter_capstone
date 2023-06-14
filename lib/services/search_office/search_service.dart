@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print, unused_local_variable
+// ignore_for_file: avoid_print, unused_local_variable, deprecated_member_use
 
 import 'package:dio/dio.dart';
 import 'package:flutter_capstone/core/init/const/api.dart';
