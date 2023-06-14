@@ -16,7 +16,7 @@ import 'package:flutter_capstone/screens/home/home_screen.dart';
 import 'package:flutter_capstone/screens/login/login_screen.dart';
 import 'package:flutter_capstone/screens/order/detail_schedule.dart';
 import 'package:flutter_capstone/screens/order/order_screen.dart';
-import 'package:flutter_capstone/screens/profiles/profile_screen.dart';
+import 'package:flutter_capstone/screens/profile/profile_screen.dart';
 import 'package:flutter_capstone/screens/rating/image_picker_rating_screen.dart';
 import 'package:flutter_capstone/screens/sign_up/sign_up_screen.dart';
 import 'package:flutter_capstone/screens/sign_up/signup_view_model.dart';
