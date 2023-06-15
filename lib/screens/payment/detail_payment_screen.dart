@@ -143,7 +143,7 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print('This is payment ID in Detail Payment Screen ${widget.paymentId}');
+    // print('This is payment ID in Detail Payment Screen ${widget.paymentId}');
 
     return Consumer<PaymentViewModel>(builder: (context, provider, _) {
       // provider.setPaymentStatus = provider.getMidtransModel.data.status;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 
-ModalBottomSheet(
+modalBottomSheet(
   BuildContext context, {
   required String img,
   required String title,

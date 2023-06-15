@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_null_in_if_null_operators
+// ignore_for_file: unnecessary_null_in_if_null_operators, deprecated_member_use
 
 import 'dart:convert';
 
@@ -43,7 +43,7 @@ class OrderService {
       if (e.response!.statusCode == 500) {
         var selectedDateRange = args?.selectedDateRange ?? null;
         // ignore: use_build_context_synchronously
-        return ModalBottomSheet(context,
+        return modalBottomSheet(context,
             img: 'assets/images/modal_bottom/retro_mac_error.png',
             title: 'Waduh?!',
             desc:

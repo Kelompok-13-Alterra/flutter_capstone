@@ -5,17 +5,14 @@ import 'package:flutter_html/flutter_html.dart';
 Widget cardAllBookingNotificationWidget(BuildContext context) {
   return Column(
     children: [
-      Container(
-        child: Html(
-            data: "<p>My normal text <b>with bold part</b> in any place</p>",
-            style: {
-              "p": Style(
-                  fontSize: FontSize.large, fontWeight: FontWeight.normal),
-              "b": Style(
-                fontWeight: FontWeight.bold,
-              ),
-            }),
-      ),
+      Html(
+          data: "<p>My normal text <b>with bold part</b> in any place</p>",
+          style: {
+            "p": Style(fontSize: FontSize.large, fontWeight: FontWeight.normal),
+            "b": Style(
+              fontWeight: FontWeight.bold,
+            ),
+          }),
       SizedBox(
         height: 124,
         child: Card(

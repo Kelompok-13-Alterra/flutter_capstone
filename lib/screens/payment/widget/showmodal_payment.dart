@@ -668,12 +668,12 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                   ),
                   onPressed: () async {
                     setState(() {});
-                    print(widget.officeId);
-                    print(provider.selectedValue);
-                    print(
-                        'Ini end date ${convertDateTime(widget.selectedDateRange?.end.toString() ?? '')}');
-                    print(convertDateTime(
-                        widget.selectedDateRange!.start.toString()));
+                    // print(widget.officeId);
+                    // print(provider.selectedValue);
+                    // print(
+                    //     'Ini end date ${convertDateTime(widget.selectedDateRange?.end.toString() ?? '')}');
+                    // print(convertDateTime(
+                    //     widget.selectedDateRange!.start.toString()));
                     var res = await OrderService().createOrder(
                       context,
                       officeId: widget.officeId,

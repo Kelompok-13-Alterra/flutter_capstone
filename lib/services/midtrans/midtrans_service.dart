@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:dio/dio.dart';
 import 'package:flutter_capstone/core/init/const/api.dart';
 import 'package:flutter_capstone/core/init/utils/shared_preferences.dart';
@@ -20,7 +22,7 @@ class MidtransService {
       // print(response.data);
       return MidtransPaymentModel.fromJson(response.data);
     } on DioError catch (e) {
-      print(e);
+      // print(e);
       throw Exception('Failed get list of office $e');
     }
   }

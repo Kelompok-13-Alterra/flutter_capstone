@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/screens/booking/booking_screen.dart';
-import 'package:flutter_capstone/screens/bottom_nav/bottom_nav_screen.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_capstone/screens/detail/detail_screen.dart';

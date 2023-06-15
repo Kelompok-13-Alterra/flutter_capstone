@@ -41,8 +41,8 @@ class _BottomBookState extends State<BottomBook> {
 
   @override
   Widget build(BuildContext context) {
-    print('Office id ${widget.officeId}');
-    print('date range in bottom book ${widget.selectedDateRange}');
+    // print('Office id ${widget.officeId}');
+    // print('date range in bottom book ${widget.selectedDateRange}');
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: FractionallySizedBox(

@@ -196,7 +196,7 @@ class _SearchScreenState extends State<SearchScreen> {
                             ),
                 );
               } else {
-                return Padding(
+                return const Padding(
                   padding: EdgeInsets.only(top: 15),
                   child: Center(
                     child: Column(
