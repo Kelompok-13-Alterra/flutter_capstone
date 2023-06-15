@@ -4,6 +4,7 @@ import 'package:flutter_capstone/screens/bottom_nav/bottom_nav_screen.dart';
 import 'package:flutter_capstone/screens/detail/detail_view_model.dart';
 import 'package:flutter_capstone/screens/review/review_view_model.dart';
 import 'package:flutter_capstone/screens/notification/notification_screen.dart';
+import 'package:flutter_capstone/screens/review/review_view_model.dart';
 import 'package:flutter_capstone/screens/search/search_office_view_model.dart';
 import 'package:flutter_capstone/screens/search/search_screen.dart';
 import 'package:flutter_capstone/screens/edit_profile/edit_profile_screen.dart';
