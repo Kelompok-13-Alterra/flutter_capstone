@@ -9,7 +9,7 @@ class SearchService {
   // Get list office
   Future<SearchModel> getSearch(String searchLocation) async {
     String token = await getToken();
-    print(token);
+
     var headers = {
       'accept': 'application/json',
       'Content-Type': "aplication/json",
@@ -22,7 +22,7 @@ class SearchService {
       );
 
       return SearchModel.fromJson(response.data);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       print(e);
       throw Exception('Failed get list of office $e');
     }

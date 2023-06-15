@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class ImageDetail extends StatefulWidget {
-  const ImageDetail({super.key});
+  const ImageDetail({
+    super.key,
+  });
 
   @override
   State<ImageDetail> createState() => _ImageDetailState();
@@ -15,6 +17,13 @@ class _ImageDetailState extends State<ImageDetail> {
     'https://guardian.ng/wp-content/uploads/2021/09/office-space.jpg',
     'https://www.ceosuite.com/wp-content/uploads/2013/04/CEO_SSC_Room_Office_IMG_1611-1024x683.jpg',
   ];
+
+  @override
+  void setState(fn) {
+    if (mounted) {
+      super.setState(fn);
+    }
+  }
 
   @override
   void dispose() {
@@ -57,7 +66,9 @@ class _ImageDetailState extends State<ImageDetail> {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            Navigator.pop(context);
+                            if (mounted) {
+                              Navigator.pop(context);
+                            }
                           },
                           child: Container(
                             height: 32,

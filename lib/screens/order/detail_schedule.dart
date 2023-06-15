@@ -1,5 +1,5 @@
 // ignore_for_file: file_names
-
+//Ini utk reschedule
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/screens/detail/widget/bottom_book.dart';
 import 'package:flutter_capstone/screens/detail/widget/detail_card.dart';
@@ -24,19 +24,27 @@ class _DetailScheduleScreenState extends State<DetailScheduleScreen> {
           children: <Widget>[
             // Image Swipe
             //================================================================
-            const ImageDetail(),
+            ImageDetail(),
             // Container Detail
             //================================================================
-            const DetailCard(),
+            const DetailCard(
+              name: "Athena Office",
+              price: 150000,
+              open: "07:00:00",
+              close: "21:00:00",
+              capacity: 20,
+              location: "Jakarta",
+            ),
             // Container Fasilitas
             //================================================================
             const OfficeFalicities(),
             // Container Deskripsi
             //================================================================
-            const OfficeDescription(),
+            const OfficeDescription(description: "Lorem Ipsum Dolor sit amet"),
             // Button Book
             //================================================================
             BottomBook(
+              officeId: 0,
               function: () async {
                 // Future selectDateRange(BuildContext context) async {
                 DateTimeRange? pickedRange = await showDateRangePicker(
@@ -92,7 +100,8 @@ class _DetailScheduleScreenState extends State<DetailScheduleScreen> {
                                 SizedBox(
                                   width: 127.5,
                                   height: 130,
-                                  child: Image.asset('assets/retro_mac.png'),
+                                  child: Image.asset(
+                                      'assets/images/modal_bottom/retro_mac.png'),
                                 ),
                                 const Padding(padding: EdgeInsets.only(top: 8)),
                                 Text(

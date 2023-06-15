@@ -21,7 +21,7 @@ import 'package:flutter_capstone/screens/sign_up/sign_up_screen.dart';
 import 'package:flutter_capstone/screens/sign_up/signup_view_model.dart';
 import 'package:flutter_capstone/screens/splash/boarding_screen.dart';
 import 'package:flutter_capstone/screens/splash/splash_screen.dart';
-import 'package:flutter_capstone/screens/payment/payment-view-model.dart';
+import 'package:flutter_capstone/screens/payment/payment_view_model.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -36,6 +36,9 @@ void main() {
         ),
         ListenableProvider(
           create: (context) => SearchOfficeViewModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => DetailViewModel(),
         ),
         ListenableProvider(
           create: (context) => SignupViewModel(),

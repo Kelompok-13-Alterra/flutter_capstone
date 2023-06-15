@@ -51,7 +51,7 @@ class EmptyNotificationScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Image.asset(
-              "assets/Empty(general).png",
+              "assets/assets/images/notification/empty.png",
               height: 137,
               width: 119.77,
             ),
