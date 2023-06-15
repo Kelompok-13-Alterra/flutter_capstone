@@ -26,6 +26,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
       child: Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
         appBar: AppBar(
+          elevation: 0,
           backgroundColor: const Color(0xFFFFFFFF),
           title: Padding(
             padding: const EdgeInsets.only(

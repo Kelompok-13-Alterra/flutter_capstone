@@ -51,14 +51,16 @@ class _OrderScreenState extends State<OrderScreen>
       appBar: AppBar(
         elevation: 0.0,
         backgroundColor: SourceColor().white,
+        // centerTitle: false,
+        automaticallyImplyLeading: false,
         title: Text(
           'Orders',
-          style: TextStyle(
+          style: setTextStyle(SourceColor().black).copyWith(
             fontSize: 16,
             fontWeight: medium,
-            color: SourceColor().black,
           ),
         ),
+        leading: null,
       ),
       body: Container(
         color: SourceColor().white,

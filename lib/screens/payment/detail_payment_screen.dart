@@ -796,14 +796,14 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                               provider.isDetailTransaksi == true
                                   ? buildDetailTransaksi(context)
                                   : Container(),
-                              ElevatedButton(
-                                  onPressed: () async {
-                                    await provider.getMidtrans(
-                                        paymentId: widget.paymentId);
-                                    print(
-                                        provider.getMidtransModel.data!.status);
-                                  },
-                                  child: Text('Refresh')),
+                              // ElevatedButton(
+                              //     onPressed: () async {
+                              //       await provider.getMidtrans(
+                              //           paymentId: widget.paymentId);
+                              //       print(
+                              //           provider.getMidtransModel.data!.status);
+                              //     },
+                              //     child: Text('Refresh')),
                             ],
                           ),
                         )
