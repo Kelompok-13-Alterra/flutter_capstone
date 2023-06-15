@@ -15,6 +15,7 @@ class ProfileService {
             'Content-Type': "aplication/json",
             'Authorization': 'Bearer $token',
           }));
+      print("Profile : ${response.data}");
       return ProfileModel.fromJson(response.data);
     } on DioError catch (e) {
       throw Exception(e);

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_capstone/screens/edit_profile/edit_profile_screen.dart';
 import 'package:flutter_capstone/screens/profile/widget/cards_profile_widget.dart';
 import 'package:flutter_capstone/screens/profile/widget/profiles_widget.dart';
 import 'package:flutter_capstone/services/profile/profile_service.dart';
@@ -48,6 +49,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             return SingleChildScrollView(
               child: Column(
                 children: [
+                  // Text("${profile?.data.dateBirth}"),
                   SizedBox(
                     width: MediaQuery.of(context).size.width,
                     // width: 420,
@@ -95,8 +97,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   ),
                                   GestureDetector(
                                     onTap: () {
-                                      Navigator.of(context)
-                                          .pushNamed('/edit-profile');
+                                      // Navigator.of(context).pushNamed
+                                      Navigator.of(context).pushNamed(
+                                        '/edit-profile',
+                                        arguments: EditProfileArguments(
+                                            profileModel: profile),
+                                      );
                                     },
                                     child: Icon(
                                       Icons.edit,

@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_capstone/model/profile/profile_model.dart';
+import 'package:flutter_capstone/services/profile/profile_service.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 
 import 'package:intl/intl.dart';
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
+
+class EditProfileArguments {
+  final ProfileModel? profileModel;
+
+  EditProfileArguments({this.profileModel});
+}
 
 class EditProfileScreen extends StatefulWidget {
+  // final ProfileModel? profileModel;
   const EditProfileScreen({super.key});
 
   @override
@@ -34,7 +44,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     DateTime.now(),
   ];
 
-  String? selectedValue = "Male";
   final currentDate = DateTime.now();
 
   Future<XFile?> pickImageFromGallery() async {
@@ -43,8 +52,23 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     return image;
   }
 
+  // @override
+  // void initState() {
+  //   _name = super.initState();
+  // }
+
   @override
   Widget build(BuildContext context) {
+    final args =
+        ModalRoute.of(context)?.settings.arguments as EditProfileArguments?;
+
+    String? selectedValue = args?.profileModel?.data.gender;
+    var _name = args?.profileModel?.data.name;
+    var _company = args?.profileModel?.data.company;
+    var _email = args?.profileModel?.data.email;
+    // var _gender = args.profileModel?.data.gender;
+    var _dateBirth = args?.profileModel?.data.dateBirth;
+
     return Scaffold(
       backgroundColor: SourceColor().white,
       appBar: AppBar(
@@ -67,364 +91,776 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           ),
         ),
       ),
-      body: ListView(
-        children: [
-          Container(
-            padding: const EdgeInsets.all(16),
-            child: Column(
+      body: FutureBuilder(
+        future: ProfileService().getProfile(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            var editProfile = snapshot.data;
+            // final TextEditingController _nameController =
+            //     editProfile?.data.name as TextEditingController;
+            return ListView(
               children: [
-                SizedBox(
-                  height: 175,
-                  width: double.infinity,
-                  child: Center(
-                    child: Column(
-                      children: [
-                        CircleAvatar(
-                          backgroundColor: SecondaryColor().secondaryFixedDim,
-                          radius: 44,
-                        ),
-                        const SizedBox(
-                          height: 12,
-                        ),
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.transparent,
-                            elevation: 0,
-                            minimumSize: const Size(140, 40),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(100),
-                              side: BorderSide(
-                                color: SourceColor().seed,
-                                width: 1,
-                              ),
-                            ),
-                          ),
-                          onPressed: () async {
-                            XFile? image = await pickImageFromGallery();
-                            if (image != null) {
-                              setState(() {
-                                selectedImage = image;
-                              });
-                            }
-                          },
-                          child: Text(
-                            "Change Photo",
-                            style:
-                                setTextStyle(PrimaryColor().primary).copyWith(
-                              fontWeight: regular,
-                              fontSize: 14,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Form(
-                  key: formKey,
+                Container(
+                  padding: const EdgeInsets.all(16),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      TextFormField(
-                        controller: _nameController,
-                        validator: (value) {
-                          if (value != null) {
-                            return 'Enter name';
-                          } else {
-                            return null;
-                          }
-                        },
-                        decoration: InputDecoration(
-                          labelText: 'Nama',
-                          hintStyle: setTextStyle(
-                            const Color(0xFF44474E),
-                          ).copyWith(
-                            fontWeight: regular,
-                            fontSize: 16,
+                      SizedBox(
+                        height: 175,
+                        width: double.infinity,
+                        child: Center(
+                          child: Column(
+                            children: [
+                              CircleAvatar(
+                                backgroundColor:
+                                    SecondaryColor().secondaryFixedDim,
+                                radius: 44,
+                              ),
+                              const SizedBox(
+                                height: 12,
+                              ),
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.transparent,
+                                  elevation: 0,
+                                  minimumSize: const Size(140, 40),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(100),
+                                    side: BorderSide(
+                                      color: SourceColor().seed,
+                                      width: 1,
+                                    ),
+                                  ),
+                                ),
+                                onPressed: () async {
+                                  XFile? image = await pickImageFromGallery();
+                                  if (image != null) {
+                                    setState(() {
+                                      selectedImage = image;
+                                    });
+                                  }
+                                },
+                                child: Text(
+                                  // "${editProfile?.data.name}",
+                                  "Change Photo",
+                                  style: setTextStyle(PrimaryColor().primary)
+                                      .copyWith(
+                                    fontWeight: regular,
+                                    fontSize: 14,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
-                          hintText: 'Input Full Name',
-                          floatingLabelBehavior: FloatingLabelBehavior.always,
-                          border: const OutlineInputBorder(),
                         ),
                       ),
-                      const SizedBox(height: 25.0),
-                      TextFormField(
-                        controller: _companyController,
-                        validator: (value) {
-                          if (value != null) {
-                            return 'Enter company name';
-                          } else {
-                            return null;
-                          }
-                        },
-                        decoration: InputDecoration(
-                          labelText: 'Company',
-                          hintStyle: setTextStyle(
-                            const Color(0xFF44474E),
-                          ).copyWith(
-                            fontWeight: regular,
-                            fontSize: 16,
-                          ),
-                          hintText: 'Input Company Name',
-                          floatingLabelBehavior: FloatingLabelBehavior.always,
-                          border: const OutlineInputBorder(),
-                        ),
-                      ),
-                      const SizedBox(height: 25.0),
-                      TextFormField(
-                        controller: _emailController,
-                        decoration: InputDecoration(
-                          labelText: 'Email',
-                          hintStyle: setTextStyle(
-                            const Color(0xFF44474E),
-                          ).copyWith(
-                            fontWeight: regular,
-                            fontSize: 16,
-                          ),
-                          hintText: 'Input Email',
-                          floatingLabelBehavior: FloatingLabelBehavior.always,
-                          border: const OutlineInputBorder(),
-                        ),
-                      ),
-                      const SizedBox(height: 25.0),
-                      TextFormField(
-                        controller: _passwordController,
-                        obscureText: _obscureText,
-                        validator: (value) {
-                          if (value != null && value.length < 5) {
-                            return 'Enter min. 5 characters';
-                          } else {
-                            return null;
-                          }
-                        },
-                        decoration: InputDecoration(
-                          suffixIcon: IconButton(
-                            icon: Icon(
-                              _obscureText
-                                  ? Icons.visibility_off
-                                  : Icons.visibility,
-                            ),
-                            onPressed: _togglePasswordVisibility,
-                          ),
-                          labelText: 'Password',
-                          hintStyle: setTextStyle(
-                            const Color(0xFF44474E),
-                          ).copyWith(
-                            fontWeight: regular,
-                            fontSize: 16,
-                          ),
-                          hintText: 'Input Password',
-                          floatingLabelBehavior: FloatingLabelBehavior.always,
-                          border: const OutlineInputBorder(),
-                        ),
-                      ),
-                      const SizedBox(height: 25.0),
-                      Container(
-                        padding: const EdgeInsets.symmetric(vertical: 24),
+                      Form(
+                        key: formKey,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              "Gender",
-                              style: setTextStyle(
-                                NeutralColor().neutral30,
-                              ).copyWith(
-                                fontWeight: semiBold,
-                                fontSize: 16,
+                            TextFormField(
+                              // controller: _nameController,
+                              initialValue: _name,
+                              //'${editProfile?.data.name}',
+                              onSaved: (val) {
+                                _name = val;
+                              },
+                              validator: (value) {
+                                if (value != null) {
+                                  return 'Enter name';
+                                } else {
+                                  return null;
+                                }
+                              },
+                              decoration: InputDecoration(
+                                labelText: 'Nama',
+                                hintStyle: setTextStyle(
+                                  const Color(0xFF44474E),
+                                ).copyWith(
+                                  fontWeight: regular,
+                                  fontSize: 16,
+                                ),
+                                hintText: 'Input Full Name',
+                                floatingLabelBehavior:
+                                    FloatingLabelBehavior.always,
+                                border: const OutlineInputBorder(),
                               ),
                             ),
-                            const SizedBox(
-                              height: 10,
+                            const SizedBox(height: 25.0),
+                            TextFormField(
+                              initialValue: _company,
+                              // controller: _companyController,
+                              validator: (value) {
+                                if (value != null) {
+                                  return 'Enter company name';
+                                } else {
+                                  return null;
+                                }
+                              },
+                              onSaved: (val) {
+                                _company = val;
+                              },
+                              decoration: InputDecoration(
+                                labelText: 'Company',
+                                hintStyle: setTextStyle(
+                                  const Color(0xFF44474E),
+                                ).copyWith(
+                                  fontWeight: regular,
+                                  fontSize: 16,
+                                ),
+                                hintText: 'Input Company Name',
+                                floatingLabelBehavior:
+                                    FloatingLabelBehavior.always,
+                                border: const OutlineInputBorder(),
+                              ),
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  children: [
-                                    Radio<String>(
-                                      value: "Male",
-                                      groupValue: selectedValue,
-                                      visualDensity: const VisualDensity(
-                                        horizontal:
-                                            VisualDensity.minimumDensity,
-                                        vertical: VisualDensity.minimumDensity,
-                                      ),
-                                      materialTapTargetSize:
-                                          MaterialTapTargetSize.shrinkWrap,
-                                      onChanged: (String? value) {
-                                        setState(() {
-                                          selectedValue = value;
-                                        });
-                                      },
-                                    ),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                    const Text('Male'),
-                                  ],
+                            const SizedBox(height: 25.0),
+                            TextFormField(
+                              // controller: _emailController,
+                              initialValue: _email,
+                              onSaved: (val) {
+                                _email = val;
+                              },
+                              decoration: InputDecoration(
+                                labelText: 'Email',
+                                hintStyle: setTextStyle(
+                                  const Color(0xFF44474E),
+                                ).copyWith(
+                                  fontWeight: regular,
+                                  fontSize: 16,
                                 ),
-                                Row(
-                                  children: [
-                                    Radio<String>(
-                                      value: "Female",
-                                      groupValue: selectedValue,
-                                      visualDensity: const VisualDensity(
-                                        horizontal:
-                                            VisualDensity.minimumDensity,
-                                        vertical: VisualDensity.minimumDensity,
-                                      ),
-                                      materialTapTargetSize:
-                                          MaterialTapTargetSize.shrinkWrap,
-                                      onChanged: (String? value) {
-                                        setState(() {
-                                          selectedValue = value;
-                                        });
-                                      },
-                                    ),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                    const Text('Female'),
-                                  ],
+                                hintText: 'Input Email',
+                                floatingLabelBehavior:
+                                    FloatingLabelBehavior.always,
+                                border: const OutlineInputBorder(),
+                              ),
+                            ),
+                            const SizedBox(height: 25.0),
+                            TextFormField(
+                              controller: _passwordController,
+                              obscureText: _obscureText,
+                              validator: (value) {
+                                if (value != null && value.length < 5) {
+                                  return 'Enter min. 5 characters';
+                                } else {
+                                  return null;
+                                }
+                              },
+                              decoration: InputDecoration(
+                                suffixIcon: IconButton(
+                                  icon: Icon(
+                                    _obscureText
+                                        ? Icons.visibility_off
+                                        : Icons.visibility,
+                                  ),
+                                  onPressed: _togglePasswordVisibility,
                                 ),
-                                Row(
-                                  children: [
-                                    Radio<String>(
-                                      value: "Other",
-                                      groupValue: selectedValue,
-                                      visualDensity: const VisualDensity(
-                                        horizontal:
-                                            VisualDensity.minimumDensity,
-                                        vertical: VisualDensity.minimumDensity,
-                                      ),
-                                      materialTapTargetSize:
-                                          MaterialTapTargetSize.shrinkWrap,
-                                      onChanged: (String? value) {
-                                        setState(() {
-                                          selectedValue = value;
-                                        });
-                                      },
-                                    ),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                    const Text('Other'),
-                                  ],
+                                labelText: 'Password',
+                                hintStyle: setTextStyle(
+                                  const Color(0xFF44474E),
+                                ).copyWith(
+                                  fontWeight: regular,
+                                  fontSize: 16,
                                 ),
-                              ],
+                                hintText: 'Input Password',
+                                floatingLabelBehavior:
+                                    FloatingLabelBehavior.always,
+                                border: const OutlineInputBorder(),
+                              ),
+                            ),
+                            const SizedBox(height: 25.0),
+                            Container(
+                              padding: const EdgeInsets.symmetric(vertical: 24),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Gender",
+                                    style: setTextStyle(
+                                      NeutralColor().neutral30,
+                                    ).copyWith(
+                                      fontWeight: semiBold,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Radio<String>(
+                                            value: "Male",
+                                            groupValue: selectedValue,
+                                            visualDensity: const VisualDensity(
+                                              horizontal:
+                                                  VisualDensity.minimumDensity,
+                                              vertical:
+                                                  VisualDensity.minimumDensity,
+                                            ),
+                                            materialTapTargetSize:
+                                                MaterialTapTargetSize
+                                                    .shrinkWrap,
+                                            onChanged: (String? value) {
+                                              setState(() {
+                                                selectedValue = value;
+                                              });
+                                            },
+                                          ),
+                                          const SizedBox(
+                                            width: 10,
+                                          ),
+                                          const Text('Male'),
+                                        ],
+                                      ),
+                                      Row(
+                                        children: [
+                                          Radio<String>(
+                                            value: "Female",
+                                            groupValue: selectedValue,
+                                            visualDensity: const VisualDensity(
+                                              horizontal:
+                                                  VisualDensity.minimumDensity,
+                                              vertical:
+                                                  VisualDensity.minimumDensity,
+                                            ),
+                                            materialTapTargetSize:
+                                                MaterialTapTargetSize
+                                                    .shrinkWrap,
+                                            onChanged: (String? value) {
+                                              setState(() {
+                                                selectedValue = value;
+                                              });
+                                            },
+                                          ),
+                                          const SizedBox(
+                                            width: 10,
+                                          ),
+                                          const Text('Female'),
+                                        ],
+                                      ),
+                                      Row(
+                                        children: [
+                                          Radio<String>(
+                                            value: "Other",
+                                            groupValue: selectedValue,
+                                            visualDensity: const VisualDensity(
+                                              horizontal:
+                                                  VisualDensity.minimumDensity,
+                                              vertical:
+                                                  VisualDensity.minimumDensity,
+                                            ),
+                                            materialTapTargetSize:
+                                                MaterialTapTargetSize
+                                                    .shrinkWrap,
+                                            onChanged: (String? value) {
+                                              setState(() {
+                                                selectedValue = value;
+                                              });
+                                            },
+                                          ),
+                                          const SizedBox(
+                                            width: 10,
+                                          ),
+                                          const Text('Other'),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.symmetric(vertical: 16),
+                              child: TextFormField(
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return "Silahkan isikan tanggal";
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                                onTap: () async {
+                                  showDialog(
+                                    context: context,
+                                    builder: (BuildContext contet) {
+                                      return Dialog(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(12.0),
+                                        ),
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 20),
+                                          child: CalendarDatePicker2(
+                                            config: CalendarDatePicker2Config(
+                                              firstDate: DateTime(1990),
+                                              lastDate: DateTime(
+                                                  currentDate.year + 5),
+                                              currentDate: DateTime.now(),
+                                            ),
+                                            value:
+                                                //_dateBirth,
+                                                _singleDatePickerValueWithDefaultValue,
+                                            onValueChanged: (value) {
+                                              DateTime? dateBirth = value[0];
+                                              if (dateBirth != null) {
+                                                setState(() {
+                                                  _singleDatePickerValueWithDefaultValue =
+                                                      value;
+                                                  _dateController.text =
+                                                      DateFormat('yyyy-MM-dd')
+                                                          //dd-MM-yyyy
+                                                          .format(dateBirth);
+                                                });
+                                              }
+                                              Navigator.pop(context);
+                                            },
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  );
+                                },
+                                readOnly: true,
+                                autofocus: true,
+                                // controller: _dateController,
+                                initialValue: _dateBirth,
+                                onSaved: (val) {
+                                  _dateBirth = val;
+                                },
+                                decoration: InputDecoration(
+                                  prefixIcon:
+                                      const Icon(Icons.calendar_today_rounded),
+                                  labelText: 'Date Birth',
+                                  hintStyle: setTextStyle(
+                                    const Color(0xFF44474E),
+                                  ).copyWith(
+                                    fontWeight: regular,
+                                    fontSize: 16,
+                                  ),
+                                  hintText: "DD/MM/YYYY",
+                                  floatingLabelBehavior:
+                                      FloatingLabelBehavior.always,
+                                  border: const OutlineInputBorder(),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 10.0),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 8),
+                              child: FractionallySizedBox(
+                                widthFactor: 1.0,
+                                child: SizedBox(
+                                  height: 50,
+                                  child: ElevatedButton(
+                                    style: ButtonStyle(
+                                      elevation: MaterialStateProperty.all(0),
+                                      backgroundColor:
+                                          MaterialStateProperty.all(
+                                              const Color(0xFF005DB9)),
+                                      shape: MaterialStateProperty.all<
+                                          RoundedRectangleBorder>(
+                                        RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                              8), // Bentuk border
+                                        ),
+                                      ),
+                                    ),
+                                    onPressed: () {},
+                                    child: Text(
+                                      'Save Change',
+                                      style: setTextStyle(
+                                        const Color(0xFFFFFFFF),
+                                      ).copyWith(
+                                        fontWeight: medium,
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
                             ),
                           ],
                         ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                        child: TextFormField(
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return "Silahkan isikan tanggal";
-                            } else {
-                              return null;
-                            }
-                          },
-                          onTap: () async {
-                            showDialog(
-                              context: context,
-                              builder: (BuildContext contet) {
-                                return Dialog(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(12.0),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(top: 20),
-                                    child: CalendarDatePicker2(
-                                      config: CalendarDatePicker2Config(
-                                        firstDate: DateTime(1990),
-                                        lastDate:
-                                            DateTime(currentDate.year + 5),
-                                        currentDate: DateTime.now(),
-                                      ),
-                                      value:
-                                          _singleDatePickerValueWithDefaultValue,
-                                      onValueChanged: (value) {
-                                        DateTime? dateBirth = value[0];
-                                        if (dateBirth != null) {
-                                          setState(() {
-                                            _singleDatePickerValueWithDefaultValue =
-                                                value;
-                                            _dateController.text =
-                                                DateFormat('dd-MM-yyyy')
-                                                    .format(dateBirth);
-                                          });
-                                        }
-                                        Navigator.pop(context);
-                                      },
-                                    ),
-                                  ),
-                                );
-                              },
-                            );
-                          },
-                          readOnly: true,
-                          autofocus: true,
-                          controller: _dateController,
-                          decoration: InputDecoration(
-                            prefixIcon:
-                                const Icon(Icons.calendar_today_rounded),
-                            labelText: 'Date Birth',
-                            hintStyle: setTextStyle(
-                              const Color(0xFF44474E),
-                            ).copyWith(
-                              fontWeight: regular,
-                              fontSize: 16,
-                            ),
-                            hintText: "DD/MM/YYYY",
-                            floatingLabelBehavior: FloatingLabelBehavior.always,
-                            border: const OutlineInputBorder(),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 10.0),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8),
-                        child: FractionallySizedBox(
-                          widthFactor: 1.0,
-                          child: SizedBox(
-                            height: 50,
-                            child: ElevatedButton(
-                              style: ButtonStyle(
-                                elevation: MaterialStateProperty.all(0),
-                                backgroundColor: MaterialStateProperty.all(
-                                    const Color(0xFF005DB9)),
-                                shape: MaterialStateProperty.all<
-                                    RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(
-                                        8), // Bentuk border
-                                  ),
-                                ),
-                              ),
-                              onPressed: () {},
-                              child: Text(
-                                'Save Change',
-                                style: setTextStyle(
-                                  const Color(0xFFFFFFFF),
-                                ).copyWith(
-                                  fontWeight: medium,
-                                  fontSize: 14,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
+                      )
                     ],
                   ),
-                )
+                ),
               ],
-            ),
-          ),
-        ],
+            );
+          } else if (snapshot.hasError) {
+            Text(
+              snapshot.error.toString(),
+            );
+          }
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        },
       ),
     );
   }
 }
+
+// ListView(
+//         children: [
+//           Container(
+//             padding: const EdgeInsets.all(16),
+//             child: Column(
+//               children: [
+//                 SizedBox(
+//                   height: 175,
+//                   width: double.infinity,
+//                   child: Center(
+//                     child: Column(
+//                       children: [
+//                         CircleAvatar(
+//                           backgroundColor: SecondaryColor().secondaryFixedDim,
+//                           radius: 44,
+//                         ),
+//                         const SizedBox(
+//                           height: 12,
+//                         ),
+//                         ElevatedButton(
+//                           style: ElevatedButton.styleFrom(
+//                             backgroundColor: Colors.transparent,
+//                             elevation: 0,
+//                             minimumSize: const Size(140, 40),
+//                             shape: RoundedRectangleBorder(
+//                               borderRadius: BorderRadius.circular(100),
+//                               side: BorderSide(
+//                                 color: SourceColor().seed,
+//                                 width: 1,
+//                               ),
+//                             ),
+//                           ),
+//                           onPressed: () async {
+//                             XFile? image = await pickImageFromGallery();
+//                             if (image != null) {
+//                               setState(() {
+//                                 selectedImage = image;
+//                               });
+//                             }
+//                           },
+//                           child: Text(
+//                             "Change Photo",
+//                             style:
+//                                 setTextStyle(PrimaryColor().primary).copyWith(
+//                               fontWeight: regular,
+//                               fontSize: 14,
+//                             ),
+//                           ),
+//                         ),
+//                       ],
+//                     ),
+//                   ),
+//                 ),
+//                 Form(
+//                   key: formKey,
+//                   child: Column(
+//                     crossAxisAlignment: CrossAxisAlignment.start,
+//                     children: [
+//                       TextFormField(
+//                         controller: _nameController,
+//                         validator: (value) {
+//                           if (value != null) {
+//                             return 'Enter name';
+//                           } else {
+//                             return null;
+//                           }
+//                         },
+//                         decoration: InputDecoration(
+//                           labelText: 'Nama',
+//                           hintStyle: setTextStyle(
+//                             const Color(0xFF44474E),
+//                           ).copyWith(
+//                             fontWeight: regular,
+//                             fontSize: 16,
+//                           ),
+//                           hintText: 'Input Full Name',
+//                           floatingLabelBehavior: FloatingLabelBehavior.always,
+//                           border: const OutlineInputBorder(),
+//                         ),
+//                       ),
+//                       const SizedBox(height: 25.0),
+//                       TextFormField(
+//                         controller: _companyController,
+//                         validator: (value) {
+//                           if (value != null) {
+//                             return 'Enter company name';
+//                           } else {
+//                             return null;
+//                           }
+//                         },
+//                         decoration: InputDecoration(
+//                           labelText: 'Company',
+//                           hintStyle: setTextStyle(
+//                             const Color(0xFF44474E),
+//                           ).copyWith(
+//                             fontWeight: regular,
+//                             fontSize: 16,
+//                           ),
+//                           hintText: 'Input Company Name',
+//                           floatingLabelBehavior: FloatingLabelBehavior.always,
+//                           border: const OutlineInputBorder(),
+//                         ),
+//                       ),
+//                       const SizedBox(height: 25.0),
+//                       TextFormField(
+//                         controller: _emailController,
+//                         decoration: InputDecoration(
+//                           labelText: 'Email',
+//                           hintStyle: setTextStyle(
+//                             const Color(0xFF44474E),
+//                           ).copyWith(
+//                             fontWeight: regular,
+//                             fontSize: 16,
+//                           ),
+//                           hintText: 'Input Email',
+//                           floatingLabelBehavior: FloatingLabelBehavior.always,
+//                           border: const OutlineInputBorder(),
+//                         ),
+//                       ),
+//                       const SizedBox(height: 25.0),
+//                       TextFormField(
+//                         controller: _passwordController,
+//                         obscureText: _obscureText,
+//                         validator: (value) {
+//                           if (value != null && value.length < 5) {
+//                             return 'Enter min. 5 characters';
+//                           } else {
+//                             return null;
+//                           }
+//                         },
+//                         decoration: InputDecoration(
+//                           suffixIcon: IconButton(
+//                             icon: Icon(
+//                               _obscureText
+//                                   ? Icons.visibility_off
+//                                   : Icons.visibility,
+//                             ),
+//                             onPressed: _togglePasswordVisibility,
+//                           ),
+//                           labelText: 'Password',
+//                           hintStyle: setTextStyle(
+//                             const Color(0xFF44474E),
+//                           ).copyWith(
+//                             fontWeight: regular,
+//                             fontSize: 16,
+//                           ),
+//                           hintText: 'Input Password',
+//                           floatingLabelBehavior: FloatingLabelBehavior.always,
+//                           border: const OutlineInputBorder(),
+//                         ),
+//                       ),
+//                       const SizedBox(height: 25.0),
+//                       Container(
+//                         padding: const EdgeInsets.symmetric(vertical: 24),
+//                         child: Column(
+//                           crossAxisAlignment: CrossAxisAlignment.start,
+//                           children: [
+//                             Text(
+//                               "Gender",
+//                               style: setTextStyle(
+//                                 NeutralColor().neutral30,
+//                               ).copyWith(
+//                                 fontWeight: semiBold,
+//                                 fontSize: 16,
+//                               ),
+//                             ),
+//                             const SizedBox(
+//                               height: 10,
+//                             ),
+//                             Row(
+//                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                               children: [
+//                                 Row(
+//                                   children: [
+//                                     Radio<String>(
+//                                       value: "Male",
+//                                       groupValue: selectedValue,
+//                                       visualDensity: const VisualDensity(
+//                                         horizontal:
+//                                             VisualDensity.minimumDensity,
+//                                         vertical: VisualDensity.minimumDensity,
+//                                       ),
+//                                       materialTapTargetSize:
+//                                           MaterialTapTargetSize.shrinkWrap,
+//                                       onChanged: (String? value) {
+//                                         setState(() {
+//                                           selectedValue = value;
+//                                         });
+//                                       },
+//                                     ),
+//                                     const SizedBox(
+//                                       width: 10,
+//                                     ),
+//                                     const Text('Male'),
+//                                   ],
+//                                 ),
+//                                 Row(
+//                                   children: [
+//                                     Radio<String>(
+//                                       value: "Female",
+//                                       groupValue: selectedValue,
+//                                       visualDensity: const VisualDensity(
+//                                         horizontal:
+//                                             VisualDensity.minimumDensity,
+//                                         vertical: VisualDensity.minimumDensity,
+//                                       ),
+//                                       materialTapTargetSize:
+//                                           MaterialTapTargetSize.shrinkWrap,
+//                                       onChanged: (String? value) {
+//                                         setState(() {
+//                                           selectedValue = value;
+//                                         });
+//                                       },
+//                                     ),
+//                                     const SizedBox(
+//                                       width: 10,
+//                                     ),
+//                                     const Text('Female'),
+//                                   ],
+//                                 ),
+//                                 Row(
+//                                   children: [
+//                                     Radio<String>(
+//                                       value: "Other",
+//                                       groupValue: selectedValue,
+//                                       visualDensity: const VisualDensity(
+//                                         horizontal:
+//                                             VisualDensity.minimumDensity,
+//                                         vertical: VisualDensity.minimumDensity,
+//                                       ),
+//                                       materialTapTargetSize:
+//                                           MaterialTapTargetSize.shrinkWrap,
+//                                       onChanged: (String? value) {
+//                                         setState(() {
+//                                           selectedValue = value;
+//                                         });
+//                                       },
+//                                     ),
+//                                     const SizedBox(
+//                                       width: 10,
+//                                     ),
+//                                     const Text('Other'),
+//                                   ],
+//                                 ),
+//                               ],
+//                             ),
+//                           ],
+//                         ),
+//                       ),
+//                       Container(
+//                         padding: const EdgeInsets.symmetric(vertical: 16),
+//                         child: TextFormField(
+//                           validator: (value) {
+//                             if (value!.isEmpty) {
+//                               return "Silahkan isikan tanggal";
+//                             } else {
+//                               return null;
+//                             }
+//                           },
+//                           onTap: () async {
+//                             showDialog(
+//                               context: context,
+//                               builder: (BuildContext contet) {
+//                                 return Dialog(
+//                                   shape: RoundedRectangleBorder(
+//                                     borderRadius: BorderRadius.circular(12.0),
+//                                   ),
+//                                   child: Padding(
+//                                     padding: const EdgeInsets.only(top: 20),
+//                                     child: CalendarDatePicker2(
+//                                       config: CalendarDatePicker2Config(
+//                                         firstDate: DateTime(1990),
+//                                         lastDate:
+//                                             DateTime(currentDate.year + 5),
+//                                         currentDate: DateTime.now(),
+//                                       ),
+//                                       value:
+//                                           _singleDatePickerValueWithDefaultValue,
+//                                       onValueChanged: (value) {
+//                                         DateTime? dateBirth = value[0];
+//                                         if (dateBirth != null) {
+//                                           setState(() {
+//                                             _singleDatePickerValueWithDefaultValue =
+//                                                 value;
+//                                             _dateController.text =
+//                                                 DateFormat('dd-MM-yyyy')
+//                                                     .format(dateBirth);
+//                                           });
+//                                         }
+//                                         Navigator.pop(context);
+//                                       },
+//                                     ),
+//                                   ),
+//                                 );
+//                               },
+//                             );
+//                           },
+//                           readOnly: true,
+//                           autofocus: true,
+//                           controller: _dateController,
+//                           decoration: InputDecoration(
+//                             prefixIcon:
+//                                 const Icon(Icons.calendar_today_rounded),
+//                             labelText: 'Date Birth',
+//                             hintStyle: setTextStyle(
+//                               const Color(0xFF44474E),
+//                             ).copyWith(
+//                               fontWeight: regular,
+//                               fontSize: 16,
+//                             ),
+//                             hintText: "DD/MM/YYYY",
+//                             floatingLabelBehavior: FloatingLabelBehavior.always,
+//                             border: const OutlineInputBorder(),
+//                           ),
+//                         ),
+//                       ),
+//                       const SizedBox(height: 10.0),
+//                       Padding(
+//                         padding: const EdgeInsets.symmetric(vertical: 8),
+//                         child: FractionallySizedBox(
+//                           widthFactor: 1.0,
+//                           child: SizedBox(
+//                             height: 50,
+//                             child: ElevatedButton(
+//                               style: ButtonStyle(
+//                                 elevation: MaterialStateProperty.all(0),
+//                                 backgroundColor: MaterialStateProperty.all(
+//                                     const Color(0xFF005DB9)),
+//                                 shape: MaterialStateProperty.all<
+//                                     RoundedRectangleBorder>(
+//                                   RoundedRectangleBorder(
+//                                     borderRadius: BorderRadius.circular(
+//                                         8), // Bentuk border
+//                                   ),
+//                                 ),
+//                               ),
+//                               onPressed: () {},
+//                               child: Text(
+//                                 'Save Change',
+//                                 style: setTextStyle(
+//                                   const Color(0xFFFFFFFF),
+//                                 ).copyWith(
+//                                   fontWeight: medium,
+//                                   fontSize: 14,
+//                                 ),
+//                               ),
+//                             ),
+//                           ),
+//                         ),
+//                       ),
+//                     ],
+//                   ),
+//                 )
+//               ],
+//             ),
+//           ),
+//         ],
+//       ),
