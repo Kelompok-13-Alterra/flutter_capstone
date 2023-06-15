@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_capstone/screens/booking/booking_screen.dart';
 import 'package:flutter_capstone/screens/bottom_nav/bottom_nav_screen.dart';
 import 'package:flutter_capstone/screens/detail/detail_view_model.dart';
+import 'package:flutter_capstone/screens/notification/notification_screen.dart';
 import 'package:flutter_capstone/screens/search/search_office_view_model.dart';
 import 'package:flutter_capstone/screens/search/search_screen.dart';
 import 'package:flutter_capstone/screens/edit_profile/edit_profile_screen.dart';
@@ -84,6 +85,7 @@ class MyApp extends StatelessWidget {
         '/edit-profile': (context) => const EditProfileScreen(),
         '/search': (context) => const SearchScreen(),
         '/page-not-found-screen': (context) => const PageNotFoundScreen(),
+        '/notification': (context) => const NotificationScreen(),
         '/location-not-found-screen': (context) =>
             const LocationNotFoundScreen(),
         '/connection-error-screen': (context) => const ConnectionErrorScreen(),

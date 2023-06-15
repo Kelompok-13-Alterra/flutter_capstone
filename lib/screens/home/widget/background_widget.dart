@@ -96,6 +96,7 @@ class _BackgroundWidgetState extends State<BackgroundWidget> {
                       GestureDetector(
                         onTap: () {
                           //OnTab di Notifikasi
+                          Navigator.pushNamed(context, '/notification');
                         },
                         child: SvgPicture.asset(
                           "assets/home/notification-home.svg",
@@ -103,35 +104,6 @@ class _BackgroundWidgetState extends State<BackgroundWidget> {
                           width: 32,
                         ),
                       ),
-                      // Row(
-                      //   crossAxisAlignment: CrossAxisAlignment.center,
-                      //   children: [
-                      //     GestureDetector(
-                      //       onTap: () {
-                      //         //OnTab di Notifikasi
-                      //       },
-                      //       child: SvgPicture.asset(
-                      //         "assets/home/notification-home.svg",
-                      //         height: 32,
-                      //         width: 32,
-                      //       ),
-                      //     ),
-                      //     const SizedBox(
-                      //       width: 10,
-                      //     ),
-                      //     GestureDetector(
-                      //       onTap: () {
-                      //         Navigator.pushNamed(context, '/profile');
-                      //       },
-                      //       child: const CircleAvatar(
-                      //         child: Icon(
-                      //           Icons.account_circle,
-                      //           size: 38,
-                      //         ),
-                      //       ),
-                      //     )
-                      //   ],
-                      // )
                     ],
                   ),
                   //Card Location
@@ -156,7 +128,7 @@ class _BackgroundWidgetState extends State<BackgroundWidget> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 16, vertical: 8),
                         child: Text(
-                          "Yuk, Mulai pesan kantor/co-woking space kamu di sini",
+                          "Yuk, Mulai pesan kantor/co-working space kamu di sini",
                           style: GoogleFonts.roboto(
                               color: const Color(0xFF0074E5),
                               fontSize: 14,

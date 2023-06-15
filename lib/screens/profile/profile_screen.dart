@@ -19,25 +19,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
       backgroundColor: NeutralColor().neutral99,
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.transparent,
+        automaticallyImplyLeading: false,
+        backgroundColor: SourceColor().white,
         title: Text(
           "Profile",
           style: setTextStyle(NeutralColor().neutral12)
               .copyWith(fontSize: 16, fontWeight: regular),
         ),
-        actions: const [
-          Padding(
-            padding: EdgeInsets.only(
-              right: 22,
-              top: 21,
-              bottom: 19,
-            ),
-            child: Icon(
-              Icons.more_vert_rounded,
-              color: Color(0xFF1A1A1A),
-            ),
-          ),
-        ],
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -110,20 +98,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             fontWeight: regular,
                           ),
                         ),
-                        // FutureBuilder(
-                        //   initialData: LoginService().getDataUser(),
-                        //   builder: (BuildContext context,
-                        //       AsyncSnapshot<dynamic> snapshot) {
-                        //     return Text(
-                        //       'email',
-                        //       style: setTextStyle(NeutralColor().neutral40)
-                        //           .copyWith(
-                        //         fontSize: 16,
-                        //         fontWeight: regular,
-                        //       ),
-                        //     );
-                        //   },
-                        // ),
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8.0),

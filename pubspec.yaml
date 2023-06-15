@@ -35,6 +35,7 @@ dependencies:
   email_validator: ^2.1.17
   flutter:
     sdk: flutter
+  flutter_html: ^3.0.0-alpha.3
   flutter_rating_bar: ^4.0.1
   flutter_svg: ^2.0.5
   google_fonts: ^4.0.4
@@ -70,7 +71,7 @@ flutter:
     - assets/icons/office_card/
     - assets/icons/payment/
     - assets/icons/bottom_navigation_bar/
-   
+
     - assets/images/
     - assets/images/notification/
     - assets/images/profile/
@@ -79,7 +80,6 @@ flutter:
     - assets/home/
     - assets/on_boarding/
     - assets/progress_indicator/
-   
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
   # For details regarding adding assets from package dependencies, see
