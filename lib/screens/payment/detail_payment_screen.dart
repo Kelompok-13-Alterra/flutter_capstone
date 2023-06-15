@@ -15,10 +15,11 @@ class DetailPaymentScreen extends StatefulWidget {
 }
 
 class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
-  // late PaymentViewModel? paymentViewModel;
+  PaymentViewModel? paymentViewModel;
 
   @override
   void didChangeDependencies() {
+    paymentViewModel = Provider.of<PaymentViewModel>(context, listen: false);
     super.didChangeDependencies();
   }
 
@@ -35,13 +36,14 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
 
   @override
   void dispose() {
-    // Connectivity().onConnectivityChanged.cancel();
-    if (mounted) {
-      Future.microtask(() =>
-          Provider.of<PaymentViewModel>(context, listen: false)
-              .stopCountdown());
-      // setState(() {});
-    }
+    //It`s because you called the inherited widget inside dispose of, in you're sample this is Provider.of<"Type">
+    paymentViewModel?.stopCountdown();
+    // if (mounted) {
+    //   Future.microtask(() =>
+    //       Provider.of<PaymentViewModel>(context, listen: false)
+    //           .stopCountdown());
+    //   // setState(() {});
+    // }
 
     super.dispose();
   }
