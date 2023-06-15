@@ -32,59 +32,67 @@ class HomeModel {
 
 class Office {
   int id;
-  int capacity;
-  String close; // Change
-  String description;
-  String facilities;
-  String location;
+  DateTime? createdAt;
+  DateTime? updatedAt;
+  DateTime? deletedAt;
   String name;
-  String open; // Change
-  int price;
-  bool status;
+  String description;
+  int capacity;
   String type;
+  String open;
+  String close;
+  int price;
+  String location;
+  String facilities;
 
   Office({
-    required this.id, // Change
-    required this.capacity,
-    required this.close,
-    required this.description,
-    required this.facilities,
-    required this.location,
+    required this.id,
+    this.createdAt,
+    this.updatedAt,
+    this.deletedAt,
     required this.name,
-    required this.open,
-    required this.price,
-    required this.status,
+    required this.description,
+    required this.capacity,
     required this.type,
+    required this.open,
+    required this.close,
+    required this.price,
+    required this.location,
+    required this.facilities,
   });
 
   factory Office.fromJson(Map<String, dynamic> json) => Office(
-        // Change All
-        id: json['ID'] ?? 0,
-        capacity: json["Capacity"] ?? 0,
-        close: json["Close"] ?? DateTime.now(),
-        description: json["Description"] ?? 'null',
-        facilities: json["Facilities"] ?? 'null',
-        location: json["Location"] ?? 'null',
-        name: json["Name"] ?? 'null',
+        id: json["ID"],
+        createdAt: DateTime.parse(json["CreatedAt"]),
+        updatedAt: DateTime.parse(json["UpdatedAt"]),
+        deletedAt: json["DeletedAt"],
+        name: json["Name"] ?? '',
+        description: json["Description"] ?? '',
+        capacity: json["Capacity"] ?? '',
+        type: json["Type"] ?? '',
         open: json["Open"] ?? DateTime.now(),
+        close: json["Close"] ?? DateTime.now(),
         price: json["Price"] ?? 0,
-        status: json["Status"] ?? true,
-        type: json["Type"] ?? 'null',
+        location: json["Location"] ?? '',
+        facilities: json["Facilities"] ?? '',
       );
 
   get rating => null;
 
   Map<String, dynamic> toJson() => {
-        "capacity": capacity,
-        "close": close, // Change
-        "description": description,
-        "facilities": facilities,
-        "location": location,
-        "name": name,
-        "open": open, // Change
-        "price": price,
-        "status": status,
-        "type": type,
+        "ID": id,
+        "CreatedAt": createdAt,
+        "UpdatedAt": updatedAt,
+        "DeletedAt": deletedAt,
+        "Name": name,
+        "Description": description,
+        "Capacity": capacity,
+        "Type": type,
+        "Open": open,
+        "Close": close,
+        "Price": price,
+        "Location": location,
+        "Facilities": facilities,
       };
 }
 

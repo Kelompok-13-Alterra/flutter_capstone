@@ -24,7 +24,6 @@ class ReviewService {
             'accept': 'application/json',
             'Content-Type': "aplication/json",
             'Authorization': 'Bearer $token',
-            // 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVsZmFsZHl5QGdtYWlsLmNvbSIsImlkIjo3LCJpc192ZXJpZnkiOmZhbHNlLCJyb2xlIjowfQ.IriX0fkwCCt_u9dZAXO-muMuq_76XhcyROPXGCwNYpE'
           }),
           data: jsonEncode({
             "description": description,
@@ -44,7 +43,7 @@ class ReviewService {
           desc:
               'Selamat! kamu berhasil menilai office! Silahkan lanjutkan submit!',
           path: () {
-            Navigator.pushReplacementNamed(context, '/home');
+            Navigator.pushReplacementNamed(context, '/bottom-nav');
           },
           buttonText: 'Okay!',
         );

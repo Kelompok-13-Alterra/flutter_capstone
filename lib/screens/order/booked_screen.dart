@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/screens/order/widget/order_widget.dart';
+import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_capstone/view_model/order/booked_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -30,7 +31,13 @@ class _BookedOrderScreenState extends State<BookedOrderScreen> {
           future: bookedDataViewModel,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const CircularProgressIndicator();
+              return Scaffold(
+                body: Center(
+                  child: CircularProgressIndicator(
+                    color: PrimaryColor().primary,
+                  ),
+                ),
+              );
             } else if (!snapshot.hasData) {
               //final homeViewModel = Provider.of<HomeViewModel>(context);
               return ListView.builder(

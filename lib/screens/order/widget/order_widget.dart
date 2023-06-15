@@ -172,7 +172,7 @@ class OrderWidget extends StatelessWidget {
                             visualDensity: VisualDensity.compact,
                           ),
                           child: Text(
-                            buttonText2,
+                            buttonText1,
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight: medium,
