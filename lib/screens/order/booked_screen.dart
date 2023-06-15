@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/screens/order/widget/order_widget.dart';
+import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_capstone/view_model/order/booked_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -24,21 +25,49 @@ class _BookedOrderScreenState extends State<BookedOrderScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        OrderWidget(
-            urlImg: 'assets/office1.png',
-            title: 'Wellspace',
-            rating: 4.6,
-            type: 'Co-Working Space',
-            duration: '10.00 AM - 06.00 PM',
-            status: 'Booked',
-            route: '/detail-schedule',
-            buttonText1: 'Change Schedule',
-            routeButton1: '/detail-schedule',
-            buttonText2: 'Cancel Book',
-            routeButton2: '')
-      ],
+    return Consumer<BookedViewModel>(
+      builder: (context, office, child) => Container(
+        child: FutureBuilder(
+          future: bookedDataViewModel,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Scaffold(
+                body: Center(
+                  child: CircularProgressIndicator(
+                    color: PrimaryColor().primary,
+                  ),
+                ),
+              );
+            } else if (!snapshot.hasData) {
+              //final homeViewModel = Provider.of<HomeViewModel>(context);
+              return ListView.builder(
+                  itemCount: office.listBooked.length,
+                  itemBuilder: (context, index) {
+                    var data = office.listBooked[index];
+                    return OrderWidget(
+                      urlImg: 'assets/office1.png',
+                      title: office.listBooked[index].office.name,
+                      rating: 4.6,
+                      type: office.listBooked[index].office.type,
+                      duration:
+                          '${office.listBooked[index].office.open} - ${office.listBooked[index].office.close}',
+                      status: 'Booked',
+                      route: '/detail-schedule',
+                      buttonText1: 'Change Schedule',
+                      routeButton1: '/detail-schedule',
+                      buttonText2: 'Cancel Book',
+                      routeButton2: '',
+                      transactionId: office.listBooked[index].office.id,
+                    );
+                  });
+            } else {
+              return const Center(
+                child: Text('Data Tidak Ada atau Error'),
+              );
+            }
+          },
+        ),
+      ),
     );
   }
 }

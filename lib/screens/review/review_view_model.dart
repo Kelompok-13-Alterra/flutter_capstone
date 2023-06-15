@@ -2,11 +2,9 @@
 
 // import 'dart:js';
 import 'package:flutter/material.dart';
-// import 'package:flutter_capstone/model/midtrans/midtrans_model.dart';
-// import 'package:flutter_capstone/screens/payment/detail_payment_screen.dart';
-// import 'package:flutter_capstone/screens/payment/payment-view-model.dart';
 import 'package:image_picker/image_picker.dart';
 
+// enum ReviewFilter { Terdekat, Rating terbaik, cycling, hiking }
 class ReviewViewModel extends ChangeNotifier {
   final List<String> _filters = [
     'Terdekat',
@@ -16,8 +14,8 @@ class ReviewViewModel extends ChangeNotifier {
   ];
   List<String> get filters => _filters;
 
-  final List<Widget> _reviewList = [];
-  List<Widget> get reviewList => _reviewList;
+  final List<String> _reviewList = [];
+  List<String> get reviewList => _reviewList;
 
   final TextEditingController _reviewController = TextEditingController();
   TextEditingController get reviewController => _reviewController;

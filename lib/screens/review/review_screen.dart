@@ -23,8 +23,6 @@ class ReviewScreen extends StatefulWidget {
 }
 
 class _ReviewScreenState extends State<ReviewScreen> {
-  int selectedFilterIndex = 0;
-
   Future<void> _pickImageFromCamera() async {
     final picker = ImagePicker();
     final pickedImage = await picker.getImage(source: ImageSource.camera);
@@ -64,7 +62,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
           transactionId: args!.transactionId,
           star: reviewProvider.rating,
           description: reviewProvider.reviewController.text,
-          tags: ['$selectedFilterIndex'],
+          tags: reviewProvider.reviewList,
         );
       }
       print("args : ${args?.transactionId}");
@@ -77,7 +75,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
     print('Id Traksaksi : ${args?.transactionId}');
     print("desc : ${reviewProvider.reviewController.text}}");
     print("star : ${reviewProvider.rating}");
-    print("tags : ${selectedFilterIndex}");
+    print("tags : ${reviewProvider.reviewList}");
 
     return Scaffold(
       appBar: AppBar(
@@ -87,6 +85,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
             icon: const Icon(Icons.arrow_back),
             color: SourceColor().black,
             onPressed: () {
+              reviewProvider.reviewList.clear();
               Navigator.pop(context);
             }),
         title: Row(
@@ -179,56 +178,79 @@ class _ReviewScreenState extends State<ReviewScreen> {
                 child: Align(
                   alignment: Alignment.topLeft,
                   child: Wrap(
+                    runSpacing: 8.0,
                     spacing: 8.0,
-                    children: List<Widget>.generate(
-                        reviewProvider.filters.length ~/ 2, (int index) {
-                      final firstIndex = index * 2;
-                      final secondIndex = index * 2 + 1;
-                      // final firstIndex = reviewProvider.firstIndex;
-                      // final secondIndex = reviewProvider.secondIndex;
-                      return Row(
-                        children: [
-                          ChoiceChip(
-                            label: Text(
-                              reviewProvider.filters[firstIndex],
-                              style: TextStyle(
-                                color: selectedFilterIndex == firstIndex
-                                    ? NeutralColor().neutral100
-                                    : NeutralColor().neutral60,
-                              ),
-                            ),
-                            selected: selectedFilterIndex == firstIndex,
-                            selectedColor: SourceColor().seed,
-                            onSelected: (bool selected) {
-                              //reviewProvider.onSelected(selected);
-                              setState(() {
-                                selectedFilterIndex = selected ? firstIndex : 0;
-                              });
-                            },
-                          ),
-                          const SizedBox(width: 8.0),
-                          ChoiceChip(
-                            label: Text(
-                              reviewProvider.filters[secondIndex],
-                              style: TextStyle(
-                                color: selectedFilterIndex == secondIndex
-                                    ? NeutralColor().neutral100
-                                    : NeutralColor().neutral60,
-                              ),
-                            ),
-                            selected: selectedFilterIndex == secondIndex,
-                            selectedColor: SourceColor().seed,
-                            onSelected: (bool selected) {
-                              //reviewProvider.onSelectedSecondIndex(selected);
-                              setState(() {
-                                selectedFilterIndex =
-                                    selected ? secondIndex : 0;
-                              });
-                            },
-                          ),
-                        ],
+                    children: reviewProvider.filters.map((e) {
+                      return Padding(
+                        padding: const EdgeInsets.only(right: 8.0),
+                        child: FilterChip(
+                          selectedColor: SourceColor().seed,
+                          label: Text(e),
+                          selected: reviewProvider.reviewList.contains(e),
+                          onSelected: (bool value) {
+                            if (reviewProvider.reviewList.contains(e)) {
+                              reviewProvider.reviewList.remove(e.toString());
+                            } else {
+                              reviewProvider.reviewList.add(e.toString());
+                            }
+                            // if (args!.transactionId != args.transactionId) {
+                            setState(() {});
+                            // }
+                          },
+                        ),
                       );
-                    }),
+                    }).toList(),
+                    // List<Widget>.generate(
+                    //   reviewProvider.filters.length ~/ 2, (int index) {
+                    // final firstIndex = index * 2;
+                    // final secondIndex = index * 2 + 1;
+                    // // final firstIndex = reviewProvider.firstIndex;
+                    // // final secondIndex = reviewProvider.secondIndex;
+                    // return Row(
+                    // children: [
+                    //       FilterChip(
+                    //         label: Text(
+                    //           reviewProvider.filters[firstIndex],
+                    //           style: TextStyle(
+                    //             color: selectedFilterIndex == firstIndex
+                    //                 ? NeutralColor().neutral100
+                    //                 : NeutralColor().neutral60,
+                    //           ),
+                    //         ),
+                    //         selected:
+                    //             // reviewProvider.filters[firstIndex],
+                    //             selectedFilterIndex == firstIndex,
+                    //         selectedColor: SourceColor().seed,
+                    //         onSelected: (bool selected) {
+                    //           //reviewProvider.onSelected(selected);
+                    //           setState(() {
+                    //             selectedFilterIndex = selected ? firstIndex : 0;
+                    //           });
+                    //         },
+                    //       ),
+                    //       const SizedBox(width: 8.0),
+                    //       ChoiceChip(
+                    //         label: Text(
+                    //           reviewProvider.filters[secondIndex],
+                    //           style: TextStyle(
+                    //             color: selectedFilterIndex == secondIndex
+                    //                 ? NeutralColor().neutral100
+                    //                 : NeutralColor().neutral60,
+                    //           ),
+                    //         ),
+                    //         selected: selectedFilterIndex == secondIndex,
+                    //         selectedColor: SourceColor().seed,
+                    //         onSelected: (bool selected) {
+                    //           //reviewProvider.onSelectedSecondIndex(selected);
+                    //           setState(() {
+                    // selectedFilterIndex =
+                    //                 selected ? secondIndex : 0;
+                    //           });
+                    //         },
+                    //       ),
+                    //     ],
+                    //   );
+                    // }),
                   ),
                 ),
               ),
