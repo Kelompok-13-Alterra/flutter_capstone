@@ -57,7 +57,7 @@ class _DetailScreenState extends State<DetailScreen> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        print('Success');
+        Navigator.pop(context);
         if (widget.textButton == 'Pilih metode pembayaran') {
           Navigator.pushReplacement(
             context,
@@ -121,6 +121,10 @@ class _DetailScreenState extends State<DetailScreen> {
                         buttonRoute: widget.buttonRoute,
                         textButton: widget.textButton,
                         selectedDateRange: widget.selectedDateRange,
+                        price: detail.price,
+                        // location: detail.location,
+                        // open: detail.open,
+                        // close: detail.close,
                       ),
                     ],
                   ),

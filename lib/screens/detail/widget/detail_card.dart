@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_capstone/core/init/utils/price_convert.dart';
 import 'package:flutter_capstone/screens/detail/detail_view_model.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:intl/intl.dart';
@@ -28,8 +29,6 @@ class DetailCard extends StatefulWidget {
 class _DetailCardState extends State<DetailCard> {
   @override
   Widget build(BuildContext context) {
-    final priceFormat = NumberFormat('#,###,###');
-    final formattedPrice = priceFormat.format(widget.price);
     return Consumer<DetailViewModel>(builder: (context, provider, _) {
       return Container(
         padding: const EdgeInsets.all(16),
@@ -127,7 +126,7 @@ class _DetailCardState extends State<DetailCard> {
               height: 10,
             ),
             Text(
-              "IDR $formattedPrice",
+              "IDR ${priceConvert(widget.price)}",
               style: setTextStyle(NeutralColor().neutral20)
                   .copyWith(fontWeight: regular, fontSize: 22),
             ),

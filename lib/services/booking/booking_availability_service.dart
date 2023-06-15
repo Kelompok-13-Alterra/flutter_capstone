@@ -46,19 +46,6 @@ class BookingAvailabilityService {
             path: () {
           // ignore: unnecessary_null_in_if_null_operators
           Navigator.pop(context, selectedDateRange);
-          // Navigator.pop(context);
-          // Navigator.pushAndRemoveUntil(
-          //   context,
-          //   MaterialPageRoute(
-          //     builder: (context) => DetailScreen(
-          //       buttonRoute: '/booking',
-          //       textButton: 'Booking',
-          //       officeId: args.officeId,
-          //       selectedDateRange: args.selectedDateRange,
-          //     ),
-          //   ),
-          //   (route) => false,
-          // );
         }, buttonText: 'Pilih tanggal lain');
       } else if (e.response!.statusCode == 400) {
         // return const PageNotFoundScreen();

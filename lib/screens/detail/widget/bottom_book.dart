@@ -9,6 +9,10 @@ class BottomBook extends StatefulWidget {
   final VoidCallback? function;
   final int? officeId;
   DateTimeRange? selectedDateRange;
+  final int? price;
+  // final String? location;
+  // final String? open;
+  // final String? close;
   BottomBook({
     super.key,
     required this.textButton,
@@ -16,6 +20,10 @@ class BottomBook extends StatefulWidget {
     this.function,
     this.officeId,
     this.selectedDateRange,
+    this.price,
+    // this.location,
+    // this.open,
+    // this.close,
   });
 
   @override
@@ -33,7 +41,8 @@ class _BottomBookState extends State<BottomBook> {
 
   @override
   Widget build(BuildContext context) {
-    // print('date range in bottom book ${widget.selectedDateRange}');
+    print('Office id ${widget.officeId}');
+    print('date range in bottom book ${widget.selectedDateRange}');
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: FractionallySizedBox(
@@ -85,6 +94,11 @@ class _BottomBookState extends State<BottomBook> {
                     return ShowModalPayment(
                       officeId: widget.officeId!,
                       selectedDateRange: widget.selectedDateRange,
+                      price: widget.price ?? 0,
+                      // location: widget.location,
+                      // open: widget.open ?? '',
+                      // close: widget.close ?? '',
+
                       onPressed: () {
                         widget.selectedDateRange = null;
                         Navigator.pop(context);
@@ -98,6 +112,7 @@ class _BottomBookState extends State<BottomBook> {
                 //   widget.officeId != widget.officeId;
                 //   widget.selectedDateRange != widget.selectedDateRange;
                 // });
+                // Navigator.pop(context);
                 Navigator.pushReplacementNamed(context, '${widget.buttonRoute}',
                         arguments: BookingScheduleArgument(
                             officeId: widget.officeId ?? 0,

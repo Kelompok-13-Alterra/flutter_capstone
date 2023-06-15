@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_capstone/model/midtrans/midtrans_model.dart';
+import 'package:flutter_capstone/screens/bottom_nav/bottom_nav_screen.dart';
 import 'dart:async';
 import 'package:flutter_capstone/screens/payment/transaction_failed_screen.dart';
 import 'package:flutter_capstone/services/midtrans/midtrans_service.dart';
@@ -13,7 +15,7 @@ class PaymentViewModel extends ChangeNotifier {
   bool isTotalPembayaranVisible = false;
   String selectedValue = 'Virtual Account BNI';
 
-  void setSelectedValue(String value) {
+  set setSelectedValue(String value) {
     selectedValue = value;
     notifyListeners();
   }
@@ -126,7 +128,7 @@ class PaymentViewModel extends ChangeNotifier {
   // }
 
   void startCountdown(BuildContext context, int officeId) {
-    _timerOffice = DateTime.now().add(const Duration(seconds: 3));
+    _timerOffice = DateTime.now().add(const Duration(minutes: 10));
     // _timer?.cancel();
 
     // Inisialisasi _timerOffice saat countdown dimulai
@@ -135,11 +137,16 @@ class PaymentViewModel extends ChangeNotifier {
         notifyListeners();
       } else {
         stopCountdown();
-        Navigator.of(context, rootNavigator: true).pushReplacement(
-          MaterialPageRoute(
-            builder: (context) => TransactionFailedScreen(officeId: officeId),
-          ),
-        );
+        SchedulerBinding.instance.addPostFrameCallback((_) {
+          Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(
+            MaterialPageRoute(
+              builder: (context) => TransactionFailedScreen(officeId: officeId),
+            ),
+            /*used to ensure that when the back button is pressed the user is navigated to the "/bottom-nav" -> 
+            "To remove routes until a route with a certain name, use the RoutePredicate returned from ModalRoute.withName"*/
+            ModalRoute.withName('/bottom-nav'),
+          );
+        });
       }
     });
   }

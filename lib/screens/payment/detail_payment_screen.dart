@@ -8,7 +8,9 @@ import 'payment_view_model.dart';
 
 class DetailPaymentScreen extends StatefulWidget {
   final int paymentId;
-  const DetailPaymentScreen({super.key, required this.paymentId});
+  final int officeId;
+  const DetailPaymentScreen(
+      {super.key, required this.paymentId, required this.officeId});
 
   @override
   State<DetailPaymentScreen> createState() => _DetailPaymentScreenState();
@@ -27,17 +29,19 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
   void initState() {
     Future.microtask(() => Provider.of<PaymentViewModel>(context, listen: false)
         .getMidtrans(paymentId: widget.paymentId));
-    Future.microtask(() => Provider.of<PaymentViewModel>(context, listen: false)
-        .startCountdown(context, widget.paymentId));
+    // Future.microtask(() => Provider.of<PaymentViewModel>(context, listen: false)
+    //     .startCountdown(context, widget.officeId));
 
-    // paymentViewModel?.startCountdown(context);
+    Future.microtask(
+        () => paymentViewModel?.startCountdown(context, widget.officeId));
     super.initState();
   }
 
   @override
   void dispose() {
     //It`s because you called the inherited widget inside dispose of, in you're sample this is Provider.of<"Type">
-    paymentViewModel?.stopCountdown();
+
+    Future.microtask(() => paymentViewModel?.stopCountdown());
     // if (mounted) {
     //   Future.microtask(() =>
     //       Provider.of<PaymentViewModel>(context, listen: false)
@@ -163,8 +167,13 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
         // ));
         // Navigator.pushReplacement(
         return SuccessBookingScreen(
+          price: provider.getMidtransModel.data?.paymentData.price ?? 0,
+          tax: provider.getMidtransModel.data?.paymentData.tax ?? 0,
+          discount: provider.getMidtransModel.data?.paymentData.discount ?? 0,
           totalPrice:
               provider.getMidtransModel.data?.paymentData.totalPrice ?? 0,
+          // open: provider.getMidtransModel.data?.paymentData.open ?? '',
+          // close: provider.getMidtransModel.data?.paymentData.close ?? '',
         );
 
         // );
@@ -787,9 +796,14 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                               provider.isDetailTransaksi == true
                                   ? buildDetailTransaksi(context)
                                   : Container(),
-                              // ElevatedButton(
-                              //     onPressed: () async {},
-                              //     child: Text('Refresh')),
+                              ElevatedButton(
+                                  onPressed: () async {
+                                    await provider.getMidtrans(
+                                        paymentId: widget.paymentId);
+                                    print(
+                                        provider.getMidtransModel.data!.status);
+                                  },
+                                  child: Text('Refresh')),
                             ],
                           ),
                         )

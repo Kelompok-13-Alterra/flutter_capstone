@@ -12,11 +12,19 @@ class ShowModalPayment extends StatefulWidget {
   final Function() onPressed;
   final DateTimeRange? selectedDateRange;
   final int officeId;
-  const ShowModalPayment(
-      {super.key,
-      required this.onPressed,
-      required this.selectedDateRange,
-      required this.officeId});
+  final int price;
+  // final String location;
+  // final String open;
+  // final String close;
+  const ShowModalPayment({
+    super.key,
+    required this.onPressed,
+    required this.selectedDateRange,
+    required this.officeId,
+    required this.price,
+    // required this.open,
+    // required this.close,
+  });
 
   @override
   State<ShowModalPayment> createState() => _ShowModalPaymentState();
@@ -29,7 +37,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
         children: [
           GestureDetector(
             onTap: () {
-              provider.setSelectedValue('Virtual Account BNI');
+              provider.setSelectedValue = 'Virtual Account BNI';
             },
             child: Container(
               padding: const EdgeInsets.all(12),
@@ -79,7 +87,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     groupValue: provider.selectedValue,
                     onChanged: (value) {
-                      provider.setSelectedValue(value!);
+                      provider.setSelectedValue = value!;
                     },
                   ),
                 ],
@@ -91,7 +99,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
           ),
           GestureDetector(
             onTap: () {
-              provider.setSelectedValue('Virtual Account BCA');
+              provider.setSelectedValue = 'Virtual Account BCA';
             },
             child: Container(
               padding: const EdgeInsets.all(12),
@@ -131,7 +139,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                     groupValue: provider.selectedValue,
                     onChanged: (value) {
                       setState(() {
-                        provider.setSelectedValue(value!);
+                        provider.setSelectedValue = value!;
                       });
                     },
                   ),
@@ -150,7 +158,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
         children: [
           GestureDetector(
             onTap: () {
-              provider.setSelectedValue('Transfer Bank BNI');
+              provider.setSelectedValue = 'Transfer Bank BNI';
             },
             child: Container(
               padding: const EdgeInsets.all(12),
@@ -201,7 +209,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                     groupValue: provider.selectedValue,
                     onChanged: (value) {
                       setState(() {
-                        provider.setSelectedValue(value!);
+                        provider.setSelectedValue = value!;
                       });
                     },
                   ),
@@ -214,7 +222,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
           ),
           GestureDetector(
             onTap: () {
-              provider.setSelectedValue('Transfer Bank BCA');
+              provider.setSelectedValue = 'Transfer Bank BCA';
             },
             child: Container(
               padding: const EdgeInsets.all(12),
@@ -254,7 +262,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                     groupValue: provider.selectedValue,
                     onChanged: (value) {
                       setState(() {
-                        provider.setSelectedValue(value!);
+                        provider.setSelectedValue = value!;
                       });
                     },
                   ),
@@ -300,7 +308,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                 ).copyWith(fontWeight: medium, fontSize: 12),
               ),
               Text(
-                'IDR 20.999',
+                'IDR ${widget.price}',
                 style: setTextStyle(
                   const Color(0xFF44474E),
                 ).copyWith(fontWeight: semiBold, fontSize: 14),
@@ -607,7 +615,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                                   Text(
                                     provider.isTotalPembayaranVisible
                                         ? ''
-                                        : 'IDR 23.099',
+                                        : 'IDR ${widget.price}',
                                     style:
                                         setTextStyle(NeutralColor().neutral10)
                                             .copyWith(
@@ -659,7 +667,15 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                     ),
                   ),
                   onPressed: () async {
+                    setState(() {});
+                    print(widget.officeId);
+                    print(provider.selectedValue);
+                    print(
+                        'Ini end date ${convertDateTime(widget.selectedDateRange?.end.toString() ?? '')}');
+                    print(convertDateTime(
+                        widget.selectedDateRange!.start.toString()));
                     var res = await OrderService().createOrder(
+                      context,
                       officeId: widget.officeId,
                       startDate: convertDateTime(
                           widget.selectedDateRange!.start.toString()),
@@ -675,8 +691,10 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>
-                            DetailPaymentScreen(paymentId: transactionId),
+                        builder: (context) => DetailPaymentScreen(
+                          paymentId: transactionId,
+                          officeId: widget.officeId,
+                        ),
 
                         // FutureBuilder(
                         //   future: transactionId,

@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_capstone/core/init/utils/shared_preferences.dart';
 import 'package:flutter_capstone/core/init/const/api.dart';
-import 'package:flutter/material.dart';
 
 class DetailService {
   static final Dio _dio = Dio();

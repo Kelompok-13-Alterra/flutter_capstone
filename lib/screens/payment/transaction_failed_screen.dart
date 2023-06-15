@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_capstone/screens/booking/booking_screen.dart';
+import 'package:flutter_capstone/screens/bottom_nav/bottom_nav_screen.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_capstone/screens/detail/detail_screen.dart';
@@ -22,30 +24,23 @@ class _TransactionFailedScreenState extends State<TransactionFailedScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // final args =
-    //     ModalRoute.of(context)?.settings.arguments as BookingScheduleArgument;
+    //   final args =
+    //       ModalRoute.of(context)?.settings.arguments as BookingScheduleArgument;
     return WillPopScope(
       onWillPop: () async {
-        // Navigator.pushReplacement(
-        //   context,
-        //   MaterialPageRoute(
-        //     builder: (context) => DetailScreen(
-        //       buttonRoute: null,
-        //       textButton: 'Pilih Metode Pembayaran',
-        //     ),
-        //   ),
-        // );
         Navigator.pop(context);
         // Navigator.pushReplacement(
         //   context,
         //   MaterialPageRoute(
         //     builder: (context) => DetailScreen(
+        //       buttonRoute: '/bottom-nav',
         //       textButton: 'Booking',
         //       officeId: widget.officeId,
         //       selectedDateRange: null,
-        //       buttonRoute: null,
+        //       // officeId: null,
         //     ),
         //   ),
+        //   // (route) => true,
         // );
         return false;
       },
@@ -107,7 +102,7 @@ class _TransactionFailedScreenState extends State<TransactionFailedScreen> {
                       context,
                       MaterialPageRoute(
                         builder: (context) => DetailScreen(
-                          buttonRoute: '/bottom-nav',
+                          buttonRoute: '/booking',
                           textButton: 'Booking',
                           officeId: widget.officeId,
                           selectedDateRange: null,

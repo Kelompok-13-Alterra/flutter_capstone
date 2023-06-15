@@ -1,10 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_capstone/core/init/utils/price_convert.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SuccessBookingScreen extends StatefulWidget {
+  final int price;
+  final int tax;
+  final int discount;
   final int totalPrice;
-  const SuccessBookingScreen({super.key, required this.totalPrice});
+  // final String open;
+  // final String close;
+  const SuccessBookingScreen({
+    super.key,
+    required this.totalPrice,
+    required this.price,
+    required this.tax,
+    required this.discount,
+    // required this.open,
+    // required this.close
+  });
 
   @override
   State<SuccessBookingScreen> createState() => _SuccessBookingScreenState();
@@ -197,7 +211,7 @@ class _SuccessBookingScreenState extends State<SuccessBookingScreen> {
                               ).copyWith(fontWeight: medium, fontSize: 12),
                             ),
                             Text(
-                              'IDR 20.999',
+                              'IDR ${priceConvert(widget.price)}',
                               style: setTextStyle(
                                 const Color(0xFF44474E),
                               ).copyWith(fontWeight: semiBold, fontSize: 14),
@@ -217,7 +231,7 @@ class _SuccessBookingScreenState extends State<SuccessBookingScreen> {
                               ).copyWith(fontWeight: medium, fontSize: 12),
                             ),
                             Text(
-                              'IDR 0',
+                              'IDR ${priceConvert(widget.discount)}',
                               style: setTextStyle(
                                 const Color(0xFF44474E),
                               ).copyWith(fontWeight: semiBold, fontSize: 14),
@@ -237,7 +251,7 @@ class _SuccessBookingScreenState extends State<SuccessBookingScreen> {
                               ).copyWith(fontWeight: medium, fontSize: 12),
                             ),
                             Text(
-                              'IDR 2.100',
+                              'IDR ${priceConvert(widget.tax)}',
                               style: setTextStyle(
                                 const Color(0xFF44474E),
                               ).copyWith(fontWeight: semiBold, fontSize: 14),
@@ -257,7 +271,7 @@ class _SuccessBookingScreenState extends State<SuccessBookingScreen> {
                               ).copyWith(fontWeight: medium, fontSize: 12),
                             ),
                             Text(
-                              '${widget.totalPrice}',
+                              'IDR ${priceConvert(widget.totalPrice)}',
                               style: setTextStyle(
                                 const Color(0xFF44474E),
                               ).copyWith(fontWeight: semiBold, fontSize: 14),
@@ -322,7 +336,7 @@ class _SuccessBookingScreenState extends State<SuccessBookingScreen> {
                                         fontWeight: semiBold, fontSize: 14),
                               ),
                               Text(
-                                '06:00 AM',
+                                'open',
                                 style: setTextStyle(NeutralColor().neutral10)
                                     .copyWith(
                                         fontWeight: semiBold, fontSize: 16),
@@ -347,7 +361,7 @@ class _SuccessBookingScreenState extends State<SuccessBookingScreen> {
                                         fontWeight: semiBold, fontSize: 14),
                               ),
                               Text(
-                                '02:00 PM',
+                                'close',
                                 style: setTextStyle(NeutralColor().neutral10)
                                     .copyWith(
                                         fontWeight: semiBold, fontSize: 16),
