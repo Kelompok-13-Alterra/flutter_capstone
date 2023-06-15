@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_capstone/screens/booking/booking_screen.dart';
 import 'package:flutter_capstone/screens/bottom_nav/bottom_nav_screen.dart';
 import 'package:flutter_capstone/screens/detail/detail_view_model.dart';
+import 'package:flutter_capstone/screens/review/review_view_model.dart';
 import 'package:flutter_capstone/screens/search/search_office_view_model.dart';
 import 'package:flutter_capstone/screens/search/search_screen.dart';
 import 'package:flutter_capstone/screens/edit_profile/edit_profile_screen.dart';
@@ -22,6 +23,8 @@ import 'package:flutter_capstone/screens/sign_up/signup_view_model.dart';
 import 'package:flutter_capstone/screens/splash/boarding_screen.dart';
 import 'package:flutter_capstone/screens/splash/splash_screen.dart';
 import 'package:flutter_capstone/screens/payment/payment_view_model.dart';
+import 'package:flutter_capstone/view_model/order/booked_view_model.dart';
+import 'package:flutter_capstone/view_model/order/history_view_model.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -48,6 +51,15 @@ void main() {
         ),
         ListenableProvider(
           create: (context) => DetailViewModel(),
+        ),
+        ListenableProvider(
+          create: (context) => ReviewViewModel(),
+        ),
+        ListenableProvider(
+          create: (context) => BookedViewModel(),
+        ),
+        ListenableProvider(
+          create: (context) => HistoryViewModel(),
         ),
       ],
       child: const MyApp(),

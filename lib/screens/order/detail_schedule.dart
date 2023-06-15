@@ -1,4 +1,4 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, avoid_print, duplicate_ignore
 //Ini utk reschedule
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/screens/detail/widget/bottom_book.dart';
@@ -6,6 +6,7 @@ import 'package:flutter_capstone/screens/detail/widget/detail_card.dart';
 import 'package:flutter_capstone/screens/detail/widget/fasilities.dart';
 import 'package:flutter_capstone/screens/detail/widget/image_detail.dart';
 import 'package:flutter_capstone/screens/detail/widget/office_description.dart';
+import 'package:flutter_capstone/screens/review/review_screen.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 
 class DetailScheduleScreen extends StatefulWidget {
@@ -18,13 +19,15 @@ class DetailScheduleScreen extends StatefulWidget {
 class _DetailScheduleScreenState extends State<DetailScheduleScreen> {
   @override
   Widget build(BuildContext context) {
+    final args = ModalRoute.of(context)?.settings.arguments as ReviewArguments?;
+    print('Payment ID on detail schedule: ${args!.transactionId}');
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
             // Image Swipe
             //================================================================
-            ImageDetail(),
+            const ImageDetail(),
             // Container Detail
             //================================================================
             const DetailCard(
@@ -100,8 +103,7 @@ class _DetailScheduleScreenState extends State<DetailScheduleScreen> {
                                 SizedBox(
                                   width: 127.5,
                                   height: 130,
-                                  child: Image.asset(
-                                      'assets/images/modal_bottom/retro_mac.png'),
+                                  child: Image.asset('assets/retro_mac.png'),
                                 ),
                                 const Padding(padding: EdgeInsets.only(top: 8)),
                                 Text(

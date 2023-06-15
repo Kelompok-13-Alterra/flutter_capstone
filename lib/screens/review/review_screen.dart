@@ -1,10 +1,19 @@
-// ignore_for_file: library_private_types_in_public_api, unused_field, deprecated_member_use, avoid_unnecessary_containers
+// ignore_for_file: library_private_types_in_public_api, unused_field, deprecated_member_use, avoid_unnecessary_containers, unused_local_variable, use_build_context_synchronously, prefer_typing_uninitialized_variables, no_leading_underscores_for_local_identifiers, avoid_print
 
 import 'package:flutter/material.dart';
+import 'package:flutter_capstone/screens/review/review_view_model.dart';
+import 'package:flutter_capstone/services/review/review_service.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
+import 'package:provider/provider.dart';
+
+class ReviewArguments {
+  final int transactionId;
+
+  ReviewArguments({required this.transactionId});
+}
 
 class ReviewScreen extends StatefulWidget {
   const ReviewScreen({Key? key}) : super(key: key);
@@ -14,43 +23,62 @@ class ReviewScreen extends StatefulWidget {
 }
 
 class _ReviewScreenState extends State<ReviewScreen> {
-  int _selectedFilterIndex = 0;
-  final List<String> _filters = [
-    'Terdekat',
-    'Rating Baik',
-    'Termurah',
-    'Fasilitas Lengkap'
-  ];
-  final List<Widget> _reviewList = [];
-
-  final TextEditingController _reviewController = TextEditingController();
-
-  double _rating = 0.0;
+  int selectedFilterIndex = 0;
 
   Future<void> _pickImageFromCamera() async {
-    // final picker = ImagePicker();
-    // final pickedImage = await picker.getImage(source: ImageSource.camera);
+    final picker = ImagePicker();
+    final pickedImage = await picker.getImage(source: ImageSource.camera);
   }
 
-  void _submitReview() {
-    _reviewController.clear();
-
-    setState(() {});
-  }
-
-  final ImagePicker imgPicker = ImagePicker();
-  List<XFile> imgFileList = [];
+  final ImagePicker _imgPicker = ImagePicker();
+  final List<XFile> _imgFileList = [];
 
   void selectImg() async {
-    final List<XFile> selectImg = await imgPicker.pickMultiImage();
+    final List<XFile> selectImg = await _imgPicker.pickMultiImage();
     if (selectImg.isNotEmpty) {
-      imgFileList.addAll(selectImg);
+      _imgFileList.addAll(selectImg);
     }
     setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
+    final args = ModalRoute.of(context)?.settings.arguments as ReviewArguments?;
+
+    //Provider
+    ReviewViewModel reviewProvider = Provider.of<ReviewViewModel>(context);
+    print("tes : ${args?.transactionId}");
+
+    //Submit review
+    _submitReview() async {
+      if (reviewProvider.reviewController.text.isEmpty
+          // && imgFileList.isNotEmpty
+          ) {
+        const snackBar = SnackBar(
+          content: Text("Please check what you input !"),
+        );
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      } else {
+        return ReviewService().addPosted(
+          context,
+          transactionId: args!.transactionId,
+          star: reviewProvider.rating,
+          description: reviewProvider.reviewController.text,
+          tags: ['$selectedFilterIndex'],
+        );
+      }
+      print("args : ${args?.transactionId}");
+
+      setState(() {
+        reviewProvider.reviewController.clear();
+      });
+    }
+
+    print('Id Traksaksi : ${args?.transactionId}');
+    print("desc : ${reviewProvider.reviewController.text}}");
+    print("star : ${reviewProvider.rating}");
+    print("tags : ${selectedFilterIndex}");
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
@@ -114,7 +142,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                       height: 10,
                     ),
                     RatingBar.builder(
-                      initialRating: _rating,
+                      initialRating: reviewProvider.rating,
                       minRating: 0,
                       direction: Axis.horizontal,
                       allowHalfRating: true,
@@ -125,9 +153,11 @@ class _ReviewScreenState extends State<ReviewScreen> {
                         color: SourceColor().yellow,
                       ),
                       onRatingUpdate: (rating) {
-                        setState(() {
-                          _rating = rating;
-                        });
+                        reviewProvider.onRatingUpdate(rating);
+                        // setState(() {
+                        //    rating = rating ;
+                        //   // rate = rating;
+                        // });
                       },
                     ),
                     const SizedBox(
@@ -150,45 +180,48 @@ class _ReviewScreenState extends State<ReviewScreen> {
                   alignment: Alignment.topLeft,
                   child: Wrap(
                     spacing: 8.0,
-                    children: List<Widget>.generate(_filters.length ~/ 2,
-                        (int index) {
+                    children: List<Widget>.generate(
+                        reviewProvider.filters.length ~/ 2, (int index) {
                       final firstIndex = index * 2;
                       final secondIndex = index * 2 + 1;
+                      // final firstIndex = reviewProvider.firstIndex;
+                      // final secondIndex = reviewProvider.secondIndex;
                       return Row(
                         children: [
                           ChoiceChip(
                             label: Text(
-                              _filters[firstIndex],
+                              reviewProvider.filters[firstIndex],
                               style: TextStyle(
-                                color: _selectedFilterIndex == firstIndex
+                                color: selectedFilterIndex == firstIndex
                                     ? NeutralColor().neutral100
                                     : NeutralColor().neutral60,
                               ),
                             ),
-                            selected: _selectedFilterIndex == firstIndex,
+                            selected: selectedFilterIndex == firstIndex,
                             selectedColor: SourceColor().seed,
                             onSelected: (bool selected) {
+                              //reviewProvider.onSelected(selected);
                               setState(() {
-                                _selectedFilterIndex =
-                                    selected ? firstIndex : 0;
+                                selectedFilterIndex = selected ? firstIndex : 0;
                               });
                             },
                           ),
                           const SizedBox(width: 8.0),
                           ChoiceChip(
                             label: Text(
-                              _filters[secondIndex],
+                              reviewProvider.filters[secondIndex],
                               style: TextStyle(
-                                color: _selectedFilterIndex == secondIndex
+                                color: selectedFilterIndex == secondIndex
                                     ? NeutralColor().neutral100
                                     : NeutralColor().neutral60,
                               ),
                             ),
-                            selected: _selectedFilterIndex == secondIndex,
+                            selected: selectedFilterIndex == secondIndex,
                             selectedColor: SourceColor().seed,
                             onSelected: (bool selected) {
+                              //reviewProvider.onSelectedSecondIndex(selected);
                               setState(() {
-                                _selectedFilterIndex =
+                                selectedFilterIndex =
                                     selected ? secondIndex : 0;
                               });
                             },
@@ -207,7 +240,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                 child: GridView.builder(
                   shrinkWrap: true,
                   scrollDirection: Axis.vertical,
-                  itemCount: imgFileList.length,
+                  itemCount: _imgFileList.length,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 4,
                     mainAxisSpacing: 4,
@@ -219,7 +252,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                         ClipRRect(
                           borderRadius: BorderRadius.circular(10),
                           child: Image.file(
-                            File(imgFileList[index].path),
+                            File(_imgFileList[index].path),
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -227,12 +260,14 @@ class _ReviewScreenState extends State<ReviewScreen> {
                           right: 1,
                           child: GestureDetector(
                             onTap: () {
+                              // var data;
+                              // deleteImage();
                               deleteImage(
-                                imgFileList[index],
+                                _imgFileList[index],
                               );
                             },
                             child: Image.asset(
-                              "assets/image/delete.png",
+                              "assets/images/delete.png",
                               width: 20,
                               height: 20,
                             ),
@@ -267,7 +302,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                                 width: double.infinity,
                                 height: 98,
                                 child: TextField(
-                                  controller: _reviewController,
+                                  controller: reviewProvider.reviewController,
                                   maxLines: 4,
                                   decoration: InputDecoration(
                                     hintText:
@@ -349,7 +384,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
 
   void deleteImage(data) {
     setState(() {
-      imgFileList.remove(data);
+      _imgFileList.remove(data);
     });
   }
 }
