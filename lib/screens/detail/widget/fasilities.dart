@@ -10,8 +10,8 @@ class OfficeFalicities extends StatelessWidget {
     Map<String, dynamic> facilitiesData = {
       'facilities': [
         {
-          'logo': "assets/detail/water.svg",
-          'text': 'Revil Water',
+          'logo': "assets/icons/detail/water.svg",
+          'text': 'Refill Water',
         },
         {
           'logo': "assets/detail/mic.svg",

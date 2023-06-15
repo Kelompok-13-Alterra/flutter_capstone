@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_capstone/screens/detail/detail_view_model.dart';
 import 'package:flutter_capstone/screens/home/home_view_model.dart';
 import 'package:flutter_capstone/screens/login/login_view_model.dart';
+import 'package:flutter_capstone/screens/payment/payment-view-model.dart';
 import 'package:flutter_capstone/screens/review/review_screen.dart';
 import 'package:flutter_capstone/screens/review/review_view_model.dart';
 import 'package:flutter_capstone/screens/booking/booking_screen.dart';
@@ -22,7 +23,6 @@ import 'package:flutter_capstone/screens/sign_up/sign_up_screen.dart';
 import 'package:flutter_capstone/screens/sign_up/signup_view_model.dart';
 import 'package:flutter_capstone/screens/splash/boarding_screen.dart';
 import 'package:flutter_capstone/screens/splash/splash_screen.dart';
-import 'package:flutter_capstone/screens/payment/payment-view-model.dart';
 import 'package:flutter_capstone/view_model/order/booked_view_model.dart';
 import 'package:flutter_capstone/view_model/order/history_view_model.dart';
 import 'package:provider/provider.dart';
@@ -39,6 +39,9 @@ void main() {
         ),
         ListenableProvider(
           create: (context) => SearchOfficeViewModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => DetailViewModel(),
         ),
         ListenableProvider(
           create: (context) => SignupViewModel(),

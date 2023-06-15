@@ -1,6 +1,5 @@
 // ignore_for_file: avoid_unnecessary_containers, unused_local_variable
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/screens/order/widget/order_widget.dart';
 import 'package:flutter_capstone/style/text_style.dart';

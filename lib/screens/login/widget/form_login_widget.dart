@@ -34,7 +34,10 @@ class _FormLoginState extends State<FormLogin> {
 
     @override
     void dispose() {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 768ca9f9537515a06b04c7854afde3fccd8b791d
       super.dispose();
       loginViewModel.getEmail;
       loginViewModel.getPassword;

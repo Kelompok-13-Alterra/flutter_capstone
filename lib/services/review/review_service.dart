@@ -5,7 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/init/const/api.dart';
 import 'package:flutter_capstone/init/utils/shared_preferences.dart';
-import 'package:flutter_capstone/screens/modal_bottom.dart';
+import 'package:flutter_capstone/widgets/modal_bottom.dart';
 
 class ReviewService {
   // int transactionId = 21;
