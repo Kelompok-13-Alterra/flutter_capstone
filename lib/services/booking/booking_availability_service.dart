@@ -1,4 +1,6 @@
 //Check if the date available or not
+// ignore_for_file: deprecated_member_use
+
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
@@ -33,12 +35,12 @@ class BookingAvailabilityService {
           }));
       return BookingAvailabilityModel.fromJson(response.data);
     } on DioError catch (e) {
-      print(e.response!.statusCode);
+      // print(e.response!.statusCode);
       if (e.response!.statusCode == 500) {
         // ignore: unnecessary_null_in_if_null_operators
         var selectedDateRange = args.selectedDateRange ?? null;
         // ignore: use_build_context_synchronously
-        return ModalBottomSheet(context,
+        return modalBottomSheet(context,
             img: 'assets/images/modal_bottom/retro_mac_error.png',
             title: 'Waduh?!',
             desc:

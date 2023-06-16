@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_capstone/model/midtrans/midtrans_model.dart';
-import 'package:flutter_capstone/screens/bottom_nav/bottom_nav_screen.dart';
 import 'dart:async';
 import 'package:flutter_capstone/screens/payment/transaction_failed_screen.dart';
 import 'package:flutter_capstone/services/midtrans/midtrans_service.dart';
@@ -128,7 +127,7 @@ class PaymentViewModel extends ChangeNotifier {
   // }
 
   void startCountdown(BuildContext context, int officeId) {
-    _timerOffice = DateTime.now().add(const Duration(minutes: 10));
+    _timerOffice = DateTime.now().add(const Duration(minutes: 6));
     // _timer?.cancel();
 
     // Inisialisasi _timerOffice saat countdown dimulai
@@ -157,7 +156,8 @@ class PaymentViewModel extends ChangeNotifier {
   }
 
   String? getTimeRemaining() {
-    Duration remaining = _timerOffice?.difference(DateTime.now()) ?? Duration();
+    Duration remaining =
+        _timerOffice?.difference(DateTime.now()) ?? const Duration();
     int hours = remaining.inHours;
     int minutes = remaining.inMinutes % 60;
     int seconds = remaining.inSeconds % 60;
@@ -174,6 +174,7 @@ class PaymentViewModel extends ChangeNotifier {
       _midtransModel =
           await midtransService.getPayment(transactionId: paymentId);
       notifyListeners();
+      // print(_midtransModel?.data?.office);
       return _midtransModel;
     } catch (e) {
       rethrow;

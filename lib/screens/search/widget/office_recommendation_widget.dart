@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 //import 'package:flutter_capstone/model/search_office/search_model.dart';
 //import 'package:office_booking/model/search_office/search_model.dart';
 import 'package:flutter_capstone/style/text_style.dart';
+import 'package:flutter_capstone/core/init/utils/open_close.dart';
 
 class OfficeRecommendationWidget extends StatelessWidget {
   final String namaKantor;
@@ -18,6 +19,8 @@ class OfficeRecommendationWidget extends StatelessWidget {
   final String imgTime;
   final String time;
   final int price;
+  final String open;
+  final String close;
 
   const OfficeRecommendationWidget({
     super.key,
@@ -33,6 +36,8 @@ class OfficeRecommendationWidget extends StatelessWidget {
     required this.time,
     required this.imgTime,
     required this.price,
+    required this.open,
+    required this.close,
   });
 
   @override
@@ -86,9 +91,9 @@ class OfficeRecommendationWidget extends StatelessWidget {
                         Container(
                           alignment: Alignment.topRight,
                           decoration: BoxDecoration(
-                            color: isStatus == false
-                                ? WarningColor().red
-                                : SuccessColor().green,
+                            color: checkOpeningStatus(open, close)
+                                ? SuccessColor().green
+                                : WarningColor().red,
                             borderRadius: BorderRadius.circular(12),
                           ),
                           // decoration: BoxDecoration(
@@ -101,7 +106,9 @@ class OfficeRecommendationWidget extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(
                                 vertical: 4, horizontal: 16),
                             child: Text(
-                              statusKantor,
+                              checkOpeningStatus(open, close)
+                                  ? 'Open'
+                                  : 'Close',
                               style: setTextStyle(SourceColor().white).copyWith(
                                 fontSize: 13,
                                 fontWeight: medium,

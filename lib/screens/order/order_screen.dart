@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/screens/order/booked_screen.dart';
+import 'package:flutter_capstone/screens/order/booked_view_model.dart';
 import 'package:flutter_capstone/screens/order/history_screen.dart';
+import 'package:flutter_capstone/screens/order/history_view_model.dart';
 import 'package:flutter_capstone/style/text_style.dart';
+import 'package:provider/provider.dart';
 
 class OrderScreen extends StatefulWidget {
   const OrderScreen({Key? key}) : super(key: key);
@@ -20,6 +23,14 @@ class _OrderScreenState extends State<OrderScreen>
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
     _tabController.addListener(_handleTabSelection);
+
+    final historyViewModel =
+        Provider.of<HistoryViewModel>(context, listen: false);
+    historyViewModel.getOffice();
+
+    final bookedViewModel =
+        Provider.of<BookedViewModel>(context, listen: false);
+    bookedViewModel.getOffice();
   }
 
   @override
@@ -40,25 +51,16 @@ class _OrderScreenState extends State<OrderScreen>
       appBar: AppBar(
         elevation: 0.0,
         backgroundColor: SourceColor().white,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              'Orders',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: medium,
-                color: SourceColor().black,
-              ),
-            ),
-            IconButton(
-              icon: Icon(Icons.more_vert, color: SourceColor().black),
-              onPressed: () {
-                // Aksi ketika tombol tanda titik tiga ditekan
-              },
-            ),
-          ],
+        // centerTitle: false,
+        automaticallyImplyLeading: false,
+        title: Text(
+          'Orders',
+          style: setTextStyle(SourceColor().black).copyWith(
+            fontSize: 16,
+            fontWeight: medium,
+          ),
         ),
+        leading: null,
       ),
       body: Container(
         color: SourceColor().white,

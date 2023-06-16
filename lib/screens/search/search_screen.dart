@@ -187,6 +187,8 @@ class _SearchScreenState extends State<SearchScreen> {
                                         location: data?.location ?? "",
                                         imgTime: iconImage[3],
                                         time: '${data?.open} - ${data?.close}',
+                                        open: '${data?.open}',
+                                        close: '${data?.close}',
                                         price: data?.price ?? 0,
                                       );
                                     },
@@ -196,13 +198,13 @@ class _SearchScreenState extends State<SearchScreen> {
                             ),
                 );
               } else {
-                return const Padding(
-                  padding: EdgeInsets.only(top: 15),
+                return Padding(
+                  padding: const EdgeInsets.only(top: 15),
                   child: Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
+                      children: const [
                         CircularProgressIndicator(),
                       ],
                     ),

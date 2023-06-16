@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/screens/booking/booking_screen.dart';
 import 'package:flutter_capstone/screens/payment/widget/showmodal_payment.dart';
@@ -41,8 +43,8 @@ class _BottomBookState extends State<BottomBook> {
 
   @override
   Widget build(BuildContext context) {
-    print('Office id ${widget.officeId}');
-    print('date range in bottom book ${widget.selectedDateRange}');
+    // print('Office id ${widget.officeId}');
+    // print('date range in bottom book ${widget.selectedDateRange}');
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: FractionallySizedBox(

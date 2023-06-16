@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/style/text_style.dart';
+import 'package:flutter_html/flutter_html.dart';
 
 Widget cardAllBookingNotificationWidget(BuildContext context) {
   return Column(
     children: [
+      Html(
+          data: "<p>My normal text <b>with bold part</b> in any place</p>",
+          style: {
+            "p": Style(fontSize: FontSize.large, fontWeight: FontWeight.normal),
+            "b": Style(
+              fontWeight: FontWeight.bold,
+            ),
+          }),
       SizedBox(
         height: 124,
         child: Card(
@@ -61,7 +70,7 @@ Widget cardAllBookingNotificationWidget(BuildContext context) {
                   bottom: 31.96,
                 ),
                 child: Image.asset(
-                  "assets/123.png",
+                  "assets/images/notification/success.png",
                   width: 70,
                   height: 60.07,
                 ),
@@ -115,7 +124,7 @@ Widget cardAllBookingNotificationWidget(BuildContext context) {
                   bottom: 31.96,
                 ),
                 child: Image.asset(
-                  "assets/images/notification/120.png",
+                  "assets/images/notification/process.png",
                   width: 70,
                   height: 60.07,
                 ),
@@ -192,7 +201,7 @@ Widget cardAllBookingNotificationWidget(BuildContext context) {
                   bottom: 31.96,
                 ),
                 child: Image.asset(
-                  "assets/images/notification/79.png",
+                  "assets/images/notification/first_order.png",
                   width: 70,
                   height: 60.07,
                 ),
@@ -246,7 +255,7 @@ Widget cardAllBookingNotificationWidget(BuildContext context) {
                   bottom: 31.96,
                 ),
                 child: Image.asset(
-                  "assets/images/modal_bottom/retro_mac.png",
+                  "assets/images/notification/welcome.png",
                   width: 70,
                   height: 60.07,
                 ),

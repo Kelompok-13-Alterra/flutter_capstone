@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_capstone/core/init/utils/price_convert.dart';
 import 'package:flutter_capstone/screens/detail/detail_view_model.dart';
 import 'package:flutter_capstone/style/text_style.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class DetailCard extends StatefulWidget {
@@ -142,7 +141,7 @@ class _DetailCardState extends State<DetailCard> {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(12),
                 child: Image.asset(
-                  'assets/home/maps.png',
+                  'assets/images/home/maps.png',
                   fit: BoxFit.fill,
                 ),
               ),

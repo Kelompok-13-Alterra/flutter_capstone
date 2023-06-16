@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 
-ModalBottomSheet(
+modalBottomSheet(
   BuildContext context, {
   required String img,
   required String title,
@@ -12,6 +12,10 @@ ModalBottomSheet(
   showModalBottomSheet(
       context: context,
       isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+        top: Radius.circular(15),
+      )),
       builder: (context) {
         return Padding(
           padding: const EdgeInsets.all(16),
