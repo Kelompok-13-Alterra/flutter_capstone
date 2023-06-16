@@ -1,4 +1,4 @@
-// ignore_for_file: unused_catch_clause, empty_catches, deprecated_member_use
+// ignore_for_file: unused_catch_clause, empty_catches, deprecated_member_use, avoid_print
 
 import 'package:dio/dio.dart';
 import 'package:flutter_capstone/core/init/const/api.dart';

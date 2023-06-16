@@ -1,4 +1,4 @@
-// ignore_for_file: no_leading_underscores_for_local_identifiers
+// ignore_for_file: no_leading_underscores_for_local_identifiers, unused_import, unused_field
 
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/model/profile/profile_model.dart';
@@ -11,8 +11,9 @@ import 'package:image_picker/image_picker.dart';
 
 class EditProfileArguments {
   final ProfileModel? profileModel;
+  final int? userId;
 
-  EditProfileArguments({this.profileModel});
+  EditProfileArguments({this.profileModel, this.userId});
 }
 
 class EditProfileScreen extends StatefulWidget {

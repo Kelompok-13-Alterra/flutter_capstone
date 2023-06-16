@@ -1,4 +1,4 @@
-// ignore_for_file: file_names, avoid_print, duplicate_ignore
+// ignore_for_file: file_names, avoid_print, avoid_print, duplicate_ignore
 //Ini utk reschedule
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/screens/detail/widget/bottom_book.dart';

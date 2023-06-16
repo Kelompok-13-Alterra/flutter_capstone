@@ -40,7 +40,7 @@ class BookingAvailabilityService {
         // ignore: unnecessary_null_in_if_null_operators
         var selectedDateRange = args.selectedDateRange ?? null;
         // ignore: use_build_context_synchronously
-        return modalBottomSheet(context,
+        return ModalBottomSheet(context,
             img: 'assets/images/modal_bottom/retro_mac_error.png',
             title: 'Waduh?!',
             desc:

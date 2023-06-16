@@ -36,7 +36,7 @@ class ReviewService {
       print("tags : ${tags}");
       if (response.statusCode == 201) {
         print("Berhasil ${response.data}");
-        return modalBottomSheet(
+        return ModalBottomSheet(
           context,
           img: 'assets/images/success_to_rate.png',
           title: 'Yey, kamu berhasil menilai office!',
@@ -52,7 +52,7 @@ class ReviewService {
     } on DioError catch (e) {
       print(e.response?.data);
       if (e.response!.statusCode == 500) {
-        return modalBottomSheet(
+        return ModalBottomSheet(
           context,
           img: 'assets/retro_mac.png',
           title: 'Waduh?!',

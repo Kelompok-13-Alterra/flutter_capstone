@@ -43,7 +43,7 @@ class OrderService {
       if (e.response!.statusCode == 500) {
         var selectedDateRange = args?.selectedDateRange ?? null;
         // ignore: use_build_context_synchronously
-        return modalBottomSheet(context,
+        return ModalBottomSheet(context,
             img: 'assets/images/modal_bottom/retro_mac_error.png',
             title: 'Waduh?!',
             desc:
