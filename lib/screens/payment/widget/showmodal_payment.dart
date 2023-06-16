@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/core/init/utils/date_convert.dart';
 import 'package:flutter_capstone/services/order/order_service.dart';
@@ -685,9 +687,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                     );
 
                     var transactionId = res.data.idTransaction;
-                    // Navigator.pop(context);
 
-                    // ignore: use_build_context_synchronously
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -697,42 +697,6 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                           selectedDateRange: convertDateTime(
                               widget.selectedDateRange!.start.toString()),
                         ),
-
-                        // FutureBuilder(
-                        //   future: transactionId,
-                        //   builder: (context, snapshot) {
-                        //     print('ID Transaction: ${snapshot.data}');
-                        //     if (snapshot.hasData) {
-                        //       return DetailPaymentScreen(
-                        //           // ignore: null_check_always_fails
-                        //           paymentId: snapshot.data!);
-                        //     } else {
-                        //       return Scaffold(
-                        //         appBar: AppBar(
-                        //           iconTheme:
-                        //               const IconThemeData(color: Colors.black),
-                        //           title: Text(
-                        //             'Detail Pembayaran',
-                        //             style:
-                        //                 setTextStyle(NeutralColor().neutral12)
-                        //                     .copyWith(
-                        //                         fontWeight: semiBold,
-                        //                         fontSize: 16),
-                        //           ),
-                        //           backgroundColor: Colors.transparent,
-                        //           elevation: 0,
-                        //         ),
-                        //         body: Container(
-                        //           color: Colors.white,
-                        //           child: const Center(
-                        //             child:
-                        //                 CircularProgressIndicator(), // Tampilkan loading indicator
-                        //           ),
-                        //         ),
-                        //       );
-                        //     }
-                        //   },
-                        // ),
                       ),
                     );
                   },
