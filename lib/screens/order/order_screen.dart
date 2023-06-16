@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/screens/order/booked_screen.dart';
+import 'package:flutter_capstone/screens/order/booked_view_model.dart';
 import 'package:flutter_capstone/screens/order/history_screen.dart';
+import 'package:flutter_capstone/screens/order/history_view_model.dart';
 import 'package:flutter_capstone/style/text_style.dart';
-import 'package:flutter_capstone/view_model/order/history_view_model.dart';
-import 'package:flutter_capstone/view_model/order/booked_view_model.dart';
 import 'package:provider/provider.dart';
 
 class OrderScreen extends StatefulWidget {
