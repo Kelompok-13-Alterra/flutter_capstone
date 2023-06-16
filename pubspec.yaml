@@ -35,7 +35,7 @@ dependencies:
   email_validator: ^2.1.17
   flutter:
     sdk: flutter
-  flutter_launcher_icons: ^0.13.1
+  
   flutter_html: ^3.0.0-alpha.3
   flutter_rating_bar: ^4.0.1
   flutter_svg: ^2.0.5
@@ -51,6 +51,16 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: ^0.13.1
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/logo/logo_foreground.png"
+  adaptive_icon_background: "#FFFFFF"
+  adaptive_icon_foreground: "assets/logo/logo_foreground.png"
+
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -69,18 +79,23 @@ flutter:
     - assets/icons/profile/
     - assets/icons/detail/
     - assets/icons/errors/
+    - assets/icons/rating/
     - assets/icons/office_card/
     - assets/icons/payment/
     - assets/icons/bottom_navigation_bar/
+    - assets/icons/progress_indicator/
 
     - assets/images/
     - assets/images/notification/
     - assets/images/profile/
     - assets/images/office_image/
     - assets/images/modal_bottom/
-    - assets/home/
-    - assets/on_boarding/
-    - assets/progress_indicator/
+    - assets/images/home/
+    - assets/images/on_boarding/
+    - assets/images/detail/
+    - assets/images/rating/
+    
+    - assets/logo/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
   # For details regarding adding assets from package dependencies, see

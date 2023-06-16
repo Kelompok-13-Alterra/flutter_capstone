@@ -9,8 +9,13 @@ import 'payment_view_model.dart';
 class DetailPaymentScreen extends StatefulWidget {
   final int paymentId;
   final int officeId;
-  const DetailPaymentScreen(
-      {super.key, required this.paymentId, required this.officeId});
+  final String selectedDateRange;
+  const DetailPaymentScreen({
+    super.key,
+    required this.paymentId,
+    required this.officeId,
+    required this.selectedDateRange,
+  });
 
   @override
   State<DetailPaymentScreen> createState() => _DetailPaymentScreenState();
@@ -40,9 +45,10 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
   @override
   void dispose() {
     //It`s because you called the inherited widget inside dispose of, in you're sample this is Provider.of<"Type">
-
-    Future.microtask(() => paymentViewModel?.stopCountdown());
-    // if (mounted) {
+    if (mounted) {
+      Future.microtask(() => paymentViewModel?.stopCountdown());
+    }
+    //
     //   Future.microtask(() =>
     //       Provider.of<PaymentViewModel>(context, listen: false)
     //           .stopCountdown());
@@ -167,13 +173,9 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
         // ));
         // Navigator.pushReplacement(
         return SuccessBookingScreen(
-          price: provider.getMidtransModel.data?.paymentData.price ?? 0,
-          tax: provider.getMidtransModel.data?.paymentData.tax ?? 0,
-          discount: provider.getMidtransModel.data?.paymentData.discount ?? 0,
-          totalPrice:
-              provider.getMidtransModel.data?.paymentData.totalPrice ?? 0,
-          // open: provider.getMidtransModel.data?.paymentData.open ?? '',
-          // close: provider.getMidtransModel.data?.paymentData.close ?? '',
+          bookingData: provider.getMidtransModel.data,
+          dateData: widget.selectedDateRange,
+          // dateData: sel
         );
 
         // );
@@ -243,7 +245,7 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(12),
                                 child: Image.asset(
-                                  "assets/home/office-list.jpg",
+                                  "assets/images/home/office-list.jpg",
                                   fit: BoxFit.fill,
                                 ),
                               ),
@@ -543,217 +545,6 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                             ],
                           ),
                         ),
-                        // SliverList(delegate: sliver)
-                        // FutureBuilder(
-                        //   future: MidtransService()
-                        //       .getPayment(transactionId: widget.paymentId),
-                        //   builder: (context, AsyncSnapshot snapshot) {
-                        //     if (snapshot.hasData) {
-                        //       print(snapshot);
-                        //       // var res = MidtransService()
-                        //       //     .getPayment(transactionId: widget.paymentId);
-
-                        //       // res.then((value) {
-                        //       //   print('Hello ${value.data.status}');
-                        //       //   provider.setTransactionId = widget.paymentId;
-                        //       //   provider.setRekeningValue =
-                        //       //       value.data.paymentData.vaNumber;
-                        //       //   provider.setPaymentStatus = value.data.status;
-                        //       //   provider.setPrice =
-                        //       //       value.data.paymentData.price;
-                        //       //   provider.setDiscount =
-                        //       //       value.data.paymentData.discount;
-                        //       //   provider.setTax = value.data.paymentData.tax;
-                        //       //   provider.setTotalPrice =
-                        //       //       value.data.paymentData.totalPrice;
-                        //       // });
-
-                        //       return Container(
-                        //         padding: const EdgeInsets.all(16),
-                        //         width: double.infinity,
-                        //         decoration: BoxDecoration(
-                        //           borderRadius: const BorderRadius.all(
-                        //               Radius.circular(4)),
-                        //           border: Border.all(
-                        //             color: NeutralColor().neutral90,
-                        //             width: 1.0,
-                        //           ),
-                        //         ),
-                        //         child: Column(
-                        //           crossAxisAlignment: CrossAxisAlignment.start,
-                        //           children: [
-                        //             Row(
-                        //               children: [
-                        //                 SvgPicture.asset(
-                        //                     'assets/icons/payment/BNI.svg'),
-                        //                 const SizedBox(
-                        //                   width: 12,
-                        //                 ),
-                        //                 Column(
-                        //                   crossAxisAlignment:
-                        //                       CrossAxisAlignment.start,
-                        //                   children: [
-                        //                     Text(
-                        //                       'BNI VA',
-                        //                       style: setTextStyle(
-                        //                               NeutralColor().neutral10)
-                        //                           .copyWith(
-                        //                               fontWeight: medium,
-                        //                               fontSize: 16),
-                        //                     ),
-                        //                     Text(
-                        //                       'PT OFFICE BUDDY',
-                        //                       style: setTextStyle(
-                        //                               NeutralColor().neutral50)
-                        //                           .copyWith(
-                        //                               fontWeight: semiBold,
-                        //                               fontSize: 11),
-                        //                     ),
-                        //                   ],
-                        //                 ),
-                        //               ],
-                        //             ),
-                        //             const SizedBox(
-                        //               height: 18,
-                        //             ),
-                        //             Container(
-                        //               padding: const EdgeInsets.symmetric(
-                        //                   horizontal: 16, vertical: 14),
-                        //               decoration: const BoxDecoration(
-                        //                 borderRadius: BorderRadius.all(
-                        //                   Radius.circular(16),
-                        //                 ),
-                        //                 color: Color(0xFFE8F2FF),
-                        //               ),
-                        //               child: Row(
-                        //                 mainAxisAlignment:
-                        //                     MainAxisAlignment.spaceBetween,
-                        //                 children: [
-                        //                   Text(
-                        //                     provider.getRekening,
-                        //                     style: setTextStyle(
-                        //                             NeutralColor().neutral10)
-                        //                         .copyWith(
-                        //                             fontWeight: semiBold,
-                        //                             fontSize: 22),
-                        //                   ),
-                        //                   ElevatedButton(
-                        //                     style: ButtonStyle(
-                        //                       backgroundColor:
-                        //                           MaterialStateProperty.all<
-                        //                                   Color>(
-                        //                               Colors.transparent),
-                        //                       elevation:
-                        //                           const MaterialStatePropertyAll(
-                        //                               0),
-                        //                       shape: MaterialStateProperty.all<
-                        //                           RoundedRectangleBorder>(
-                        //                         RoundedRectangleBorder(
-                        //                           borderRadius:
-                        //                               BorderRadius.circular(50),
-                        //                           side: BorderSide(
-                        //                               color: SourceColor().seed,
-                        //                               width: 1),
-                        //                         ),
-                        //                       ),
-                        //                     ),
-                        //                     onPressed: () {
-                        //                       provider
-                        //                           .copyRekening(context);
-                        //                     },
-                        //                     child: Text(
-                        //                       'Salin',
-                        //                       style: setTextStyle(
-                        //                               SourceColor().seed)
-                        //                           .copyWith(
-                        //                               fontWeight: semiBold,
-                        //                               fontSize: 11),
-                        //                     ),
-                        //                   ),
-                        //                 ],
-                        //               ),
-                        //             ),
-                        //             const SizedBox(
-                        //               height: 16,
-                        //             ),
-                        //             // Detail Jumlaj Transfer
-                        //             //====================================================
-                        //             Text(
-                        //               'Jumlah Transfer',
-                        //               style: setTextStyle(NeutralVariantColor()
-                        //                       .neutralVariant30)
-                        //                   .copyWith(
-                        //                       fontWeight: semiBold,
-                        //                       fontSize: 14),
-                        //             ),
-                        //             const SizedBox(
-                        //               height: 5,
-                        //             ),
-                        //             Container(
-                        //               padding: const EdgeInsets.symmetric(
-                        //                   horizontal: 16, vertical: 14),
-                        //               decoration: const BoxDecoration(
-                        //                 borderRadius: BorderRadius.all(
-                        //                   Radius.circular(16),
-                        //                 ),
-                        //                 color: Color(0xFFE8F2FF),
-                        //               ),
-                        //               child: Row(
-                        //                 mainAxisAlignment:
-                        //                     MainAxisAlignment.spaceBetween,
-                        //                 children: [
-                        //                   Text(
-                        //                     paymentViewModel.jumlahTransfer,
-                        //                     style: setTextStyle(
-                        //                             NeutralColor().neutral10)
-                        //                         .copyWith(
-                        //                             fontWeight: semiBold,
-                        //                             fontSize: 22),
-                        //                   ),
-                        //                   ElevatedButton(
-                        //                     style: ButtonStyle(
-                        //                       backgroundColor:
-                        //                           MaterialStateProperty.all<
-                        //                                   Color>(
-                        //                               Colors.transparent),
-                        //                       elevation:
-                        //                           const MaterialStatePropertyAll(
-                        //                               0),
-                        //                       shape: MaterialStateProperty.all<
-                        //                           RoundedRectangleBorder>(
-                        //                         RoundedRectangleBorder(
-                        //                           borderRadius:
-                        //                               BorderRadius.circular(50),
-                        //                           side: BorderSide(
-                        //                               color: SourceColor().seed,
-                        //                               width: 1),
-                        //                         ),
-                        //                       ),
-                        //                     ),
-                        //                     onPressed: () {
-                        //                       paymentViewModel
-                        //                           .copyJumlahTransfer(context);
-                        //                     },
-                        //                     child: Text(
-                        //                       'Salin',
-                        //                       style: setTextStyle(
-                        //                               SourceColor().seed)
-                        //                           .copyWith(
-                        //                               fontWeight: semiBold,
-                        //                               fontSize: 11),
-                        //                     ),
-                        //                   )
-                        //                 ],
-                        //               ),
-                        //             )
-                        //           ],
-                        //         ),
-                        //       );
-                        //     } else {
-                        //       return CircularProgressIndicator();
-                        //     }
-                        //   },
-                        // ),
 
                         const SizedBox(
                           height: 16,

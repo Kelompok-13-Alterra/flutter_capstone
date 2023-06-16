@@ -49,7 +49,7 @@ class _HistoryOrderScreenState extends State<HistoryOrderScreen> {
 
                     //office.listHistory[index].id
                     return OrderWidget(
-                      urlImg: 'assets/office1.png',
+                      urlImg: 'assets/images/detail/office1.png',
                       title: office.listHistory[index].office.name,
                       rating: 4.6,
                       type: office.listHistory[index].office.type,

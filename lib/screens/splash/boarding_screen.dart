@@ -74,19 +74,19 @@ class _OnBoardingScreenState extends State<BoardingScreen> {
   Map<String, dynamic> boardingData = {
     'boarding': [
       {
-        'img': 'assets/on_boarding/illustration1.png',
+        'img': 'assets/images/on_boarding/illustration1.png',
         'judul': 'Pesan Kantor atau Co-Working Space menjadi Mudah',
         'deskripsi':
             'Kamu ga perlu repot ke tempatnya untuk daftarnya! Daftar di sini dan semuanya beres'
       },
       {
-        'img': 'assets/on_boarding/illustration2.png',
+        'img': 'assets/images/on_boarding/illustration2.png',
         'judul': 'Ga Harus Pake Credit Card',
         'deskripsi':
             'Booking ga perlu cartu credit, kamu bisa menggunakan metode pembayaran seperti e-wallet dan virtual account'
       },
       {
-        'img': 'assets/on_boarding/illustration3.png',
+        'img': 'assets/images/on_boarding/illustration3.png',
         'judul': 'Daftar Secara Individu atau Wakilkan Perusahaan',
         'deskripsi':
             'Kamu bisa booking atau daftar secara individu atau perusahana yang kamu wakilkan untuk pesan office atau co-wroking space'

@@ -40,7 +40,7 @@ class _BackgroundWidgetState extends State<BackgroundWidget> {
                   child: Align(
                     alignment: Alignment.bottomCenter,
                     child: SvgPicture.asset(
-                      "assets/home/background-homescreen.svg",
+                      "assets/images/home/background-homescreen.svg",
                       fit: BoxFit.none,
                     ),
                   ),
@@ -99,7 +99,7 @@ class _BackgroundWidgetState extends State<BackgroundWidget> {
                           Navigator.pushNamed(context, '/notification');
                         },
                         child: SvgPicture.asset(
-                          "assets/home/notification-home.svg",
+                          "assets/images/home/notification-home.svg",
                           height: 32,
                           width: 32,
                         ),
@@ -156,7 +156,7 @@ class _BackgroundWidgetState extends State<BackgroundWidget> {
                             child: Row(
                               children: [
                                 SvgPicture.asset(
-                                  'assets/home/icon-location.svg',
+                                  'assets/images/home/icon-location.svg',
                                   height: 24,
                                   width: 24,
                                 ),
@@ -169,7 +169,7 @@ class _BackgroundWidgetState extends State<BackgroundWidget> {
                                   ),
                                 ),
                                 SvgPicture.asset(
-                                  'assets/home/icon-right.svg',
+                                  'assets/images/home/icon-right.svg',
                                   height: 24,
                                   width: 24,
                                 ),
@@ -192,7 +192,7 @@ class _BackgroundWidgetState extends State<BackgroundWidget> {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(12),
                                 child: Image.asset(
-                                  'assets/home/maps.png',
+                                  'assets/images/home/maps.png',
                                   fit: BoxFit.cover,
                                 ),
                               ),

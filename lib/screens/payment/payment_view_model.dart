@@ -127,7 +127,7 @@ class PaymentViewModel extends ChangeNotifier {
   // }
 
   void startCountdown(BuildContext context, int officeId) {
-    _timerOffice = DateTime.now().add(const Duration(seconds: 3));
+    _timerOffice = DateTime.now().add(const Duration(minutes: 6));
     // _timer?.cancel();
 
     // Inisialisasi _timerOffice saat countdown dimulai
@@ -174,6 +174,7 @@ class PaymentViewModel extends ChangeNotifier {
       _midtransModel =
           await midtransService.getPayment(transactionId: paymentId);
       notifyListeners();
+      // print(_midtransModel?.data?.office);
       return _midtransModel;
     } catch (e) {
       rethrow;

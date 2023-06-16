@@ -171,7 +171,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   child: const CardsProfileWidget(
                                     cardColor: Color(0xffF2F6FF),
                                     icon: AssetImage(
-                                      "assets/images/profile/Image_total_kantor.png",
+                                      "assets/images/profile/image_total_kantor.png",
                                     ),
                                     title: 'Total Kantor',
                                     desc: 'yang kamu kunjungi',
@@ -185,7 +185,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   child: const CardsProfileWidget(
                                     cardColor: Color(0xffFFFCF5),
                                     icon: AssetImage(
-                                      "assets/images/profile/Image_total_co-working.png",
+                                      "assets/images/profile/image_total_co-working.png",
                                     ),
                                     title: 'Total Co-working',
                                     desc: 'yang kamu kunjungi',

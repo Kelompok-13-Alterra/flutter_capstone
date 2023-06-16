@@ -289,7 +289,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                               );
                             },
                             child: Image.asset(
-                              "assets/images/delete.png",
+                              "assets/icons/rating/delete.png",
                               width: 20,
                               height: 20,
                             ),

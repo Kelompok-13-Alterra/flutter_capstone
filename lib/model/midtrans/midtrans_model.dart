@@ -4,6 +4,8 @@
 
 import 'dart:convert';
 
+import 'package:flutter_capstone/model/home/home_model.dart';
+
 MidtransPaymentModel midtransPaymentModelFromJson(String str) =>
     MidtransPaymentModel.fromJson(json.decode(str));
 
@@ -35,23 +37,27 @@ class Data {
   String paymentType;
   PaymentData paymentData;
   String status;
+  Office office;
 
   Data({
     required this.paymentType,
     required this.paymentData,
     required this.status,
+    required this.office,
   });
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
         paymentType: json["payment_type"],
         paymentData: PaymentData.fromJson(json["payment_data"]),
         status: json["status"],
+        office: Office.fromJson(json["office"]),
       );
 
   Map<String, dynamic> toJson() => {
         "payment_type": paymentType,
         "payment_data": paymentData.toJson(),
         "status": status,
+        "office": office.toJson(),
       };
 }
 

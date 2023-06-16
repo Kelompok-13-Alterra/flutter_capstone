@@ -694,6 +694,8 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                         builder: (context) => DetailPaymentScreen(
                           paymentId: transactionId,
                           officeId: widget.officeId,
+                          selectedDateRange: convertDateTime(
+                              widget.selectedDateRange!.start.toString()),
                         ),
 
                         // FutureBuilder(

@@ -38,7 +38,7 @@ class ReviewService {
         print("Berhasil ${response.data}");
         return modalBottomSheet(
           context,
-          img: 'assets/images/success_to_rate.png',
+          img: 'assets/images/rating/success_to_rate.png',
           title: 'Yey, kamu berhasil menilai office!',
           desc:
               'Selamat! kamu berhasil menilai office! Silahkan lanjutkan submit!',

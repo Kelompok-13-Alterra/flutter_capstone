@@ -1,23 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/core/init/utils/price_convert.dart';
+import 'package:flutter_capstone/model/home/home_model.dart';
+import 'package:flutter_capstone/model/midtrans/midtrans_model.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SuccessBookingScreen extends StatefulWidget {
-  final int price;
-  final int tax;
-  final int discount;
-  final int totalPrice;
-  // final String open;
-  // final String close;
-  const SuccessBookingScreen({
+  Data? bookingData;
+  String dateData;
+  SuccessBookingScreen({
     super.key,
-    required this.totalPrice,
-    required this.price,
-    required this.tax,
-    required this.discount,
-    // required this.open,
-    // required this.close
+    required this.bookingData,
+    required this.dateData,
   });
 
   @override
@@ -90,7 +84,7 @@ class _SuccessBookingScreenState extends State<SuccessBookingScreen> {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(12),
                           child: Image.asset(
-                            "assets/home/office-list.jpg",
+                            "assets/images/home/office-list.jpg",
                             fit: BoxFit.fill,
                           ),
                         ),
@@ -102,7 +96,7 @@ class _SuccessBookingScreenState extends State<SuccessBookingScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Wellspace',
+                            widget.bookingData?.office.name ?? '',
                             style: setTextStyle(NeutralColor().neutral20)
                                 .copyWith(fontWeight: semiBold, fontSize: 16),
                           ),
@@ -141,7 +135,8 @@ class _SuccessBookingScreenState extends State<SuccessBookingScreen> {
                                 width: 5,
                               ),
                               Text(
-                                "Co-Working Space",
+                                widget.bookingData?.office.type.toUpperCase() ??
+                                    '',
                                 style: setTextStyle(NeutralColor().neutral60)
                                     .copyWith(
                                         fontWeight: semiBold, fontSize: 12),
@@ -162,7 +157,7 @@ class _SuccessBookingScreenState extends State<SuccessBookingScreen> {
                                 width: 5,
                               ),
                               Text(
-                                'Sunter Agung - 400 M',
+                                widget.bookingData?.office.location ?? '',
                                 style: setTextStyle(NeutralColor().neutral60)
                                     .copyWith(
                                         fontWeight: semiBold, fontSize: 12),
@@ -211,7 +206,7 @@ class _SuccessBookingScreenState extends State<SuccessBookingScreen> {
                               ).copyWith(fontWeight: medium, fontSize: 12),
                             ),
                             Text(
-                              'IDR ${priceConvert(widget.price)}',
+                              'IDR ${priceConvert(widget.bookingData?.paymentData.price ?? 0)}',
                               style: setTextStyle(
                                 const Color(0xFF44474E),
                               ).copyWith(fontWeight: semiBold, fontSize: 14),
@@ -231,7 +226,7 @@ class _SuccessBookingScreenState extends State<SuccessBookingScreen> {
                               ).copyWith(fontWeight: medium, fontSize: 12),
                             ),
                             Text(
-                              'IDR ${priceConvert(widget.discount)}',
+                              'IDR ${priceConvert(widget.bookingData?.paymentData.discount ?? 0)}',
                               style: setTextStyle(
                                 const Color(0xFF44474E),
                               ).copyWith(fontWeight: semiBold, fontSize: 14),
@@ -251,7 +246,7 @@ class _SuccessBookingScreenState extends State<SuccessBookingScreen> {
                               ).copyWith(fontWeight: medium, fontSize: 12),
                             ),
                             Text(
-                              'IDR ${priceConvert(widget.tax)}',
+                              'IDR ${priceConvert(widget.bookingData?.paymentData.tax ?? 0)}',
                               style: setTextStyle(
                                 const Color(0xFF44474E),
                               ).copyWith(fontWeight: semiBold, fontSize: 14),
@@ -271,7 +266,7 @@ class _SuccessBookingScreenState extends State<SuccessBookingScreen> {
                               ).copyWith(fontWeight: medium, fontSize: 12),
                             ),
                             Text(
-                              'IDR ${priceConvert(widget.totalPrice)}',
+                              'IDR ${priceConvert(widget.bookingData?.paymentData.totalPrice ?? 0)}',
                               style: setTextStyle(
                                 const Color(0xFF44474E),
                               ).copyWith(fontWeight: semiBold, fontSize: 14),
@@ -311,7 +306,7 @@ class _SuccessBookingScreenState extends State<SuccessBookingScreen> {
                                         fontWeight: semiBold, fontSize: 14),
                               ),
                               Text(
-                                'Jan 08',
+                                widget.dateData,
                                 style: setTextStyle(NeutralColor().neutral10)
                                     .copyWith(
                                         fontWeight: semiBold, fontSize: 16),
@@ -336,7 +331,7 @@ class _SuccessBookingScreenState extends State<SuccessBookingScreen> {
                                         fontWeight: semiBold, fontSize: 14),
                               ),
                               Text(
-                                'open',
+                                widget.bookingData?.office.open ?? '',
                                 style: setTextStyle(NeutralColor().neutral10)
                                     .copyWith(
                                         fontWeight: semiBold, fontSize: 16),
@@ -361,7 +356,7 @@ class _SuccessBookingScreenState extends State<SuccessBookingScreen> {
                                         fontWeight: semiBold, fontSize: 14),
                               ),
                               Text(
-                                'close',
+                                widget.bookingData?.office.close ?? '',
                                 style: setTextStyle(NeutralColor().neutral10)
                                     .copyWith(
                                         fontWeight: semiBold, fontSize: 16),
