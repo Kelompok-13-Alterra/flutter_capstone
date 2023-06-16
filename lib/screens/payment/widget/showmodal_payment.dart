@@ -6,24 +6,33 @@ import 'package:flutter_capstone/services/order/order_service.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_capstone/screens/payment/detail_payment_screen.dart';
+import 'package:flutter_capstone/core/init/utils/price_convert.dart';
 
 import 'package:provider/provider.dart';
 import '../payment_view_model.dart';
 
+// ignore: must_be_immutable
 class ShowModalPayment extends StatefulWidget {
   final Function() onPressed;
   final DateTimeRange? selectedDateRange;
   final int officeId;
   final int price;
+  String? name;
+  String? type;
+  String? location;
+
   // final String location;
   // final String open;
   // final String close;
-  const ShowModalPayment({
+  ShowModalPayment({
     super.key,
     required this.onPressed,
     required this.selectedDateRange,
     required this.officeId,
     required this.price,
+    required this.name,
+    required this.type,
+    required this.location,
     // required this.open,
     // required this.close,
   });
@@ -350,7 +359,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                 ).copyWith(fontWeight: medium, fontSize: 12),
               ),
               Text(
-                'IDR 2.100',
+                'IDR 0',
                 style: setTextStyle(
                   const Color(0xFF44474E),
                 ).copyWith(fontWeight: semiBold, fontSize: 14),
@@ -364,13 +373,13 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Total',
+                'Total ',
                 style: setTextStyle(
                   NeutralColor().neutral10,
                 ).copyWith(fontWeight: medium, fontSize: 12),
               ),
               Text(
-                'IDR 23.099',
+                'IDR ${priceConvert(widget.price)}',
                 style: setTextStyle(
                   const Color(0xFF44474E),
                 ).copyWith(fontWeight: semiBold, fontSize: 14),
@@ -617,7 +626,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                                   Text(
                                     provider.isTotalPembayaranVisible
                                         ? ''
-                                        : 'IDR ${widget.price}',
+                                        : 'IDR ${priceConvert(widget.price)}',
                                     style:
                                         setTextStyle(NeutralColor().neutral10)
                                             .copyWith(
@@ -694,6 +703,9 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                         builder: (context) => DetailPaymentScreen(
                           paymentId: transactionId,
                           officeId: widget.officeId,
+                          name: widget.name,
+                          type: widget.type,
+                          location: widget.location,
                           selectedDateRange: convertDateTime(
                               widget.selectedDateRange!.start.toString()),
                         ),

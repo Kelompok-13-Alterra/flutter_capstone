@@ -50,7 +50,7 @@ class _BookedOrderScreenState extends State<BookedOrderScreen> {
                       rating: 4.6,
                       type: office.listBooked[index].office.type,
                       duration:
-                          '${office.listBooked[index].office.open} - ${office.listBooked[index].office.close}',
+                          '${office.listBooked[index].office.open.substring(0, 5)} - ${office.listBooked[index].office.close.substring(0, 5)}',
                       status: 'Booked',
                       route: '/detail-schedule',
                       buttonText1: 'Change Schedule',

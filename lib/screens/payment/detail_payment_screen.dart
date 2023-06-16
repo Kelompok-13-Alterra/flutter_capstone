@@ -4,17 +4,25 @@ import 'package:flutter_capstone/screens/payment/success_booking_screen.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_capstone/core/init/utils/price_convert.dart';
 import 'payment_view_model.dart';
 
+// ignore: must_be_immutable
 class DetailPaymentScreen extends StatefulWidget {
   final int paymentId;
   final int officeId;
   final String selectedDateRange;
-  const DetailPaymentScreen({
+  String? name;
+  String? type;
+  String? location;
+  DetailPaymentScreen({
     super.key,
     required this.paymentId,
     required this.officeId,
     required this.selectedDateRange,
+    required this.name,
+    required this.type,
+    required this.location,
   });
 
   @override
@@ -75,7 +83,7 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                 ).copyWith(fontWeight: medium, fontSize: 12),
               ),
               Text(
-                'IDR ${provider.getMidtransModel.data?.paymentData.price ?? 0}',
+                'IDR ${priceConvert(provider.getMidtransModel.data?.paymentData.price) ?? 0}',
                 style: setTextStyle(
                   const Color(0xFF44474E),
                 ).copyWith(fontWeight: semiBold, fontSize: 14),
@@ -95,7 +103,7 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                 ).copyWith(fontWeight: medium, fontSize: 12),
               ),
               Text(
-                'IDR ${provider.getMidtransModel.data?.paymentData.discount ?? 0}',
+                'IDR ${priceConvert(provider.getMidtransModel.data?.paymentData.discount) ?? 0}',
                 style: setTextStyle(
                   const Color(0xFF44474E),
                 ).copyWith(fontWeight: semiBold, fontSize: 14),
@@ -115,7 +123,7 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                 ).copyWith(fontWeight: medium, fontSize: 12),
               ),
               Text(
-                'IDR ${provider.getMidtransModel.data?.paymentData.tax ?? 0}',
+                'IDR ${priceConvert(provider.getMidtransModel.data?.paymentData.tax) ?? 0}',
                 style: setTextStyle(
                   const Color(0xFF44474E),
                 ).copyWith(fontWeight: semiBold, fontSize: 14),
@@ -135,7 +143,7 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                 ).copyWith(fontWeight: medium, fontSize: 12),
               ),
               Text(
-                'IDR ${provider.getMidtransModel.data?.paymentData.totalPrice ?? 0}',
+                'IDR ${priceConvert(provider.getMidtransModel.data?.paymentData.totalPrice) ?? 0}',
                 style: setTextStyle(
                   const Color(0xFF44474E),
                 ).copyWith(fontWeight: semiBold, fontSize: 14),
@@ -257,7 +265,7 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Wellspace',
+                                  widget.name.toString(),
                                   style: setTextStyle(NeutralColor().neutral20)
                                       .copyWith(
                                           fontWeight: semiBold, fontSize: 16),
@@ -299,7 +307,7 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                                       width: 5,
                                     ),
                                     Text(
-                                      "Co-Working Space",
+                                      widget.type.toString(),
                                       style:
                                           setTextStyle(NeutralColor().neutral60)
                                               .copyWith(
@@ -322,7 +330,7 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                                       width: 5,
                                     ),
                                     Text(
-                                      'Sunter Agung - 400 M',
+                                      widget.location.toString(),
                                       style:
                                           setTextStyle(NeutralColor().neutral60)
                                               .copyWith(
@@ -489,8 +497,8 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      provider.getMidtransModel.data
-                                              ?.paymentData.totalPrice
+                                      priceConvert(provider.getMidtransModel
+                                                  .data?.paymentData.totalPrice)
                                               .toString() ??
                                           '',
                                       style:

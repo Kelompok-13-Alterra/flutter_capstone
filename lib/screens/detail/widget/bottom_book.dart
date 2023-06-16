@@ -12,6 +12,9 @@ class BottomBook extends StatefulWidget {
   final int? officeId;
   DateTimeRange? selectedDateRange;
   final int? price;
+  String? name;
+  String? type;
+  String? location;
   // final String? location;
   // final String? open;
   // final String? close;
@@ -23,6 +26,9 @@ class BottomBook extends StatefulWidget {
     this.officeId,
     this.selectedDateRange,
     this.price,
+    this.name,
+    this.type,
+    this.location,
     // this.location,
     // this.open,
     // this.close,
@@ -97,6 +103,9 @@ class _BottomBookState extends State<BottomBook> {
                       officeId: widget.officeId!,
                       selectedDateRange: widget.selectedDateRange,
                       price: widget.price ?? 0,
+                      name: widget.name,
+                      type: widget.type,
+                      location: widget.location,
                       // location: widget.location,
                       // open: widget.open ?? '',
                       // close: widget.close ?? '',
