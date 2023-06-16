@@ -83,7 +83,7 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                 ).copyWith(fontWeight: medium, fontSize: 12),
               ),
               Text(
-                'IDR ${priceConvert(provider.getMidtransModel.data?.paymentData.price) ?? 0}',
+                'IDR ${priceConvert(provider.getMidtransModel.data?.paymentData.price)}',
                 style: setTextStyle(
                   const Color(0xFF44474E),
                 ).copyWith(fontWeight: semiBold, fontSize: 14),
@@ -103,7 +103,7 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                 ).copyWith(fontWeight: medium, fontSize: 12),
               ),
               Text(
-                'IDR ${priceConvert(provider.getMidtransModel.data?.paymentData.discount) ?? 0}',
+                'IDR ${priceConvert(provider.getMidtransModel.data?.paymentData.discount)}',
                 style: setTextStyle(
                   const Color(0xFF44474E),
                 ).copyWith(fontWeight: semiBold, fontSize: 14),
@@ -123,7 +123,7 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                 ).copyWith(fontWeight: medium, fontSize: 12),
               ),
               Text(
-                'IDR ${priceConvert(provider.getMidtransModel.data?.paymentData.tax) ?? 0}',
+                'IDR ${priceConvert(provider.getMidtransModel.data?.paymentData.tax)}',
                 style: setTextStyle(
                   const Color(0xFF44474E),
                 ).copyWith(fontWeight: semiBold, fontSize: 14),
@@ -143,7 +143,7 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                 ).copyWith(fontWeight: medium, fontSize: 12),
               ),
               Text(
-                'IDR ${priceConvert(provider.getMidtransModel.data?.paymentData.totalPrice) ?? 0}',
+                'IDR ${priceConvert(provider.getMidtransModel.data?.paymentData.totalPrice)}',
                 style: setTextStyle(
                   const Color(0xFF44474E),
                 ).copyWith(fontWeight: semiBold, fontSize: 14),
@@ -498,9 +498,8 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                                   children: [
                                     Text(
                                       priceConvert(provider.getMidtransModel
-                                                  .data?.paymentData.totalPrice)
-                                              .toString() ??
-                                          '',
+                                              .data?.paymentData.totalPrice)
+                                          .toString(),
                                       style:
                                           setTextStyle(NeutralColor().neutral10)
                                               .copyWith(

@@ -11,12 +11,11 @@ class OrderWidget extends StatelessWidget {
   final String type;
   final String duration;
   final String status;
-  final String route;
+
   final String buttonText1;
-  final String routeButton1;
+  final Function()? routeButton1;
   final String buttonText2;
-  final String routeButton2;
-  int? transactionId;
+  final Function()? routeButton2;
 
   OrderWidget({
     super.key,
@@ -26,12 +25,10 @@ class OrderWidget extends StatelessWidget {
     required this.type,
     required this.duration,
     required this.status,
-    required this.route,
     required this.buttonText1,
     required this.routeButton1,
     required this.buttonText2,
     required this.routeButton2,
-    this.transactionId,
   });
 
   @override
@@ -156,12 +153,7 @@ class OrderWidget extends StatelessWidget {
                         width: 160,
                         height: 40,
                         child: ElevatedButton(
-                          onPressed: () {
-                            //Trying catch paymentId on detail_schedule with arguments
-                            Navigator.pushNamed(context, routeButton1,
-                                arguments: ReviewArguments(
-                                    transactionId: transactionId!));
-                          },
+                          onPressed: routeButton1,
                           style: ElevatedButton.styleFrom(
                             foregroundColor: SourceColor().white,
                             backgroundColor: PrimaryColor().primary,
@@ -184,16 +176,7 @@ class OrderWidget extends StatelessWidget {
                         width: 160,
                         height: 40,
                         child: ElevatedButton(
-                          onPressed: () {
-                            // Navigator.pushNamed(context, routeButton2);
-                            // print('id transaksiiii : ${transactionId}');
-                            Navigator.pushNamed(
-                              context,
-                              routeButton2,
-                              arguments: ReviewArguments(
-                                  transactionId: transactionId!),
-                            );
-                          },
+                          onPressed: routeButton2,
                           style: ElevatedButton.styleFrom(
                             foregroundColor: buttonText2 == 'Cancel Book'
                                 ? ErrorColor().error50

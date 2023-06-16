@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
+import 'package:flutter_capstone/screens/detail/detail_screen.dart';
 import 'package:flutter_capstone/screens/search/search_office_view_model.dart';
 import 'package:flutter_capstone/screens/errors/location_not_found.dart';
 import 'package:flutter_capstone/screens/search/widget/empty_search.dart';
@@ -179,21 +180,35 @@ class _SearchScreenState extends State<SearchScreen> {
                                     itemBuilder: (context, index) {
                                       var data = snapshot.data?.data[index];
 
-                                      return OfficeRecommendationWidget(
-                                        img: imageKantor[0],
-                                        statusKantor: statusKantor[0],
-                                        namaKantor: data?.name ?? '',
-                                        imgRating: iconImage[0],
-                                        rating: rating[0],
-                                        imgCoWorkingOffice: iconImage[1],
-                                        office: data?.type ?? "",
-                                        imgLocation: iconImage[2],
-                                        location: data?.location ?? "",
-                                        imgTime: iconImage[3],
-                                        time: '${data?.open} - ${data?.close}',
-                                        open: '${data?.open}',
-                                        close: '${data?.close}',
-                                        price: data?.price ?? 0,
+                                      return GestureDetector(
+                                        onTap: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  DetailScreen(
+                                                      textButton: '/booking',
+                                                      officeId: data?.id ?? 0),
+                                            ),
+                                          );
+                                        },
+                                        child: OfficeRecommendationWidget(
+                                          img: imageKantor[0],
+                                          statusKantor: statusKantor[0],
+                                          namaKantor: data?.name ?? '',
+                                          imgRating: iconImage[0],
+                                          rating: rating[0],
+                                          imgCoWorkingOffice: iconImage[1],
+                                          office: data?.type ?? "",
+                                          imgLocation: iconImage[2],
+                                          location: data?.location ?? "",
+                                          imgTime: iconImage[3],
+                                          time:
+                                              '${data?.open} - ${data?.close}',
+                                          open: '${data?.open}',
+                                          close: '${data?.close}',
+                                          price: data?.price ?? 0,
+                                        ),
                                       );
                                     },
                                   ),

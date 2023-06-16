@@ -13,19 +13,19 @@ class SignUpScreen extends StatelessWidget {
       body: SafeArea(
         child: Container(
           padding: const EdgeInsets.all(16),
-          child: Column(
+          child: const Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Column(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
+                children: [
                   HeaderLogin(),
                   FormSignup(),
                 ],
               ),
-              const FooterSignUp(),
+              FooterSignUp(),
             ],
           ),
         ),

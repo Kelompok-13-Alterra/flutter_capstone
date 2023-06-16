@@ -9,14 +9,14 @@ import 'package:flutter_capstone/screens/detail/widget/office_description.dart';
 import 'package:flutter_capstone/screens/review/review_screen.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 
-class DetailScheduleScreen extends StatefulWidget {
-  const DetailScheduleScreen({super.key});
+class RescheduleScreen extends StatefulWidget {
+  const RescheduleScreen({super.key});
 
   @override
-  State<DetailScheduleScreen> createState() => _DetailScheduleScreenState();
+  State<RescheduleScreen> createState() => _RescheduleScreenState();
 }
 
-class _DetailScheduleScreenState extends State<DetailScheduleScreen> {
+class _RescheduleScreenState extends State<RescheduleScreen> {
   @override
   Widget build(BuildContext context) {
     final args = ModalRoute.of(context)?.settings.arguments as ReviewArguments?;

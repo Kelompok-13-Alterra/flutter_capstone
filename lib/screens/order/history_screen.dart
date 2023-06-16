@@ -1,8 +1,10 @@
 // ignore_for_file: avoid_unnecessary_containers, unused_local_variable
 
 import 'package:flutter/material.dart';
+import 'package:flutter_capstone/screens/detail/detail_screen.dart';
 import 'package:flutter_capstone/screens/order/history_view_model.dart';
 import 'package:flutter_capstone/screens/order/widget/order_widget.dart';
+import 'package:flutter_capstone/screens/review/review_screen.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 
 import 'package:provider/provider.dart';
@@ -56,13 +58,36 @@ class _HistoryOrderScreenState extends State<HistoryOrderScreen> {
                       duration:
                           '${office.listHistory[index].office.open} - ${office.listHistory[index].office.close}',
                       status: 'Booked',
-                      route: '/detail-schedule',
+                      // route: '/detail-schedule',
                       buttonText1: 'Book Again',
-                      routeButton1: '/detail',
+                      routeButton1: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DetailScreen(
+                              textButton: 'Booking',
+                              officeId: data.officeId,
+                              buttonRoute: '/booking',
+                              selectedDateRange: null,
+                            ),
+                          ),
+                        );
+                        //  arguments: ReviewArguments(
+                        //             transactionId: transactionId!)
+                      },
+                      // routeButton1: '/detail',
                       buttonText2: 'Give Review',
-                      routeButton2: '/review',
+                      routeButton2: () {
+                        Navigator.pushNamed(
+                          context,
+                          '/review',
+                          arguments: ReviewArguments(
+                              transactionId:
+                                  office.listHistory[index].office.id),
+                        );
+                      },
                       // transactionId: data.id,
-                      transactionId: office.listHistory[index].id,
+                      // transactionId: office.listHistory[index].id,
 
                       // office.listHistory[index].id,
                     );
