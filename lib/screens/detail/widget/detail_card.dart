@@ -141,7 +141,7 @@ class _DetailCardState extends State<DetailCard> {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(12),
                 child: Image.asset(
-                  'assets/iamhome/maps.png',
+                  'assets/images/home/maps.png',
                   fit: BoxFit.fill,
                 ),
               ),
