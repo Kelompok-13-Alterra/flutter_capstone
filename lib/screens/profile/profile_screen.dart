@@ -41,6 +41,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
         ],
       ),
+      // Get profile
       body: FutureBuilder(
         future: ProfileService().getProfile(),
         builder: ((context, snapshot) {
