@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 bool isOpen = false;
 bool checkOpeningStatus(String open, String close) {
   DateTime now = DateTime.now();
