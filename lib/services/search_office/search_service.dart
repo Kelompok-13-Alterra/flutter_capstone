@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print, unused_local_variable, deprecated_member_use
+// ignore_for_file: avoid_print, unused_local_variable
 
 import 'package:dio/dio.dart';
 import 'package:flutter_capstone/core/init/const/api.dart';
@@ -9,7 +9,7 @@ class SearchService {
   // Get list office
   Future<SearchModel> getSearch(String searchLocation) async {
     String token = await getToken();
-    print(token);
+
     var headers = {
       'accept': 'application/json',
       'Content-Type': "aplication/json",

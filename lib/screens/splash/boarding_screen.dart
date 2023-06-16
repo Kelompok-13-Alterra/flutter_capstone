@@ -16,6 +16,7 @@ class _OnBoardingScreenState extends State<BoardingScreen> {
   final PageController _pageControllerImg = PageController();
   final PageController _pageControllerDescription = PageController();
   bool isLastPage = false;
+
   double _currentPage1 = 0;
   double _currentPage2 = 0;
 

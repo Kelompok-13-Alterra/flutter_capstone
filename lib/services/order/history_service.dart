@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:dio/dio.dart';
 import 'package:flutter_capstone/core/init/const/api.dart';
 import 'package:flutter_capstone/model/order/history_model.dart';

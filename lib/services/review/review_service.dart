@@ -3,8 +3,8 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/init/const/api.dart';
-import 'package:flutter_capstone/init/utils/shared_preferences.dart';
+import 'package:flutter_capstone/core/init/const/api.dart';
+import 'package:flutter_capstone/core/init/utils/shared_preferences.dart';
 import 'package:flutter_capstone/widgets/modal_bottom.dart';
 
 class ReviewService {
@@ -23,9 +23,7 @@ class ReviewService {
           options: Options(headers: {
             'accept': 'application/json',
             'Content-Type': "aplication/json",
-            'Authorization':
-                // 'Bearer $token'
-                'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVsZmFsZHl5QGdtYWlsLmNvbSIsImlkIjo3LCJpc192ZXJpZnkiOmZhbHNlLCJyb2xlIjowfQ.IriX0fkwCCt_u9dZAXO-muMuq_76XhcyROPXGCwNYpE'
+            'Authorization': 'Bearer $token',
           }),
           data: jsonEncode({
             "description": description,
@@ -40,12 +38,12 @@ class ReviewService {
         print("Berhasil ${response.data}");
         return ModalBottomSheet(
           context,
-          img: 'assets/image/success_to_rate.png',
+          img: 'assets/images/success_to_rate.png',
           title: 'Yey, kamu berhasil menilai office!',
           desc:
               'Selamat! kamu berhasil menilai office! Silahkan lanjutkan submit!',
           path: () {
-            Navigator.pushReplacementNamed(context, '/home');
+            Navigator.pushReplacementNamed(context, '/bottom-nav');
           },
           buttonText: 'Okay!',
         );

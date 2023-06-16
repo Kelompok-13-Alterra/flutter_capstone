@@ -12,7 +12,7 @@ class PageNotFoundScreen extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Image.asset('assets/errors/page_not_found.png'),
+              Image.asset('assets/icons/errors/page_not_found.png'),
               const SizedBox(
                 height: 20,
               ),

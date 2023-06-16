@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_capstone/screens/edit_profile/edit_profile_screen.dart';
 import 'package:flutter_capstone/screens/profile/widget/cards_profile_widget.dart';
 import 'package:flutter_capstone/screens/profile/widget/profiles_widget.dart';
 import 'package:flutter_capstone/services/profile/profile_service.dart';
@@ -48,6 +49,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             return SingleChildScrollView(
               child: Column(
                 children: [
+                  // Text("${profile?.data.dateBirth}"),
                   SizedBox(
                     width: MediaQuery.of(context).size.width,
                     // width: 420,
@@ -95,8 +97,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   ),
                                   GestureDetector(
                                     onTap: () {
-                                      Navigator.of(context)
-                                          .pushNamed('/edit-profile');
+                                      // Navigator.of(context).pushNamed
+
+                                      //Mengirim argument value profile ke edit profile form
+                                      Navigator.of(context).pushNamed(
+                                        '/edit-profile',
+                                        arguments: EditProfileArguments(
+                                          profileModel: profile,
+                                          // userId: profile?.data.id --> untuk halaman edit
+                                        ),
+                                        // arguments: EditProfileArguments(
+                                        // userId: profile?.data.id),
+                                      );
                                     },
                                     child: Icon(
                                       Icons.edit,
@@ -143,7 +155,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Image.asset(
-                                    'assets/image/meeting_room.png',
+                                    'assets/icons/profile/meeting_room.png',
                                     width: 16,
                                     height: 16,
                                   ),
@@ -171,7 +183,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   child: const CardsProfileWidget(
                                     cardColor: Color(0xffF2F6FF),
                                     icon: AssetImage(
-                                      "assets/image/Image_total_kantor.png",
+                                      "assets/images/profile/Image_total_kantor.png",
                                     ),
                                     title: 'Total Kantor',
                                     desc: 'yang kamu kunjungi',
@@ -185,7 +197,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   child: const CardsProfileWidget(
                                     cardColor: Color(0xffFFFCF5),
                                     icon: AssetImage(
-                                      "assets/image/Image_total_co-working.png",
+                                      "assets/images/profile/Image_total_co-working.png",
                                     ),
                                     title: 'Total Co-working',
                                     desc: 'yang kamu kunjungi',

@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_brace_in_string_interps
+// ignore_for_file: unnecessary_brace_in_string_interps, must_be_immutable
 
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/screens/review/review_screen.dart';
@@ -172,7 +172,7 @@ class OrderWidget extends StatelessWidget {
                             visualDensity: VisualDensity.compact,
                           ),
                           child: Text(
-                            buttonText2,
+                            buttonText1,
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight: medium,

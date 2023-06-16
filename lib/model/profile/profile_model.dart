@@ -51,7 +51,7 @@ class Data {
     required this.email,
     required this.company,
     required this.gender,
-    this.dateBirth,
+    required this.dateBirth,
     required this.role,
     required this.isVerify,
   });

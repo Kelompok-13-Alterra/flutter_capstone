@@ -26,12 +26,12 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
   ];
 
   List<String> svgAssets = [
-    'assets/icon-botton-navigation-bar/home.svg',
-    'assets/icon-botton-navigation-bar/home-selected.svg',
-    'assets/icon-botton-navigation-bar/notes.svg',
-    'assets/icon-botton-navigation-bar/notes-selected.svg',
-    'assets/icon-botton-navigation-bar/profile.svg',
-    'assets/icon-botton-navigation-bar/profile-selected.svg',
+    'assets/icons/bottom_navigation_bar/home.svg',
+    'assets/icons/bottom_navigation_bar/home-selected.svg',
+    'assets/icons/bottom_navigation_bar/notes.svg',
+    'assets/icons/bottom_navigation_bar/notes-selected.svg',
+    'assets/icons/bottom_navigation_bar/profile.svg',
+    'assets/icons/bottom_navigation_bar/profile-selected.svg',
   ];
 
   void onTabTapped(int index) {

@@ -1,24 +1,47 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_capstone/screens/detail/detail_screen.dart';
 
-class TransactionFailedScreen extends StatelessWidget {
-  const TransactionFailedScreen({super.key});
+class TransactionFailedScreen extends StatefulWidget {
+  int officeId;
+  TransactionFailedScreen({super.key, required this.officeId});
+
+  @override
+  State<TransactionFailedScreen> createState() =>
+      _TransactionFailedScreenState();
+}
+
+class _TransactionFailedScreenState extends State<TransactionFailedScreen> {
+  @override
+  void setState(fn) {
+    if (mounted) {
+      super.setState(fn);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    //   final args =
+    //       ModalRoute.of(context)?.settings.arguments as BookingScheduleArgument;
     return WillPopScope(
       onWillPop: () async {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const DetailScreen(
-              buttonRoute: null,
-              textButton: 'Pilih Metode Pembayaran',
-            ),
-          ),
-        );
+        Navigator.pop(context);
+        // Navigator.pushReplacement(
+        //   context,
+        //   MaterialPageRoute(
+        //     builder: (context) => DetailScreen(
+        //       buttonRoute: '/bottom-nav',
+        //       textButton: 'Booking',
+        //       officeId: widget.officeId,
+        //       selectedDateRange: null,
+        //       // officeId: null,
+        //     ),
+        //   ),
+        //   // (route) => true,
+        // );
         return false;
       },
       child: Scaffold(
@@ -65,15 +88,30 @@ class TransactionFailedScreen extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
+                    // Navigator.pushReplacement(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (context) => const DetailScreen(
+                    //       buttonRoute: null,
+                    //       textButton: 'Pilih Metode Pembayaran',
+                    //     ),
+                    //   ),
+                    // );
+                    // if (mounted) {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const DetailScreen(
-                          buttonRoute: null,
-                          textButton: 'Pilih Metode Pembayaran',
+                        builder: (context) => DetailScreen(
+                          buttonRoute: '/booking',
+                          textButton: 'Booking',
+                          officeId: widget.officeId,
+                          selectedDateRange: null,
+                          // officeId: null,
                         ),
                       ),
+                      // (route) => false,
                     );
+                    // }
                   },
                   child: Text(
                     'Booking Office',

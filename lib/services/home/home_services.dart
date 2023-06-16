@@ -17,7 +17,6 @@ class HomeService {
             "Content-Type": "application/json",
             "Authorization": "Bearer $token",
           }));
-      print(response.data);
       if (response.statusCode == 200 || response.statusCode == 201) {
         HomeModel offices = HomeModel.fromJson(response.data);
         return offices.data;

@@ -1,4 +1,4 @@
-// ignore_for_file: unused_catch_clause, empty_catches, deprecated_member_use
+// ignore_for_file: unused_catch_clause, empty_catches, deprecated_member_use, avoid_print
 
 import 'package:dio/dio.dart';
 import 'package:flutter_capstone/core/init/const/api.dart';
@@ -15,6 +15,7 @@ class ProfileService {
             'Content-Type': "aplication/json",
             'Authorization': 'Bearer $token',
           }));
+      print("Profile : ${response.data}");
       return ProfileModel.fromJson(response.data);
     } on DioError catch (e) {
       throw Exception(e);

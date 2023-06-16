@@ -1,24 +1,30 @@
-// ignore_for_file: unused_element
-
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/core/init/utils/date_convert.dart';
 import 'package:flutter_capstone/services/order/order_service.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_capstone/screens/payment/detail_payment_screen.dart';
-import 'package:intl/intl.dart';
+
 import 'package:provider/provider.dart';
-import '../payment-view-model.dart';
+import '../payment_view_model.dart';
 
 class ShowModalPayment extends StatefulWidget {
   final Function() onPressed;
   final DateTimeRange? selectedDateRange;
   final int officeId;
-  const ShowModalPayment(
-      {super.key,
-      required this.onPressed,
-      required this.selectedDateRange,
-      required this.officeId});
+  final int price;
+  // final String location;
+  // final String open;
+  // final String close;
+  const ShowModalPayment({
+    super.key,
+    required this.onPressed,
+    required this.selectedDateRange,
+    required this.officeId,
+    required this.price,
+    // required this.open,
+    // required this.close,
+  });
 
   @override
   State<ShowModalPayment> createState() => _ShowModalPaymentState();
@@ -27,18 +33,11 @@ class ShowModalPayment extends StatefulWidget {
 class _ShowModalPaymentState extends State<ShowModalPayment> {
   Widget buildListVirtualAccount(BuildContext context) {
     return Consumer<PaymentViewModel>(builder: (context, provider, _) {
-        String convertDateTime(String date) {
-    final DateFormat displayFormater = DateFormat('yyyy-MM-dd HH:mm:ss.SSS');
-    final DateFormat serverFormater = DateFormat('yyyy-MM-dd');
-    final DateTime displayDate = displayFormater.parse(date);
-    final String formatted = serverFormater.format(displayDate);
-    return formatted;
-  }
       return Column(
         children: [
           GestureDetector(
             onTap: () {
-              provider.setSelectedValue('Virtual Account BNI');
+              provider.setSelectedValue = 'Virtual Account BNI';
             },
             child: Container(
               padding: const EdgeInsets.all(12),
@@ -56,7 +55,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                 children: [
                   Row(
                     children: [
-                      SvgPicture.asset('assets/payment/BNI.svg'),
+                      SvgPicture.asset('assets/icons/payment/BNI.svg'),
                       const SizedBox(
                         width: 12,
                       ),
@@ -79,7 +78,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                     ],
                   ),
                   Radio<String>(
-                    value: 'Virtual Account BNI',
+                    value: 'va-bni',
                     visualDensity: const VisualDensity(
                       horizontal: VisualDensity.minimumDensity,
                       vertical: VisualDensity.minimumDensity,
@@ -88,7 +87,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     groupValue: provider.selectedValue,
                     onChanged: (value) {
-                      provider.setSelectedValue(value!);
+                      provider.setSelectedValue = value!;
                     },
                   ),
                 ],
@@ -100,7 +99,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
           ),
           GestureDetector(
             onTap: () {
-              provider.setSelectedValue('Virtual Account BCA');
+              provider.setSelectedValue = 'Virtual Account BCA';
             },
             child: Container(
               padding: const EdgeInsets.all(12),
@@ -118,7 +117,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                 children: [
                   Row(
                     children: [
-                      SvgPicture.asset('assets/payment/bca.svg'),
+                      SvgPicture.asset('assets/icons/payment/bca.svg'),
                       const SizedBox(
                         width: 12,
                       ),
@@ -130,7 +129,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                     ],
                   ),
                   Radio<String>(
-                    value: 'Virtual Account BCA',
+                    value: 'va-bca',
                     visualDensity: const VisualDensity(
                       horizontal: VisualDensity.minimumDensity,
                       vertical: VisualDensity.minimumDensity,
@@ -140,7 +139,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                     groupValue: provider.selectedValue,
                     onChanged: (value) {
                       setState(() {
-                        provider.setSelectedValue(value!);
+                        provider.setSelectedValue = value!;
                       });
                     },
                   ),
@@ -159,7 +158,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
         children: [
           GestureDetector(
             onTap: () {
-              provider.setSelectedValue('Transfer Bank BNI');
+              provider.setSelectedValue = 'Transfer Bank BNI';
             },
             child: Container(
               padding: const EdgeInsets.all(12),
@@ -177,7 +176,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                 children: [
                   Row(
                     children: [
-                      SvgPicture.asset('assets/payment/BNI.svg'),
+                      SvgPicture.asset('assets/icons/payment/BNI.svg'),
                       const SizedBox(
                         width: 12,
                       ),
@@ -200,7 +199,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                     ],
                   ),
                   Radio<String>(
-                    value: 'Transfer Bank BNI',
+                    value: 'bni',
                     visualDensity: const VisualDensity(
                       horizontal: VisualDensity.minimumDensity,
                       vertical: VisualDensity.minimumDensity,
@@ -210,7 +209,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                     groupValue: provider.selectedValue,
                     onChanged: (value) {
                       setState(() {
-                        provider.setSelectedValue(value!);
+                        provider.setSelectedValue = value!;
                       });
                     },
                   ),
@@ -223,7 +222,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
           ),
           GestureDetector(
             onTap: () {
-              provider.setSelectedValue('Transfer Bank BCA');
+              provider.setSelectedValue = 'Transfer Bank BCA';
             },
             child: Container(
               padding: const EdgeInsets.all(12),
@@ -241,7 +240,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                 children: [
                   Row(
                     children: [
-                      SvgPicture.asset('assets/payment/bca.svg'),
+                      SvgPicture.asset('assets/icons/payment/bca.svg'),
                       const SizedBox(
                         width: 12,
                       ),
@@ -253,7 +252,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                     ],
                   ),
                   Radio<String>(
-                    value: 'Transfer Bank BCA',
+                    value: 'bca',
                     visualDensity: const VisualDensity(
                       horizontal: VisualDensity.minimumDensity,
                       vertical: VisualDensity.minimumDensity,
@@ -263,7 +262,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                     groupValue: provider.selectedValue,
                     onChanged: (value) {
                       setState(() {
-                        provider.setSelectedValue(value!);
+                        provider.setSelectedValue = value!;
                       });
                     },
                   ),
@@ -309,7 +308,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                 ).copyWith(fontWeight: medium, fontSize: 12),
               ),
               Text(
-                'IDR 20.999',
+                'IDR ${widget.price}',
                 style: setTextStyle(
                   const Color(0xFF44474E),
                 ).copyWith(fontWeight: semiBold, fontSize: 14),
@@ -403,7 +402,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                         // () {
                         //   Navigator.pop(context);
                         // },
-                        icon: const Icon(Icons.arrow_back),
+                        icon: const Icon(Icons.close),
                         constraints: const BoxConstraints(),
                         padding: EdgeInsets.zero,
                       ),
@@ -426,6 +425,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
               thickness: 3,
             ),
             SingleChildScrollView(
+              scrollDirection: Axis.vertical,
               child: Padding(
                 padding:
                     const EdgeInsets.only(top: 18.0, right: 18.0, left: 18.0),
@@ -443,7 +443,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                               Row(
                                 children: [
                                   SvgPicture.asset(
-                                      'assets/payment/credit_card.svg'),
+                                      'assets/icons/payment/credit_card.svg'),
                                   const SizedBox(
                                     width: 10,
                                   ),
@@ -477,9 +477,10 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                                   provider.toggleVirtualVisible();
                                 },
                                 icon: provider.isVirtualVisible
-                                    ? SvgPicture.asset("assets/detail/up.svg")
+                                    ? SvgPicture.asset(
+                                        "assets/icons/detail/up.svg")
                                     : SvgPicture.asset(
-                                        "assets/detail/down.svg"),
+                                        "assets/icons/detail/down.svg"),
                                 constraints: const BoxConstraints(),
                                 padding: EdgeInsets.zero,
                               ),
@@ -503,7 +504,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                               Row(
                                 children: [
                                   SvgPicture.asset(
-                                      'assets/payment/account_balance.svg'),
+                                      'assets/icons/payment/account_balance.svg'),
                                   const SizedBox(
                                     width: 10,
                                   ),
@@ -528,9 +529,10 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                                   provider.toggleBankVisible();
                                 },
                                 icon: provider.isBankVisible
-                                    ? SvgPicture.asset("assets/detail/up.svg")
+                                    ? SvgPicture.asset(
+                                        "assets/icons/detail/up.svg")
                                     : SvgPicture.asset(
-                                        "assets/detail/down.svg"),
+                                        "assets/icons/detail/down.svg"),
                                 constraints: const BoxConstraints(),
                                 padding: EdgeInsets.zero,
                               ),
@@ -554,7 +556,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                               Row(
                                 children: [
                                   SvgPicture.asset(
-                                      'assets/payment/account_balance_wallet.svg'),
+                                      'assets/icons/payment/account_balance_wallet.svg'),
                                   const SizedBox(
                                     width: 10,
                                   ),
@@ -579,9 +581,10 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                                   provider.toggleEWalletVisible();
                                 },
                                 icon: provider.isEWalletVisible
-                                    ? SvgPicture.asset("assets/detail/up.svg")
+                                    ? SvgPicture.asset(
+                                        "assets/icons/detail/up.svg")
                                     : SvgPicture.asset(
-                                        "assets/detail/down.svg"),
+                                        "assets/icons/detail/down.svg"),
                                 constraints: const BoxConstraints(),
                                 padding: EdgeInsets.zero,
                               ),
@@ -612,7 +615,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                                   Text(
                                     provider.isTotalPembayaranVisible
                                         ? ''
-                                        : 'IDR 23.099',
+                                        : 'IDR ${widget.price}',
                                     style:
                                         setTextStyle(NeutralColor().neutral10)
                                             .copyWith(
@@ -628,9 +631,9 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                                     },
                                     icon: provider.isTotalPembayaranVisible
                                         ? SvgPicture.asset(
-                                            "assets/detail/up.svg")
+                                            "assets/icons/detail/up.svg")
                                         : SvgPicture.asset(
-                                            "assets/detail/down.svg"),
+                                            "assets/icons/detail/down.svg"),
                                     constraints: const BoxConstraints(),
                                     padding: EdgeInsets.zero,
                                   ),
@@ -664,54 +667,70 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                     ),
                   ),
                   onPressed: () async {
-                    var res = OrderService().createOrder(
+                    setState(() {});
+                    // print(widget.officeId);
+                    // print(provider.selectedValue);
+                    // print(
+                    //     'Ini end date ${convertDateTime(widget.selectedDateRange?.end.toString() ?? '')}');
+                    // print(convertDateTime(
+                    //     widget.selectedDateRange!.start.toString()));
+                    var res = await OrderService().createOrder(
+                      context,
                       officeId: widget.officeId,
                       startDate: convertDateTime(
                           widget.selectedDateRange!.start.toString()),
                       endDate: convertDateTime(
                           widget.selectedDateRange!.end.toString()),
-                      paymentId: 'va-bni',
+                      paymentId: provider.selectedValue,
                     );
-                    var transactionId = res.then((value) {
-                      return value.data.idTransaction;
-                    });
 
+                    var transactionId = res.data.idTransaction;
+                    // Navigator.pop(context);
+
+                    // ignore: use_build_context_synchronously
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => FutureBuilder(
-                          future: transactionId,
-                          builder: (context, snapshot) {
-                            if (snapshot.hasData) {
-                              return DetailPaymentScreen(
-                                  paymentId: snapshot.data!);
-                            } else {
-                              return Scaffold(
-                                appBar: AppBar(
-                                  iconTheme:
-                                      const IconThemeData(color: Colors.black),
-                                  title: Text(
-                                    'Detail Pembayaran',
-                                    style:
-                                        setTextStyle(NeutralColor().neutral12)
-                                            .copyWith(
-                                                fontWeight: semiBold,
-                                                fontSize: 16),
-                                  ),
-                                  backgroundColor: Colors.transparent,
-                                  elevation: 0,
-                                ),
-                                body: Container(
-                                  color: Colors.white,
-                                  child: const Center(
-                                    child:
-                                        CircularProgressIndicator(), // Tampilkan loading indicator
-                                  ),
-                                ),
-                              );
-                            }
-                          },
+                        builder: (context) => DetailPaymentScreen(
+                          paymentId: transactionId,
+                          officeId: widget.officeId,
                         ),
+
+                        // FutureBuilder(
+                        //   future: transactionId,
+                        //   builder: (context, snapshot) {
+                        //     print('ID Transaction: ${snapshot.data}');
+                        //     if (snapshot.hasData) {
+                        //       return DetailPaymentScreen(
+                        //           // ignore: null_check_always_fails
+                        //           paymentId: snapshot.data!);
+                        //     } else {
+                        //       return Scaffold(
+                        //         appBar: AppBar(
+                        //           iconTheme:
+                        //               const IconThemeData(color: Colors.black),
+                        //           title: Text(
+                        //             'Detail Pembayaran',
+                        //             style:
+                        //                 setTextStyle(NeutralColor().neutral12)
+                        //                     .copyWith(
+                        //                         fontWeight: semiBold,
+                        //                         fontSize: 16),
+                        //           ),
+                        //           backgroundColor: Colors.transparent,
+                        //           elevation: 0,
+                        //         ),
+                        //         body: Container(
+                        //           color: Colors.white,
+                        //           child: const Center(
+                        //             child:
+                        //                 CircularProgressIndicator(), // Tampilkan loading indicator
+                        //           ),
+                        //         ),
+                        //       );
+                        //     }
+                        //   },
+                        // ),
                       ),
                     );
                   },
