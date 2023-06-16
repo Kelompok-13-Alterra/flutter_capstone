@@ -103,31 +103,35 @@ class _SearchScreenState extends State<SearchScreen> {
                   padding: const EdgeInsets.only(
                     right: 13,
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(
-                        Icons.search,
-                        color: NeutralVariantColor().neutralVariant30,
-                      ),
-                      const SizedBox(
-                        width: 19.51,
-                      ),
-                      SizedBox(
-                        height: 30,
-                        width: 30,
-                        child: CircleAvatar(
-                          backgroundColor: PrimaryColor().primary,
-                          child: Text(
-                            "A",
-                            style: setTextStyle(PrimaryColor().onPrimary)
-                                .copyWith(fontSize: 16, fontWeight: medium),
-                          ),
-                        ),
-                      ),
-                    ],
+                  child: Icon(
+                    Icons.search,
+                    color: NeutralVariantColor().neutralVariant30,
                   ),
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //   mainAxisSize: MainAxisSize.min,
+                  //   children: [
+                  //     Icon(
+                  //   Icons.search,
+                  //   color: NeutralVariantColor().neutralVariant30,
+                  // ),
+                  // const SizedBox(
+                  //   width: 19.51,
+                  // ),
+                  // SizedBox(
+                  //   height: 30,
+                  //   width: 30,
+                  //   child: CircleAvatar(
+                  //     backgroundColor: PrimaryColor().primary,
+                  //     child: Text(
+                  //       "A",
+                  //       style: setTextStyle(PrimaryColor().onPrimary)
+                  //           .copyWith(fontSize: 16, fontWeight: medium),
+                  //     ),
+                  //   ),
+                  // ),
+                  // ],
+                  // ),
                 ),
               ),
             ),
@@ -198,13 +202,13 @@ class _SearchScreenState extends State<SearchScreen> {
                             ),
                 );
               } else {
-                return Padding(
-                  padding: const EdgeInsets.only(top: 15),
+                return const Padding(
+                  padding: EdgeInsets.only(top: 15),
                   child: Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      children: const [
+                      children: [
                         CircularProgressIndicator(),
                       ],
                     ),
