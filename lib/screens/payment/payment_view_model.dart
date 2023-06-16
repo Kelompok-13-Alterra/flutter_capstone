@@ -127,7 +127,7 @@ class PaymentViewModel extends ChangeNotifier {
   // }
 
   void startCountdown(BuildContext context, int officeId) {
-    _timerOffice = DateTime.now().add(const Duration(seconds: 3));
+    _timerOffice = DateTime.now().add(const Duration(seconds: 100));
     // _timer?.cancel();
 
     // Inisialisasi _timerOffice saat countdown dimulai

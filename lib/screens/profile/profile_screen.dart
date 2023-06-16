@@ -155,7 +155,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Image.asset(
-                                    'assets/image/meeting_room.png',
+                                    'assets/icons/profile/meeting_room.png',
                                     width: 16,
                                     height: 16,
                                   ),
@@ -183,7 +183,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   child: const CardsProfileWidget(
                                     cardColor: Color(0xffF2F6FF),
                                     icon: AssetImage(
-                                      "assets/image/Image_total_kantor.png",
+                                      "assets/images/profile/Image_total_kantor.png",
                                     ),
                                     title: 'Total Kantor',
                                     desc: 'yang kamu kunjungi',
@@ -197,7 +197,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   child: const CardsProfileWidget(
                                     cardColor: Color(0xffFFFCF5),
                                     icon: AssetImage(
-                                      "assets/image/Image_total_co-working.png",
+                                      "assets/images/profile/Image_total_co-working.png",
                                     ),
                                     title: 'Total Co-working',
                                     desc: 'yang kamu kunjungi',

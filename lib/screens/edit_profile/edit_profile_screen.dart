@@ -69,7 +69,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     var _company = args?.profileModel?.data.company;
     var _email = args?.profileModel?.data.email;
     // var _gender = args.profileModel?.data.gender;
-    var _dateBirth = args?.profileModel?.data.dateBirth;
+    //var _dateBirth = args?.profileModel?.data.dateBirth;
 
     return Scaffold(
       backgroundColor: SourceColor().white,
@@ -408,11 +408,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           },
                           readOnly: true,
                           autofocus: true,
-                          // controller: _dateController,
-                          initialValue: _dateBirth,
-                          onSaved: (val) {
-                            _dateBirth = val;
-                          },
+                          controller: _dateController,
+                          // initialValue: _dateBirth,
+                          // onSaved: (val) {
+                          //   _dateBirth = val;
+                          // },
                           decoration: InputDecoration(
                             prefixIcon:
                                 const Icon(Icons.calendar_today_rounded),
