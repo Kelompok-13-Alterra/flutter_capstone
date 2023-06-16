@@ -126,7 +126,7 @@ class OrderWidget extends StatelessWidget {
                     padding:
                         const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                     decoration: BoxDecoration(
-                      color: TertiaryColor().tertiary,
+                      color: SuccessColor().green,
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Center(
