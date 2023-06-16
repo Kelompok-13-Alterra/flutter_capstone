@@ -187,6 +187,8 @@ class _SearchScreenState extends State<SearchScreen> {
                                         location: data?.location ?? "",
                                         imgTime: iconImage[3],
                                         time: '${data?.open} - ${data?.close}',
+                                        open: '${data?.open}',
+                                        close: '${data?.close}',
                                         price: data?.price ?? 0,
                                       );
                                     },

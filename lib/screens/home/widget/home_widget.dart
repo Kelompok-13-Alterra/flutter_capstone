@@ -79,7 +79,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                         backgroundColor: checkOpeningStatus(
                                                 data.open, data.close)
                                             ? SuccessColor().green
-                                            : Colors.red,
+                                            : WarningColor().red,
                                         elevation: 0,
                                         shape: RoundedRectangleBorder(
                                           borderRadius:
