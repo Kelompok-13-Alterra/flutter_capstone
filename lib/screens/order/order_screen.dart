@@ -51,25 +51,16 @@ class _OrderScreenState extends State<OrderScreen>
       appBar: AppBar(
         elevation: 0.0,
         backgroundColor: SourceColor().white,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              'Orders',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: medium,
-                color: SourceColor().black,
-              ),
-            ),
-            IconButton(
-              icon: Icon(Icons.more_vert, color: SourceColor().black),
-              onPressed: () {
-                // Aksi ketika tombol tanda titik tiga ditekan
-              },
-            ),
-          ],
+        // centerTitle: false,
+        automaticallyImplyLeading: false,
+        title: Text(
+          'Orders',
+          style: setTextStyle(SourceColor().black).copyWith(
+            fontSize: 16,
+            fontWeight: medium,
+          ),
         ),
+        leading: null,
       ),
       body: Container(
         color: SourceColor().white,

@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: deprecated_member_use
 
 import 'package:dio/dio.dart';
 import 'package:flutter_capstone/core/init/const/api.dart';
@@ -19,10 +19,10 @@ class MidtransService {
         '$baseUrl/api/v1/transaction/$transactionId/payment-detail',
         options: Options(headers: headers),
       );
-
+      // print(response.data);
       return MidtransPaymentModel.fromJson(response.data);
     } on DioError catch (e) {
-      print(e);
+      // print(e);
       throw Exception('Failed get list of office $e');
     }
   }

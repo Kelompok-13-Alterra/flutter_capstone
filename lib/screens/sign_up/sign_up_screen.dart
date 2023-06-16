@@ -20,12 +20,12 @@ class SignUpScreen extends StatelessWidget {
               Column(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const <Widget>[
+                children: [
                   HeaderLogin(),
                   FormSignup(),
                 ],
               ),
-              const FooterSignUp(),
+              FooterSignUp(),
             ],
           ),
         ),

@@ -33,57 +33,69 @@ class HistoryModel {
 
 class History {
   int id;
-  int discount;
-  String end;
-  Office office;
+  DateTime createdAt;
+  DateTime updatedAt;
+  DateTime? deletedAt;
+  int userId;
   int officeId;
+  int discount;
   int price;
-  String start;
-  bool status;
   int tax;
   int totalPrice;
-  int userId;
+  DateTime start;
+  DateTime end;
+  bool status;
+  Office office;
 
   History({
     required this.id,
-    required this.discount,
-    required this.end,
-    required this.office,
+    required this.createdAt,
+    required this.updatedAt,
+    this.deletedAt,
+    required this.userId,
     required this.officeId,
+    required this.discount,
     required this.price,
-    required this.start,
-    required this.status,
     required this.tax,
     required this.totalPrice,
-    required this.userId,
+    required this.start,
+    required this.end,
+    required this.status,
+    required this.office,
   });
 
   factory History.fromJson(Map<String, dynamic> json) => History(
-        id: json["id"],
-        discount: json["Discount"] ?? 0,
-        end: json["End"] ?? "",
+        id: json["ID"],
+        createdAt: DateTime.parse(json["CreatedAt"]),
+        updatedAt: DateTime.parse(json["UpdatedAt"]),
+        deletedAt: json["DeletedAt"],
+        userId: json["UserID"],
+        officeId: json["OfficeID"],
+        discount: json["Discount"],
+        price: json["Price"],
+        tax: json["Tax"],
+        totalPrice: json["TotalPrice"],
+        start: DateTime.parse(json["Start"]),
+        end: DateTime.parse(json["End"]),
+        status: json["Status"],
         office: Office.fromJson(json["Office"]),
-        officeId: json["OfficeID"] ?? 0,
-        price: json["Price"] ?? 0,
-        start: json["Start"] ?? "",
-        status: json["Status"] == true ? true : false,
-        tax: json["Tax"] ?? 0,
-        totalPrice: json["TotalPrice"] ?? 0,
-        userId: json["UserID"] ?? 0,
       );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "discount": discount,
-        "end": end,
-        "office": office.toJson(),
-        "officeID": officeId,
-        "price": price,
-        "start": start,
-        "status": status,
-        "tax": tax,
-        "totalPrice": totalPrice,
-        "userID": userId,
+        "ID": id,
+        "CreatedAt": createdAt.toIso8601String(),
+        "UpdatedAt": updatedAt.toIso8601String(),
+        "DeletedAt": deletedAt,
+        "UserID": userId,
+        "OfficeID": officeId,
+        "Discount": discount,
+        "Price": price,
+        "Tax": tax,
+        "TotalPrice": totalPrice,
+        "Start": start.toIso8601String(),
+        "End": end.toIso8601String(),
+        "Status": status,
+        "Office": office.toJson(),
       };
 }
 

@@ -98,6 +98,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   GestureDetector(
                                     onTap: () {
                                       // Navigator.of(context).pushNamed
+                                      //Mengirim argument ke edit profile
                                       Navigator.of(context).pushNamed(
                                         '/edit-profile',
                                         arguments: EditProfileArguments(

@@ -141,10 +141,10 @@ class OfficeRecommendationWidget extends StatelessWidget {
                       children: [
                         Image.asset(
                           imgCoWorkingOffice ==
-                                      'assets/image/co_working_space.png' &&
+                                      'assets/icons/office_card/co_working_space.png' &&
                                   office == 'coworking'
-                              ? 'assets/image/co_working_space.png'
-                              : 'assets/image/office.png',
+                              ? 'assets/icons/office_card/co_working_space.png'
+                              : 'assets/icons/office_card/office.png',
                           width: 13.33,
                           height: 12.67,
                         ),
