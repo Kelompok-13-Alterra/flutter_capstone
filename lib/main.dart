@@ -17,6 +17,7 @@ import 'package:flutter_capstone/screens/home/home_view_model.dart';
 import 'package:flutter_capstone/screens/login/login_screen.dart';
 import 'package:flutter_capstone/screens/login/login_view_model.dart';
 import 'package:flutter_capstone/screens/order/reschedule.dart';
+import 'package:flutter_capstone/screens/order/reschedule_view_model.dart';
 import 'package:flutter_capstone/screens/order/order_screen.dart';
 import 'package:flutter_capstone/screens/profile/profile_screen.dart';
 import 'package:flutter_capstone/screens/rating/image_picker_rating_screen.dart';
@@ -61,6 +62,9 @@ void main() {
         ),
         ListenableProvider(
           create: (context) => HistoryViewModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => RescheduleModelView(),
         ),
       ],
       child: const MyApp(),

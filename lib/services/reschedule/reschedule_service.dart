@@ -4,7 +4,7 @@ import 'package:flutter_capstone/core/init/utils/shared_preferences.dart';
 import 'dart:convert';
 
 class RescheduleService {
-  Future updateTransactionSchedule(String id, String start, String end) async {
+  Future updateTransactionSchedule(int id, String start, String end) async {
     String token = await getToken();
     final url = '$baseUrl/api/v1/transaction/$id/reschedule';
     final headers = {
