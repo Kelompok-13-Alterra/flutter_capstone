@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/model/profile/profile_model.dart';
-import 'package:flutter_capstone/screens/edit_profile/edit_profile_screen.dart';
 import 'package:flutter_capstone/screens/profile/widget/cards_profile_widget.dart';
 import 'package:flutter_capstone/screens/profile/widget/profiles_widget.dart';
-import 'package:flutter_capstone/services/login/login_services.dart';
 import 'package:flutter_capstone/services/profile/profile_service.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 
@@ -23,25 +21,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
       backgroundColor: NeutralColor().neutral99,
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.transparent,
+        automaticallyImplyLeading: false,
+        backgroundColor: SourceColor().white,
         title: Text(
           "Profile",
           style: setTextStyle(NeutralColor().neutral12)
               .copyWith(fontSize: 16, fontWeight: regular),
         ),
-        actions: const [
-          Padding(
-            padding: EdgeInsets.only(
-              right: 22,
-              top: 21,
-              bottom: 19,
-            ),
-            child: Icon(
-              Icons.more_vert_rounded,
-              color: Color(0xFF1A1A1A),
-            ),
-          ),
-        ],
       ),
       body: FutureBuilder(
         future: ProfileService().getProfile(),
@@ -184,7 +170,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   child: const CardsProfileWidget(
                                     cardColor: Color(0xffF2F6FF),
                                     icon: AssetImage(
-                                      "assets/images/profile/Image_total_kantor.png",
+                                      "assets/images/profile/image_total_kantor.png",
                                     ),
                                     title: 'Total Kantor',
                                     desc: 'yang kamu kunjungi',
@@ -198,7 +184,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   child: const CardsProfileWidget(
                                     cardColor: Color(0xffFFFCF5),
                                     icon: AssetImage(
-                                      "assets/images/profile/Image_total_co-working.png",
+                                      "assets/images/profile/image_total_co-working.png",
                                     ),
                                     title: 'Total Co-working',
                                     desc: 'yang kamu kunjungi',
@@ -240,8 +226,5 @@ class EditProfileArguments {
   final ProfileModel? profileModel;
   final String userId;
 
-  EditProfileArguments({
-    required this.profileModel,
-    required this.userId,
-  });
+  EditProfileArguments({this.profileModel, required this.userId});
 }

@@ -33,10 +33,6 @@ class BookedModel {
 }
 
 class Booked {
-  int id;
-  String createdAt;
-  String updatedAt;
-  dynamic deletedAt;
   int discount;
   String end;
   Office office;
@@ -49,10 +45,6 @@ class Booked {
   int userId;
 
   Booked({
-    required this.id,
-    required this.createdAt,
-    required this.updatedAt,
-    this.deletedAt,
     required this.discount,
     required this.end,
     required this.office,
@@ -66,10 +58,6 @@ class Booked {
   });
 
   factory Booked.fromJson(Map<String, dynamic> json) => Booked(
-        id: json["ID"] ?? 0,
-        createdAt: json["CreatedAt"] ?? "",
-        updatedAt: json["UpdatedAt"] ?? "",
-        deletedAt: json["DeletedAt"],
         discount: json["Discount"] ?? 0,
         end: json["End"] ?? "",
         office: Office.fromJson(json["Office"]),
@@ -82,10 +70,6 @@ class Booked {
         userId: json["UserID"] ?? 0,
       );
   Map<String, dynamic> toJson() => {
-        "ID": id,
-        "CreatedAt": createdAt,
-        "UpdatedAt": updatedAt,
-        "DeletedAt": deletedAt,
         "discount": discount,
         "end": end,
         "office": office.toJson(),

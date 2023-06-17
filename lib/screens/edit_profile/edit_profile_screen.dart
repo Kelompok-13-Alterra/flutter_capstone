@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/style/text_style.dart';
-import 'package:flutter_capstone/view_model/edit_profile/edit_profile_view_model.dart';
+import 'package:flutter_capstone/screens/edit_profile/edit_profile_view_model.dart';
 
 import 'package:intl/intl.dart';
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';

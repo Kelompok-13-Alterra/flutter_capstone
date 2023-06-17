@@ -1,11 +1,12 @@
-// ignore_for_file: file_names
-
+// ignore_for_file: file_names, avoid_print, duplicate_ignore
+//Ini utk reschedule
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/screens/detail/widget/bottom_book.dart';
 import 'package:flutter_capstone/screens/detail/widget/detail_card.dart';
 import 'package:flutter_capstone/screens/detail/widget/fasilities.dart';
 import 'package:flutter_capstone/screens/detail/widget/image_detail.dart';
 import 'package:flutter_capstone/screens/detail/widget/office_description.dart';
+import 'package:flutter_capstone/screens/review/review_screen.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 
 class DetailScheduleScreen extends StatefulWidget {
@@ -18,6 +19,8 @@ class DetailScheduleScreen extends StatefulWidget {
 class _DetailScheduleScreenState extends State<DetailScheduleScreen> {
   @override
   Widget build(BuildContext context) {
+    final args = ModalRoute.of(context)?.settings.arguments as ReviewArguments?;
+    print('Payment ID on detail schedule: ${args!.transactionId}');
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -27,16 +30,24 @@ class _DetailScheduleScreenState extends State<DetailScheduleScreen> {
             const ImageDetail(),
             // Container Detail
             //================================================================
-            const DetailCard(),
+            const DetailCard(
+              name: "Athena Office",
+              price: 150000,
+              open: "07:00:00",
+              close: "21:00:00",
+              capacity: 20,
+              location: "Jakarta",
+            ),
             // Container Fasilitas
             //================================================================
             const OfficeFalicities(),
             // Container Deskripsi
             //================================================================
-            const OfficeDescription(),
+            const OfficeDescription(description: "Lorem Ipsum Dolor sit amet"),
             // Button Book
             //================================================================
             BottomBook(
+              officeId: 0,
               function: () async {
                 // Future selectDateRange(BuildContext context) async {
                 DateTimeRange? pickedRange = await showDateRangePicker(

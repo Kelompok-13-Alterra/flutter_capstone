@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/screens/detail/detail_screen.dart';
-import 'package:flutter_capstone/view_model/home/home_view_model.dart';
+import 'package:flutter_capstone/screens/home/home_view_model.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_capstone/style/text_style.dart';
+import 'package:flutter_capstone/core/init/utils/open_close.dart';
+import 'package:flutter_capstone/core/init/utils/price_convert.dart';
 
 class HomeWidget extends StatefulWidget {
   const HomeWidget({super.key});
@@ -22,14 +25,13 @@ class _HomeWidgetState extends State<HomeWidget> {
             childCount: office.listOffice.length,
             (BuildContext context, int index) {
               final data = office.listOffice[index];
-
               return GestureDetector(
                 onTap: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => DetailScreen(
-                        officeId: index,
+                        officeId: data.id,
                         buttonRoute: '/booking',
                         textButton: 'Book',
                       ),
@@ -51,7 +53,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(12),
                           child: Image.asset(
-                            "assets/homescreen/office-list.jpg",
+                            "assets/images/home/office-list.jpg",
                             fit: BoxFit.fill,
                           ),
                         ),
@@ -75,7 +77,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                                   ),
                                   ElevatedButton(
                                       style: ElevatedButton.styleFrom(
-                                        backgroundColor: SuccessColor().green,
+                                        backgroundColor: checkOpeningStatus(
+                                                data.open, data.close)
+                                            ? SuccessColor().green
+                                            : WarningColor().red,
                                         elevation: 0,
                                         shape: RoundedRectangleBorder(
                                           borderRadius:
@@ -87,7 +92,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                                         padding: const EdgeInsets.symmetric(
                                             horizontal: 8),
                                         child: Text(
-                                          "Open",
+                                          checkOpeningStatus(
+                                                  data.open, data.close)
+                                              ? "Open"
+                                              : "Close",
                                           style: GoogleFonts.roboto(
                                             color: SourceColor().white,
                                             fontSize: 13,
@@ -154,7 +162,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     width: 5,
                                   ),
                                   Text(
-                                    "${data.open} AM - ${data.close} PM",
+                                    "${data.open.substring(0, 5)} AM - ${data.close.substring(0, 5)} PM",
                                     style: GoogleFonts.roboto(
                                       color: NeutralColor().neutral60,
                                       fontSize: 12,
@@ -169,7 +177,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                               Row(
                                 children: [
                                   Text(
-                                    "IDR ${data.price}",
+                                    "IDR ${priceConvert(data.price)}",
                                     style: GoogleFonts.roboto(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w400,

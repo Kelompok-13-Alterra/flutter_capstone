@@ -23,7 +23,7 @@ class LoginScreen extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   mainAxisSize: MainAxisSize.max,
-                  children: const <Widget>[
+                  children: const [
                     HeaderLogin(),
                     FormLogin(),
                   ],

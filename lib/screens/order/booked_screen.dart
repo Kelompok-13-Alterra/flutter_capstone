@@ -1,7 +1,9 @@
+// ignore_for_file: avoid_unnecessary_containers, unused_local_variable
+
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/model/order/booked_model.dart';
+import 'package:flutter_capstone/screens/order/booked_view_model.dart';
 import 'package:flutter_capstone/screens/order/widget/order_widget.dart';
-import 'package:flutter_capstone/view_model/order/booked_view_model.dart';
+import 'package:flutter_capstone/style/text_style.dart';
 import 'package:provider/provider.dart';
 
 class BookedOrderScreen extends StatefulWidget {
@@ -29,7 +31,13 @@ class _BookedOrderScreenState extends State<BookedOrderScreen> {
           future: bookedDataViewModel,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const CircularProgressIndicator();
+              return Scaffold(
+                body: Center(
+                  child: CircularProgressIndicator(
+                    color: PrimaryColor().primary,
+                  ),
+                ),
+              );
             } else if (!snapshot.hasData) {
               //final homeViewModel = Provider.of<HomeViewModel>(context);
               return ListView.builder(
@@ -37,7 +45,7 @@ class _BookedOrderScreenState extends State<BookedOrderScreen> {
                   itemBuilder: (context, index) {
                     var data = office.listBooked[index];
                     return OrderWidget(
-                      urlImg: 'assets/office1.png',
+                      urlImg: 'assets/images/detail/office1.png',
                       title: office.listBooked[index].office.name,
                       rating: 4.6,
                       type: office.listBooked[index].office.type,
@@ -49,6 +57,7 @@ class _BookedOrderScreenState extends State<BookedOrderScreen> {
                       routeButton1: '/detail-schedule',
                       buttonText2: 'Cancel Book',
                       routeButton2: '',
+                      transactionId: office.listBooked[index].office.id,
                     );
                   });
             } else {

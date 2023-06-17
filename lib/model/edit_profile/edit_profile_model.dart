@@ -32,42 +32,58 @@ class EditProfileModel {
 }
 
 class Profile {
-  String company;
-  String dateBirth;
-  String email;
-  String gender;
-  bool isVerify;
+  int id;
+  DateTime createdAt;
+  DateTime updatedAt;
+  DateTime? deletedAt;
   String name;
+  String email;
+  String company;
+  String gender;
+  String dateBirth;
   int role;
+  bool isVerify;
 
   Profile({
-    required this.company,
-    required this.dateBirth,
-    required this.email,
-    required this.gender,
-    required this.isVerify,
+    required this.id,
+    required this.createdAt,
+    required this.updatedAt,
+    this.deletedAt,
     required this.name,
+    required this.email,
+    required this.company,
+    required this.gender,
+    required this.dateBirth,
     required this.role,
+    required this.isVerify,
   });
 
   factory Profile.fromJson(Map<String, dynamic> json) => Profile(
-        company: json["Company"] ?? 'null',
-        dateBirth: json["DateBirth"] ?? 'null',
-        email: json["Email"] ?? 'null',
-        gender: json["Gender"] ?? 'null',
-        isVerify: json["IsVerify"] ?? 'null',
+        id: json["ID"] ?? 'null',
+        createdAt: DateTime.parse(json["CreatedAt"]),
+        updatedAt: DateTime.parse(json["UpdatedAt"]),
+        deletedAt: json["DeletedAt"],
         name: json["Name"] ?? 'null',
+        email: json["Email"] ?? 'null',
+        company: json["Company"] ?? 'null',
+        gender: json["Gender"] ?? 'null',
+        dateBirth: json["DateBirth"] ?? 'null',
         role: json["Role"] ?? 'null',
+        isVerify: json["IsVerify"] ?? 'null',
       );
 
   Map<String, dynamic> toJson() => {
-        "company": company,
-        "dateBirth": dateBirth,
-        "email": email,
-        "gender": gender,
-        "isVerify": isVerify,
-        "name": name,
-        "role": role,
+        "ID": id,
+        "CreatedAt": createdAt.toIso8601String(),
+        "UpdatedAt": updatedAt.toIso8601String(),
+        "DeletedAt": deletedAt,
+        "Name": name,
+        "Email": email,
+        "Company": company,
+        "Gender": gender,
+        "DateBirth": dateBirth,
+        "Role": role,
+        "IsVerify": isVerify,
       };
 }
 

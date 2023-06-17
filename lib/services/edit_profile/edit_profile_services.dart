@@ -1,8 +1,5 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:flutter_capstone/core/init/const/api.dart';
-import 'package:flutter_capstone/model/edit_profile/edit_profile_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class EditProfileService {
@@ -13,7 +10,7 @@ class EditProfileService {
     String token = prefs.getString('token').toString();
     try {
       final response = await _dio.put(
-        '$baseUrl/api/v1/user/edit/$id',
+        '$baseUrl/api/v1/user/edit',
         data: data,
         options: Options(
           validateStatus: (_) => true,

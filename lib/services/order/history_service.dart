@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:dio/dio.dart';
 import 'package:flutter_capstone/core/init/const/api.dart';
 import 'package:flutter_capstone/model/order/history_model.dart';
@@ -19,6 +21,7 @@ class HistoryService {
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         final responseData = response.data;
+        print(responseData); // Log the response data for debugging
 
         HistoryModel history = HistoryModel.fromJson(responseData);
         if (history.data.isEmpty) {

@@ -21,10 +21,10 @@ import 'package:flutter_capstone/screens/sign_up/signup_view_model.dart';
 import 'package:flutter_capstone/screens/splash/boarding_screen.dart';
 import 'package:flutter_capstone/screens/splash/splash_screen.dart';
 import 'package:flutter_capstone/screens/payment/payment-view-model.dart';
-import 'package:flutter_capstone/view_model/edit_profile/edit_profile_view_model.dart';
-import 'package:flutter_capstone/view_model/home/home_view_model.dart';
-import 'package:flutter_capstone/view_model/order/booked_view_model.dart';
-import 'package:flutter_capstone/view_model/order/history_view_model.dart';
+import 'package:flutter_capstone/screens/edit_profile/edit_profile_view_model.dart';
+import 'package:flutter_capstone/screens/home/home_view_model.dart';
+import 'package:flutter_capstone/screens/order/booked_view_model.dart';
+import 'package:flutter_capstone/screens/order/history_view_model.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -90,7 +90,9 @@ class MyApp extends StatelessWidget {
         '/detail-schedule': (context) => const DetailScheduleScreen(),
         '/card-search-bar': (context) => const SearchScreen(),
         '/booking': (context) => const BookingScheduleScreen(),
-        '/edit-profile': (context) => const EditProfileScreen(id: 6),
+        '/edit-profile': (context) => const EditProfileScreen(
+              id: 6,
+            ),
         '/search': (context) => const SearchScreen(),
         '/page-not-found-screen': (context) => const PageNotFoundScreen(),
         '/location-not-found-screen': (context) =>
