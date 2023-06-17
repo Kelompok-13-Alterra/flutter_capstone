@@ -6,7 +6,6 @@ import 'package:flutter_capstone/screens/order/booked_view_model.dart';
 import 'package:flutter_capstone/screens/order/history_view_model.dart';
 import 'package:flutter_capstone/screens/review/review_view_model.dart';
 import 'package:flutter_capstone/screens/notification/notification_screen.dart';
-
 import 'package:flutter_capstone/screens/search/search_office_view_model.dart';
 import 'package:flutter_capstone/screens/search/search_screen.dart';
 import 'package:flutter_capstone/screens/edit_profile/edit_profile_screen.dart';
@@ -17,7 +16,7 @@ import 'package:flutter_capstone/screens/home/home_screen.dart';
 import 'package:flutter_capstone/screens/home/home_view_model.dart';
 import 'package:flutter_capstone/screens/login/login_screen.dart';
 import 'package:flutter_capstone/screens/login/login_view_model.dart';
-import 'package:flutter_capstone/screens/order/detail_schedule.dart';
+import 'package:flutter_capstone/screens/order/reschedule.dart';
 import 'package:flutter_capstone/screens/order/order_screen.dart';
 import 'package:flutter_capstone/screens/profile/profile_screen.dart';
 import 'package:flutter_capstone/screens/rating/image_picker_rating_screen.dart';
@@ -92,7 +91,7 @@ class MyApp extends StatelessWidget {
         '/order': (context) => const OrderScreen(),
         '/review': (context) => const ReviewScreen(),
         '/image-picker': (context) => const ImagePickerRatingScreen(),
-        '/detail-schedule': (context) => const DetailScheduleScreen(),
+        '/reschedule': (context) => const RescheduleScreen(),
         '/card-search-bar': (context) => const SearchScreen(),
         '/booking': (context) => const BookingScheduleScreen(),
         '/edit-profile': (context) => const EditProfileScreen(),

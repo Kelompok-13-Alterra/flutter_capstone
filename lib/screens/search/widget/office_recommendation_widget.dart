@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_declarations, unrelated_type_equality_checks, sized_box_for_whitespace
+// ignore_for_file: prefer_const_declarations, unrelated_type_equality_checks, sized_box_for_whitespace, unused_local_variable
 
 import 'package:flutter/material.dart';
 //import 'package:flutter_capstone/model/search_office/search_model.dart';

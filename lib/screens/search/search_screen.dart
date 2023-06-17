@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
+import 'package:flutter_capstone/screens/detail/detail_screen.dart';
 import 'package:flutter_capstone/screens/search/search_office_view_model.dart';
 import 'package:flutter_capstone/screens/errors/location_not_found.dart';
 import 'package:flutter_capstone/screens/search/widget/empty_search.dart';
@@ -103,31 +104,35 @@ class _SearchScreenState extends State<SearchScreen> {
                   padding: const EdgeInsets.only(
                     right: 13,
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(
-                        Icons.search,
-                        color: NeutralVariantColor().neutralVariant30,
-                      ),
-                      const SizedBox(
-                        width: 19.51,
-                      ),
-                      SizedBox(
-                        height: 30,
-                        width: 30,
-                        child: CircleAvatar(
-                          backgroundColor: PrimaryColor().primary,
-                          child: Text(
-                            "A",
-                            style: setTextStyle(PrimaryColor().onPrimary)
-                                .copyWith(fontSize: 16, fontWeight: medium),
-                          ),
-                        ),
-                      ),
-                    ],
+                  child: Icon(
+                    Icons.search,
+                    color: NeutralVariantColor().neutralVariant30,
                   ),
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //   mainAxisSize: MainAxisSize.min,
+                  //   children: [
+                  //     Icon(
+                  //   Icons.search,
+                  //   color: NeutralVariantColor().neutralVariant30,
+                  // ),
+                  // const SizedBox(
+                  //   width: 19.51,
+                  // ),
+                  // SizedBox(
+                  //   height: 30,
+                  //   width: 30,
+                  //   child: CircleAvatar(
+                  //     backgroundColor: PrimaryColor().primary,
+                  //     child: Text(
+                  //       "A",
+                  //       style: setTextStyle(PrimaryColor().onPrimary)
+                  //           .copyWith(fontSize: 16, fontWeight: medium),
+                  //     ),
+                  //   ),
+                  // ),
+                  // ],
+                  // ),
                 ),
               ),
             ),
@@ -175,21 +180,35 @@ class _SearchScreenState extends State<SearchScreen> {
                                     itemBuilder: (context, index) {
                                       var data = snapshot.data?.data[index];
 
-                                      return OfficeRecommendationWidget(
-                                        img: imageKantor[0],
-                                        statusKantor: statusKantor[0],
-                                        namaKantor: data?.name ?? '',
-                                        imgRating: iconImage[0],
-                                        rating: rating[0],
-                                        imgCoWorkingOffice: iconImage[1],
-                                        office: data?.type ?? "",
-                                        imgLocation: iconImage[2],
-                                        location: data?.location ?? "",
-                                        imgTime: iconImage[3],
-                                        time: '${data?.open} - ${data?.close}',
-                                        open: '${data?.open}',
-                                        close: '${data?.close}',
-                                        price: data?.price ?? 0,
+                                      return GestureDetector(
+                                        onTap: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  DetailScreen(
+                                                      textButton: '/booking',
+                                                      officeId: data?.id ?? 0),
+                                            ),
+                                          );
+                                        },
+                                        child: OfficeRecommendationWidget(
+                                          img: imageKantor[0],
+                                          statusKantor: statusKantor[0],
+                                          namaKantor: data?.name ?? '',
+                                          imgRating: iconImage[0],
+                                          rating: rating[0],
+                                          imgCoWorkingOffice: iconImage[1],
+                                          office: data?.type ?? "",
+                                          imgLocation: iconImage[2],
+                                          location: data?.location ?? "",
+                                          imgTime: iconImage[3],
+                                          time:
+                                              '${data?.open} - ${data?.close}',
+                                          open: '${data?.open}',
+                                          close: '${data?.close}',
+                                          price: data?.price ?? 0,
+                                        ),
                                       );
                                     },
                                   ),
@@ -198,13 +217,13 @@ class _SearchScreenState extends State<SearchScreen> {
                             ),
                 );
               } else {
-                return Padding(
-                  padding: const EdgeInsets.only(top: 15),
+                return const Padding(
+                  padding: EdgeInsets.only(top: 15),
                   child: Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      children: const [
+                      children: [
                         CircularProgressIndicator(),
                       ],
                     ),

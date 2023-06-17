@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/core/init/utils/price_convert.dart';
-import 'package:flutter_capstone/model/home/home_model.dart';
 import 'package:flutter_capstone/model/midtrans/midtrans_model.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_svg/flutter_svg.dart';
