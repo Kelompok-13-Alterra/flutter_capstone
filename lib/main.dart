@@ -90,7 +90,7 @@ class MyApp extends StatelessWidget {
         '/detail-schedule': (context) => const DetailScheduleScreen(),
         '/card-search-bar': (context) => const SearchScreen(),
         '/booking': (context) => const BookingScheduleScreen(),
-        '/edit-profile': (context) => const EditProfileScreen(id: 224),
+        '/edit-profile': (context) => const EditProfileScreen(id: 6),
         '/search': (context) => const SearchScreen(),
         '/page-not-found-screen': (context) => const PageNotFoundScreen(),
         '/location-not-found-screen': (context) =>
