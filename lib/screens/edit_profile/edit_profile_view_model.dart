@@ -8,8 +8,14 @@ class EditProfileViewModel with ChangeNotifier {
 
   Future<void> updateProfile(Map<String, dynamic> data, int id) async {
     try {
-      _listProfile = await EditProfileService().putProfileData(data, id);
-      notifyListeners();
+      List<Profile>? updatedList =
+          await EditProfileService().putProfileData(data, id);
+      if (updatedList != null) {
+        _listProfile = updatedList;
+        notifyListeners();
+      } else {
+        // Handle case when the data is null
+      }
     } catch (e) {
       rethrow;
     }

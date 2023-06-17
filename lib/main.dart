@@ -90,9 +90,12 @@ class MyApp extends StatelessWidget {
         '/detail-schedule': (context) => const DetailScheduleScreen(),
         '/card-search-bar': (context) => const SearchScreen(),
         '/booking': (context) => const BookingScheduleScreen(),
-        '/edit-profile': (context) => const EditProfileScreen(
-              id: 6,
-            ),
+        '/edit-profile': (context) {
+          final EditProfileArguments args = ModalRoute.of(context)
+              ?.settings
+              .arguments as EditProfileArguments;
+          return EditProfileScreen(id: int.parse(args.userId));
+        },
         '/search': (context) => const SearchScreen(),
         '/page-not-found-screen': (context) => const PageNotFoundScreen(),
         '/location-not-found-screen': (context) =>

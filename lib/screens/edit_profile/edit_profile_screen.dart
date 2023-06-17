@@ -358,7 +358,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                               _singleDatePickerValueWithDefaultValue =
                                                   value;
                                               _dateController.text =
-                                                  DateFormat('dd-MM-yyyy')
+                                                  DateFormat('yyyy-MM-dd')
                                                       .format(dateBirth);
                                             });
                                           }
@@ -383,7 +383,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 fontWeight: regular,
                                 fontSize: 16,
                               ),
-                              hintText: "DD/MM/YYYY",
+                              hintText: "YYYY/MM/DD",
                               floatingLabelBehavior:
                                   FloatingLabelBehavior.always,
                               border: const OutlineInputBorder(),
@@ -427,6 +427,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                         },
                                         widget.id,
                                       );
+
+                                      // ignore: use_build_context_synchronously
+                                      Navigator.pop(context);
                                     } catch (e) {
                                       print(e.toString());
                                     }
