@@ -78,11 +78,6 @@ class PaymentViewModel extends ChangeNotifier {
 
   MidtransService midtransService = MidtransService();
 
-  // set setRekeningValue(String val) {
-  //   rekening = val;
-  //   notifyListeners();
-  // }
-
   set setPrice(int val) {
     price = val;
     notifyListeners();
@@ -127,7 +122,7 @@ class PaymentViewModel extends ChangeNotifier {
   // }
 
   void startCountdown(BuildContext context, int officeId) {
-    _timerOffice = DateTime.now().add(const Duration(minutes: 6));
+    _timerOffice = DateTime.now().add(const Duration(seconds: 3));
     // _timer?.cancel();
 
     // Inisialisasi _timerOffice saat countdown dimulai

@@ -79,7 +79,7 @@ class _BookingScheduleScreenState extends State<BookingScheduleScreen> {
     );
 
     if (pickedDateRange != null) {
-      // print('Office ID in booking screen ${args.officeId}');
+      print('Office ID in booking screen ${args.officeId}');
       // ignore: use_build_context_synchronously
       var res = await BookingAvailabilityService().checkDate(
         context,
@@ -97,43 +97,18 @@ class _BookingScheduleScreenState extends State<BookingScheduleScreen> {
           setState(() {
             selectedDateRange = pickedDateRange;
           });
-          // Navigator.pop(context);
-          // Navigator.pushReplacement(
-          //   context,
-          //   MaterialPageRoute(
-          //     builder: (context) => DetailScreen(
-          //       officeId: args.officeId,
-          //       buttonRoute: '/booking',
-          //       textButton: 'Pilih metode pembayaran',
-          //       selectedDateRange: selectedDateRange,
-          //     ),
-          //   ),
-          // );
           Navigator.pop(context, selectedDateRange);
         }, buttonText: 'Selanjutnya');
-      } else if (getStatus == 500) {
+      }
+      if (getStatus == 500) {
         // ignore: use_build_context_synchronously
         return modalBottomSheet(context,
             img: 'assets/images/modal_bottom/retro_mac_error.png',
             title: 'Waduh?!',
-            desc:
-                'Tanggal yang kamu pilih tidak tersedia. Coba pilih\ntanggal yang lain.',
-            path: () {
-          // Navigator.pop(context);
-          Navigator.pushAndRemoveUntil(
+            desc: 'Gagal mengumpulkan informasi! Silahkan coba lagi', path: () {
+          Navigator.pushReplacementNamed(
             context,
-            MaterialPageRoute(
-              builder: (context) => DetailScreen(
-                // function: () {
-                //   Navigator.pop(context);
-                // },
-                buttonRoute: '/booking',
-                officeId: args.officeId,
-                textButton: 'Booking',
-                selectedDateRange: null,
-              ),
-            ),
-            (route) => false,
+            '/bottom-nav',
           );
         }, buttonText: 'Pilih tanggal lain');
       }
