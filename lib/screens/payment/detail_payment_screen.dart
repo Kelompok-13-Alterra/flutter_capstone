@@ -42,8 +42,6 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
   void initState() {
     Future.microtask(() => Provider.of<PaymentViewModel>(context, listen: false)
         .getMidtrans(paymentId: widget.paymentId));
-    // Future.microtask(() => Provider.of<PaymentViewModel>(context, listen: false)
-    //     .startCountdown(context, widget.officeId));
 
     Future.microtask(
         () => paymentViewModel?.startCountdown(context, widget.officeId));
@@ -83,7 +81,7 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                 ).copyWith(fontWeight: medium, fontSize: 12),
               ),
               Text(
-                'IDR ${priceConvert(provider.getMidtransModel.data?.paymentData.price)}',
+                'IDR ${priceConvert(provider.getMidtransModel.data?.paymentData.price) ?? 0}',
                 style: setTextStyle(
                   const Color(0xFF44474E),
                 ).copyWith(fontWeight: semiBold, fontSize: 14),
@@ -103,7 +101,7 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                 ).copyWith(fontWeight: medium, fontSize: 12),
               ),
               Text(
-                'IDR ${priceConvert(provider.getMidtransModel.data?.paymentData.discount)}',
+                'IDR ${priceConvert(provider.getMidtransModel.data?.paymentData.discount) ?? 0}',
                 style: setTextStyle(
                   const Color(0xFF44474E),
                 ).copyWith(fontWeight: semiBold, fontSize: 14),
@@ -123,7 +121,7 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                 ).copyWith(fontWeight: medium, fontSize: 12),
               ),
               Text(
-                'IDR ${priceConvert(provider.getMidtransModel.data?.paymentData.tax)}',
+                'IDR ${priceConvert(provider.getMidtransModel.data?.paymentData.tax) ?? 0}',
                 style: setTextStyle(
                   const Color(0xFF44474E),
                 ).copyWith(fontWeight: semiBold, fontSize: 14),
@@ -143,7 +141,7 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                 ).copyWith(fontWeight: medium, fontSize: 12),
               ),
               Text(
-                'IDR ${priceConvert(provider.getMidtransModel.data?.paymentData.totalPrice)}',
+                'IDR ${priceConvert(provider.getMidtransModel.data?.paymentData.totalPrice) ?? 0}',
                 style: setTextStyle(
                   const Color(0xFF44474E),
                 ).copyWith(fontWeight: semiBold, fontSize: 14),
@@ -160,9 +158,9 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
     // print('This is payment ID in Detail Payment Screen ${widget.paymentId}');
 
     return Consumer<PaymentViewModel>(builder: (context, provider, _) {
-      // provider.setPaymentStatus = provider.getMidtransModel.data.status;
       paymenStatus() async {
         await provider.getMidtrans(paymentId: widget.paymentId);
+        provider.setPaymentStatus = '';
         provider.setPaymentStatus =
             provider.getMidtransModel.data?.status ?? '';
         return provider.getPaymentStatus;
@@ -174,16 +172,10 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
       if (provider.getPaymentStatus == 'success') {
         provider.getMidtransModel.data?.status = '';
         provider.stopCountdown();
-        // Navigator.of(context).pushReplacement(MaterialPageRoute(
-        //   builder: (context) => SuccessBookingScreen(
-        //     totalPrice: provider.getMidtransModel.data.paymentData.totalPrice,
-        //   ),
-        // ));
-        // Navigator.pushReplacement(
+
         return SuccessBookingScreen(
           bookingData: provider.getMidtransModel.data,
           dateData: widget.selectedDateRange,
-          // dateData: sel
         );
 
         // );
@@ -196,6 +188,12 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
               'Detail Pembayaran',
               style: setTextStyle(NeutralColor().neutral12)
                   .copyWith(fontWeight: semiBold, fontSize: 16),
+            ),
+            leading: IconButton(
+              icon: const Icon(Icons.arrow_back_sharp),
+              onPressed: () {
+                Navigator.pushReplacementNamed(context, '/bottom-nav');
+              },
             ),
             backgroundColor: Colors.transparent,
             elevation: 0,
