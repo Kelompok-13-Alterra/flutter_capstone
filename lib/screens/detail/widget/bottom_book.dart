@@ -86,7 +86,7 @@ class _BottomBookState extends State<BottomBook> {
               //     });
               //   });
               // }
-              if (widget.selectedDateRange != null) {
+              else if (widget.selectedDateRange != null) {
                 showModalBottomSheet(
                   context: context,
                   enableDrag: false,
@@ -141,14 +141,18 @@ class _BottomBookState extends State<BottomBook> {
                 );
               }
             },
-            child: Text(
-              // widget.textButton,
-              widget.selectedDateRange != null
-                  ? 'Pilih metode pembayaran'
-                  : 'Booking',
-              style: setTextStyle(SourceColor().white)
-                  .copyWith(fontWeight: medium, fontSize: 14),
-            ),
+            child: widget.function != null
+                ? Text(
+                    widget.textButton,
+                  )
+                : Text(
+                    // widget.textButton,
+                    widget.selectedDateRange != null
+                        ? 'Pilih metode pembayaran'
+                        : 'Booking',
+                    style: setTextStyle(SourceColor().white)
+                        .copyWith(fontWeight: medium, fontSize: 14),
+                  ),
           ),
         ),
       ),

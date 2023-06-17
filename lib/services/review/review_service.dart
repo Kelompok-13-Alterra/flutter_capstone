@@ -54,7 +54,7 @@ class ReviewService {
       if (e.response!.statusCode == 500) {
         return modalBottomSheet(
           context,
-          img: 'assets/retro_mac.png',
+          img: 'assets/images/modal_bottom/retro_mac.png',
           title: 'Waduh?!',
           desc: 'Kamu sudah melakukan review',
           path: () {

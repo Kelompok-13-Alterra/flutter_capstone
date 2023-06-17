@@ -1,6 +1,7 @@
 // ignore_for_file: file_names, avoid_print, duplicate_ignore
 //Ini utk reschedule
 import 'package:flutter/material.dart';
+import 'package:flutter_capstone/core/init/utils/date_convert.dart';
 import 'package:flutter_capstone/screens/detail/widget/bottom_book.dart';
 import 'package:flutter_capstone/screens/detail/widget/detail_card.dart';
 import 'package:flutter_capstone/screens/detail/widget/fasilities.dart';
@@ -10,7 +11,10 @@ import 'package:flutter_capstone/screens/errors/connection_error.dart';
 import 'package:flutter_capstone/screens/order/reschedule_view_model.dart';
 import 'package:flutter_capstone/screens/review/review_screen.dart';
 import 'package:flutter_capstone/screens/detail/detail_view_model.dart';
+import 'package:flutter_capstone/core/init/utils/date-reschedule.dart';
+import 'package:flutter_capstone/services/booking/booking_availability_service.dart';
 import 'package:flutter_capstone/style/text_style.dart';
+import 'package:flutter_capstone/widgets/modal_bottom.dart';
 import 'package:provider/provider.dart';
 import 'dart:async';
 
@@ -122,7 +126,25 @@ class _RescheduleScreenState extends State<RescheduleScreen> {
 
                           if (pickedRange != null) {
                             // ignore: use_build_context_synchronously
-                            showModalBottomSheet(
+                            var res =
+                                // ignore: use_build_context_synchronously
+                                await BookingAvailabilityService().checkDate(
+                              context,
+                              officeId: args['officeId'],
+                              startDate:
+                                  convertDateTime(pickedRange.start.toString()),
+                              endDate:
+                                  convertDateTime(pickedRange.end.toString()),
+                            );
+                            var getStatus = res?.meta.code;
+                            if (getStatus == 201) {
+                              provider.updateRecheduleOffice(
+                                308,
+                                dataRescheduleConvert('${pickedRange.start}'),
+                                dataRescheduleConvert('${pickedRange.end}'),
+                              );
+                              // ignore: use_build_context_synchronously
+                              showModalBottomSheet(
                                 context: context,
                                 isScrollControlled: true,
                                 builder: (context) {
@@ -140,7 +162,7 @@ class _RescheduleScreenState extends State<RescheduleScreen> {
                                             width: 127.5,
                                             height: 130,
                                             child: Image.asset(
-                                                'assets/retro_mac.png'),
+                                                'assets/images/modal_bottom/retro_mac.png'),
                                           ),
                                           const Padding(
                                               padding: EdgeInsets.only(top: 8)),
@@ -210,12 +232,28 @@ class _RescheduleScreenState extends State<RescheduleScreen> {
                                       ),
                                     ),
                                   );
-                                });
+                                },
+                              );
+                            }
+                            if (getStatus == 500) {
+                              // ignore: use_build_context_synchronously
+                              return modalBottomSheet(context,
+                                  img:
+                                      'assets/images/modal_bottom/retro_mac_error.png',
+                                  title: 'Waduh?!',
+                                  desc:
+                                      'Gagal mengumpulkan informasi! Silahkan coba lagi',
+                                  path: () {
+                                Navigator.pushReplacementNamed(
+                                  context,
+                                  '/bottom-nav',
+                                );
+                              }, buttonText: 'Pilih tanggal lain');
+                            }
 
                             // ignore: avoid_print
                             print(
                                 'picked range ${pickedRange.start} ${pickedRange.end} ${pickedRange.duration.inDays}');
-                            // provider.updateRecheduleOffice(308, start, end)
                           }
                           // }
                         },
