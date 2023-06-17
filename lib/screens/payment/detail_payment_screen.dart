@@ -1,10 +1,11 @@
+// ignore_for_file: unnecessary_null_comparison
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_capstone/screens/payment/success_booking_screen.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_capstone/core/init/utils/price_convert.dart';
 import 'payment_view_model.dart';
 
 // ignore: must_be_immutable
@@ -12,17 +13,12 @@ class DetailPaymentScreen extends StatefulWidget {
   final int paymentId;
   final int officeId;
   final String selectedDateRange;
-  String? name;
-  String? type;
-  String? location;
+
   DetailPaymentScreen({
     super.key,
     required this.paymentId,
     required this.officeId,
     required this.selectedDateRange,
-    required this.name,
-    required this.type,
-    required this.location,
   });
 
   @override
@@ -31,6 +27,13 @@ class DetailPaymentScreen extends StatefulWidget {
 
 class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
   PaymentViewModel? paymentViewModel;
+
+  void paymenStatus() async {
+    await paymentViewModel?.getMidtrans(paymentId: widget.paymentId);
+    paymentViewModel?.setPaymentStatus = '';
+    paymentViewModel?.setPaymentStatus =
+        paymentViewModel?.getMidtransModel.data?.status ?? '';
+  }
 
   @override
   void didChangeDependencies() {
@@ -45,7 +48,10 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
 
     Future.microtask(
         () => paymentViewModel?.startCountdown(context, widget.officeId));
+
     super.initState();
+
+    paymenStatus();
   }
 
   @override
@@ -54,12 +60,6 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
     if (mounted) {
       Future.microtask(() => paymentViewModel?.stopCountdown());
     }
-    //
-    //   Future.microtask(() =>
-    //       Provider.of<PaymentViewModel>(context, listen: false)
-    //           .stopCountdown());
-    //   // setState(() {});
-    // }
 
     super.dispose();
   }
@@ -81,7 +81,7 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                 ).copyWith(fontWeight: medium, fontSize: 12),
               ),
               Text(
-                'IDR ${priceConvert(provider.getMidtransModel.data?.paymentData.price) ?? 0}',
+                'IDR ${provider.getMidtransModel.data?.paymentData.price}',
                 style: setTextStyle(
                   const Color(0xFF44474E),
                 ).copyWith(fontWeight: semiBold, fontSize: 14),
@@ -101,7 +101,7 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                 ).copyWith(fontWeight: medium, fontSize: 12),
               ),
               Text(
-                'IDR ${priceConvert(provider.getMidtransModel.data?.paymentData.discount) ?? 0}',
+                'IDR ${provider.getMidtransModel.data?.paymentData.discount}',
                 style: setTextStyle(
                   const Color(0xFF44474E),
                 ).copyWith(fontWeight: semiBold, fontSize: 14),
@@ -121,7 +121,7 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                 ).copyWith(fontWeight: medium, fontSize: 12),
               ),
               Text(
-                'IDR ${priceConvert(provider.getMidtransModel.data?.paymentData.tax) ?? 0}',
+                'IDR ${provider.getMidtransModel.data?.paymentData.tax}',
                 style: setTextStyle(
                   const Color(0xFF44474E),
                 ).copyWith(fontWeight: semiBold, fontSize: 14),
@@ -141,7 +141,7 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                 ).copyWith(fontWeight: medium, fontSize: 12),
               ),
               Text(
-                'IDR ${priceConvert(provider.getMidtransModel.data?.paymentData.totalPrice) ?? 0}',
+                'IDR ${provider.getMidtransModel.data?.paymentData.totalPrice}',
                 style: setTextStyle(
                   const Color(0xFF44474E),
                 ).copyWith(fontWeight: semiBold, fontSize: 14),
@@ -158,16 +158,7 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
     // print('This is payment ID in Detail Payment Screen ${widget.paymentId}');
 
     return Consumer<PaymentViewModel>(builder: (context, provider, _) {
-      paymenStatus() async {
-        await provider.getMidtrans(paymentId: widget.paymentId);
-        provider.setPaymentStatus = '';
-        provider.setPaymentStatus =
-            provider.getMidtransModel.data?.status ?? '';
-        return provider.getPaymentStatus;
-      }
-
       paymenStatus();
-
       // ignore: unrelated_type_equality_checks
       if (provider.getPaymentStatus == 'success') {
         provider.getMidtransModel.data?.status = '';
@@ -263,7 +254,8 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  widget.name.toString(),
+                                  provider.getMidtransModel.data?.office.name ??
+                                      '',
                                   style: setTextStyle(NeutralColor().neutral20)
                                       .copyWith(
                                           fontWeight: semiBold, fontSize: 16),
@@ -305,7 +297,9 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                                       width: 5,
                                     ),
                                     Text(
-                                      widget.type.toString(),
+                                      provider.getMidtransModel.data?.office
+                                              .type ??
+                                          '',
                                       style:
                                           setTextStyle(NeutralColor().neutral60)
                                               .copyWith(
@@ -328,7 +322,9 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                                       width: 5,
                                     ),
                                     Text(
-                                      widget.location.toString(),
+                                      provider.getMidtransModel.data?.office
+                                              .location ??
+                                          '',
                                       style:
                                           setTextStyle(NeutralColor().neutral60)
                                               .copyWith(
@@ -495,9 +491,10 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      priceConvert(provider.getMidtransModel
-                                              .data?.paymentData.totalPrice)
-                                          .toString(),
+                                      provider.getMidtransModel.data
+                                              ?.paymentData.totalPrice
+                                              .toString() ??
+                                          '',
                                       style:
                                           setTextStyle(NeutralColor().neutral10)
                                               .copyWith(

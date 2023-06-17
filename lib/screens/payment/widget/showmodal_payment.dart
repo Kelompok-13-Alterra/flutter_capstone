@@ -701,15 +701,20 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
 
                     var transactionId = res.data.idTransaction;
 
+                    print('Transaction ID: $transactionId');
+                    print('Office Id ${widget.officeId}');
+                    print('Name ${widget.name}');
+                    print('type ${widget.type}');
+                    print('location ${widget.location}');
+                    print(
+                        'date ${convertDateTime(widget.selectedDateRange!.start.toString())}');
+
                     Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) => DetailPaymentScreen(
                           paymentId: transactionId,
                           officeId: widget.officeId,
-                          name: widget.name,
-                          type: widget.type,
-                          location: widget.location,
                           selectedDateRange: convertDateTime(
                               widget.selectedDateRange!.start.toString()),
                         ),
