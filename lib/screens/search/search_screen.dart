@@ -199,13 +199,13 @@ class _SearchScreenState extends State<SearchScreen> {
                 return const Padding(
                   padding: EdgeInsets.only(top: 15),
                   child: Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        CircularProgressIndicator(),
-                      ],
-                    ),
+                    // child: Column(
+                    //   mainAxisAlignment: MainAxisAlignment.center,
+                    //   crossAxisAlignment: CrossAxisAlignment.center,
+                    //   children: [
+                    //     CircularProgressIndicator(),
+                    //   ],
+                    // ),
                   ),
                 );
               }

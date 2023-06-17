@@ -11,7 +11,7 @@ class BookedOrderScreen extends StatefulWidget {
 class _BookedOrderScreenState extends State<BookedOrderScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return  Column(
       children: [
         OrderWidget(
             urlImg: 'assets/office1.png',

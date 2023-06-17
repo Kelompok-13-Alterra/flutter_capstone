@@ -9,7 +9,7 @@ FontWeight medium = FontWeight.w500;
 FontWeight semiBold = FontWeight.w600;
 FontWeight bold = FontWeight.w700;
 FontWeight extraBold = FontWeight.w800;
-FontWeight black = FontWeight.w900;
+FontWeight black = 
 
 class SourceColor {
   Color black = const Color(0xff000000);
@@ -159,4 +159,4 @@ class BlackColor {
   Color black = const Color(0xFF1A1A1A);
 }
 
-TextStyle setTextStyle(Color color) => GoogleFonts.roboto(color: color);
+TextStyle setTextStyle(Color color, {required FontWeight fontWeight}) => GoogleFonts.roboto(color: color);

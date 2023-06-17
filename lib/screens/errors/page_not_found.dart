@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_capstone/style/text_style.dart';
 
 class PageNotFoundScreen extends StatelessWidget {
   const PageNotFoundScreen({super.key});
@@ -16,25 +17,23 @@ class PageNotFoundScreen extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              const Text(
+                Text(
                 "Halaman tidak ditemukan",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
+                style: setTextStyle(NeutralColor().neutral0)
+                .copyWith(fontWeight: bold,fontSize: 16),
                 ),
-              ),
+
               const SizedBox(
                 height: 10,
               ),
               Text(
                 "Ada kesalahan di halaman yang kamu tuju, silahkan kembali ke beranda",
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.grey[600],
-                ),
                 textAlign: TextAlign.center,
-              ),
+                style: setTextStyle(NeutralColor().neutral50)
+                  .copyWith(fontWeight:medium,fontSize: 14 ),
+                ),
+
+
               const SizedBox(
                 height: 20,
               ),

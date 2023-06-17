@@ -66,7 +66,8 @@ class _ReviewScreenState extends State<ReviewScreen> {
           children: [
             Text(
               'Review',
-              style: TextStyle(fontSize: 16, fontWeight: regular),
+              style: setTextStyle(NeutralColor().neutral40)
+              .copyWith(fontSize: 16, fontWeight: regular),
             ),
             IconButton(
               icon: Icon(Icons.more_vert, color: SourceColor().black),
@@ -93,23 +94,21 @@ class _ReviewScreenState extends State<ReviewScreen> {
                     ),
                     Text(
                       'Rate Your Experience',
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: regular,
-                        color: NeutralColor().neutral20,
+                      style: setTextStyle(NeutralColor().neutral20)
+                      .copyWith(fontWeight: regular , fontSize: 24 ),
+
                       ),
-                    ),
+
                     const SizedBox(
                       height: 10,
                     ),
                     Text(
                       'Are you satisfied with the service?',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: regular,
-                        color: NeutralColor().neutral60,
+                        style: setTextStyle(NeutralColor().neutral60)
+                      .copyWith(fontWeight: regular , fontSize: 14 ),
+
                       ),
-                    ),
+
                     const SizedBox(
                       height: 10,
                     ),
@@ -135,15 +134,14 @@ class _ReviewScreenState extends State<ReviewScreen> {
                     ),
                     Text(
                       'Tell us what stood out',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: regular,
-                        color: SourceColor().black,
+                        style: setTextStyle(SourceColor().black)
+                      .copyWith(fontWeight: regular , fontSize: 14 ),
+
                       ),
-                    ),
-                  ],
+
+                  ],)
                 ),
-              ),
+
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Align(

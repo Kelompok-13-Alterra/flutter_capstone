@@ -17,7 +17,7 @@ class _EmptySearchState extends State<EmptySearch> {
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
-      body: const Column(
+      body:  Column(
         children: [],
       ),
     );
