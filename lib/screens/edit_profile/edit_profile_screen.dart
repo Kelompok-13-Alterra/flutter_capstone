@@ -38,9 +38,20 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   List<DateTime?> _singleDatePickerValueWithDefaultValue = [
     DateTime.now(),
   ];
-
-  String? selectedValue = "Male";
   final currentDate = DateTime.now();
+  String? selectedValue;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedValue = '';
+  }
+
+  void updateSelectedValue(String? value) {
+    setState(() {
+      selectedValue = value;
+    });
+  }
 
   Future<XFile?> pickImageFromGallery() async {
     final picker = ImagePicker();
@@ -255,11 +266,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                         ),
                                         materialTapTargetSize:
                                             MaterialTapTargetSize.shrinkWrap,
-                                        onChanged: (String? value) {
-                                          setState(() {
-                                            selectedValue = value;
-                                          });
-                                        },
+                                        onChanged: updateSelectedValue,
                                       ),
                                       const SizedBox(
                                         width: 10,
@@ -280,11 +287,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                         ),
                                         materialTapTargetSize:
                                             MaterialTapTargetSize.shrinkWrap,
-                                        onChanged: (String? value) {
-                                          setState(() {
-                                            selectedValue = value;
-                                          });
-                                        },
+                                        onChanged: updateSelectedValue,
                                       ),
                                       const SizedBox(
                                         width: 10,
@@ -305,11 +308,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                         ),
                                         materialTapTargetSize:
                                             MaterialTapTargetSize.shrinkWrap,
-                                        onChanged: (String? value) {
-                                          setState(() {
-                                            selectedValue = value;
-                                          });
-                                        },
+                                        onChanged: updateSelectedValue,
                                       ),
                                       const SizedBox(
                                         width: 10,
