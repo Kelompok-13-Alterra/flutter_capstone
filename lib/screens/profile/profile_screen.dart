@@ -29,7 +29,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
               .copyWith(fontSize: 16, fontWeight: regular),
         ),
       ),
-      // Get profile
       body: FutureBuilder(
         future: ProfileService().getProfile(),
         builder: ((context, snapshot) {

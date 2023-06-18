@@ -22,7 +22,7 @@ class SearchService {
       );
 
       return SearchModel.fromJson(response.data);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       print(e);
       throw Exception('Failed get list of office $e');
     }
