@@ -1,12 +1,10 @@
 // ignore_for_file: deprecated_member_use
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/core/init/utils/date_convert.dart';
 import 'package:flutter_capstone/services/reschedule/reschedule_service.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_capstone/core/init/const/api.dart';
 import 'package:flutter_capstone/core/init/utils/shared_preferences.dart';
 import 'package:flutter_capstone/style/text_style.dart';
-import 'package:flutter_capstone/screens/payment/detail_payment_screen.dart';
 
 import 'package:flutter_capstone/widgets/modal_bottom.dart';
 
@@ -87,7 +85,7 @@ class RescheduleModelView extends ChangeNotifier {
                         onPressed: () {
                           Navigator.pushNamedAndRemoveUntil(
                             context,
-                            '/order-screen',
+                            '/bottom-nav',
                             (route) => false,
                           );
                         },
@@ -131,7 +129,7 @@ class RescheduleModelView extends ChangeNotifier {
                 'Tanggal yang kamu pilih tidak tersedia. Coba pilih\ntanggal yang lain.',
             path: () {
           // ignore: unnecessary_null_in_if_null_operators
-          Navigator.pushNamed(context, '/order');
+          Navigator.pop(context);
         }, buttonText: 'Pilih tanggal lain');
       }
       return null;
