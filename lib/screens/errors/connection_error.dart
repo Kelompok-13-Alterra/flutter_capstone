@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_capstone/style/text_style.dart';
 
 class ConnectionErrorScreen extends StatelessWidget {
   const ConnectionErrorScreen({super.key});
@@ -16,25 +17,22 @@ class ConnectionErrorScreen extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              const Text(
+              Text(
                 "Sepertinya koneksimu terputus",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
+                style: setTextStyle(NeutralColor().neutral0)
+                .copyWith(fontWeight: bold,fontSize: 16),
                 ),
-              ),
+
               const SizedBox(
                 height: 10,
               ),
               Text(
                 "Coba periksa koneksi internet kamu atau coba beberapa saat lagi",
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.grey[600],
+                  textAlign: TextAlign.center,
+                style: setTextStyle(NeutralColor().neutral50)
+                  .copyWith(fontWeight:medium,fontSize: 14 ),
                 ),
-                textAlign: TextAlign.center,
-              ),
+
             ],
           ),
         ),

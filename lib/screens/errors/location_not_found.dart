@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_capstone/style/text_style.dart';
 
 class LocationNotFoundScreen extends StatefulWidget {
   const LocationNotFoundScreen({super.key});
@@ -25,25 +26,23 @@ class _LocationNotFoundScreenState extends State<LocationNotFoundScreen> {
               const SizedBox(
                 height: 20,
               ),
-              const Text(
+Text(
                 "Lokasi yang kamu cari tidak ada",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
+                style: setTextStyle(NeutralColor().neutral0)
+                .copyWith(fontWeight: bold,fontSize: 16),
                 ),
-              ),
+
               const SizedBox(
                 height: 10,
               ),
               Text(
                 "Kami tidak menemukan lokasi yang kamu cari, coba cari dengan kata kunci lain",
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.grey[600],
+                    textAlign: TextAlign.center,
+                style: setTextStyle(NeutralColor().neutral50)
+                  .copyWith(fontWeight:medium,fontSize: 14 ),
                 ),
-                textAlign: TextAlign.center,
-              ),
+
+
             ],
           ),
         ),
