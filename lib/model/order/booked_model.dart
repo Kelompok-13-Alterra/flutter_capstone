@@ -43,7 +43,8 @@ class Booked {
   int tax;
   int totalPrice;
   int userId;
-  int ID;
+
+  int idTransaction;
 
   Booked({
     required this.discount,
@@ -56,7 +57,7 @@ class Booked {
     required this.tax,
     required this.totalPrice,
     required this.userId,
-    required this.ID,
+    required this.idTransaction,
   });
 
   factory Booked.fromJson(Map<String, dynamic> json) => Booked(
@@ -70,7 +71,7 @@ class Booked {
         tax: json["Tax"] ?? 0,
         totalPrice: json["TotalPrice"] ?? 0,
         userId: json["UserID"] ?? 0,
-        ID: json["ID"] ?? 0,
+        idTransaction: json["ID"] ?? 0,
       );
   Map<String, dynamic> toJson() => {
         "discount": discount,
@@ -83,7 +84,7 @@ class Booked {
         "tax": tax,
         "totalPrice": totalPrice,
         "userID": userId,
-        "ID": ID,
+        "ID": idTransaction,
       };
 }
 

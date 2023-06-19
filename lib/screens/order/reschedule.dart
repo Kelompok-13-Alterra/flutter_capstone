@@ -1,7 +1,6 @@
 // ignore_for_file: file_names, avoid_print, duplicate_ignore
 //Ini utk reschedule
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/core/init/utils/date_convert.dart';
 import 'package:flutter_capstone/screens/detail/widget/bottom_book.dart';
 import 'package:flutter_capstone/screens/detail/widget/detail_card.dart';
 import 'package:flutter_capstone/screens/detail/widget/fasilities.dart';
@@ -9,12 +8,9 @@ import 'package:flutter_capstone/screens/detail/widget/image_detail.dart';
 import 'package:flutter_capstone/screens/detail/widget/office_description.dart';
 import 'package:flutter_capstone/screens/errors/connection_error.dart';
 import 'package:flutter_capstone/screens/order/reschedule_view_model.dart';
-import 'package:flutter_capstone/screens/review/review_screen.dart';
 import 'package:flutter_capstone/screens/detail/detail_view_model.dart';
 import 'package:flutter_capstone/core/init/utils/date-reschedule.dart';
-import 'package:flutter_capstone/services/booking/booking_availability_service.dart';
 import 'package:flutter_capstone/style/text_style.dart';
-import 'package:flutter_capstone/widgets/modal_bottom.dart';
 import 'package:provider/provider.dart';
 import 'dart:async';
 
@@ -27,13 +23,13 @@ class RescheduleScreen extends StatefulWidget {
 
 class _RescheduleScreenState extends State<RescheduleScreen> {
   late Future<dynamic> detailDataFuture;
-  Map<String, int> args = {};
+  Map<String, int?> args = {};
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     if (args.isEmpty) {
-      args = ModalRoute.of(context)!.settings.arguments as Map<String, int>;
+      args = ModalRoute.of(context)!.settings.arguments as Map<String, int?>;
       final detailViewModel =
           Provider.of<DetailViewModel>(context, listen: false);
       final data = detailViewModel.getOfficeDetail(args['officeId']);
@@ -50,233 +46,132 @@ class _RescheduleScreenState extends State<RescheduleScreen> {
     final args = ModalRoute.of(context)!.settings.arguments as Map;
     print(
         'Payment ID on detail schedule: ${args['ID']} officeID : ${args['officeId']}');
-    return Consumer2<RescheduleModelView, DetailViewModel>(
-      builder: (context, provider, provider2, _) {
-        return FutureBuilder(
-          future: detailDataFuture,
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.done) {
-              final detail = provider2.detailData;
-              return Scaffold(
-                body: SingleChildScrollView(
-                  child: Column(
-                    children: <Widget>[
-                      // Image Swipe
-                      //================================================================
-                      const ImageDetail(),
-                      // Container Detail
-                      //================================================================
-                      DetailCard(
-                        name: detail!.name,
-                        price: detail.price,
-                        open: detail.open,
-                        close: detail.close,
-                        capacity: detail.capacity,
-                        location: detail.location,
-                      ),
-                      // Container Fasilitas
-                      //================================================================
-                      const OfficeFalicities(),
-                      // Container Deskripsi
-                      //================================================================
-                      OfficeDescription(description: detail.description),
-                      // Button Book
-                      //================================================================
-                      BottomBook(
-                        officeId: 0,
-                        textButton: 'Reschedule',
-                        function: () async {
-                          // Future selectDateRange(BuildContext context) async {
-                          DateTimeRange? pickedRange =
-                              await showDateRangePicker(
-                                  context: context,
-                                  builder: (context, child) {
-                                    return Theme(
-                                        data: Theme.of(context).copyWith(
-                                          colorScheme: ColorScheme.dark(
-                                            surface: SourceColor().white,
-                                            primary: PrimaryColor().primary,
-                                            onPrimary: SourceColor().white,
-                                            onSurface: NeutralColor().neutral0,
-                                          ),
-                                          textButtonTheme: TextButtonThemeData(
-                                            style: TextButton.styleFrom(
-                                              foregroundColor: NeutralColor()
-                                                  .neutral0, // button text color
+    return WillPopScope(
+      onWillPop: () async {
+        Navigator.pushNamedAndRemoveUntil(
+          context,
+          '/order-screen',
+          (route) => false,
+        );
+
+        return true;
+      },
+      child: Consumer2<RescheduleModelView, DetailViewModel>(
+        builder: (context, provider, provider2, _) {
+          return FutureBuilder(
+            future: detailDataFuture,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.done) {
+                final detail = provider2.detailData;
+                return Scaffold(
+                  body: SingleChildScrollView(
+                    child: Column(
+                      children: <Widget>[
+                        // Image Swipe
+                        //================================================================
+                        const ImageDetail(),
+                        // Container Detail
+                        //================================================================
+                        DetailCard(
+                          name: detail!.name,
+                          price: detail.price,
+                          open: detail.open,
+                          close: detail.close,
+                          capacity: detail.capacity,
+                          location: detail.location,
+                        ),
+                        // Container Fasilitas
+                        //================================================================
+                        const OfficeFalicities(),
+                        // Container Deskripsi
+                        //================================================================
+                        OfficeDescription(description: detail.description),
+                        // Button Book
+                        //================================================================
+                        BottomBook(
+                          officeId: 0,
+                          textButton: 'Reschedule',
+                          function: () async {
+                            // Future selectDateRange(BuildContext context) async {
+                            DateTimeRange? pickedRange =
+                                await showDateRangePicker(
+                                    context: context,
+                                    builder: (context, child) {
+                                      return Theme(
+                                          data: Theme.of(context).copyWith(
+                                            colorScheme: ColorScheme.dark(
+                                              surface: SourceColor().white,
+                                              primary: PrimaryColor().primary,
+                                              onPrimary: SourceColor().white,
+                                              onSurface:
+                                                  NeutralColor().neutral0,
+                                            ),
+                                            textButtonTheme:
+                                                TextButtonThemeData(
+                                              style: TextButton.styleFrom(
+                                                foregroundColor: NeutralColor()
+                                                    .neutral0, // button text color
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                        child: child!);
-                                  },
-                                  initialDateRange: DateTimeRange(
-                                    start: DateTime.now(),
-                                    end: DateTime.now(),
-                                  ),
-                                  firstDate: DateTime.now(),
-                                  lastDate: DateTime(DateTime.now().year + 2),
-                                  helpText: 'Start - End Date',
-                                  cancelText: 'CANCEL',
-                                  confirmText: 'OK',
-                                  saveText: 'SAVE',
-                                  errorFormatText: 'Invalid format.',
-                                  errorInvalidText: 'Out of range.',
-                                  errorInvalidRangeText: 'Invalid range.',
-                                  fieldStartHintText: 'Start Date',
-                                  fieldEndLabelText: 'End Date');
+                                          child: child!);
+                                    },
+                                    initialDateRange: DateTimeRange(
+                                      start: DateTime.now(),
+                                      end: DateTime.now(),
+                                    ),
+                                    firstDate: DateTime.now(),
+                                    lastDate: DateTime(DateTime.now().year + 2),
+                                    helpText: 'Start - End Date',
+                                    cancelText: 'CANCEL',
+                                    confirmText: 'OK',
+                                    saveText: 'SAVE',
+                                    errorFormatText: 'Invalid format.',
+                                    errorInvalidText: 'Out of range.',
+                                    errorInvalidRangeText: 'Invalid range.',
+                                    fieldStartHintText: 'Start Date',
+                                    fieldEndLabelText: 'End Date');
 
-                          if (pickedRange != null) {
-                            // ignore: use_build_context_synchronously
-                            var res =
-                                // ignore: use_build_context_synchronously
-                                await BookingAvailabilityService().checkDate(
-                              context,
-                              officeId: args['officeId'],
-                              startDate:
-                                  convertDateTime(pickedRange.start.toString()),
-                              endDate:
-                                  convertDateTime(pickedRange.end.toString()),
-                            );
-                            var getStatus = res?.meta.code;
-                            if (getStatus == 201) {
-                              provider.updateRecheduleOffice(
-                                308,
+                            if (pickedRange != null) {
+                              // ignore: unused_local_variable
+                              final statusCode =
+                                  // ignore: use_build_context_synchronously
+                                  await provider.checkRescheduleOffice(
+                                context,
+                                args['officeId'],
                                 dataRescheduleConvert('${pickedRange.start}'),
                                 dataRescheduleConvert('${pickedRange.end}'),
+                                args['ID'],
+                                pickedRange,
                               );
-                              // ignore: use_build_context_synchronously
-                              showModalBottomSheet(
-                                context: context,
-                                isScrollControlled: true,
-                                builder: (context) {
-                                  return Padding(
-                                    padding: const EdgeInsets.all(16),
-                                    child: FractionallySizedBox(
-                                      heightFactor: 0.4,
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          SizedBox(
-                                            width: 127.5,
-                                            height: 130,
-                                            child: Image.asset(
-                                                'assets/images/modal_bottom/retro_mac.png'),
-                                          ),
-                                          const Padding(
-                                              padding: EdgeInsets.only(top: 8)),
-                                          Text(
-                                            'All Set!!!',
-                                            style: setTextStyle(
-                                                    NeutralColor().neutral17)
-                                                .copyWith(
-                                                    fontSize: 16,
-                                                    fontWeight: semiBold),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                top: 6, bottom: 16),
-                                            child: Text(
-                                              'Tanggal yang kamu pilih sudah terjadwal\npemesanan!!!',
-                                              textAlign: TextAlign.center,
-                                              style: setTextStyle(
-                                                      NeutralColor().neutral17)
-                                                  .copyWith(
-                                                fontSize: 12,
-                                                fontWeight: regular,
-                                              ),
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            width: double.infinity,
-                                            height: 50,
-                                            child: ElevatedButton(
-                                              onPressed: () {
-                                                Navigator
-                                                    .pushNamedAndRemoveUntil(
-                                                        context,
-                                                        '/bottom-nav',
-                                                        (route) => false);
-                                              },
-                                              style: ButtonStyle(
-                                                elevation:
-                                                    MaterialStateProperty.all(
-                                                        0),
-                                                backgroundColor:
-                                                    MaterialStateProperty.all(
-                                                        PrimaryColor().primary),
-                                                shape:
-                                                    MaterialStateProperty.all<
-                                                        RoundedRectangleBorder>(
-                                                  RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            100), // Bentuk border
-                                                  ),
-                                                ),
-                                              ),
-                                              child: Text(
-                                                'Checkout',
-                                                style: setTextStyle(
-                                                        PrimaryColor()
-                                                            .onPrimary)
-                                                    .copyWith(
-                                                  fontSize: 14,
-                                                  fontWeight: semiBold,
-                                                ),
-                                              ),
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  );
-                                },
-                              );
-                            }
-                            if (getStatus == 500) {
-                              // ignore: use_build_context_synchronously
-                              return modalBottomSheet(context,
-                                  img:
-                                      'assets/images/modal_bottom/retro_mac_error.png',
-                                  title: 'Waduh?!',
-                                  desc:
-                                      'Gagal mengumpulkan informasi! Silahkan coba lagi',
-                                  path: () {
-                                Navigator.pushReplacementNamed(
-                                  context,
-                                  '/bottom-nav',
-                                );
-                              }, buttonText: 'Pilih tanggal lain');
-                            }
 
-                            // ignore: avoid_print
-                            print(
-                                'picked range ${pickedRange.start} ${pickedRange.end} ${pickedRange.duration.inDays}');
-                          }
-                          // }
-                        },
-                        buttonRoute: null,
-                      ),
-                    ],
+                              // ignore: avoid_print
+                              print(
+                                  'picked range ${dataRescheduleConvert('${pickedRange.start}')} ${dataRescheduleConvert('${pickedRange.end}')} ${pickedRange.duration.inDays}');
+                            }
+                            // }
+                          },
+                          buttonRoute: null,
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              );
-            } else if (snapshot.hasError) {
-              return const Scaffold(
-                body: ConnectionErrorScreen(),
-              );
-            } else {
-              return const Scaffold(
-                body: Center(
-                  child: CircularProgressIndicator(),
-                ),
-              );
-            }
-          },
-        );
-      },
+                );
+              } else if (snapshot.hasError) {
+                return const Scaffold(
+                  body: ConnectionErrorScreen(),
+                );
+              } else {
+                return const Scaffold(
+                  body: Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                );
+              }
+            },
+          );
+        },
+      ),
     );
   }
 }

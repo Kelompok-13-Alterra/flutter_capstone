@@ -22,7 +22,7 @@ class RescheduleService {
 
       return response;
     } catch (error) {
-      print('An error occurred: $error');
+      rethrow;
     }
   }
 }

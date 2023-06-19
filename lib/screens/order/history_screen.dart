@@ -69,6 +69,7 @@ class _HistoryOrderScreenState extends State<HistoryOrderScreen> {
                               officeId: data.officeId,
                               buttonRoute: '/booking',
                               selectedDateRange: null,
+                              reschedule: false,
                             ),
                           ),
                         );

@@ -1,10 +1,8 @@
 // ignore_for_file: avoid_unnecessary_containers, unused_local_variable
 
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/model/home/home_model.dart';
 import 'package:flutter_capstone/screens/order/booked_view_model.dart';
 import 'package:flutter_capstone/screens/order/widget/order_widget.dart';
-import 'package:flutter_capstone/screens/review/review_screen.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:provider/provider.dart';
 
@@ -64,8 +62,8 @@ class _BookedOrderScreenState extends State<BookedOrderScreen> {
                           context,
                           '/reschedule',
                           arguments: {
-                            'ID': office.listBooked[index].ID,
-                            'officeId': officeIDDetail,
+                            'ID': office.listBooked[index].idTransaction,
+                            'officeId': office.listBooked[index].office.id,
                           },
                         );
                       },

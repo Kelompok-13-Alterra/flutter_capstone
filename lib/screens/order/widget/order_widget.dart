@@ -1,7 +1,6 @@
 // ignore_for_file: unnecessary_brace_in_string_interps, must_be_immutable
 
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/screens/review/review_screen.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 
 class OrderWidget extends StatelessWidget {

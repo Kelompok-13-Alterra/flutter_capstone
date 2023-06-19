@@ -14,18 +14,23 @@ import 'package:provider/provider.dart';
 import 'package:flutter_capstone/screens/detail/detail_view_model.dart';
 import 'dart:async';
 
+// ignore: must_be_immutable
 class DetailScreen extends StatefulWidget {
   final String? buttonRoute;
   final String textButton;
   final int officeId;
   final DateTimeRange? selectedDateRange;
+  bool reschedule;
+  int? idTransaction;
 
-  const DetailScreen({
+  DetailScreen({
     super.key,
     this.buttonRoute,
     required this.textButton,
     required this.officeId,
     this.selectedDateRange,
+    required this.reschedule,
+    this.idTransaction,
   });
 
   @override
@@ -59,16 +64,28 @@ class _DetailScreenState extends State<DetailScreen> {
       onWillPop: () async {
         Navigator.pop(context);
         if (widget.textButton == 'Pilih metode pembayaran') {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => DetailScreen(
-                officeId: widget.officeId,
-                buttonRoute: '/booking',
-                textButton: 'Book',
+          if (widget.reschedule == true) {
+            Navigator.pushNamed(
+              context,
+              '/reschedule',
+              arguments: {
+                'ID': widget.idTransaction,
+                'officeId': widget.officeId,
+              },
+            );
+          } else {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => DetailScreen(
+                  officeId: widget.officeId,
+                  buttonRoute: '/booking',
+                  textButton: 'Book',
+                  reschedule: false,
+                ),
               ),
-            ),
-          );
+            );
+          }
         } else {
           Navigator.pushNamedAndRemoveUntil(
             context,

@@ -124,6 +124,7 @@ class _BookingScheduleScreenState extends State<BookingScheduleScreen> {
       buttonRoute: '/booking',
       textButton: 'Pilih metode pembayaran',
       selectedDateRange: selectedDateRange,
+      reschedule: false,
     );
   }
 }

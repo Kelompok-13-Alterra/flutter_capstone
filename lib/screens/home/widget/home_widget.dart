@@ -33,6 +33,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                         officeId: data.id,
                         buttonRoute: '/booking',
                         textButton: 'Book',
+                        reschedule: false,
                       ),
                     ),
                   );
