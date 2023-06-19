@@ -1,7 +1,6 @@
 // ignore_for_file: deprecated_member_use
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/core/init/utils/date_convert.dart';
-import 'package:flutter_capstone/screens/detail/detail_screen.dart';
 import 'package:flutter_capstone/services/reschedule/reschedule_service.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_capstone/core/init/const/api.dart';
