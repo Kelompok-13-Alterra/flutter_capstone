@@ -1,6 +1,5 @@
 // ignore_for_file: file_names
 
-// import 'dart:js_interop';
 
 import 'package:flutter/material.dart';
 // import 'package:flutter_capstone/model/detail/detail_model.dart';

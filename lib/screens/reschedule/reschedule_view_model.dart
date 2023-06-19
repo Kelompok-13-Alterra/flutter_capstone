@@ -72,7 +72,7 @@ class RescheduleModelView extends ChangeNotifier {
                     Padding(
                       padding: const EdgeInsets.only(top: 6, bottom: 16),
                       child: Text(
-                        'Tanggal yang kamu pilih sudah terjadwal\npemesanan!!!',
+                        'Jadwal office berhasil diganti!!!',
                         textAlign: TextAlign.center,
                         style: setTextStyle(NeutralColor().neutral17).copyWith(
                           fontSize: 12,
@@ -85,17 +85,10 @@ class RescheduleModelView extends ChangeNotifier {
                       height: 50,
                       child: ElevatedButton(
                         onPressed: () {
-                          Navigator.push(
+                          Navigator.pushNamedAndRemoveUntil(
                             context,
-                            MaterialPageRoute(
-                              builder: (context) => DetailPaymentScreen(
-                                paymentId: idTransaction,
-                                officeId: officeId,
-                                selectedDateRange: convertDateTime(
-                                  selectedDateRange!.start.toString(),
-                                ),
-                              ),
-                            ),
+                            '/order-screen',
+                            (route) => false,
                           );
                         },
                         style: ButtonStyle(
@@ -111,7 +104,7 @@ class RescheduleModelView extends ChangeNotifier {
                           ),
                         ),
                         child: Text(
-                          'Checkout',
+                          'Kembali ke menu Order',
                           style:
                               setTextStyle(PrimaryColor().onPrimary).copyWith(
                             fontSize: 14,

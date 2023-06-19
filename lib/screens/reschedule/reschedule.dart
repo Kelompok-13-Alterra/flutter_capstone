@@ -7,7 +7,7 @@ import 'package:flutter_capstone/screens/detail/widget/fasilities.dart';
 import 'package:flutter_capstone/screens/detail/widget/image_detail.dart';
 import 'package:flutter_capstone/screens/detail/widget/office_description.dart';
 import 'package:flutter_capstone/screens/errors/connection_error.dart';
-import 'package:flutter_capstone/screens/order/reschedule_view_model.dart';
+import 'package:flutter_capstone/screens/reschedule/reschedule_view_model.dart';
 import 'package:flutter_capstone/screens/detail/detail_view_model.dart';
 import 'package:flutter_capstone/core/init/utils/date-reschedule.dart';
 import 'package:flutter_capstone/style/text_style.dart';
