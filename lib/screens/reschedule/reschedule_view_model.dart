@@ -104,7 +104,7 @@ class RescheduleModelView extends ChangeNotifier {
                           ),
                         ),
                         child: Text(
-                          'Kembali ke menu Order',
+                          'Kembali',
                           style:
                               setTextStyle(PrimaryColor().onPrimary).copyWith(
                             fontSize: 14,
