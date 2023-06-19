@@ -78,3 +78,12 @@ class PaddingCircleAvatarProfile {
   EdgeInsets padding11 =
       const EdgeInsets.only(right: 136, left: 136, top: 32, bottom: 8);
 }
+
+class PaddingReviewScreen {
+  EdgeInsets padding12 = const EdgeInsets.symmetric(vertical: 8, horizontal: 4);
+}
+
+class PaddingCardOrdered {
+  EdgeInsets padding13 =
+      const EdgeInsets.only(top: 26, left: 16, bottom: 24, right: 16);
+}
