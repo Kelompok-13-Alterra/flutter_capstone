@@ -64,6 +64,9 @@ void main() {
         ListenableProvider(
           create: (context) => HistoryViewModel(),
         ),
+        ListenableProvider(
+          create: (context) => NotificationViewModel(),
+        ),
         ChangeNotifierProvider(
           create: (context) => RescheduleModelView(),
         ),
