@@ -106,7 +106,6 @@ class _TransactionFailedScreenState extends State<TransactionFailedScreen> {
                           textButton: 'Booking',
                           officeId: widget.officeId,
                           selectedDateRange: null,
-                          reschedule: false,
                           // officeId: null,
                         ),
                       ),

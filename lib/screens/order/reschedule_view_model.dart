@@ -1,11 +1,13 @@
 // ignore_for_file: deprecated_member_use
 import 'package:flutter/material.dart';
+import 'package:flutter_capstone/core/init/utils/date_convert.dart';
 import 'package:flutter_capstone/screens/detail/detail_screen.dart';
 import 'package:flutter_capstone/services/reschedule/reschedule_service.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_capstone/core/init/const/api.dart';
 import 'package:flutter_capstone/core/init/utils/shared_preferences.dart';
 import 'package:flutter_capstone/style/text_style.dart';
+import 'package:flutter_capstone/screens/payment/detail_payment_screen.dart';
 
 import 'package:flutter_capstone/widgets/modal_bottom.dart';
 
@@ -87,13 +89,12 @@ class RescheduleModelView extends ChangeNotifier {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => DetailScreen(
-                                textButton: 'Pilih metode pembayaran',
+                              builder: (context) => DetailPaymentScreen(
+                                paymentId: idTransaction,
                                 officeId: officeId,
-                                buttonRoute: '/booking',
-                                selectedDateRange: selectedDateRange,
-                                idTransaction: idTransaction,
-                                reschedule: true,
+                                selectedDateRange: convertDateTime(
+                                  selectedDateRange!.start.toString(),
+                                ),
                               ),
                             ),
                           );

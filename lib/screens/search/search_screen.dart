@@ -187,7 +187,6 @@ class _SearchScreenState extends State<SearchScreen> {
                                             MaterialPageRoute(
                                               builder: (context) =>
                                                   DetailScreen(
-                                                      reschedule: false,
                                                       textButton: '/booking',
                                                       officeId: data?.id ?? 0),
                                             ),

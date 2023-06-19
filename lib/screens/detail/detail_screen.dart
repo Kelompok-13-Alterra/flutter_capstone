@@ -20,7 +20,6 @@ class DetailScreen extends StatefulWidget {
   final String textButton;
   final int officeId;
   final DateTimeRange? selectedDateRange;
-  bool reschedule;
   int? idTransaction;
 
   DetailScreen({
@@ -29,7 +28,6 @@ class DetailScreen extends StatefulWidget {
     required this.textButton,
     required this.officeId,
     this.selectedDateRange,
-    required this.reschedule,
     this.idTransaction,
   });
 
@@ -64,28 +62,16 @@ class _DetailScreenState extends State<DetailScreen> {
       onWillPop: () async {
         Navigator.pop(context);
         if (widget.textButton == 'Pilih metode pembayaran') {
-          if (widget.reschedule == true) {
-            Navigator.pushNamed(
-              context,
-              '/reschedule',
-              arguments: {
-                'ID': widget.idTransaction,
-                'officeId': widget.officeId,
-              },
-            );
-          } else {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) => DetailScreen(
-                  officeId: widget.officeId,
-                  buttonRoute: '/booking',
-                  textButton: 'Book',
-                  reschedule: false,
-                ),
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => DetailScreen(
+                officeId: widget.officeId,
+                buttonRoute: '/booking',
+                textButton: 'Book',
               ),
-            );
-          }
+            ),
+          );
         } else {
           Navigator.pushNamedAndRemoveUntil(
             context,
