@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_capstone/core/init/utils/price_convert.dart';
 import 'package:flutter_capstone/screens/payment/success_booking_screen.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_svg/svg.dart';
@@ -81,7 +82,9 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                 ).copyWith(fontWeight: medium, fontSize: 12),
               ),
               Text(
-                'IDR ${provider.getMidtransModel.data?.paymentData.price}',
+                provider.getMidtransModel.data?.paymentData.price == null
+                    ? ""
+                    : 'IDR ${priceConvert(provider.getMidtransModel.data?.paymentData.price)}',
                 style: setTextStyle(
                   const Color(0xFF44474E),
                 ).copyWith(fontWeight: semiBold, fontSize: 14),
@@ -101,7 +104,9 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                 ).copyWith(fontWeight: medium, fontSize: 12),
               ),
               Text(
-                'IDR ${provider.getMidtransModel.data?.paymentData.discount}',
+                provider.getMidtransModel.data?.paymentData.discount == null
+                    ? ''
+                    : 'IDR ${priceConvert(provider.getMidtransModel.data?.paymentData.discount)}',
                 style: setTextStyle(
                   const Color(0xFF44474E),
                 ).copyWith(fontWeight: semiBold, fontSize: 14),
@@ -121,7 +126,9 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                 ).copyWith(fontWeight: medium, fontSize: 12),
               ),
               Text(
-                'IDR ${provider.getMidtransModel.data?.paymentData.tax}',
+                provider.getMidtransModel.data?.paymentData.tax == null
+                    ? ''
+                    : 'IDR ${priceConvert(provider.getMidtransModel.data?.paymentData.tax)}',
                 style: setTextStyle(
                   const Color(0xFF44474E),
                 ).copyWith(fontWeight: semiBold, fontSize: 14),
@@ -141,7 +148,9 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                 ).copyWith(fontWeight: medium, fontSize: 12),
               ),
               Text(
-                'IDR ${provider.getMidtransModel.data?.paymentData.totalPrice}',
+                provider.getMidtransModel.data?.paymentData.totalPrice == null
+                    ? ''
+                    : 'IDR ${priceConvert(provider.getMidtransModel.data?.paymentData.totalPrice)}',
                 style: setTextStyle(
                   const Color(0xFF44474E),
                 ).copyWith(fontWeight: semiBold, fontSize: 14),
@@ -492,9 +501,14 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                                   children: [
                                     Text(
                                       provider.getMidtransModel.data
-                                              ?.paymentData.totalPrice
-                                              .toString() ??
-                                          '',
+                                                  ?.paymentData.totalPrice ==
+                                              null
+                                          ? ''
+                                          : priceConvert(provider
+                                              .getMidtransModel
+                                              .data
+                                              ?.paymentData
+                                              .totalPrice),
                                       style:
                                           setTextStyle(NeutralColor().neutral10)
                                               .copyWith(

@@ -5,7 +5,7 @@ import 'package:flutter_capstone/core/init/const/api.dart';
 class DetailService {
   static final Dio _dio = Dio();
 
-  static Future<Response> getDetail(int id) async {
+  static Future<Response> getDetail(int? id) async {
     String token = await getToken();
     try {
       final response = await _dio.get(

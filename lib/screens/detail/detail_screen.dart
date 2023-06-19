@@ -1,6 +1,5 @@
 // ignore_for_file: file_names
 
-// import 'dart:js_interop';
 
 import 'package:flutter/material.dart';
 // import 'package:flutter_capstone/model/detail/detail_model.dart';
@@ -14,18 +13,21 @@ import 'package:provider/provider.dart';
 import 'package:flutter_capstone/screens/detail/detail_view_model.dart';
 import 'dart:async';
 
+// ignore: must_be_immutable
 class DetailScreen extends StatefulWidget {
   final String? buttonRoute;
   final String textButton;
   final int officeId;
   final DateTimeRange? selectedDateRange;
+  int? idTransaction;
 
-  const DetailScreen({
+  DetailScreen({
     super.key,
     this.buttonRoute,
     required this.textButton,
     required this.officeId,
     this.selectedDateRange,
+    this.idTransaction,
   });
 
   @override

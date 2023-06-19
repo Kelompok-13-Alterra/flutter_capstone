@@ -4,6 +4,7 @@ import 'package:flutter_capstone/model/midtrans/midtrans_model.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+// ignore: must_be_immutable
 class SuccessBookingScreen extends StatefulWidget {
   Data? bookingData;
   String dateData;

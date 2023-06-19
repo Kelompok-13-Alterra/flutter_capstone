@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/screens/order/booked_view_model.dart';
 import 'package:flutter_capstone/screens/order/widget/order_widget.dart';
-import 'package:flutter_capstone/screens/review/review_screen.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:provider/provider.dart';
 
@@ -56,10 +55,17 @@ class _BookedOrderScreenState extends State<BookedOrderScreen> {
                       // route: '/detail-schedule',
                       buttonText1: 'Change Schedule',
                       routeButton1: () {
-                        // Navigator.pushNamed(
-                        //   context,
-                        //   '/reschedule',
-                        // );
+                        final officeIDDetail =
+                            office.listBooked[index].office.id;
+                        print('Id dari office = $officeIDDetail');
+                        Navigator.pushNamed(
+                          context,
+                          '/reschedule',
+                          arguments: {
+                            'ID': office.listBooked[index].idTransaction,
+                            'officeId': office.listBooked[index].office.id,
+                          },
+                        );
                       },
                       buttonText2: 'Cancel Book',
                       routeButton2: () {},

@@ -10,13 +10,21 @@ import 'package:flutter/services.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 
 class BottomNavScreen extends StatefulWidget {
-  const BottomNavScreen({super.key});
+  final int selectedIndex;
+  const BottomNavScreen({super.key, required this.selectedIndex});
 
   @override
   State<BottomNavScreen> createState() => _BottomNavScreenState();
 }
 
 class _BottomNavScreenState extends State<BottomNavScreen> {
+  @override
+  void initState() {
+    super.initState();
+    currentIndex = widget
+        .selectedIndex; // Initialize _currentIndex with the passed selectedIndex
+  }
+
   int currentIndex = 0;
 
   final List<Widget> _children = [

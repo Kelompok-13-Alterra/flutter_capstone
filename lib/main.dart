@@ -16,7 +16,8 @@ import 'package:flutter_capstone/screens/home/home_screen.dart';
 import 'package:flutter_capstone/screens/home/home_view_model.dart';
 import 'package:flutter_capstone/screens/login/login_screen.dart';
 import 'package:flutter_capstone/screens/login/login_view_model.dart';
-import 'package:flutter_capstone/screens/order/reschedule.dart';
+import 'package:flutter_capstone/screens/reschedule/reschedule.dart';
+import 'package:flutter_capstone/screens/reschedule/reschedule_view_model.dart';
 import 'package:flutter_capstone/screens/order/order_screen.dart';
 import 'package:flutter_capstone/screens/profile/profile_screen.dart';
 import 'package:flutter_capstone/screens/rating/image_picker_rating_screen.dart';
@@ -62,6 +63,9 @@ void main() {
         ListenableProvider(
           create: (context) => HistoryViewModel(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => RescheduleModelView(),
+        ),
       ],
       child: const MyApp(),
     ),
@@ -85,7 +89,8 @@ class MyApp extends StatelessWidget {
         '/login': (context) => const LoginScreen(),
         '/sign-up': (context) => const SignUpScreen(),
         '/boarding': (context) => const BoardingScreen(),
-        '/bottom-nav': (context) => const BottomNavScreen(),
+        '/bottom-nav': (context) => const BottomNavScreen(selectedIndex: 0),
+        '/order-screen': (context) => const BottomNavScreen(selectedIndex: 1),
         '/home': (context) => const HomeScreen(),
         '/profile': (context) => const ProfileScreen(),
         '/order': (context) => const OrderScreen(),

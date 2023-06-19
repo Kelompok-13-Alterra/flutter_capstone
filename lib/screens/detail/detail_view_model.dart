@@ -7,7 +7,7 @@ class DetailViewModel extends ChangeNotifier {
 
   DetailModel? get detailData => _detailOffice;
 
-  Future<void> getOfficeDetail(int id) async {
+  Future<void> getOfficeDetail(int? id) async {
     try {
       final response = await DetailService.getDetail(id);
 
