@@ -15,7 +15,7 @@ class DetailPaymentScreen extends StatefulWidget {
   final int officeId;
   final String selectedDateRange;
 
-  DetailPaymentScreen({
+  const DetailPaymentScreen({
     super.key,
     required this.paymentId,
     required this.officeId,

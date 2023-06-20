@@ -54,8 +54,8 @@ class Datum {
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
         id: json["ID"],
-        createdAt: DateTime.parse(json["CreatedAt"]) ?? DateTime.now(),
-        updatedAt: DateTime.parse(json["UpdatedAt"]) ?? DateTime.now(),
+        createdAt: DateTime.parse(json["CreatedAt"]),
+        updatedAt: DateTime.parse(json["UpdatedAt"]),
         deletedAt: json["DeletedAt"],
         userId: json["UserID"] ?? 0,
         description: json["Description"] ?? '',

@@ -679,12 +679,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                   ),
                   onPressed: () async {
                     setState(() {});
-                    print(widget.officeId);
-                    print(provider.selectedValue);
-                    print(
-                        'Ini end date ${convertDateTime(widget.selectedDateRange?.end.toString() ?? '')}');
-                    print(convertDateTime(
-                        widget.selectedDateRange!.start.toString()));
+
                     var res = await OrderService().createOrder(
                       context,
                       officeId: widget.officeId,
@@ -700,14 +695,6 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                     });
 
                     var transactionId = res.data.idTransaction;
-
-                    print('Transaction ID: $transactionId');
-                    print('Office Id ${widget.officeId}');
-                    print('Name ${widget.name}');
-                    print('type ${widget.type}');
-                    print('location ${widget.location}');
-                    print(
-                        'date ${convertDateTime(widget.selectedDateRange!.start.toString())}');
 
                     Navigator.push(
                       context,

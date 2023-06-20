@@ -57,7 +57,6 @@ class _BookedOrderScreenState extends State<BookedOrderScreen> {
                       routeButton1: () {
                         final officeIDDetail =
                             office.listBooked[index].office.id;
-                        print('Id dari office = $officeIDDetail');
                         Navigator.pushNamed(
                           context,
                           '/reschedule',
