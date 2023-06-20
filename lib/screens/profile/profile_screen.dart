@@ -4,6 +4,7 @@ import 'package:flutter_capstone/screens/profile/widget/cards_profile_widget.dar
 import 'package:flutter_capstone/screens/profile/widget/profiles_widget.dart';
 import 'package:flutter_capstone/services/profile/profile_service.dart';
 import 'package:flutter_capstone/style/text_style.dart';
+import 'package:provider/provider.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -14,6 +15,15 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   // var res = LoginService().getDataUser();
+
+  Future<dynamic>? provileaViewModel;
+  @override
+  void initState() {
+    final provileService = Provider.of<ProfileService>(context, listen: false);
+    provileaViewModel = provileService.getProfile();
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +40,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
       ),
       body: FutureBuilder(
-        future: ProfileService().getProfile(),
+        future: provileaViewModel,
         builder: ((context, snapshot) {
           if (snapshot.hasData) {
             var profile = snapshot.data;
@@ -212,10 +222,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
             Text(
               snapshot.error.toString(),
             );
+          } else if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
           }
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
         }),
       ),
     );
