@@ -44,9 +44,17 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   String? selectedValue;
 
   @override
-  void initState() {
-    super.initState();
-    selectedValue = '';
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+
+    final args =
+        ModalRoute.of(context)?.settings.arguments as EditProfileArguments?;
+    if (args?.profileModel?.data.gender != null) {
+      selectedValue = args?.profileModel?.data.gender;
+    } else {
+      selectedValue = 'Male';
+    }
+    super.didChangeDependencies();
   }
 
   void updateSelectedValue(String? value) {
@@ -65,7 +73,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   Widget build(BuildContext context) {
     final args =
         ModalRoute.of(context)?.settings.arguments as EditProfileArguments?;
-    String? selectedValue = args?.profileModel?.data.gender;
     var _name = args?.profileModel?.data.name;
     var _company = args?.profileModel?.data.company;
     var _email = args?.profileModel?.data.email;
@@ -294,7 +301,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                         ),
                                         materialTapTargetSize:
                                             MaterialTapTargetSize.shrinkWrap,
-                                        onChanged: updateSelectedValue,
+                                        onChanged: (value) {
+                                          updateSelectedValue(value!);
+                                        },
                                       ),
                                       const SizedBox(
                                         width: 10,
@@ -315,7 +324,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                         ),
                                         materialTapTargetSize:
                                             MaterialTapTargetSize.shrinkWrap,
-                                        onChanged: updateSelectedValue,
+                                        onChanged: (value) {
+                                          updateSelectedValue(value!);
+                                        },
                                       ),
                                       const SizedBox(
                                         width: 10,
@@ -336,7 +347,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                         ),
                                         materialTapTargetSize:
                                             MaterialTapTargetSize.shrinkWrap,
-                                        onChanged: updateSelectedValue,
+                                        onChanged: (value) {
+                                          updateSelectedValue(value!);
+                                        },
                                       ),
                                       const SizedBox(
                                         width: 10,
@@ -454,7 +467,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                           "password": _passwordController.text,
                                           "gender": selectedValue,
                                           "dateBirth": _dateController.text,
-                                          "image": selectedImage?.path,
                                         },
                                         widget.id,
                                       );
