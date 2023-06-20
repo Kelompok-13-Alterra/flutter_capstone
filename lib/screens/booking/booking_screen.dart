@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/core/init/utils/date_convert.dart';
 import 'package:flutter_capstone/screens/detail/detail_screen.dart';
@@ -79,8 +81,6 @@ class _BookingScheduleScreenState extends State<BookingScheduleScreen> {
     );
 
     if (pickedDateRange != null) {
-      print('Office ID in booking screen ${args.officeId}');
-      // ignore: use_build_context_synchronously
       var res = await BookingAvailabilityService().checkDate(
         context,
         officeId: args.officeId,
@@ -89,7 +89,6 @@ class _BookingScheduleScreenState extends State<BookingScheduleScreen> {
       );
       var getStatus = res?.meta.code;
       if (getStatus == 201) {
-        // ignore: use_build_context_synchronously
         modalBottomSheet(context,
             img: 'assets/images/modal_bottom/retro_mac.png',
             title: 'All set!',
@@ -101,7 +100,6 @@ class _BookingScheduleScreenState extends State<BookingScheduleScreen> {
         }, buttonText: 'Selanjutnya');
       }
       if (getStatus == 500) {
-        // ignore: use_build_context_synchronously
         return modalBottomSheet(context,
             img: 'assets/images/modal_bottom/retro_mac_error.png',
             title: 'Waduh?!',

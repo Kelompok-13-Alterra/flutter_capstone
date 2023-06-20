@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/screens/login/widget/text_or_widget.dart';
 import 'package:flutter_capstone/screens/sign_up/signup_view_model.dart';
@@ -199,15 +201,18 @@ class _FormSignupState extends State<FormSignup> {
                     ),
                   ),
                   onPressed: () async {
-                    if (formKey.currentState!.validate()) {
+                    if (isChecked == false) {
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          content: Text('You need to accept the terms')));
+                    } else if (formKey.currentState!.validate() &&
+                        isChecked == true) {
                       formKey.currentState!.save();
                       var res = await SignUpService().postSignup(
                         email: signupViewModel.getEmail.text,
                         password: signupViewModel.getPassword.text,
-                        username: signupViewModel.getPassword.text,
+                        username: signupViewModel.getUsername.text,
                       );
                       if (res['meta']['is_error'] == false) {
-                        // ignore: use_build_context_synchronously
                         return showModalBottomSheet(
                             context: context,
                             isScrollControlled: true,
@@ -299,13 +304,11 @@ class _FormSignupState extends State<FormSignup> {
                             });
                       } else {
                         if (res['meta']['code'] == 500) {
-                          // ignore: use_build_context_synchronously
                           ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
                                   content: Text(
                                       'Account already exist, please login!')));
                         } else if (res['meta']['code'] == 400) {
-                          // ignore: use_build_context_synchronously
                           ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(content: Text('Fill the form!')));
                         }

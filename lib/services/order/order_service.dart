@@ -6,8 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_capstone/core/init/const/api.dart';
 import 'package:flutter_capstone/core/init/utils/shared_preferences.dart';
 import 'package:flutter_capstone/model/order/order_model.dart';
-import 'package:flutter_capstone/screens/booking/booking_screen.dart';
-import 'package:flutter_capstone/widgets/modal_bottom.dart';
 
 class OrderService {
   // Get list office
@@ -19,9 +17,6 @@ class OrderService {
     required String paymentId,
   }) async {
     String token = await getToken();
-    final args =
-        // ignore: use_build_context_synchronously
-        ModalRoute.of(context)?.settings.arguments as BookingScheduleArgument?;
     try {
       final response =
           await Dio().post('$baseUrl/api/v1/transaction/office/$officeId/book',

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_capstone/model/notification/notification_model.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 Widget notificationWidget(BuildContext context, {required Datum notification}) {
   Widget child() {
