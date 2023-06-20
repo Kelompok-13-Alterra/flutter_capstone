@@ -6,12 +6,12 @@ class EditProfileViewModel with ChangeNotifier {
   List<Profile> _listProfile = [];
   List<Profile> get listProfile => _listProfile;
 
-  Future<void> updateProfile(Map<String, dynamic> data, int id) async {
+  Future<void> updateProfile(Map<String, String?> data, int id) async {
     try {
-      List<Profile>? updatedList =
+      Profile? updatedProfile =
           await EditProfileService().putProfileData(data, id);
-      if (updatedList != null) {
-        _listProfile = updatedList;
+      if (updatedProfile != null) {
+        _listProfile = [updatedProfile]; // Convert the profile to a list
         notifyListeners();
       } else {
         // Handle case when the data is null

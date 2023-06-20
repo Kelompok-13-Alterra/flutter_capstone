@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_capstone/screens/profile/profile_screen.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_capstone/screens/edit_profile/edit_profile_view_model.dart';
 
@@ -10,9 +11,10 @@ import 'package:provider/provider.dart';
 class EditProfileScreen extends StatefulWidget {
   final int id;
   const EditProfileScreen({
-    super.key,
+    Key? key,
     required this.id,
-  });
+  }) : super(key: key);
+
   @override
   State<EditProfileScreen> createState() => _EditProfileScreenState();
 }
@@ -61,6 +63,15 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final args =
+        ModalRoute.of(context)?.settings.arguments as EditProfileArguments?;
+    String? selectedValue = args?.profileModel?.data.gender;
+    var _name = args?.profileModel?.data.name;
+    var _company = args?.profileModel?.data.company;
+    var _email = args?.profileModel?.data.email;
+    // var _gender = args?.profileModel?.data.gender;
+    // var _dateBirth = args?.profileModel?.data.dateBirth;
+
     return Consumer<EditProfileViewModel>(builder: (context, profile, child) {
       return Scaffold(
         backgroundColor: SourceColor().white,
@@ -79,7 +90,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           title: Text(
             "Profile",
             style: setTextStyle(NeutralColor().neutral12).copyWith(
-              fontWeight: regular,
+              fontWeight: FontWeight.normal,
               fontSize: 16,
             ),
           ),
@@ -128,7 +139,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               "Change Photo",
                               style:
                                   setTextStyle(PrimaryColor().primary).copyWith(
-                                fontWeight: regular,
+                                fontWeight: FontWeight.normal,
                                 fontSize: 14,
                               ),
                             ),
@@ -143,19 +154,25 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         TextFormField(
-                          controller: _nameController,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return 'Enter name';
-                            }
-                            return null;
+                          // controller: _nameController,
+                          initialValue: _name,
+                          //'${editProfile?.data.name}',
+                          onSaved: (val) {
+                            _name = val;
                           },
+                          // validator: (value) {
+                          //   if (value != null) {
+                          //     return 'Enter name';
+                          //   } else {
+                          //     return null;
+                          //   }
+                          // },
                           decoration: InputDecoration(
                             labelText: 'Nama',
                             hintStyle: setTextStyle(
                               const Color(0xFF44474E),
                             ).copyWith(
-                              fontWeight: regular,
+                              fontWeight: FontWeight.normal,
                               fontSize: 16,
                             ),
                             hintText: 'Input Full Name',
@@ -165,19 +182,24 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         ),
                         const SizedBox(height: 25.0),
                         TextFormField(
-                          controller: _companyController,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return 'Enter company name';
-                            }
-                            return null;
+                          initialValue: _company,
+                          // controller: _companyController,
+                          // validator: (value) {
+                          //   if (value != null) {
+                          //     return 'Enter company name';
+                          //   } else {
+                          //     return null;
+                          //   }
+                          // },
+                          onSaved: (val) {
+                            _company = val;
                           },
                           decoration: InputDecoration(
                             labelText: 'Company',
                             hintStyle: setTextStyle(
                               const Color(0xFF44474E),
                             ).copyWith(
-                              fontWeight: regular,
+                              fontWeight: FontWeight.normal,
                               fontSize: 16,
                             ),
                             hintText: 'Input Company Name',
@@ -187,13 +209,17 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         ),
                         const SizedBox(height: 25.0),
                         TextFormField(
-                          controller: _emailController,
+                          // controller: _emailController,
+                          initialValue: _email,
+                          onSaved: (val) {
+                            _email = val;
+                          },
                           decoration: InputDecoration(
                             labelText: 'Email',
                             hintStyle: setTextStyle(
                               const Color(0xFF44474E),
                             ).copyWith(
-                              fontWeight: regular,
+                              fontWeight: FontWeight.normal,
                               fontSize: 16,
                             ),
                             hintText: 'Input Email',
@@ -205,13 +231,13 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         TextFormField(
                           controller: _passwordController,
                           obscureText: _obscureText,
-                          validator: (value) {
-                            if (value != null && value.length < 5) {
-                              return 'Enter min. 5 characters';
-                            } else {
-                              return null;
-                            }
-                          },
+                          // validator: (value) {
+                          //   if (value != null && value.length < 5) {
+                          //     return 'Enter min. 5 characters';
+                          //   } else {
+                          //     return null;
+                          //   }
+                          // },
                           decoration: InputDecoration(
                             suffixIcon: IconButton(
                               icon: Icon(
@@ -225,7 +251,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             hintStyle: setTextStyle(
                               const Color(0xFF44474E),
                             ).copyWith(
-                              fontWeight: regular,
+                              fontWeight: FontWeight.normal,
                               fontSize: 16,
                             ),
                             hintText: 'Input Password',
@@ -244,7 +270,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 style: setTextStyle(
                                   NeutralColor().neutral30,
                                 ).copyWith(
-                                  fontWeight: semiBold,
+                                  fontWeight: FontWeight.w600,
                                   fontSize: 16,
                                 ),
                               ),
@@ -326,13 +352,13 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         Container(
                           padding: const EdgeInsets.symmetric(vertical: 16),
                           child: TextFormField(
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return "Silahkan isikan tanggal";
-                              } else {
-                                return null;
-                              }
-                            },
+                            // validator: (value) {
+                            //   if (value!.isEmpty) {
+                            //     return "Silahkan isikan tanggal";
+                            //   } else {
+                            //     return null;
+                            //   }
+                            // },
                             onTap: () async {
                               showDialog(
                                 context: context,
@@ -351,6 +377,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                           currentDate: DateTime.now(),
                                         ),
                                         value:
+                                            // _dateBirth,
                                             _singleDatePickerValueWithDefaultValue,
                                         onValueChanged: (value) {
                                           DateTime? dateBirth = value[0];
@@ -374,6 +401,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             readOnly: true,
                             autofocus: true,
                             controller: _dateController,
+                            // initialValue: _dateBirth,
+                            // onSaved: (val) {
+                            //   _dateBirth = val;
+                            // },
                             decoration: InputDecoration(
                               prefixIcon:
                                   const Icon(Icons.calendar_today_rounded),
@@ -381,7 +412,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               hintStyle: setTextStyle(
                                 const Color(0xFF44474E),
                               ).copyWith(
-                                fontWeight: regular,
+                                fontWeight: FontWeight.normal,
                                 fontSize: 16,
                               ),
                               hintText: "YYYY/MM/DD",
@@ -406,43 +437,39 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                   shape: MaterialStateProperty.all<
                                       RoundedRectangleBorder>(
                                     RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(
-                                          8), // Bentuk border
+                                      borderRadius: BorderRadius.circular(8),
                                     ),
                                   ),
                                 ),
                                 onPressed: () async {
-                                  final valid =
-                                      formKey.currentState!.validate();
-                                  if (valid) {
+                                  final form = formKey.currentState;
+                                  if (form != null && form.validate()) {
+                                    form.save();
                                     try {
                                       await profile.updateProfile(
                                         {
-                                          "company": _companyController.text,
-                                          "dateBirthInput":
-                                              _dateController.text,
-                                          "email": _emailController.text,
+                                          "company": _company,
+                                          "email": _email,
+                                          "name": _name,
+                                          "password": _passwordController.text,
                                           "gender": selectedValue,
-                                          "name": _nameController.text,
-                                          "password": _passwordController.text
+                                          "dateBirth": _dateController.text,
+                                          "image": selectedImage?.path,
                                         },
                                         widget.id,
                                       );
 
-                                      // ignore: use_build_context_synchronously
-                                      Navigator.pop(context);
+                                      showConfirmationDialog(context);
                                     } catch (e) {
                                       print(e.toString());
                                     }
                                   }
                                 },
-                                child: Text(
-                                  'Save Change',
-                                  style: setTextStyle(
-                                    const Color(0xFFFFFFFF),
-                                  ).copyWith(
-                                    fontWeight: medium,
-                                    fontSize: 14,
+                                child: const Text(
+                                  "Save Change",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18,
                                   ),
                                 ),
                               ),
@@ -451,7 +478,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         ),
                       ],
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
@@ -459,5 +486,25 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         ),
       );
     });
+  }
+
+  void showConfirmationDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Success'),
+          content: const Text('Your profile has been updated.'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
   }
 }
