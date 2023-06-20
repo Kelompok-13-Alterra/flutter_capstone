@@ -25,11 +25,7 @@ class EditProfileService {
       if (response.statusCode == 200 || response.statusCode == 201) {
         final responseData = response.data;
 
-        // EditProfileModel profile = EditProfileModel.fromJson(responseData);
-        // if (profile.data.isEmpty) {
-        //   return [];
-        // }
-        print(responseData);
+        return responseData;
       } else {
         throw Exception(
             'Failed to fetch edit profile data. Status code: ${response.statusCode}');
