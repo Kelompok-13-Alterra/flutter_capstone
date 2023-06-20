@@ -1,11 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_capstone/core/init/const/api.dart';
+import 'package:flutter_capstone/model/edit_profile/edit_profile_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class EditProfileService {
   final Dio _dio = Dio();
 
-  Future putProfileData(data, int id) async {
+  Future<Profile?> putProfileData(Map<String, String?> data, int id) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     String token = prefs.getString('token').toString();
     try {
@@ -24,8 +25,8 @@ class EditProfileService {
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         final responseData = response.data;
-
-        return responseData;
+        final profile = Profile.fromJson(responseData);
+        return profile;
       } else {
         throw Exception(
             'Failed to fetch edit profile data. Status code: ${response.statusCode}');
