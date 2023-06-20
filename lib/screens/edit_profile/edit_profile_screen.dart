@@ -148,6 +148,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             if (value!.isEmpty) {
                               return 'Enter name';
                             }
+                            return null;
                           },
                           decoration: InputDecoration(
                             labelText: 'Nama',
@@ -169,6 +170,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             if (value!.isEmpty) {
                               return 'Enter company name';
                             }
+                            return null;
                           },
                           decoration: InputDecoration(
                             labelText: 'Company',
