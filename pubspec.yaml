@@ -35,7 +35,7 @@ dependencies:
   email_validator: ^2.1.17
   flutter:
     sdk: flutter
-  
+
   flutter_html: ^3.0.0-alpha.3
   flutter_rating_bar: ^4.0.1
   flutter_svg: ^2.0.5
@@ -59,8 +59,6 @@ flutter_icons:
   image_path: "assets/logo/logo_foreground.png"
   adaptive_icon_background: "#FFFFFF"
   adaptive_icon_foreground: "assets/logo/logo_foreground.png"
-
-
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -87,6 +85,7 @@ flutter:
 
     - assets/images/
     - assets/images/notification/
+    - assets/images/edit_profile/
     - assets/images/profile/
     - assets/images/office_image/
     - assets/images/modal_bottom/
@@ -94,7 +93,7 @@ flutter:
     - assets/images/on_boarding/
     - assets/images/detail/
     - assets/images/rating/
-    
+
     - assets/logo/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
