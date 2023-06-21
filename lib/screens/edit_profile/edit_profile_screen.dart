@@ -1,3 +1,5 @@
+// ignore_for_file: unused_field, no_leading_underscores_for_local_identifiers, avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/screens/profile/profile_screen.dart';
 import 'package:flutter_capstone/style/text_style.dart';
@@ -45,8 +47,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
   @override
   void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
-
     final args =
         ModalRoute.of(context)?.settings.arguments as EditProfileArguments?;
     if (args?.profileModel?.data.gender != null) {

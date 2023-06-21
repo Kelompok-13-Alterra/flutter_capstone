@@ -60,11 +60,18 @@ class OfficeRecommendationWidget extends StatelessWidget {
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(12),
-                child: Image.asset(
+                child: Image.network(
                   img,
-                  width: 116.87,
-                  height: 128,
+                  fit: BoxFit.fill,
+                  // width: 116.87,
+                  // height: 128,
                 ),
+
+                //  Image.asset(
+                //   img,
+                //   width: 116.87,
+                //   height: 128,
+                // ),
               ),
             ),
             const SizedBox(
