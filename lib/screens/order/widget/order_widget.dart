@@ -50,7 +50,11 @@ class OrderWidget extends StatelessWidget {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
                         image: DecorationImage(
-                          image: AssetImage(urlImg),
+                          image: NetworkImage(
+                            urlImg.isEmpty
+                                ? 'https://img.freepik.com/premium-photo/modern-corporate-architecture-can-be-seen-cityscape-office-buildings_410516-276.jpg'
+                                : urlImg,
+                          ),
                           fit: BoxFit.cover,
                         ),
                       ),

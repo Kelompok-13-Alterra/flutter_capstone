@@ -1,6 +1,5 @@
 // ignore_for_file: file_names
 
-
 import 'package:flutter/material.dart';
 // import 'package:flutter_capstone/model/detail/detail_model.dart';
 import 'package:flutter_capstone/screens/detail/widget/bottom_book.dart';
@@ -96,11 +95,11 @@ class _DetailScreenState extends State<DetailScreen> {
                     children: <Widget>[
                       // Image Swipe
                       //================================================================
-                      const ImageDetail(),
+                      ImageDetail(image: detail!.imageUrl),
                       // Container Detail
                       //================================================================
                       DetailCard(
-                        name: detail!.name,
+                        name: detail.name,
                         price: detail.price,
                         open: detail.open,
                         close: detail.close,

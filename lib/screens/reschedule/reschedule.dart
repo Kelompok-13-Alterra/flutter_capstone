@@ -69,11 +69,13 @@ class _RescheduleScreenState extends State<RescheduleScreen> {
                       children: <Widget>[
                         // Image Swipe
                         //================================================================
-                        const ImageDetail(),
+                        ImageDetail(
+                          image: detail!.imageUrl,
+                        ),
                         // Container Detail
                         //================================================================
                         DetailCard(
-                          name: detail!.name,
+                          name: detail.name,
                           price: detail.price,
                           open: detail.open,
                           close: detail.close,

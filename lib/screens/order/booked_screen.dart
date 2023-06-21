@@ -45,7 +45,7 @@ class _BookedOrderScreenState extends State<BookedOrderScreen> {
                   itemBuilder: (context, index) {
                     var data = office.listBooked[index];
                     return OrderWidget(
-                      urlImg: 'assets/images/detail/office1.png',
+                      urlImg: office.listBooked[index].office.imageUrl,
                       title: office.listBooked[index].office.name,
                       rating: 4.6,
                       type: office.listBooked[index].office.type,

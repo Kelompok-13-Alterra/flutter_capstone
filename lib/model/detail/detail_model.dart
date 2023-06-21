@@ -11,6 +11,7 @@ class DetailModel {
   final int price;
   final String location;
   final String facilities;
+  final String imageUrl;
   String? deletedAt;
 
   DetailModel({
@@ -26,6 +27,7 @@ class DetailModel {
     required this.price,
     required this.location,
     required this.facilities,
+    required this.imageUrl,
     this.deletedAt,
   });
 
@@ -44,6 +46,7 @@ class DetailModel {
       location: json['Location'] ?? '',
       facilities: json['Facilities'] ?? '',
       deletedAt: json['DeletedAt'],
+      imageUrl: json['ImageUrl'],
     );
   }
 }

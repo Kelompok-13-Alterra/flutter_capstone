@@ -42,6 +42,7 @@ class Office {
   int price;
   bool status;
   String type;
+  String imageUrl;
 
   Office({
     required this.id, // Change
@@ -55,6 +56,7 @@ class Office {
     required this.price,
     required this.status,
     required this.type,
+    required this.imageUrl,
   });
 
   factory Office.fromJson(Map<String, dynamic> json) => Office(
@@ -70,6 +72,7 @@ class Office {
         price: json["Price"] ?? 0,
         status: json["Status"] ?? true,
         type: json["Type"] ?? 'null',
+        imageUrl: json["ImageUrl"] ?? '',
       );
 
   get rating => null;
@@ -85,6 +88,7 @@ class Office {
         "price": price,
         "status": status,
         "type": type,
+        "imageUrl": imageUrl,
       };
 }
 
