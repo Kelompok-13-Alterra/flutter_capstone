@@ -187,7 +187,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.of(context).pushNamed('/home');
+                  Navigator.of(context).pushNamed('/bottom-nav');
                 },
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size(328, 50),
