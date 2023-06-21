@@ -104,7 +104,7 @@ class MyApp extends StatelessWidget {
         '/bottom-nav': (context) => const BottomNavScreen(selectedIndex: 0),
         '/order-screen': (context) => const BottomNavScreen(selectedIndex: 1),
         '/home': (context) => const HomeScreen(),
-        '/profile': (context) => const ProfileScreen(),
+        '/profile-screen': (context) => const BottomNavScreen(selectedIndex: 2),
         '/order': (context) => const OrderScreen(),
         '/review': (context) => const ReviewScreen(),
         '/image-picker': (context) => const ImagePickerRatingScreen(),
@@ -115,7 +115,7 @@ class MyApp extends StatelessWidget {
           final EditProfileArguments args = ModalRoute.of(context)
               ?.settings
               .arguments as EditProfileArguments;
-          return EditProfileScreen(id: int.parse(args.userId));
+          return EditProfileScreen(id: args.userId);
         },
         '/search': (context) => const SearchScreen(),
         '/page-not-found-screen': (context) => const PageNotFoundScreen(),

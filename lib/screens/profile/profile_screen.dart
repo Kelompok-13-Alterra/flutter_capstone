@@ -102,9 +102,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         '/edit-profile',
                                         arguments: EditProfileArguments(
                                             profileModel: profile,
-                                            userId:
-                                                profile?.data.id.toString() ??
-                                                    ''),
+                                            userId: profile?.data.id),
                                       );
                                     },
                                     child: Icon(
@@ -227,6 +225,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
               child: CircularProgressIndicator(),
             );
           }
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
         }),
       ),
     );
@@ -235,7 +236,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
 class EditProfileArguments {
   final ProfileModel? profileModel;
-  final String userId;
+  final int userId;
 
   EditProfileArguments({this.profileModel, required this.userId});
 }

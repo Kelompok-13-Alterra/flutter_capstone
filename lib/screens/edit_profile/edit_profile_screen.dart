@@ -63,6 +63,155 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     });
   }
 
+  _showConfirmationBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(16),
+        ),
+      ),
+      builder: (BuildContext context) {
+        return Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Column(
+                    children: [
+                      Image.asset(
+                        "assets/images/edit_profile/edit-profile.png",
+                        width: 136,
+                        height: 125,
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        'Are you sure you want to save the changes?',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: medium,
+                          color: SourceColor().black,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              const SizedBox(height: 16),
+              Column(
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      _showSuccessBottomSheet(context);
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: PrimaryColor().primary,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(100),
+                      ),
+                      minimumSize: const Size(328, 50),
+                    ),
+                    child: Text(
+                      'Yes',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: medium,
+                        color: SourceColor().white,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).pushNamed('/profile-screen');
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: PrimaryColor().onPrimary,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(100),
+                        side: BorderSide(
+                          color: PrimaryColor().primary,
+                        ),
+                      ),
+                      minimumSize: const Size(328, 50),
+                    ),
+                    child: Text(
+                      'Back',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: medium,
+                        color: PrimaryColor().primary,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  _showSuccessBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(16),
+        ),
+      ),
+      builder: (BuildContext context) {
+        return Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Image.asset(
+                "assets/images/edit_profile/edit-success.png",
+                width: 191,
+                height: 139,
+              ),
+              const SizedBox(height: 8),
+              Text(
+                'Profile updated successfully!',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: medium,
+                  color: SourceColor().black,
+                ),
+              ),
+              const SizedBox(height: 16),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).pushNamed('/home');
+                },
+                style: ElevatedButton.styleFrom(
+                  minimumSize: const Size(328, 50),
+                  backgroundColor: PrimaryColor().primary,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(100),
+                  ),
+                ),
+                child: Text(
+                  'Back to Home',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    color: SourceColor().white,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
   Future<XFile?> pickImageFromGallery() async {
     final picker = ImagePicker();
     XFile? image = await picker.pickImage(source: ImageSource.gallery);
@@ -458,6 +607,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                   final form = formKey.currentState;
                                   if (form != null && form.validate()) {
                                     form.save();
+                                    _showConfirmationBottomSheet(context);
                                     try {
                                       await profile.updateProfile(
                                         {
@@ -470,8 +620,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                         },
                                         widget.id,
                                       );
-
-                                      showConfirmationDialog(context);
                                     } catch (e) {
                                       print(e.toString());
                                     }
@@ -498,25 +646,5 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         ),
       );
     });
-  }
-
-  void showConfirmationDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Success'),
-          content: const Text('Your profile has been updated.'),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('OK'),
-            ),
-          ],
-        );
-      },
-    );
   }
 }
