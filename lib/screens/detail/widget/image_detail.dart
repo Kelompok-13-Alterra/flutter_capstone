@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+// ignore: must_be_immutable
 class ImageDetail extends StatefulWidget {
-  const ImageDetail({
-    super.key,
-  });
+  String image;
+  ImageDetail({super.key, required this.image});
 
   @override
   State<ImageDetail> createState() => _ImageDetailState();
@@ -12,11 +12,19 @@ class ImageDetail extends StatefulWidget {
 
 class _ImageDetailState extends State<ImageDetail> {
   final _pageController = PageController();
-  final List<String> imageUrls = [
-    'https://img.freepik.com/free-photo/empty-room-with-chairs-desks_23-2149008873.jpg?w=2000',
-    'https://guardian.ng/wp-content/uploads/2021/09/office-space.jpg',
-    'https://www.ceosuite.com/wp-content/uploads/2013/04/CEO_SSC_Room_Office_IMG_1611-1024x683.jpg',
-  ];
+  List<String> imageUrls = [];
+
+  @override
+  void initState() {
+    imageUrls = [
+      widget.image.isEmpty
+          ? 'https://img.freepik.com/premium-photo/modern-corporate-architecture-can-be-seen-cityscape-office-buildings_410516-276.jpg'
+          : widget.image,
+      'https://guardian.ng/wp-content/uploads/2021/09/office-space.jpg',
+      'https://www.ceosuite.com/wp-content/uploads/2013/04/CEO_SSC_Room_Office_IMG_1611-1024x683.jpg',
+    ];
+    super.initState();
+  }
 
   @override
   void setState(fn) {

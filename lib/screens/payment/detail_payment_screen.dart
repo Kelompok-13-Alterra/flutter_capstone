@@ -250,8 +250,12 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                               ),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(12),
-                                child: Image.asset(
-                                  "assets/images/home/office-list.jpg",
+                                child: Image.network(
+                                  provider.getMidtransModel.data!.office
+                                          .imageUrl.isEmpty
+                                      ? 'https://img.freepik.com/premium-photo/modern-corporate-architecture-can-be-seen-cityscape-office-buildings_410516-276.jpg'
+                                      : provider.getMidtransModel.data!.office
+                                          .imageUrl,
                                   fit: BoxFit.fill,
                                 ),
                               ),

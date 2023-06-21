@@ -51,8 +51,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                         ),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(12),
-                          child: Image.asset(
-                            "assets/images/home/office-list.jpg",
+                          child: Image.network(
+                            data.imageUrl.isEmpty
+                                ? "https://img.freepik.com/premium-photo/modern-corporate-architecture-can-be-seen-cityscape-office-buildings_410516-276.jpg"
+                                : data.imageUrl,
                             fit: BoxFit.fill,
                           ),
                         ),
