@@ -89,7 +89,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        'Are you sure you want to save the changes?',
+                        'Apakah kamu yakin ingin keluar?',
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: medium,
@@ -105,7 +105,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      _showSuccessBottomSheet(context);
+                      Navigator.of(context).pushNamed('/profile-screen');
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: PrimaryColor().primary,
@@ -126,7 +126,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   const SizedBox(height: 8),
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.of(context).pushNamed('/profile-screen');
+                      Navigator.of(context).pop();
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: PrimaryColor().onPrimary,
@@ -177,7 +177,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               ),
               const SizedBox(height: 8),
               Text(
-                'Profile updated successfully!',
+                'Akun kamu berhasil diedit',
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: medium,
@@ -238,7 +238,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               color: Colors.black,
             ),
             onPressed: () {
-              Navigator.pop(context);
+              _showConfirmationBottomSheet(context);
             },
           ),
           backgroundColor: SourceColor().white,
@@ -607,7 +607,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                   final form = formKey.currentState;
                                   if (form != null && form.validate()) {
                                     form.save();
-                                    _showConfirmationBottomSheet(context);
+                                    _showSuccessBottomSheet(context);
                                     try {
                                       await profile.updateProfile(
                                         {
