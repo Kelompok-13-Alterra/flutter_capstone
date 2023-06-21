@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_capstone/screens/booking/booking_screen.dart';
 import 'package:flutter_capstone/screens/bottom_nav/bottom_nav_screen.dart';
 import 'package:flutter_capstone/screens/detail/detail_view_model.dart';
+import 'package:flutter_capstone/screens/edit_profile/edit_profile_view_model.dart';
 import 'package:flutter_capstone/screens/notification/notification_view_model.dart';
 import 'package:flutter_capstone/screens/order/booked_view_model.dart';
 import 'package:flutter_capstone/screens/order/history_view_model.dart';
@@ -28,6 +29,7 @@ import 'package:flutter_capstone/screens/sign_up/signup_view_model.dart';
 import 'package:flutter_capstone/screens/splash/boarding_screen.dart';
 import 'package:flutter_capstone/screens/splash/splash_screen.dart';
 import 'package:flutter_capstone/screens/payment/payment_view_model.dart';
+import 'package:flutter_capstone/services/profile/profile_service.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -70,6 +72,12 @@ void main() {
         ChangeNotifierProvider(
           create: (context) => RescheduleModelView(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => EditProfileViewModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => ProfileService(),
+        ),
       ],
       child: const MyApp(),
     ),
@@ -96,14 +104,19 @@ class MyApp extends StatelessWidget {
         '/bottom-nav': (context) => const BottomNavScreen(selectedIndex: 0),
         '/order-screen': (context) => const BottomNavScreen(selectedIndex: 1),
         '/home': (context) => const HomeScreen(),
-        '/profile': (context) => const ProfileScreen(),
+        '/profile-screen': (context) => const BottomNavScreen(selectedIndex: 2),
         '/order': (context) => const OrderScreen(),
         '/review': (context) => const ReviewScreen(),
         '/image-picker': (context) => const ImagePickerRatingScreen(),
         '/reschedule': (context) => const RescheduleScreen(),
         '/card-search-bar': (context) => const SearchScreen(),
         '/booking': (context) => const BookingScheduleScreen(),
-        '/edit-profile': (context) => const EditProfileScreen(),
+        '/edit-profile': (context) {
+          final EditProfileArguments args = ModalRoute.of(context)
+              ?.settings
+              .arguments as EditProfileArguments;
+          return EditProfileScreen(id: args.userId);
+        },
         '/search': (context) => const SearchScreen(),
         '/page-not-found-screen': (context) => const PageNotFoundScreen(),
         '/notification': (context) => const NotificationScreen(),
