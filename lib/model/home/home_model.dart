@@ -75,7 +75,7 @@ class Office {
         imageUrl: json["ImageUrl"] ?? '',
       );
 
-  get rating => null;
+  // get rating => rating;
 
   Map<String, dynamic> toJson() => {
         "capacity": capacity,

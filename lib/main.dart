@@ -39,10 +39,10 @@ void main() {
         ListenableProvider(
           create: (context) => LoginViewModel(),
         ),
-        ListenableProvider(
+        ChangeNotifierProvider(
           create: (context) => HomeViewModel(),
         ),
-        ListenableProvider(
+        ChangeNotifierProvider(
           create: (context) => SearchOfficeViewModel(),
         ),
         ChangeNotifierProvider(
