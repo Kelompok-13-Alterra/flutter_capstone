@@ -182,32 +182,41 @@ class _SearchScreenState extends State<SearchScreen> {
 
                                       return GestureDetector(
                                         onTap: () {
-                                          Navigator.push(
+                                          Navigator.pushReplacement(
                                             context,
                                             MaterialPageRoute(
                                               builder: (context) =>
                                                   DetailScreen(
-                                                      textButton: '/booking',
-                                                      officeId: data?.id ?? 0),
+                                                textButton: 'Booking',
+                                                buttonRoute: '/booking',
+                                                officeId: data.id,
+                                                selectedDateRange: null,
+                                              ),
                                             ),
                                           );
                                         },
                                         child: OfficeRecommendationWidget(
-                                          img: imageKantor[0],
+                                          img: data!.imageUrl.isEmpty
+                                              ? "https://img.freepik.com/premium-photo/modern-corporate-architecture-can-be-seen-cityscape-office-buildings_410516-276.jpg"
+                                              : data.imageUrl,
+
+                                          // data?.imageUrl == ''
+                                          //     ? imageKantor[0]
+                                          //     : data?.imageUrl,
+                                          // ==  imageKantor[0],
                                           statusKantor: statusKantor[0],
-                                          namaKantor: data?.name ?? '',
+                                          namaKantor: data.name ?? '',
                                           imgRating: iconImage[0],
                                           rating: rating[0],
                                           imgCoWorkingOffice: iconImage[1],
-                                          office: data?.type ?? "",
+                                          office: data.type ?? "",
                                           imgLocation: iconImage[2],
-                                          location: data?.location ?? "",
+                                          location: data.location ?? "",
                                           imgTime: iconImage[3],
-                                          time:
-                                              '${data?.open} - ${data?.close}',
-                                          open: '${data?.open}',
-                                          close: '${data?.close}',
-                                          price: data?.price ?? 0,
+                                          time: '${data.open} - ${data.close}',
+                                          open: '${data.open}',
+                                          close: '${data.close}',
+                                          price: data.price ?? 0,
                                         ),
                                       );
                                     },
@@ -217,13 +226,13 @@ class _SearchScreenState extends State<SearchScreen> {
                             ),
                 );
               } else {
-                return const Padding(
-                  padding: EdgeInsets.only(top: 15),
+                return Padding(
+                  padding: const EdgeInsets.only(top: 15),
                   child: Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
+                      children: const [
                         CircularProgressIndicator(),
                       ],
                     ),

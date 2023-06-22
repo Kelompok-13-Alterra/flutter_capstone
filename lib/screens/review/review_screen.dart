@@ -66,10 +66,10 @@ class _ReviewScreenState extends State<ReviewScreen> {
         );
       }
       print("args : ${args?.transactionId}");
-
-      setState(() {
-        reviewProvider.reviewController.clear();
-      });
+      reviewProvider.clearField;
+      // setState(() {
+      //   reviewProvider.reviewController.clear();
+      // });
     }
 
     print('Id Traksaksi : ${args?.transactionId}');
@@ -188,6 +188,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                           label: Text(e),
                           selected: reviewProvider.reviewList.contains(e),
                           onSelected: (bool value) {
+                            // reviewProvider.onSelected(value);
                             if (reviewProvider.reviewList.contains(e)) {
                               reviewProvider.reviewList.remove(e.toString());
                             } else {
@@ -283,6 +284,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                           child: GestureDetector(
                             onTap: () {
                               // var data;
+                              // reviewProvider.deleteImage();
                               // deleteImage();
                               deleteImage(
                                 _imgFileList[index],

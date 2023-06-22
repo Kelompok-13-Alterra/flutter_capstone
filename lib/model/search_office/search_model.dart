@@ -44,6 +44,7 @@ class Datum {
   String? location;
   String? facilities;
   bool? status;
+  String imageUrl;
 
   Datum({
     this.id = 0,
@@ -60,6 +61,7 @@ class Datum {
     this.location,
     this.facilities,
     this.status,
+    required this.imageUrl,
   });
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
@@ -77,6 +79,7 @@ class Datum {
         location: json["Location"],
         facilities: json["Facilities"],
         status: json["Status"],
+        imageUrl: json["ImageUrl"] ?? "",
       );
 
   Map<String, dynamic> toJson() => {
@@ -94,6 +97,7 @@ class Datum {
         "Location": location,
         "Facilities": facilities,
         "Status": status,
+        "ImageUrl": imageUrl,
       };
 }
 
