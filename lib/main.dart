@@ -42,7 +42,7 @@ void main() {
         ListenableProvider(
           create: (context) => HomeViewModel(),
         ),
-        ListenableProvider(
+        ChangeNotifierProvider(
           create: (context) => SearchOfficeViewModel(),
         ),
         ChangeNotifierProvider(

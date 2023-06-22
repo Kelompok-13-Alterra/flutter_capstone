@@ -2,9 +2,10 @@
 
 import 'package:dio/dio.dart';
 import 'package:flutter_capstone/core/init/const/api.dart';
+import 'package:flutter_capstone/model/login/login_model.dart';
 
 class LoginService {
-  Future postLogin({
+  Future<LoginModel> postLogin({
     required String email,
     required String password,
   }) async {
@@ -18,7 +19,7 @@ class LoginService {
             "email": email,
             "password": password,
           });
-      return response.data;
+      return LoginModel.fromJson(response.data);
     } on DioError catch (e) {
       return e.response!.data;
     }
