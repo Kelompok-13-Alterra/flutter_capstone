@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_capstone/screens/home/home_view_model.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class FilterChoice extends StatefulWidget {
   const FilterChoice({super.key});
@@ -9,15 +11,9 @@ class FilterChoice extends StatefulWidget {
 }
 
 class _FilterChoiceState extends State<FilterChoice> {
-  int _selectedFilterIndex = 0;
-  final List<String> _filters = [
-    'Terdekat',
-    'Rating Baik',
-    'Termurah',
-    'Fasilitas Lengkap'
-  ];
   @override
   Widget build(BuildContext context) {
+    var homeViewModel = Provider.of<HomeViewModel>(context);
     return SliverAppBar(
       automaticallyImplyLeading: false,
       backgroundColor: Colors.white,
@@ -27,69 +23,74 @@ class _FilterChoiceState extends State<FilterChoice> {
       floating: false,
       pinned: true,
       bottom: const PreferredSize(
-        preferredSize: Size.fromHeight(-10),
+        preferredSize: Size.fromHeight(-20),
         child: SizedBox(),
       ),
       flexibleSpace: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 6),
-        child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: _filters.length,
-          itemBuilder: (context, index) {
-            return Column(
-              children: [
-                const SizedBox(
-                  height: 23,
-                ),
-                Row(
-                  children: [
-                    const SizedBox(
-                      width: 6,
-                    ),
-                    Container(
-                      color: Colors.white,
-                      child: ChoiceChip(
-                        backgroundColor: Colors.transparent,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(22.0),
-                          side: const BorderSide(
-                            color: Color(
-                                0xFF0074E5), // Warna border saat unselected
-                            width: 1.0, // Lebar border saat unselected
-                          ),
-                        ),
-                        label: Container(
-                          margin: const EdgeInsets.symmetric(horizontal: 8),
-                          child: Text(
-                            _filters[index],
-                            style: GoogleFonts.roboto(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 14,
-                              color: _selectedFilterIndex == index
-                                  ? Colors.white
-                                  : const Color(0xFF0074E5),
+        child: Row(
+          children: [
+            Expanded(
+              flex: 1,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: homeViewModel.getFilters.length,
+                itemBuilder: (context, index) {
+                  return Wrap(
+                    children: [
+                      const SizedBox(
+                        height: 23,
+                      ),
+                      const SizedBox(
+                        width: 6,
+                      ),
+                      Container(
+                        color: Colors.white,
+                        child: ChoiceChip(
+                          backgroundColor: Colors.transparent,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(22.0),
+                            side: const BorderSide(
+                              color: Color(
+                                  0xFF0074E5), // Warna border saat unselected
+                              width: 1.0, // Lebar border saat unselected
                             ),
                           ),
+                          label: Container(
+                            margin: const EdgeInsets.symmetric(horizontal: 8),
+                            child: Text(
+                              homeViewModel.getFilters[index],
+                              style: GoogleFonts.roboto(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 14,
+                                color: homeViewModel.getSelectedFilterindex ==
+                                        index
+                                    ? Colors.white
+                                    : const Color(0xFF0074E5),
+                              ),
+                            ),
+                          ),
+                          selected:
+                              homeViewModel.getSelectedFilterindex == index,
+                          selectedColor: const Color(0xFF0074E5),
+                          onSelected: (bool selected) {
+                            homeViewModel.setSelectedFilterIndex =
+                                selected ? index : 0;
+
+                            print(homeViewModel.getFilters[
+                                homeViewModel.getSelectedFilterindex]);
+                          },
                         ),
-                        selected: _selectedFilterIndex == index,
-                        selectedColor: const Color(0xFF0074E5),
-                        onSelected: (bool selected) {
-                          setState(
-                            () {
-                              _selectedFilterIndex = selected ? index : 0;
-                            },
-                          );
-                        },
                       ),
-                    ),
-                    const SizedBox(
-                      width: 6,
-                    ),
-                  ],
-                ),
-              ],
-            );
-          },
+                      const SizedBox(
+                        width: 6,
+                      ),
+                    ],
+                  );
+                },
+              ),
+            ),
+          ],
         ),
       ),
     );
