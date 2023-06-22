@@ -7,10 +7,10 @@ import 'package:provider/provider.dart';
 
 //This widget for list content office in home
 class FilterContentWidget extends StatefulWidget {
-  bool condition;
-  int officeId;
-  Office data;
-  FilterContentWidget({
+  final bool condition;
+  final int officeId;
+  final Office data;
+  const FilterContentWidget({
     super.key,
     required this.condition,
     required this.officeId,
