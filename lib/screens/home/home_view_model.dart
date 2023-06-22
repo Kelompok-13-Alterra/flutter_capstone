@@ -26,7 +26,6 @@ class HomeViewModel with ChangeNotifier {
 
   Future<List<Office>> getOffice() async {
     try {
-      _listOffice.clear();
       _listOffice = await homeService.fetchHomeData();
       notifyListeners();
       return _listOffice;
