@@ -182,13 +182,16 @@ class _SearchScreenState extends State<SearchScreen> {
 
                                       return GestureDetector(
                                         onTap: () {
-                                          Navigator.push(
+                                          Navigator.pushReplacement(
                                             context,
                                             MaterialPageRoute(
                                               builder: (context) =>
                                                   DetailScreen(
-                                                      textButton: '/booking',
-                                                      officeId: data.id),
+                                                textButton: 'Booking',
+                                                buttonRoute: '/booking',
+                                                officeId: data.id,
+                                                selectedDateRange: null,
+                                              ),
                                             ),
                                           );
                                         },
