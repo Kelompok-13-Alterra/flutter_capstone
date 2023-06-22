@@ -7,8 +7,8 @@ import 'package:flutter_capstone/widgets/filter_content_widget.dart';
 import 'package:provider/provider.dart';
 
 class HomeWidget extends StatefulWidget {
-  String? currentAddress;
-  HomeWidget({super.key, this.currentAddress});
+  final String? currentAddress;
+  const HomeWidget({super.key, this.currentAddress});
 
   @override
   State<HomeWidget> createState() => _HomeWidgetState();
@@ -48,13 +48,16 @@ class _HomeWidgetState extends State<HomeWidget> {
               data: data,
             );
           } else {
-            return Center(
-              child: Text(
-                'There\'s no office arround your place!',
-                style: setTextStyle(SourceColor().black),
-              ),
-            );
+            if (index == 0) {
+              return Center(
+                child: Text(
+                  'There\'s no office arround your place!',
+                  style: setTextStyle(SourceColor().black),
+                ),
+              );
+            }
           }
+          return null;
         }
         //
         else if (homeViewModel

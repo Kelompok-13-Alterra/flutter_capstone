@@ -8,8 +8,8 @@ import 'package:flutter_capstone/style/text_style.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class OfficeCard extends StatefulWidget {
-  Office officeData;
-  OfficeCard({super.key, required this.officeData});
+  final Office officeData;
+  const OfficeCard({super.key, required this.officeData});
 
   @override
   State<OfficeCard> createState() => _OfficeCardState();

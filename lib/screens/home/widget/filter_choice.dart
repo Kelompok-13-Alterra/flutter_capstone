@@ -76,9 +76,6 @@ class _FilterChoiceState extends State<FilterChoice> {
                           onSelected: (bool selected) {
                             homeViewModel.setSelectedFilterIndex =
                                 selected ? index : 0;
-
-                            print(homeViewModel.getFilters[
-                                homeViewModel.getSelectedFilterindex]);
                           },
                         ),
                       ),

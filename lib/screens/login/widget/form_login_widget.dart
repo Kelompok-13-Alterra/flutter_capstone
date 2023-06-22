@@ -164,7 +164,7 @@ class _FormLoginState extends State<FormLogin> {
                   // ignore: use_build_context_synchronously
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       content: Text(
-                    '${res.meta.message}',
+                    res.meta.message,
                     style: setTextStyle(SourceColor().white),
                   )));
                 },

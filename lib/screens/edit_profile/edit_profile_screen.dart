@@ -21,9 +21,9 @@ class EditProfileScreen extends StatefulWidget {
 
 class _EditProfileScreenState extends State<EditProfileScreen> {
   final formKey = GlobalKey<FormState>();
-  final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _companyController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
+  // final TextEditingController _nameController = TextEditingController();
+  // final TextEditingController _companyController = TextEditingController();
+  // final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _dateController = TextEditingController();
 
@@ -45,8 +45,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
   @override
   void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
-
     final args =
         ModalRoute.of(context)?.settings.arguments as EditProfileArguments?;
     if (args?.profileModel?.data.gender != null) {
@@ -222,9 +220,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   Widget build(BuildContext context) {
     final args =
         ModalRoute.of(context)?.settings.arguments as EditProfileArguments?;
-    var _name = args?.profileModel?.data.name;
-    var _company = args?.profileModel?.data.company;
-    var _email = args?.profileModel?.data.email;
+    var name = args?.profileModel?.data.name;
+    var company = args?.profileModel?.data.company;
+    var email = args?.profileModel?.data.email;
     // var _gender = args?.profileModel?.data.gender;
     // var _dateBirth = args?.profileModel?.data.dateBirth;
 
@@ -311,10 +309,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       children: [
                         TextFormField(
                           // controller: _nameController,
-                          initialValue: _name,
+                          initialValue: name,
                           //'${editProfile?.data.name}',
                           onSaved: (val) {
-                            _name = val;
+                            name = val;
                           },
                           // validator: (value) {
                           //   if (value != null) {
@@ -338,7 +336,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         ),
                         const SizedBox(height: 25.0),
                         TextFormField(
-                          initialValue: _company,
+                          initialValue: company,
                           // controller: _companyController,
                           // validator: (value) {
                           //   if (value != null) {
@@ -348,7 +346,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           //   }
                           // },
                           onSaved: (val) {
-                            _company = val;
+                            company = val;
                           },
                           decoration: InputDecoration(
                             labelText: 'Company',
@@ -366,9 +364,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         const SizedBox(height: 25.0),
                         TextFormField(
                           // controller: _emailController,
-                          initialValue: _email,
+                          initialValue: email,
                           onSaved: (val) {
-                            _email = val;
+                            email = val;
                           },
                           decoration: InputDecoration(
                             labelText: 'Email',
@@ -611,9 +609,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                     try {
                                       await profile.updateProfile(
                                         {
-                                          "company": _company,
-                                          "email": _email,
-                                          "name": _name,
+                                          "company": company,
+                                          "email": email,
+                                          "name": name,
                                           "password": _passwordController.text,
                                           "gender": selectedValue,
                                           "dateBirth": _dateController.text,
@@ -621,7 +619,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                         widget.id,
                                       );
                                     } catch (e) {
-                                      print(e.toString());
+                                      throw e.toString();
                                     }
                                   }
                                 },
