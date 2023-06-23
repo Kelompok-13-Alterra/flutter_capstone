@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_capstone/screens/notification/mark_as_read_view_model.dart';
+import 'package:flutter_capstone/screens/notification/notification_view_model.dart';
 import 'package:flutter_capstone/style/text_style.dart';
+import 'package:provider/provider.dart';
 
 class EmptyNotificationScreen extends StatelessWidget {
   const EmptyNotificationScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var markReadViewModel = Provider.of<MarkAsReadViewModel>(context);
     return Scaffold(
       backgroundColor: const Color(0xFFFFFFFF),
       appBar: AppBar(
@@ -33,7 +37,17 @@ class EmptyNotificationScreen extends StatelessWidget {
                   bottom: 20,
                 ),
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    markReadViewModel.getMarkAsRead();
+                    var res = markReadViewModel.getMarkAsReadModel.meta;
+                    if (res?.isError == false) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(res?.message ?? 'Please try again'),
+                        ),
+                      );
+                    }
+                  },
                   child: Text(
                     "Mark all as read",
                     style: setTextStyle(KeyColor().primary)

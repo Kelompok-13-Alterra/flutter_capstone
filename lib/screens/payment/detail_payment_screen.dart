@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_null_comparison
+// ignore_for_file: unnecessary_null_comparison, unrelated_type_equality_checks
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -169,13 +169,12 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
 
     return Consumer<PaymentViewModel>(builder: (context, provider, _) {
       paymenStatus();
-      // ignore: unrelated_type_equality_checks
       if (provider.getPaymentStatus == 'success') {
         provider.getMidtransModel.data?.status = '';
         provider.stopCountdown();
 
         return SuccessBookingScreen(
-          bookingData: provider.getMidtransModel.data,
+          bookingData: provider.getMidtransModel.data!,
           dateData: widget.selectedDateRange,
         );
 
@@ -250,16 +249,21 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                                 color: Colors.black,
                               ),
                               child: ClipRRect(
-                                borderRadius: BorderRadius.circular(12),
-                                child: provider.getMidtransModel.data!.office
-                                        .imageUrl.isNotEmpty
-                                    ? Image.network(provider
-                                        .getMidtransModel.data!.office.imageUrl)
-                                    : Image.network(
-                                        'https://img.freepik.com/premium-photo/modern-corporate-architecture-can-be-seen-cityscape-office-buildings_410516-276.jpg',
-                                        fit: BoxFit.fill,
-                                      ),
-                              ),
+                                  borderRadius: BorderRadius.circular(12),
+                                  child: provider.getMidtransModel.data!.office
+                                              .imageUrl!.isEmpty ||
+                                          provider.getMidtransModel.data!.office
+                                                  .imageUrl ==
+                                              ''
+                                      ? Image.network(
+                                          'https://img.freepik.com/premium-photo/modern-corporate-architecture-can-be-seen-cityscape-office-buildings_410516-276.jpg',
+                                          fit: BoxFit.fill,
+                                        )
+                                      : Image.network(
+                                          provider.getMidtransModel.data!.office
+                                              .imageUrl!,
+                                          fit: BoxFit.fill,
+                                        )),
                             ),
                             const SizedBox(
                               width: 16,

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_capstone/model/notification/mark_as_read.dart';
 import 'package:flutter_capstone/screens/booking/booking_screen.dart';
 import 'package:flutter_capstone/screens/bottom_nav/bottom_nav_screen.dart';
 import 'package:flutter_capstone/screens/detail/detail_view_model.dart';
 import 'package:flutter_capstone/screens/edit_profile/edit_profile_view_model.dart';
+import 'package:flutter_capstone/screens/notification/mark_as_read_view_model.dart';
 import 'package:flutter_capstone/screens/notification/notification_view_model.dart';
 import 'package:flutter_capstone/screens/order/booked_view_model.dart';
 import 'package:flutter_capstone/screens/order/history_view_model.dart';
@@ -68,6 +70,9 @@ void main() {
         ),
         ListenableProvider(
           create: (context) => NotificationViewModel(),
+        ),
+        ListenableProvider(
+          create: (context) => MarkAsReadViewModel(),
         ),
         ChangeNotifierProvider(
           create: (context) => RescheduleModelView(),

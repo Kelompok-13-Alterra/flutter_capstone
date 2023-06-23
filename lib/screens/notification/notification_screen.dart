@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_capstone/model/notification/notification_model.dart';
 import 'package:flutter_capstone/screens/notification/all_notification_screen.dart';
 import 'package:flutter_capstone/screens/notification/booked_notification_screen.dart';
+import 'package:flutter_capstone/screens/notification/mark_as_read_view_model.dart';
 import 'package:flutter_capstone/style/text_style.dart';
+import 'package:provider/provider.dart';
 
 class NotificationScreen extends StatefulWidget {
   const NotificationScreen({super.key});
@@ -11,6 +14,7 @@ class NotificationScreen extends StatefulWidget {
 }
 
 class _NotificationScreenState extends State<NotificationScreen> {
+  Datum? notification;
   List<Tab> notifTab = [
     const Tab(
       text: "All",
@@ -21,6 +25,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
   ];
   @override
   Widget build(BuildContext context) {
+    var markReadViewModel = Provider.of<MarkAsReadViewModel>(context);
     return DefaultTabController(
       length: notifTab.length,
       child: Scaffold(
@@ -60,7 +65,21 @@ class _NotificationScreenState extends State<NotificationScreen> {
                     bottom: 20,
                   ),
                   child: TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      markReadViewModel.getMarkAsRead();
+                      var res = markReadViewModel.getMarkAsReadModel.meta;
+                      if (res?.isError == false) {
+                        setState(() {
+                          notification?.isRead = true;
+                        });
+
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(res?.message ?? 'Please try again'),
+                          ),
+                        );
+                      }
+                    },
                     child: Text(
                       "Mark all as read",
                       style: setTextStyle(KeyColor().primary).copyWith(

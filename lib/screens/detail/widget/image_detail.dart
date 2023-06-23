@@ -17,7 +17,7 @@ class _ImageDetailState extends State<ImageDetail> {
   @override
   void initState() {
     imageUrls = [
-      widget.image.isEmpty
+      widget.image.isEmpty || widget.image == ''
           ? 'https://img.freepik.com/premium-photo/modern-corporate-architecture-can-be-seen-cityscape-office-buildings_410516-276.jpg'
           : widget.image,
       'https://guardian.ng/wp-content/uploads/2021/09/office-space.jpg',
