@@ -149,7 +149,7 @@ class OrderWidget extends StatelessWidget {
                 ),
                 Positioned(
                   top: 98,
-                  left: 25,
+                  left: MediaQuery.of(context).size.width * 0.05 - 16,
                   child: Wrap(
                     spacing: 5,
                     children: [
