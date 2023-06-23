@@ -149,9 +149,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     groupValue: provider.selectedValue,
                     onChanged: (value) {
-                      setState(() {
-                        provider.setSelectedValue = value!;
-                      });
+                      // provider.setSelectedValue = value!;
                     },
                   ),
                 ],
