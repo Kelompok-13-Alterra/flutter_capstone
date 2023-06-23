@@ -51,8 +51,9 @@ class OrderWidget extends StatelessWidget {
                         borderRadius: BorderRadius.circular(12),
                         image: DecorationImage(
                           image: NetworkImage(
-                            urlImg ??
-                                'https://img.freepik.com/premium-photo/modern-corporate-architecture-can-be-seen-cityscape-office-buildings_410516-276.jpg',
+                            urlImg!.isEmpty || urlImg == ''
+                                ? 'https://img.freepik.com/premium-photo/modern-corporate-architecture-can-be-seen-cityscape-office-buildings_410516-276.jpg'
+                                : urlImg!,
                           ),
                           fit: BoxFit.cover,
                         ),
@@ -148,6 +149,7 @@ class OrderWidget extends StatelessWidget {
                 ),
                 Positioned(
                   top: 98,
+                  left: MediaQuery.of(context).size.width * 0.05 - 16,
                   child: Wrap(
                     spacing: 5,
                     children: [

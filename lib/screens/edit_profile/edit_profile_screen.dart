@@ -625,9 +625,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                     }
                                   }
                                 },
-                                child: const Text(
+                                child: Text(
                                   "Save Change",
-                                  style: TextStyle(
+                                  style: setTextStyle(SourceColor().white)
+                                      .copyWith(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 18,
                                   ),

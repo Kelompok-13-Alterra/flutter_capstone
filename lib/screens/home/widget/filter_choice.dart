@@ -19,7 +19,7 @@ class _FilterChoiceState extends State<FilterChoice> {
       backgroundColor: Colors.white,
       elevation: 0,
       // expandedHeight: 60,
-      collapsedHeight: 70,
+      // collapsedHeight: 80,
       floating: false,
       pinned: true,
       bottom: const PreferredSize(

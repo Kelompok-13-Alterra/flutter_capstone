@@ -61,7 +61,7 @@ class _BackgroundWidgetState extends State<BackgroundWidget> {
             //Item di dalam
             //==========================================================
             Container(
-              padding: const EdgeInsets.fromLTRB(16, 45, 16, 0),
+              padding: const EdgeInsets.fromLTRB(16, 60, 16, 0),
               child: Column(
                 children: [
                   //Akun selamat datang

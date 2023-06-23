@@ -129,12 +129,15 @@ class _OfficeCardState extends State<OfficeCard> {
                     const SizedBox(
                       width: 5,
                     ),
-                    Text(
-                      widget.officeData.location,
-                      style: GoogleFonts.roboto(
-                        color: NeutralColor().neutral60,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w500,
+                    Flexible(
+                      child: Text(
+                        widget.officeData.location,
+                        overflow: TextOverflow.ellipsis,
+                        style: GoogleFonts.roboto(
+                          color: NeutralColor().neutral60,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                     )
                   ],
