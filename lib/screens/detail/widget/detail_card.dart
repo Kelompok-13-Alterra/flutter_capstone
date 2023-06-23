@@ -162,11 +162,14 @@ class _DetailCardState extends State<DetailCard> {
                     const SizedBox(
                       width: 5,
                     ),
-                    Text(
-                      widget.location,
-                      overflow: TextOverflow.ellipsis,
-                      style: setTextStyle(NeutralColor().neutral30)
-                          .copyWith(fontWeight: semiBold, fontSize: 12),
+                    SizedBox(
+                      width: 120,
+                      child: Text(
+                        widget.location,
+                        overflow: TextOverflow.ellipsis,
+                        style: setTextStyle(NeutralColor().neutral30)
+                            .copyWith(fontWeight: semiBold, fontSize: 12),
+                      ),
                     )
                   ],
                 ),
