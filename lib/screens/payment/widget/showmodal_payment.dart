@@ -676,7 +676,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                     ),
                   ),
                   onPressed: () async {
-                    setState(() {});
+                    // setState(() {});
 
                     var res = await OrderService().createOrder(
                       context,
