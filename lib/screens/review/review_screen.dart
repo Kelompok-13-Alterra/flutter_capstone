@@ -120,22 +120,16 @@ class _ReviewScreenState extends State<ReviewScreen> {
                     ),
                     Text(
                       'Rate Your Experience',
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: regular,
-                        color: NeutralColor().neutral20,
-                      ),
+                      style: setTextStyle(NeutralColor().neutral20)
+                          .copyWith(fontSize: 24, fontWeight: regular),
                     ),
                     const SizedBox(
                       height: 10,
                     ),
                     Text(
                       'Are you satisfied with the service?',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: regular,
-                        color: NeutralColor().neutral60,
-                      ),
+                      style: setTextStyle(NeutralColor().neutral20)
+                          .copyWith(fontSize: 24, fontWeight: regular),
                     ),
                     const SizedBox(
                       height: 10,
@@ -162,14 +156,9 @@ class _ReviewScreenState extends State<ReviewScreen> {
                     const SizedBox(
                       height: 42,
                     ),
-                    Text(
-                      'Tell us what stood out',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: regular,
-                        color: SourceColor().black,
-                      ),
-                    ),
+                    Text('Tell us what stood out',
+                        style: setTextStyle(SourceColor().black)
+                            .copyWith(fontSize: 14, fontWeight: regular)),
                   ],
                 ),
               ),
@@ -201,57 +190,6 @@ class _ReviewScreenState extends State<ReviewScreen> {
                         ),
                       );
                     }).toList(),
-                    // List<Widget>.generate(
-                    //   reviewProvider.filters.length ~/ 2, (int index) {
-                    // final firstIndex = index * 2;
-                    // final secondIndex = index * 2 + 1;
-                    // // final firstIndex = reviewProvider.firstIndex;
-                    // // final secondIndex = reviewProvider.secondIndex;
-                    // return Row(
-                    // children: [
-                    //       FilterChip(
-                    //         label: Text(
-                    //           reviewProvider.filters[firstIndex],
-                    //           style: TextStyle(
-                    //             color: selectedFilterIndex == firstIndex
-                    //                 ? NeutralColor().neutral100
-                    //                 : NeutralColor().neutral60,
-                    //           ),
-                    //         ),
-                    //         selected:
-                    //             // reviewProvider.filters[firstIndex],
-                    //             selectedFilterIndex == firstIndex,
-                    //         selectedColor: SourceColor().seed,
-                    //         onSelected: (bool selected) {
-                    //           //reviewProvider.onSelected(selected);
-                    //           setState(() {
-                    //             selectedFilterIndex = selected ? firstIndex : 0;
-                    //           });
-                    //         },
-                    //       ),
-                    //       const SizedBox(width: 8.0),
-                    //       ChoiceChip(
-                    //         label: Text(
-                    //           reviewProvider.filters[secondIndex],
-                    //           style: TextStyle(
-                    //             color: selectedFilterIndex == secondIndex
-                    //                 ? NeutralColor().neutral100
-                    //                 : NeutralColor().neutral60,
-                    //           ),
-                    //         ),
-                    //         selected: selectedFilterIndex == secondIndex,
-                    //         selectedColor: SourceColor().seed,
-                    //         onSelected: (bool selected) {
-                    //           //reviewProvider.onSelectedSecondIndex(selected);
-                    //           setState(() {
-                    // selectedFilterIndex =
-                    //                 selected ? secondIndex : 0;
-                    //           });
-                    //         },
-                    //       ),
-                    //     ],
-                    //   );
-                    // }),
                   ),
                 ),
               ),
@@ -331,7 +269,8 @@ class _ReviewScreenState extends State<ReviewScreen> {
                                   decoration: InputDecoration(
                                     hintText:
                                         'The Place is very cozy and also clean. So many kind of facilities here. Probably I`ll go back here someday.',
-                                    hintStyle: const TextStyle(
+                                    hintStyle: setTextStyle(SourceColor().black)
+                                        .copyWith(
                                       fontSize: 12,
                                     ),
                                     border: InputBorder.none,

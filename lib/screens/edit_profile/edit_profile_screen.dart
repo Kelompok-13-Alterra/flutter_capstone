@@ -514,13 +514,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         Container(
                           padding: const EdgeInsets.symmetric(vertical: 16),
                           child: TextFormField(
-                            // validator: (value) {
-                            //   if (value!.isEmpty) {
-                            //     return "Silahkan isikan tanggal";
-                            //   } else {
-                            //     return null;
-                            //   }
-                            // },
                             onTap: () async {
                               showDialog(
                                 context: context,

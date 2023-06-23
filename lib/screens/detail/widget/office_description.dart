@@ -57,12 +57,6 @@ class _OfficeDescriptionState extends State<OfficeDescription> {
               style: setTextStyle(BlackColor().black)
                   .copyWith(fontWeight: regular, fontSize: 12),
             ),
-            // TextSpan(
-            //   text:
-            //       '\n\nSetelah pemesanan dibuat mohon tunggu hingga pesanan dikonfirmasi. Ketika sampai di lokasi mohon tunjukkan bukti pemesanan kepada admin setempat.',
-            //   style: setTextStyle(BlackColor().black)
-            //       .copyWith(fontWeight: regular, fontSize: 12),
-            // ),
           ],
         ),
       );

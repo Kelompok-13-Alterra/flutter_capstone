@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/screens/notification/mark_as_read_view_model.dart';
-import 'package:flutter_capstone/screens/notification/notification_view_model.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:provider/provider.dart';
 

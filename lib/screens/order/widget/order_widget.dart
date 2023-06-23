@@ -80,12 +80,13 @@ class OrderWidget extends StatelessWidget {
                             const SizedBox(width: 4),
                             Text(
                               rating.toString(),
-                              style: TextStyle(
-                                fontWeight: medium,
-                                fontSize: 13,
-                                color: NeutralColor().neutral17,
+                              style: setTextStyle(NeutralColor().neutral17)
+                              .copyWith( fontWeight: medium,
+                                fontSize: 13,)
+
+
                               ),
-                            ),
+
                           ],
                         ),
                         const SizedBox(height: 4),
@@ -96,12 +97,12 @@ class OrderWidget extends StatelessWidget {
                             const SizedBox(width: 4),
                             Text(
                               type,
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: medium,
-                                color: NeutralColor().neutral60,
+                              style: setTextStyle(NeutralColor().neutral60)
+                              .copyWith(fontSize: 12,
+                                fontWeight: medium),
+                                
                               ),
-                            ),
+                            
                           ],
                         ),
                         const SizedBox(height: 4),
@@ -112,12 +113,12 @@ class OrderWidget extends StatelessWidget {
                             const SizedBox(width: 4),
                             Text(
                               duration,
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: medium,
-                                color: NeutralColor().neutral60,
+                              style: setTextStyle(NeutralColor().neutral60)
+                                .copyWith(fontSize: 12,
+                                fontWeight: medium),
+                                
                               ),
-                            ),
+                            
                           ],
                         ),
                       ],
@@ -138,15 +139,15 @@ class OrderWidget extends StatelessWidget {
                     child: Center(
                       child: Text(
                         status,
-                        style: TextStyle(
-                          color: SourceColor().white,
-                          fontWeight: medium,
-                          fontSize: 13,
+                        style: setTextStyle(
+                          SourceColor().white).copyWith(fontWeight: medium,
+                          fontSize: 13),
+                          
                         ),
                       ),
                     ),
                   ),
-                ),
+                
                 Positioned(
                   top: 98,
                   left: MediaQuery.of(context).size.width * 0.05 - 16,
