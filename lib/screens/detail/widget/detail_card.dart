@@ -164,6 +164,7 @@ class _DetailCardState extends State<DetailCard> {
                     ),
                     Text(
                       widget.location,
+                      overflow: TextOverflow.ellipsis,
                       style: setTextStyle(NeutralColor().neutral30)
                           .copyWith(fontWeight: semiBold, fontSize: 12),
                     )

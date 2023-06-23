@@ -148,11 +148,13 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                     activeColor: PrimaryColor().onPrimaryFixedVariant,
                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     groupValue: provider.selectedValue,
-                    onChanged: (value) {
-                      setState(() {
-                        provider.setSelectedValue = value!;
-                      });
-                    },
+                    onChanged: null,
+                    // (value) {
+
+                    // setState(() {
+                    //   provider.setSelectedValue = value!;
+                    // });
+                    // },
                   ),
                 ],
               ),
