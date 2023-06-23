@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 
 class OrderWidget extends StatelessWidget {
-  final String urlImg;
+  final String? urlImg;
   final String title;
   final double rating;
   final String type;
@@ -51,9 +51,8 @@ class OrderWidget extends StatelessWidget {
                         borderRadius: BorderRadius.circular(12),
                         image: DecorationImage(
                           image: NetworkImage(
-                            urlImg.isEmpty
-                                ? 'https://img.freepik.com/premium-photo/modern-corporate-architecture-can-be-seen-cityscape-office-buildings_410516-276.jpg'
-                                : urlImg,
+                            urlImg ??
+                                'https://img.freepik.com/premium-photo/modern-corporate-architecture-can-be-seen-cityscape-office-buildings_410516-276.jpg',
                           ),
                           fit: BoxFit.cover,
                         ),

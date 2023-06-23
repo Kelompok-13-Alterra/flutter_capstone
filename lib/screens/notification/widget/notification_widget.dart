@@ -21,7 +21,9 @@ Widget notificationWidget(BuildContext context, {required Datum notification}) {
   return SizedBox(
     height: 124,
     child: Card(
-      color: const Color(0xFFFAF9FD),
+      color: notification.isRead == false
+          ? const Color(0xFFFAF9FD)
+          : const Color(0xffFFFFFF),
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Row(
