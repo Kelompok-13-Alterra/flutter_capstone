@@ -120,23 +120,22 @@ class _ReviewScreenState extends State<ReviewScreen> {
                     ),
                     Text(
                       'Rate Your Experience',
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: regular,
-                        color: NeutralColor().neutral20,
+                      style: setTextStyle(NeutralColor().neutral20)
+                        .copyWith(fontSize: 24,fontWeight: regular),
+                      
+                        
                       ),
-                    ),
+                    
                     const SizedBox(
                       height: 10,
                     ),
                     Text(
                       'Are you satisfied with the service?',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: regular,
-                        color: NeutralColor().neutral60,
+                     style: setTextStyle(NeutralColor().neutral20)
+                        .copyWith(fontSize: 24,fontWeight: regular),
+                      
+                        
                       ),
-                    ),
                     const SizedBox(
                       height: 10,
                     ),
@@ -164,12 +163,12 @@ class _ReviewScreenState extends State<ReviewScreen> {
                     ),
                     Text(
                       'Tell us what stood out',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: regular,
-                        color: SourceColor().black,
+                      style: setTextStyle(SourceColor().black)
+                      .copyWith(fontSize: 14,
+                        fontWeight: regular)
+                        
                       ),
-                    ),
+                    
                   ],
                 ),
               ),
