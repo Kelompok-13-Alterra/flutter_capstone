@@ -12,12 +12,12 @@ class PaymentViewModel extends ChangeNotifier {
   bool isBankVisible = false;
   bool isEWalletVisible = false;
   bool isTotalPembayaranVisible = false;
-  String selectedValue = 'Virtual Account BNI';
+  String selectedValue = 'va-bni';
 
-  set setSelectedValue(String value) {
-    selectedValue = value;
-    notifyListeners();
-  }
+  // set setSelectedValue(String value) {
+  //   selectedValue = value;
+  //   notifyListeners();
+  // }
 
   void toggleVirtualVisible() {
     isVirtualVisible = !isVirtualVisible;
