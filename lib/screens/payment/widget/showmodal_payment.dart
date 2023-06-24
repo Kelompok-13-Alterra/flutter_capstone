@@ -20,7 +20,7 @@ class ShowModalPayment extends StatefulWidget {
   String? name;
   String? type;
   String? location;
-
+  String image;
   // final String location;
   // final String open;
   // final String close;
@@ -33,6 +33,8 @@ class ShowModalPayment extends StatefulWidget {
     required this.name,
     required this.type,
     required this.location,
+    required this.image,
+
     // required this.open,
     // required this.close,
   });
@@ -692,9 +694,9 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                       paymentId: provider.selectedValue,
                     );
 
-                    setState(() {
-                      res;
-                    });
+                    // setState(() {
+                    //   res;
+                    // });
 
                     var transactionId = res.data.idTransaction;
 
@@ -704,6 +706,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                         builder: (context) => DetailPaymentScreen(
                           paymentId: transactionId,
                           officeId: widget.officeId,
+                          image: widget.image,
                           selectedDateRange: convertDateTime(
                               widget.selectedDateRange!.start.toString()),
                         ),

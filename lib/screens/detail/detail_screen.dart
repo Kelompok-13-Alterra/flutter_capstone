@@ -121,6 +121,7 @@ class _DetailScreenState extends State<DetailScreen> {
                         officeId: widget.officeId,
                         buttonRoute: widget.buttonRoute,
                         textButton: widget.textButton,
+                        image: detail.imageUrl,
                         selectedDateRange: widget.selectedDateRange,
                         price: detail.price,
                         name: detail.name,

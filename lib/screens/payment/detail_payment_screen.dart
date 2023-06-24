@@ -17,12 +17,14 @@ class DetailPaymentScreen extends StatefulWidget {
   final int paymentId;
   final int officeId;
   final String selectedDateRange;
+  String image;
 
-  const DetailPaymentScreen({
+  DetailPaymentScreen({
     super.key,
     required this.paymentId,
     required this.officeId,
     required this.selectedDateRange,
+    required this.image,
   });
 
   @override
@@ -197,6 +199,7 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
               provider.stopCountdown();
 
               return SuccessBookingScreen(
+                image: widget.image,
                 bookingData: provider.getMidtransModel.data!,
                 dateData: widget.selectedDateRange,
               );
@@ -272,21 +275,18 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                                       color: Colors.black,
                                     ),
                                     child: ClipRRect(
-                                        borderRadius: BorderRadius.circular(12),
-                                        child: provider.getMidtransModel.data!
-                                                    .office.imageUrl!.isEmpty ||
+                                      borderRadius: BorderRadius.circular(12),
+                                      child: Image.network(
+                                        provider.getMidtransModel.data!.office
+                                                    .imageUrl!.isEmpty ||
                                                 provider.getMidtransModel.data!
                                                         .office.imageUrl ==
                                                     ''
-                                            ? Image.network(
-                                                'https://img.freepik.com/premium-photo/modern-corporate-architecture-can-be-seen-cityscape-office-buildings_410516-276.jpg',
-                                                fit: BoxFit.fill,
-                                              )
-                                            : Image.network(
-                                                provider.getMidtransModel.data!
-                                                    .office.imageUrl!,
-                                                fit: BoxFit.fill,
-                                              )),
+                                            ? 'https://img.freepik.com/premium-photo/modern-corporate-architecture-can-be-seen-cityscape-office-buildings_410516-276.jpg'
+                                            : widget.image,
+                                        fit: BoxFit.fill,
+                                      ),
+                                    ),
                                   ),
                                   const SizedBox(
                                     width: 16,
@@ -691,8 +691,10 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
           } else if (snapshot.hasError) {
             return const ConnectionErrorScreen();
           } else {
-            return const Center(
-              child: CircularProgressIndicator(),
+            return const Scaffold(
+              body: Center(
+                child: CircularProgressIndicator(),
+              ),
             );
           }
         },

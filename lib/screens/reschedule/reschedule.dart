@@ -91,6 +91,7 @@ class _RescheduleScreenState extends State<RescheduleScreen> {
                         // Button Book
                         //================================================================
                         BottomBook(
+                          image: '',
                           officeId: 0,
                           textButton: 'Reschedule',
                           function: () async {
