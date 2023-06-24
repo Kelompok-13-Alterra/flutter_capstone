@@ -32,6 +32,7 @@ class _FilterContentWidgetState extends State<FilterContentWidget> {
               context,
               MaterialPageRoute(
                 builder: (context) => DetailScreen(
+                  rating: widget.data.rating,
                   officeId: widget.officeId,
                   buttonRoute: '/booking',
                   textButton: 'Book',

@@ -19,6 +19,7 @@ class DetailScreen extends StatefulWidget {
   final int officeId;
   final DateTimeRange? selectedDateRange;
   int? idTransaction;
+  double? rating;
 
   DetailScreen({
     super.key,
@@ -27,6 +28,7 @@ class DetailScreen extends StatefulWidget {
     required this.officeId,
     this.selectedDateRange,
     this.idTransaction,
+    this.rating,
   });
 
   @override
@@ -104,7 +106,7 @@ class _DetailScreenState extends State<DetailScreen> {
                       //================================================================
                       DetailCard(
                         name: detail.name,
-                        rating: detail.rating,
+                        rating: widget.rating ?? 0,
                         price: detail.price,
                         open: detail.open,
                         close: detail.close,

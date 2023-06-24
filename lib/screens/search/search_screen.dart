@@ -18,41 +18,6 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  List iconImage = [
-    'assets/icons/office_card/star_purple500.png',
-    'assets/icons/office_card/co_working_space.png',
-    'assets/icons/office_card/location.png',
-    'assets/icons/office_card/time.png',
-  ];
-
-  List imageKantor = [
-    'assets/images/office_image/wellspace.png',
-    'assets/images/office_image/seo_office.png',
-    'assets/images/office_image/pase_office.png',
-    'assets/images/office_image/agung_space.png',
-  ];
-
-  List<String> office = [
-    'Co-Working Space',
-    'Co-Working Space',
-    'Office',
-    'Co-Working Space',
-  ];
-
-  List<String> statusKantor = [
-    'Close',
-    'Close',
-    'Close',
-    'Close',
-  ];
-
-  List rating = [
-    4.6,
-    4.8,
-    4.6,
-    4.8,
-  ];
-
   @override
   Widget build(BuildContext context) {
     SearchOfficeViewModel searchOfficeProvider =
@@ -108,31 +73,6 @@ class _SearchScreenState extends State<SearchScreen> {
                     Icons.search,
                     color: NeutralVariantColor().neutralVariant30,
                   ),
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //   mainAxisSize: MainAxisSize.min,
-                  //   children: [
-                  //     Icon(
-                  //   Icons.search,
-                  //   color: NeutralVariantColor().neutralVariant30,
-                  // ),
-                  // const SizedBox(
-                  //   width: 19.51,
-                  // ),
-                  // SizedBox(
-                  //   height: 30,
-                  //   width: 30,
-                  //   child: CircleAvatar(
-                  //     backgroundColor: PrimaryColor().primary,
-                  //     child: Text(
-                  //       "A",
-                  //       style: setTextStyle(PrimaryColor().onPrimary)
-                  //           .copyWith(fontSize: 16, fontWeight: medium),
-                  //     ),
-                  //   ),
-                  // ),
-                  // ],
-                  // ),
                 ),
               ),
             ),
@@ -191,32 +131,13 @@ class _SearchScreenState extends State<SearchScreen> {
                                                 buttonRoute: '/booking',
                                                 officeId: data.id,
                                                 selectedDateRange: null,
+                                                rating: data.rating,
                                               ),
                                             ),
                                           );
                                         },
                                         child: OfficeRecommendationWidget(
-                                          img: data!.imageUrl.isEmpty
-                                              ? "https://img.freepik.com/premium-photo/modern-corporate-architecture-can-be-seen-cityscape-office-buildings_410516-276.jpg"
-                                              : data.imageUrl,
-
-                                          // data?.imageUrl == ''
-                                          //     ? imageKantor[0]
-                                          //     : data?.imageUrl,
-                                          // ==  imageKantor[0],
-                                          statusKantor: statusKantor[0],
-                                          namaKantor: data.name ?? '',
-                                          imgRating: iconImage[0],
-                                          rating: rating[0],
-                                          imgCoWorkingOffice: iconImage[1],
-                                          office: data.type ?? "",
-                                          imgLocation: iconImage[2],
-                                          location: data.location ?? "",
-                                          imgTime: iconImage[3],
-                                          time: '${data.open} - ${data.close}',
-                                          open: '${data.open}',
-                                          close: '${data.close}',
-                                          price: data.price ?? 0,
+                                          officeData: data!,
                                         ),
                                       );
                                     },

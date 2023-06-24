@@ -1,43 +1,44 @@
 // ignore_for_file: prefer_const_declarations, unrelated_type_equality_checks, sized_box_for_whitespace, unused_local_variable
 
 import 'package:flutter/material.dart';
+import 'package:flutter_capstone/model/home/home_model.dart';
 //import 'package:flutter_capstone/model/search_office/search_model.dart';
 //import 'package:office_booking/model/search_office/search_model.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_capstone/core/init/utils/open_close.dart';
 
 class OfficeRecommendationWidget extends StatelessWidget {
-  final String namaKantor;
-  final String statusKantor;
-  final String img;
-  final String imgRating;
-  final double rating;
-  final String office;
-  final String imgCoWorkingOffice;
-  final String imgLocation;
-  final String location;
-  final String imgTime;
-  final String time;
-  final int price;
-  final String open;
-  final String close;
+  final Office officeData;
+  // final String namaKantor;
+  // final String img;
+  // final String imgRating;
+  // final double rating;
+  // final String office;
+  // final String imgCoWorkingOffice;
+  // final String imgLocation;
+  // final String location;
+  // final String imgTime;
+  // final String time;
+  // final int price;
+  // final String open;
+  // final String close;
 
   const OfficeRecommendationWidget({
     super.key,
-    required this.namaKantor,
-    required this.statusKantor,
-    required this.img,
-    required this.rating,
-    required this.imgRating,
-    required this.imgCoWorkingOffice,
-    required this.office,
-    required this.imgLocation,
-    required this.location,
-    required this.time,
-    required this.imgTime,
-    required this.price,
-    required this.open,
-    required this.close,
+    required this.officeData,
+    // required this.namaKantor,
+    // required this.img,
+    // required this.rating,
+    // required this.imgRating,
+    // required this.imgCoWorkingOffice,
+    // required this.office,
+    // required this.imgLocation,
+    // required this.location,
+    // required this.time,
+    // required this.imgTime,
+    // required this.price,
+    // required this.open,
+    // required this.close,
   });
 
   @override
@@ -61,7 +62,9 @@ class OfficeRecommendationWidget extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(12),
                 child: Image.network(
-                  img,
+                  officeData.imageUrl.isEmpty
+                      ? "https://img.freepik.com/premium-photo/modern-corporate-architecture-can-be-seen-cityscape-office-buildings_410516-276.jpg"
+                      : officeData.imageUrl,
                   fit: BoxFit.fill,
                   // width: 116.87,
                   // height: 128,
@@ -88,7 +91,7 @@ class OfficeRecommendationWidget extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          namaKantor,
+                          officeData.name,
                           style:
                               setTextStyle(NeutralColor().neutral20).copyWith(
                             fontSize: 16,
@@ -98,22 +101,18 @@ class OfficeRecommendationWidget extends StatelessWidget {
                         Container(
                           alignment: Alignment.topRight,
                           decoration: BoxDecoration(
-                            color: checkOpeningStatus(open, close)
+                            color: checkOpeningStatus(
+                                    officeData.open, officeData.close)
                                 ? SuccessColor().green
                                 : WarningColor().red,
                             borderRadius: BorderRadius.circular(12),
                           ),
-                          // decoration: BoxDecoration(
-                          //   color: statusKantor == 'Open'
-                          //       ? SuccessColor().green
-                          //       : WarningColor().red,
-                          //   borderRadius: BorderRadius.circular(12),
-                          // ),
                           child: Padding(
                             padding: const EdgeInsets.symmetric(
                                 vertical: 4, horizontal: 16),
                             child: Text(
-                              checkOpeningStatus(open, close)
+                              checkOpeningStatus(
+                                      officeData.open, officeData.close)
                                   ? 'Open'
                                   : 'Close',
                               style: setTextStyle(SourceColor().white).copyWith(
@@ -131,7 +130,7 @@ class OfficeRecommendationWidget extends StatelessWidget {
                     Row(
                       children: [
                         Image.asset(
-                          imgRating,
+                          'assets/icons/office_card/star_purple500.png',
                           width: 13.33,
                           height: 12.67,
                         ),
@@ -139,7 +138,7 @@ class OfficeRecommendationWidget extends StatelessWidget {
                           width: 4.33,
                         ),
                         Text(
-                          rating.toString(),
+                          officeData.rating.toStringAsFixed(1),
                           style:
                               setTextStyle(NeutralColor().neutral17).copyWith(
                             fontSize: 13,
@@ -154,11 +153,9 @@ class OfficeRecommendationWidget extends StatelessWidget {
                     Row(
                       children: [
                         Image.asset(
-                          imgCoWorkingOffice ==
-                                      'assets/icons/office_card/co_working_space.png' &&
-                                  office == 'coworking'
-                              ? 'assets/icons/office_card/co_working_space.png'
-                              : 'assets/icons/office_card/office.png',
+                          officeData.type == 'office'
+                              ? 'assets/icons/office_card/office.png'
+                              : 'assets/icons/office_card/co_working_space.png',
                           width: 13.33,
                           height: 12.67,
                         ),
@@ -166,7 +163,7 @@ class OfficeRecommendationWidget extends StatelessWidget {
                           width: 4.33,
                         ),
                         Text(
-                          office,
+                          officeData.type,
                           style:
                               setTextStyle(NeutralColor().neutral60).copyWith(
                             fontSize: 12,
@@ -181,7 +178,7 @@ class OfficeRecommendationWidget extends StatelessWidget {
                     Row(
                       children: [
                         Image.asset(
-                          imgLocation,
+                          'assets/icons/office_card/location.png',
                           width: 13.33,
                           height: 12.67,
                         ),
@@ -189,7 +186,7 @@ class OfficeRecommendationWidget extends StatelessWidget {
                           width: 4.33,
                         ),
                         Text(
-                          location,
+                          officeData.location,
                           style:
                               setTextStyle(NeutralColor().neutral60).copyWith(
                             fontSize: 12,
@@ -204,7 +201,7 @@ class OfficeRecommendationWidget extends StatelessWidget {
                     Row(
                       children: [
                         Image.asset(
-                          imgTime,
+                          'assets/icons/office_card/time.png',
                           width: 13.33,
                           height: 12.67,
                         ),
@@ -212,7 +209,7 @@ class OfficeRecommendationWidget extends StatelessWidget {
                           width: 4.33,
                         ),
                         Text(
-                          time,
+                          officeData.open,
                           style:
                               setTextStyle(NeutralColor().neutral60).copyWith(
                             fontSize: 12,
@@ -227,7 +224,7 @@ class OfficeRecommendationWidget extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          "IDR ${price.toString()}",
+                          "IDR ${officeData.price.toString()}",
                           style:
                               setTextStyle(NeutralColor().neutral20).copyWith(
                             fontSize: 16,

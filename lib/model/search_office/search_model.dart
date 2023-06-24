@@ -4,6 +4,8 @@
 
 import 'dart:convert';
 
+import 'package:flutter_capstone/model/home/home_model.dart';
+
 SearchModel searchModelFromJson(String str) =>
     SearchModel.fromJson(json.decode(str));
 
@@ -11,7 +13,7 @@ String searchModelToJson(SearchModel data) => json.encode(data.toJson());
 
 class SearchModel {
   Meta? meta;
-  List<Datum> data;
+  List<Office> data;
 
   SearchModel({
     this.meta,
@@ -20,7 +22,7 @@ class SearchModel {
 
   factory SearchModel.fromJson(Map<String, dynamic> json) => SearchModel(
         meta: Meta.fromJson(json["meta"]),
-        data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
+        data: List<Office>.from(json["data"].map((x) => Office.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -29,77 +31,77 @@ class SearchModel {
       };
 }
 
-class Datum {
-  int id;
-  DateTime? createdAt;
-  DateTime? updatedAt;
-  DateTime? deletedAt;
-  String? name;
-  String? description;
-  int? capacity;
-  String? type;
-  String? open;
-  String? close;
-  int? price;
-  String? location;
-  String? facilities;
-  bool? status;
-  String imageUrl;
+// class Datum {
+//   int id;
+//   DateTime? createdAt;
+//   DateTime? updatedAt;
+//   DateTime? deletedAt;
+//   String? name;
+//   String? description;
+//   int? capacity;
+//   String? type;
+//   String open;
+//   String close;
+//   int? price;
+//   String? location;
+//   String? facilities;
+//   bool? status;
+//   String imageUrl;
 
-  Datum({
-    this.id = 0,
-    this.createdAt,
-    this.updatedAt,
-    this.deletedAt,
-    this.name,
-    this.description,
-    this.capacity,
-    this.type,
-    this.open,
-    this.close,
-    this.price,
-    this.location,
-    this.facilities,
-    this.status,
-    required this.imageUrl,
-  });
+// Datum({
+//   this.id = 0,
+//   this.createdAt,
+//   this.updatedAt,
+//   this.deletedAt,
+//   this.name,
+//   this.description,
+//   this.capacity,
+//   this.type,
+//   required this.open,
+//   required this.close,
+//   this.price,
+//   this.location,
+//   this.facilities,
+//   this.status,
+//   required this.imageUrl,
+// });
 
-  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
-        id: json["ID"],
-        createdAt: DateTime.parse(json["CreatedAt"]),
-        updatedAt: DateTime.parse(json["UpdatedAt"]),
-        deletedAt: json["DeletedAt"],
-        name: json["Name"],
-        description: json["Description"],
-        capacity: json["Capacity"],
-        type: json["Type"],
-        open: json["Open"],
-        close: json["Close"],
-        price: json["Price"],
-        location: json["Location"],
-        facilities: json["Facilities"],
-        status: json["Status"],
-        imageUrl: json["ImageUrl"] ?? "",
-      );
+// factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+//       id: json["ID"],
+//       createdAt: DateTime.parse(json["CreatedAt"]),
+//       updatedAt: DateTime.parse(json["UpdatedAt"]),
+//       deletedAt: json["DeletedAt"],
+//       name: json["Name"],
+//       description: json["Description"],
+//       capacity: json["Capacity"],
+//       type: json["Type"],
+//       open: json["Open"] ?? '',
+//       close: json["Close"] ?? '',
+//       price: json["Price"],
+//       location: json["Location"],
+//       facilities: json["Facilities"],
+//       status: json["Status"],
+//       imageUrl: json["ImageUrl"] ?? "",
+//     );
 
-  Map<String, dynamic> toJson() => {
-        "ID": id,
-        "CreatedAt": createdAt?.toIso8601String(),
-        "UpdatedAt": updatedAt?.toIso8601String(),
-        "DeletedAt": deletedAt,
-        "Name": name,
-        "Description": description,
-        "Capacity": capacity,
-        "Type": type,
-        "Open": open,
-        "Close": close,
-        "Price": price,
-        "Location": location,
-        "Facilities": facilities,
-        "Status": status,
-        "ImageUrl": imageUrl,
-      };
-}
+// Map<String, dynamic> toJson() => {
+//       "ID": id,
+//       "CreatedAt": createdAt?.toIso8601String(),
+//       "UpdatedAt": updatedAt?.toIso8601String(),
+//       "DeletedAt": deletedAt,
+//       "Name": name,
+//       "Description": description,
+//       "Capacity": capacity,
+//       "Type": type,
+//       "Open": open,
+//       "Close": close,
+//       "Price": price,
+//       "Location": location,
+//       "Facilities": facilities,
+//       "Status": status,
+//       "ImageUrl": imageUrl,
+//     };
+// }
 
 class Meta {
   String message;

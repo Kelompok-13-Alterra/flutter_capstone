@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/model/home/home_model.dart';
+import 'package:flutter_capstone/model/detail/detail_model.dart';
 import 'package:flutter_capstone/services/detail/detail_service.dart';
 
 class DetailViewModel extends ChangeNotifier {
@@ -7,9 +7,9 @@ class DetailViewModel extends ChangeNotifier {
   /// sehingga DetailViewModel tidak perlu karena
   /// generate rating hanya sekali, tidak boleh double agar rating tidak terus berubah"
   ///
-  Office? _detailOffice;
+  DetailModel? _detailOffice;
 
-  Office? get detailData => _detailOffice;
+  DetailModel? get detailData => _detailOffice;
 
   Future<void> getOfficeDetail(int? id) async {
     try {
@@ -17,7 +17,7 @@ class DetailViewModel extends ChangeNotifier {
 
       if (response.statusCode == 200) {
         final responseData = response.data['data'];
-        _detailOffice = Office.fromJson(responseData);
+        _detailOffice = DetailModel.fromJson(responseData);
         notifyListeners();
       } else {
         throw Exception(

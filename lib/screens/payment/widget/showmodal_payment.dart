@@ -678,8 +678,6 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                     ),
                   ),
                   onPressed: () async {
-                    // setState(() {});
-
                     var res = await OrderService().createOrder(
                       context,
                       officeId: widget.officeId,
@@ -689,10 +687,6 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                           widget.selectedDateRange!.end.toString()),
                       paymentId: provider.selectedValue,
                     );
-
-                    // setState(() {
-                    //   res;
-                    // });
 
                     var transactionId = res.data.idTransaction;
 
