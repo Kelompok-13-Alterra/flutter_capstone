@@ -8,7 +8,7 @@ import 'package:flutter_capstone/style/text_style.dart';
 
 import 'package:flutter_capstone/widgets/modal_bottom.dart';
 
-class RescheduleModelView extends ChangeNotifier {
+class RescheduleViewModel extends ChangeNotifier {
   // ignore: body_might_complete_normally_nullable
   Future<int?> checkRescheduleOffice(
     BuildContext context,

@@ -96,10 +96,9 @@ class _DetailScreenState extends State<DetailScreen> {
                       // Image Swipe
                       //================================================================
                       ImageDetail(
-                        image: detail!.imageUrl!.isEmpty ||
-                                detail.imageUrl == ''
+                        image: detail!.imageUrl.isEmpty || detail.imageUrl == ''
                             ? "https://img.freepik.com/premium-photo/modern-corporate-architecture-can-be-seen-cityscape-office-buildings_410516-276.jpg"
-                            : detail.imageUrl!,
+                            : detail.imageUrl,
                       ),
                       // Container Detail
                       //================================================================
@@ -127,6 +126,7 @@ class _DetailScreenState extends State<DetailScreen> {
                         officeId: widget.officeId,
                         buttonRoute: widget.buttonRoute,
                         textButton: widget.textButton,
+                        image: detail.imageUrl,
                         selectedDateRange: widget.selectedDateRange,
                         price: detail.price,
                         name: detail.name,

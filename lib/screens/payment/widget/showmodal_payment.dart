@@ -20,7 +20,7 @@ class ShowModalPayment extends StatefulWidget {
   String? name;
   String? type;
   String? location;
-
+  String image;
   // final String location;
   // final String open;
   // final String close;
@@ -33,6 +33,8 @@ class ShowModalPayment extends StatefulWidget {
     required this.name,
     required this.type,
     required this.location,
+    required this.image,
+
     // required this.open,
     // required this.close,
   });
@@ -48,14 +50,14 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
         children: [
           GestureDetector(
             onTap: () {
-              provider.setSelectedValue = 'Virtual Account BNI';
+              // provider.setSelectedValue = 'Virtual Account BNI';
             },
             child: Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
                 borderRadius: const BorderRadius.all(Radius.circular(4)),
                 border: Border.all(
-                  color: provider.selectedValue == 'Virtual Account BNI'
+                  color: provider.selectedValue == 'va-bni'
                       ? PrimaryColor().onPrimaryFixedVariant
                       : NeutralColor().neutral90,
                   width: 1.0,
@@ -98,7 +100,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     groupValue: provider.selectedValue,
                     onChanged: (value) {
-                      provider.setSelectedValue = value!;
+                      // provider.setSelectedValue = value!;
                     },
                   ),
                 ],
@@ -110,7 +112,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
           ),
           GestureDetector(
             onTap: () {
-              provider.setSelectedValue = 'Virtual Account BCA';
+              // provider.setSelectedValue = 'Virtual Account BCA';
             },
             child: Container(
               padding: const EdgeInsets.all(12),
@@ -148,13 +150,9 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                     activeColor: PrimaryColor().onPrimaryFixedVariant,
                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     groupValue: provider.selectedValue,
-                    onChanged: null,
-                    // (value) {
-
-                    // setState(() {
-                    //   provider.setSelectedValue = value!;
-                    // });
-                    // },
+                    onChanged: (value) {
+                      // provider.setSelectedValue = value!;
+                    },
                   ),
                 ],
               ),
@@ -171,7 +169,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
         children: [
           GestureDetector(
             onTap: () {
-              provider.setSelectedValue = 'Transfer Bank BNI';
+              // provider.setSelectedValue = 'Transfer Bank BNI';
             },
             child: Container(
               padding: const EdgeInsets.all(12),
@@ -222,7 +220,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                     groupValue: provider.selectedValue,
                     onChanged: (value) {
                       setState(() {
-                        provider.setSelectedValue = value!;
+                        // provider.setSelectedValue = value!;
                       });
                     },
                   ),
@@ -235,7 +233,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
           ),
           GestureDetector(
             onTap: () {
-              provider.setSelectedValue = 'Transfer Bank BCA';
+              // provider.setSelectedValue = 'Transfer Bank BCA';
             },
             child: Container(
               padding: const EdgeInsets.all(12),
@@ -275,7 +273,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                     groupValue: provider.selectedValue,
                     onChanged: (value) {
                       setState(() {
-                        provider.setSelectedValue = value!;
+                        // provider.setSelectedValue = value!;
                       });
                     },
                   ),
@@ -680,7 +678,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                     ),
                   ),
                   onPressed: () async {
-                    setState(() {});
+                    // setState(() {});
 
                     var res = await OrderService().createOrder(
                       context,
@@ -692,9 +690,9 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                       paymentId: provider.selectedValue,
                     );
 
-                    setState(() {
-                      res;
-                    });
+                    // setState(() {
+                    //   res;
+                    // });
 
                     var transactionId = res.data.idTransaction;
 
@@ -704,6 +702,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                         builder: (context) => DetailPaymentScreen(
                           paymentId: transactionId,
                           officeId: widget.officeId,
+                          image: widget.image,
                           selectedDateRange: convertDateTime(
                               widget.selectedDateRange!.start.toString()),
                         ),

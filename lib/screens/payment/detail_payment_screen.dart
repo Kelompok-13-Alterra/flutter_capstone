@@ -3,23 +3,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_capstone/core/init/utils/price_convert.dart';
+import 'package:flutter_capstone/screens/errors/connection_error.dart';
 import 'package:flutter_capstone/screens/payment/success_booking_screen.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'payment_view_model.dart';
+import 'dart:async';
 
-// ignore: must_be_immutable
 class DetailPaymentScreen extends StatefulWidget {
   final int paymentId;
   final int officeId;
   final String selectedDateRange;
+  final String image;
 
   const DetailPaymentScreen({
     super.key,
     required this.paymentId,
     required this.officeId,
     required this.selectedDateRange,
+    required this.image,
   });
 
   @override
@@ -28,6 +31,8 @@ class DetailPaymentScreen extends StatefulWidget {
 
 class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
   PaymentViewModel? paymentViewModel;
+
+  late Future<dynamic> detailPaymentDataFuture;
 
   void paymenStatus() async {
     await paymentViewModel?.getMidtrans(paymentId: widget.paymentId);
@@ -44,12 +49,27 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
 
   @override
   void initState() {
-    Future.microtask(() => Provider.of<PaymentViewModel>(context, listen: false)
-        .getMidtrans(paymentId: widget.paymentId));
+    // Future.microtask(() => Provider.of<PaymentViewModel>(context, listen: false)
+    //     .getMidtrans(paymentId: widget.paymentId));
 
     Future.microtask(
         () => paymentViewModel?.startCountdown(context, widget.officeId));
 
+    super.initState();
+
+    final completer = Completer<dynamic>();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final detailPaymentViewFuture =
+          Provider.of<PaymentViewModel>(context, listen: false);
+      final data =
+          detailPaymentViewFuture.getMidtrans(paymentId: widget.paymentId);
+      completer.complete(data);
+      completer.future.then((data) {
+        // final detailViewModel =
+        //     Provider.of<PaymentViewModel>(context, listen: false);
+      });
+    });
+    detailPaymentDataFuture = completer.future;
     super.initState();
 
     paymenStatus();
@@ -168,483 +188,515 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
 
     return Consumer<PaymentViewModel>(builder: (context, provider, _) {
       paymenStatus();
-      if (provider.getPaymentStatus == 'success') {
-        provider.getMidtransModel.data?.status = '';
-        provider.stopCountdown();
+      return FutureBuilder(
+        future: detailPaymentDataFuture,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            if (provider.getPaymentStatus == 'success') {
+              provider.getMidtransModel.data?.status = '';
+              provider.stopCountdown();
 
-        return SuccessBookingScreen(
-          bookingData: provider.getMidtransModel.data!,
-          dateData: widget.selectedDateRange,
-        );
+              return SuccessBookingScreen(
+                image: widget.image,
+                bookingData: provider.getMidtransModel.data!,
+                dateData: widget.selectedDateRange,
+              );
 
-        // );
-      } else {
-        return Scaffold(
-          backgroundColor: Colors.white,
-          appBar: AppBar(
-            iconTheme: const IconThemeData(color: Colors.black),
-            title: Text(
-              'Detail Pembayaran',
-              style: setTextStyle(NeutralColor().neutral12)
-                  .copyWith(fontWeight: semiBold, fontSize: 16),
-            ),
-            leading: IconButton(
-              icon: const Icon(Icons.arrow_back_sharp),
-              onPressed: () {
-                Navigator.pushReplacementNamed(context, '/bottom-nav');
-              },
-            ),
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-          ),
-          body: Stack(
-            children: [
-              Positioned(
-                top: 0,
-                left: 0,
-                right: 0,
-                child: Container(
-                  padding: const EdgeInsets.symmetric(vertical: 5),
-                  color: PrimaryColor().primary,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.timer_sharp,
-                        color: PrimaryColor().onPrimary,
-                        size: 15,
-                      ),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      Text(
-                        'Menunggu pembayaran ${provider.getTimeRemaining() ?? ''}',
-                        style: setTextStyle(PrimaryColor().onPrimary)
-                            .copyWith(fontWeight: semiBold, fontSize: 10),
-                      ),
-                    ],
+              // );
+            } else {
+              return Scaffold(
+                backgroundColor: Colors.white,
+                appBar: AppBar(
+                  iconTheme: const IconThemeData(color: Colors.black),
+                  title: Text(
+                    'Detail Pembayaran',
+                    style: setTextStyle(NeutralColor().neutral12)
+                        .copyWith(fontWeight: semiBold, fontSize: 16),
                   ),
+                  leading: IconButton(
+                    icon: const Icon(Icons.arrow_back_sharp),
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(context, '/bottom-nav');
+                    },
+                  ),
+                  backgroundColor: Colors.transparent,
+                  elevation: 0,
                 ),
-              ),
-              ListView(
-                children: [
-                  //Detail Office
-                  //================================================================
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16, vertical: 38),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        //Utk API get detail office
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
+                body: Stack(
+                  children: [
+                    Positioned(
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(vertical: 5),
+                        color: PrimaryColor().primary,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Container(
-                              height: 130,
-                              width: 117,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12),
-                                color: Colors.black,
-                              ),
-                              child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(12),
-                                  child:
-                                      // child: Image.network(
-                                      // provider
-                                      //     .getMidtransModel.data!.office.imageUrl
-                                      //     .toString(),
-                                      // fit: BoxFit.fill,
-                                      // ),
-                                      // ),
-                                      provider.getMidtransModel.data!.office
-                                                  .imageUrl!.isEmpty ||
-                                              provider.getMidtransModel.data!
-                                                      .office.imageUrl ==
-                                                  ''
-                                          ? Image.network(
-                                              'https://img.freepik.com/premium-photo/modern-corporate-architecture-can-be-seen-cityscape-office-buildings_410516-276.jpg',
-                                              fit: BoxFit.fill,
-                                            )
-                                          : Image.network(
-                                              provider.getMidtransModel.data!
-                                                  .office.imageUrl!,
-                                              fit: BoxFit.fill,
-                                            )),
+                            Icon(
+                              Icons.timer_sharp,
+                              color: PrimaryColor().onPrimary,
+                              size: 15,
                             ),
                             const SizedBox(
-                              width: 16,
+                              width: 5,
                             ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  provider.getMidtransModel.data?.office.name ??
-                                      '',
-                                  style: setTextStyle(NeutralColor().neutral20)
-                                      .copyWith(
-                                          fontWeight: semiBold, fontSize: 16),
-                                ),
-                                const SizedBox(
-                                  height: 5,
-                                ),
-                                Row(
-                                  children: [
-                                    Icon(
-                                      Icons.star,
-                                      size: 15,
-                                      color: SourceColor().yellow,
-                                    ),
-                                    const SizedBox(
-                                      width: 5,
-                                    ),
-                                    Text(
-                                      "4.6",
-                                      style:
-                                          setTextStyle(NeutralColor().neutral17)
-                                              .copyWith(
-                                                  fontWeight: semiBold,
-                                                  fontSize: 13),
-                                    )
-                                  ],
-                                ),
-                                const SizedBox(
-                                  height: 5,
-                                ),
-                                Row(
-                                  children: [
-                                    Icon(
-                                      Icons.av_timer,
-                                      size: 15,
-                                      color: NeutralColor().neutral60,
-                                    ),
-                                    const SizedBox(
-                                      width: 5,
-                                    ),
-                                    Text(
-                                      provider.getMidtransModel.data?.office
-                                              .type ??
-                                          '',
-                                      style:
-                                          setTextStyle(NeutralColor().neutral60)
-                                              .copyWith(
-                                                  fontWeight: semiBold,
-                                                  fontSize: 12),
-                                    )
-                                  ],
-                                ),
-                                const SizedBox(
-                                  height: 5,
-                                ),
-                                Row(
-                                  children: [
-                                    Icon(
-                                      Icons.location_on,
-                                      size: 15,
-                                      color: NeutralColor().neutral60,
-                                    ),
-                                    const SizedBox(
-                                      width: 5,
-                                    ),
-                                    Text(
-                                      provider.getMidtransModel.data?.office
-                                              .location ??
-                                          '',
-                                      style:
-                                          setTextStyle(NeutralColor().neutral60)
-                                              .copyWith(
-                                                  fontWeight: semiBold,
-                                                  fontSize: 12),
-                                    )
-                                  ],
-                                ),
-                              ],
-                            )
+                            Text(
+                              'Menunggu pembayaran ${provider.getTimeRemaining() ?? ''}',
+                              style: setTextStyle(PrimaryColor().onPrimary)
+                                  .copyWith(fontWeight: semiBold, fontSize: 10),
+                            ),
                           ],
                         ),
-                        //Text Silahkan melakukan pembayaran
+                      ),
+                    ),
+                    ListView(
+                      children: [
+                        //Detail Office
+                        //================================================================
                         Container(
-                          padding: const EdgeInsets.symmetric(vertical: 16),
-                          child: Text(
-                            'Silahkan melakukan pembayaran di bawah ini',
-                            style: setTextStyle(SourceColor().black)
-                                .copyWith(fontWeight: semiBold, fontSize: 14),
-                          ),
-                        ),
-                        //Transfer Pembayaran - Get Midtrans API
-
-                        Container(
-                          padding: const EdgeInsets.all(16),
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(4)),
-                            border: Border.all(
-                              color: NeutralColor().neutral90,
-                              width: 1.0,
-                            ),
-                          ),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 38),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
+                              //Utk API get detail office
                               Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  SvgPicture.asset(
-                                      'assets/icons/payment/BNI.svg'),
+                                  Container(
+                                    height: 130,
+                                    width: 117,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(12),
+                                      color: Colors.black,
+                                    ),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(12),
+                                      child: Image.network(
+                                        provider.getMidtransModel.data!.office
+                                                    .imageUrl.isEmpty ||
+                                                provider.getMidtransModel.data!
+                                                        .office.imageUrl ==
+                                                    ''
+                                            ? 'https://img.freepik.com/premium-photo/modern-corporate-architecture-can-be-seen-cityscape-office-buildings_410516-276.jpg'
+                                            : widget.image,
+                                        fit: BoxFit.fill,
+                                      ),
+                                    ),
+                                  ),
                                   const SizedBox(
-                                    width: 12,
+                                    width: 16,
                                   ),
                                   Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        'BNI VA',
+                                        provider.getMidtransModel.data?.office
+                                                .name ??
+                                            '',
                                         style: setTextStyle(
-                                                NeutralColor().neutral10)
+                                                NeutralColor().neutral20)
                                             .copyWith(
-                                                fontWeight: medium,
+                                                fontWeight: semiBold,
                                                 fontSize: 16),
                                       ),
-                                      Text(
-                                        'PT OFFICE BUDDY',
-                                        style: setTextStyle(
-                                                NeutralColor().neutral50)
-                                            .copyWith(
-                                                fontWeight: semiBold,
-                                                fontSize: 11),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Icon(
+                                            Icons.star,
+                                            size: 15,
+                                            color: SourceColor().yellow,
+                                          ),
+                                          const SizedBox(
+                                            width: 5,
+                                          ),
+                                          Text(
+                                            "4.6",
+                                            style: setTextStyle(
+                                                    NeutralColor().neutral17)
+                                                .copyWith(
+                                                    fontWeight: semiBold,
+                                                    fontSize: 13),
+                                          )
+                                        ],
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Icon(
+                                            Icons.av_timer,
+                                            size: 15,
+                                            color: NeutralColor().neutral60,
+                                          ),
+                                          const SizedBox(
+                                            width: 5,
+                                          ),
+                                          Text(
+                                            provider.getMidtransModel.data
+                                                    ?.office.type ??
+                                                '',
+                                            style: setTextStyle(
+                                                    NeutralColor().neutral60)
+                                                .copyWith(
+                                                    fontWeight: semiBold,
+                                                    fontSize: 12),
+                                          )
+                                        ],
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Icon(
+                                            Icons.location_on,
+                                            size: 15,
+                                            color: NeutralColor().neutral60,
+                                          ),
+                                          const SizedBox(
+                                            width: 5,
+                                          ),
+                                          Text(
+                                            provider.getMidtransModel.data
+                                                    ?.office.location ??
+                                                '',
+                                            style: setTextStyle(
+                                                    NeutralColor().neutral60)
+                                                .copyWith(
+                                                    fontWeight: semiBold,
+                                                    fontSize: 12),
+                                          )
+                                        ],
                                       ),
                                     ],
-                                  ),
+                                  )
                                 ],
                               ),
-                              const SizedBox(
-                                height: 18,
-                              ),
+                              //Text Silahkan melakukan pembayaran
                               Container(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 16, vertical: 14),
-                                decoration: const BoxDecoration(
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(16),
-                                  ),
-                                  color: Color(0xFFE8F2FF),
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 16),
+                                child: Text(
+                                  'Silahkan melakukan pembayaran di bawah ini',
+                                  style: setTextStyle(SourceColor().black)
+                                      .copyWith(
+                                          fontWeight: semiBold, fontSize: 14),
                                 ),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                              ),
+                              //Transfer Pembayaran - Get Midtrans API
+
+                              Container(
+                                padding: const EdgeInsets.all(16),
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(4)),
+                                  border: Border.all(
+                                    color: NeutralColor().neutral90,
+                                    width: 1.0,
+                                  ),
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                      provider.getMidtransModel.data
-                                              ?.paymentData.vaNumber ??
-                                          '',
-                                      style:
-                                          setTextStyle(NeutralColor().neutral10)
-                                              .copyWith(
-                                                  fontWeight: semiBold,
-                                                  fontSize: 22),
-                                    ),
-                                    ElevatedButton(
-                                      style: ButtonStyle(
-                                        backgroundColor:
-                                            MaterialStateProperty.all<Color>(
-                                                Colors.transparent),
-                                        elevation:
-                                            const MaterialStatePropertyAll(0),
-                                        shape: MaterialStateProperty.all<
-                                            RoundedRectangleBorder>(
-                                          RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(50),
-                                            side: BorderSide(
-                                                color: SourceColor().seed,
-                                                width: 1),
-                                          ),
+                                    Row(
+                                      children: [
+                                        SvgPicture.asset(
+                                            'assets/icons/payment/BNI.svg'),
+                                        const SizedBox(
+                                          width: 12,
                                         ),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              'BNI VA',
+                                              style: setTextStyle(
+                                                      NeutralColor().neutral10)
+                                                  .copyWith(
+                                                      fontWeight: medium,
+                                                      fontSize: 16),
+                                            ),
+                                            Text(
+                                              'PT OFFICE BUDDY',
+                                              style: setTextStyle(
+                                                      NeutralColor().neutral50)
+                                                  .copyWith(
+                                                      fontWeight: semiBold,
+                                                      fontSize: 11),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(
+                                      height: 18,
+                                    ),
+                                    Container(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 16, vertical: 14),
+                                      decoration: const BoxDecoration(
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(16),
+                                        ),
+                                        color: Color(0xFFE8F2FF),
                                       ),
-                                      onPressed: () {
-                                        Clipboard.setData(
-                                          ClipboardData(
-                                            text: provider.getMidtransModel.data
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            provider.getMidtransModel.data
                                                     ?.paymentData.vaNumber ??
                                                 '',
+                                            style: setTextStyle(
+                                                    NeutralColor().neutral10)
+                                                .copyWith(
+                                                    fontWeight: semiBold,
+                                                    fontSize: 22),
                                           ),
-                                        );
-                                        const snackBar = SnackBar(
-                                            content: Text(
-                                                'Rekening berhasil disalin'));
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(snackBar);
-                                      },
-                                      child: Text(
-                                        'Salin',
-                                        style: setTextStyle(SourceColor().seed)
-                                            .copyWith(
-                                                fontWeight: semiBold,
-                                                fontSize: 11),
+                                          ElevatedButton(
+                                            style: ButtonStyle(
+                                              backgroundColor:
+                                                  MaterialStateProperty.all<
+                                                          Color>(
+                                                      Colors.transparent),
+                                              elevation:
+                                                  const MaterialStatePropertyAll(
+                                                      0),
+                                              shape: MaterialStateProperty.all<
+                                                  RoundedRectangleBorder>(
+                                                RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(50),
+                                                  side: BorderSide(
+                                                      color: SourceColor().seed,
+                                                      width: 1),
+                                                ),
+                                              ),
+                                            ),
+                                            onPressed: () {
+                                              Clipboard.setData(
+                                                ClipboardData(
+                                                  text: provider
+                                                          .getMidtransModel
+                                                          .data
+                                                          ?.paymentData
+                                                          .vaNumber ??
+                                                      '',
+                                                ),
+                                              );
+                                              const snackBar = SnackBar(
+                                                  content: Text(
+                                                      'Rekening berhasil disalin'));
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(snackBar);
+                                            },
+                                            child: Text(
+                                              'Salin',
+                                              style: setTextStyle(
+                                                      SourceColor().seed)
+                                                  .copyWith(
+                                                      fontWeight: semiBold,
+                                                      fontSize: 11),
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ),
+                                    const SizedBox(
+                                      height: 16,
+                                    ),
+                                    // Detail Jumlaj Transfer
+                                    //====================================================
+                                    Text(
+                                      'Jumlah Transfer',
+                                      style: setTextStyle(NeutralVariantColor()
+                                              .neutralVariant30)
+                                          .copyWith(
+                                              fontWeight: semiBold,
+                                              fontSize: 14),
+                                    ),
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
+                                    Container(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 16, vertical: 14),
+                                      decoration: const BoxDecoration(
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(16),
+                                        ),
+                                        color: Color(0xFFE8F2FF),
+                                      ),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            provider
+                                                        .getMidtransModel
+                                                        .data
+                                                        ?.paymentData
+                                                        .totalPrice ==
+                                                    null
+                                                ? ''
+                                                : priceConvert(provider
+                                                    .getMidtransModel
+                                                    .data
+                                                    ?.paymentData
+                                                    .totalPrice),
+                                            style: setTextStyle(
+                                                    NeutralColor().neutral10)
+                                                .copyWith(
+                                                    fontWeight: semiBold,
+                                                    fontSize: 22),
+                                          ),
+                                          ElevatedButton(
+                                            style: ButtonStyle(
+                                              backgroundColor:
+                                                  MaterialStateProperty.all<
+                                                          Color>(
+                                                      Colors.transparent),
+                                              elevation:
+                                                  const MaterialStatePropertyAll(
+                                                      0),
+                                              shape: MaterialStateProperty.all<
+                                                  RoundedRectangleBorder>(
+                                                RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(50),
+                                                  side: BorderSide(
+                                                      color: SourceColor().seed,
+                                                      width: 1),
+                                                ),
+                                              ),
+                                            ),
+                                            onPressed: () {
+                                              Clipboard.setData(
+                                                ClipboardData(
+                                                    text: provider
+                                                            .getMidtransModel
+                                                            .data
+                                                            ?.paymentData
+                                                            .price
+                                                            .toString() ??
+                                                        ''),
+                                              );
+                                              const snackBar = SnackBar(
+                                                  content: Text(
+                                                      'Rekening berhasil disalin'));
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(snackBar);
+                                            },
+                                            child: Text(
+                                              'Salin',
+                                              style: setTextStyle(
+                                                      SourceColor().seed)
+                                                  .copyWith(
+                                                      fontWeight: semiBold,
+                                                      fontSize: 11),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    )
                                   ],
                                 ),
                               ),
+
                               const SizedBox(
                                 height: 16,
                               ),
-                              // Detail Jumlaj Transfer
-                              //====================================================
-                              Text(
-                                'Jumlah Transfer',
-                                style: setTextStyle(
-                                        NeutralVariantColor().neutralVariant30)
-                                    .copyWith(
-                                        fontWeight: semiBold, fontSize: 14),
-                              ),
-                              const SizedBox(
-                                height: 5,
-                              ),
+                              //Detail  Transaksi
                               Container(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 16, vertical: 14),
-                                decoration: const BoxDecoration(
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(16),
+                                padding: const EdgeInsets.all(16),
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(4)),
+                                  border: Border.all(
+                                    color: NeutralColor().neutral90,
+                                    width: 1.0,
                                   ),
-                                  color: Color(0xFFE8F2FF),
                                 ),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                child: Column(
                                   children: [
-                                    Text(
-                                      provider.getMidtransModel.data
-                                                  ?.paymentData.totalPrice ==
-                                              null
-                                          ? ''
-                                          : priceConvert(provider
-                                              .getMidtransModel
-                                              .data
-                                              ?.paymentData
-                                              .totalPrice),
-                                      style:
-                                          setTextStyle(NeutralColor().neutral10)
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          'Detail Transaksi',
+                                          style: setTextStyle(
+                                                  NeutralVariantColor()
+                                                      .neutralVariant30)
                                               .copyWith(
                                                   fontWeight: semiBold,
-                                                  fontSize: 22),
-                                    ),
-                                    ElevatedButton(
-                                      style: ButtonStyle(
-                                        backgroundColor:
-                                            MaterialStateProperty.all<Color>(
-                                                Colors.transparent),
-                                        elevation:
-                                            const MaterialStatePropertyAll(0),
-                                        shape: MaterialStateProperty.all<
-                                            RoundedRectangleBorder>(
-                                          RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(50),
-                                            side: BorderSide(
-                                                color: SourceColor().seed,
-                                                width: 1),
-                                          ),
+                                                  fontSize: 14),
                                         ),
-                                      ),
-                                      onPressed: () {
-                                        Clipboard.setData(
-                                          ClipboardData(
-                                              text: provider.getMidtransModel
-                                                      .data?.paymentData.price
-                                                      .toString() ??
-                                                  ''),
-                                        );
-                                        const snackBar = SnackBar(
-                                            content: Text(
-                                                'Rekening berhasil disalin'));
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(snackBar);
-                                      },
-                                      child: Text(
-                                        'Salin',
-                                        style: setTextStyle(SourceColor().seed)
-                                            .copyWith(
-                                                fontWeight: semiBold,
-                                                fontSize: 11),
-                                      ),
-                                    )
+                                        IconButton(
+                                          constraints: const BoxConstraints(),
+                                          padding: EdgeInsets.zero,
+                                          onPressed:
+                                              provider.toggleDetailTransaksi,
+                                          icon: provider.isDetailTransaksi ==
+                                                  true
+                                              ? const Icon(Icons.arrow_drop_up)
+                                              : const Icon(
+                                                  Icons.arrow_drop_down),
+                                        )
+                                      ],
+                                    ),
+                                    provider.isDetailTransaksi == true
+                                        ? buildDetailTransaksi(context)
+                                        : Container(),
+                                    // ElevatedButton(
+                                    //     onPressed: () async {
+                                    //       await provider.getMidtrans(
+                                    //           paymentId: widget.paymentId);
+                                    //       print(
+                                    //           provider.getMidtransModel.data!.status);
+                                    //     },
+                                    //     child: Text('Refresh')),
                                   ],
                                 ),
                               )
                             ],
                           ),
                         ),
-
-                        const SizedBox(
-                          height: 16,
-                        ),
-                        //Detail  Transaksi
-                        Container(
-                          padding: const EdgeInsets.all(16),
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(4)),
-                            border: Border.all(
-                              color: NeutralColor().neutral90,
-                              width: 1.0,
-                            ),
-                          ),
-                          child: Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'Detail Transaksi',
-                                    style: setTextStyle(NeutralVariantColor()
-                                            .neutralVariant30)
-                                        .copyWith(
-                                            fontWeight: semiBold, fontSize: 14),
-                                  ),
-                                  IconButton(
-                                    constraints: const BoxConstraints(),
-                                    padding: EdgeInsets.zero,
-                                    onPressed: provider.toggleDetailTransaksi,
-                                    icon: provider.isDetailTransaksi == true
-                                        ? const Icon(Icons.arrow_drop_up)
-                                        : const Icon(Icons.arrow_drop_down),
-                                  )
-                                ],
-                              ),
-                              provider.isDetailTransaksi == true
-                                  ? buildDetailTransaksi(context)
-                                  : Container(),
-                              // ElevatedButton(
-                              //     onPressed: () async {
-                              //       await provider.getMidtrans(
-                              //           paymentId: widget.paymentId);
-                              //       print(
-                              //           provider.getMidtransModel.data!.status);
-                              //     },
-                              //     child: Text('Refresh')),
-                            ],
-                          ),
-                        )
                       ],
-                    ),
-                  ),
-                ],
-              )
-            ],
-          ),
-          // body: Center(
-          //   child: Text(
-          //     'Countdown: ${getTimeRemaining()}',
-          //     style: TextStyle(fontSize: 20),
-          //   ),
-          // ),
-        );
-      }
+                    )
+                  ],
+                ),
+                // body: Center(
+                //   child: Text(
+                //     'Countdown: ${getTimeRemaining()}',
+                //     style: TextStyle(fontSize: 20),
+                //   ),
+                // ),
+              );
+            }
+          } else if (snapshot.hasError) {
+            return const ConnectionErrorScreen();
+          } else {
+            return const Scaffold(
+              body: Center(
+                child: CircularProgressIndicator(),
+              ),
+            );
+          }
+        },
+      );
     });
   }
 }

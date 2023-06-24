@@ -15,24 +15,26 @@ class BottomBook extends StatefulWidget {
   String? name;
   String? type;
   String? location;
+  String image;
   // final String? location;
   // final String? open;
   // final String? close;
-  BottomBook({
-    super.key,
-    required this.textButton,
-    this.buttonRoute,
-    this.function,
-    this.officeId,
-    this.selectedDateRange,
-    this.price,
-    this.name,
-    this.type,
-    this.location,
-    // this.location,
-    // this.open,
-    // this.close,
-  });
+  BottomBook(
+      {super.key,
+      required this.textButton,
+      this.buttonRoute,
+      this.function,
+      this.officeId,
+      this.selectedDateRange,
+      this.price,
+      this.name,
+      this.type,
+      this.location,
+      required this.image
+      // this.location,
+      // this.open,
+      // this.close,
+      });
 
   @override
   State<BottomBook> createState() => _BottomBookState();
@@ -101,6 +103,7 @@ class _BottomBookState extends State<BottomBook> {
                   builder: (BuildContext context) {
                     return ShowModalPayment(
                       officeId: widget.officeId!,
+                      image: widget.image,
                       selectedDateRange: widget.selectedDateRange,
                       price: widget.price ?? 0,
                       name: widget.name,

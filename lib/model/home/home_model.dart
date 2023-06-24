@@ -44,7 +44,7 @@ class Office {
   int price;
   bool status;
   String type;
-  String? imageUrl;
+  String imageUrl;
 
   Office({
     required this.id,

@@ -8,10 +8,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 class SuccessBookingScreen extends StatefulWidget {
   Data? bookingData;
   String dateData;
+  String image;
   SuccessBookingScreen({
     super.key,
     required this.bookingData,
     required this.dateData,
+    required this.image,
   });
 
   @override
@@ -84,10 +86,10 @@ class _SuccessBookingScreenState extends State<SuccessBookingScreen> {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(12),
                           child: Image.network(
-                            widget.bookingData!.office.imageUrl!.isEmpty ||
+                            widget.bookingData!.office.imageUrl.isEmpty ||
                                     widget.bookingData!.office.imageUrl == ''
                                 ? 'https://img.freepik.com/premium-photo/modern-corporate-architecture-can-be-seen-cityscape-office-buildings_410516-276.jpg'
-                                : widget.bookingData!.office.imageUrl!,
+                                : widget.image,
                             fit: BoxFit.fill,
                           ),
                         ),

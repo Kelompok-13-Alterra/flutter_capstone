@@ -12,12 +12,7 @@ class PaymentViewModel extends ChangeNotifier {
   bool isBankVisible = false;
   bool isEWalletVisible = false;
   bool isTotalPembayaranVisible = false;
-  String selectedValue = 'Virtual Account BNI';
-
-  set setSelectedValue(String value) {
-    selectedValue = value;
-    notifyListeners();
-  }
+  String selectedValue = 'va-bni';
 
   void toggleVirtualVisible() {
     isVirtualVisible = !isVirtualVisible;
@@ -108,22 +103,9 @@ class PaymentViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  // void copyRekening(BuildContext context) {
-  //   Clipboard.setData(ClipboardData(text: rekening));
-  //   const snackBar = SnackBar(content: Text('Rekening berhasil disalin'));
-  //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
-  // }
-
-  // void copyJumlahTransfer(BuildContext context) {
-  //   Clipboard.setData(ClipboardData(text: rekening));
-  //   const snackBar =
-  //       SnackBar(content: Text('Jumlah transfer berhasil disalin'));
-  //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
-  // }
-
   void startCountdown(BuildContext context, int officeId) {
-    _timerOffice = DateTime.now().add(const Duration(minutes: 30));
-    // _timer?.cancel();
+    //the timer will end up the transaction success or failed
+    _timerOffice = DateTime.now().add(const Duration(seconds: 5));
 
     // Inisialisasi _timerOffice saat countdown dimulai
     _timer = Timer.periodic(const Duration(seconds: 2), (timer) {
@@ -175,4 +157,26 @@ class PaymentViewModel extends ChangeNotifier {
       rethrow;
     }
   }
+
+  //===========================================================================
+  //===========================================================================
+  // late int returnPaymentId;
+  // Future<int> createOrderId(
+  //   BuildContext context,
+  //   int officeId,
+  //   String startDate,
+  //   String endDate,
+  //   String selectedValue,
+  // ) async {
+  //   var res = await OrderService().createOrder(
+  //     context,
+  //     officeId: officeId,
+  //     startDate: startDate,
+  //     endDate: endDate,
+  //     paymentId: selectedValue,
+  //   );
+  //   returnPaymentId = res.data.idTransaction;
+  //   notifyListeners();
+  //   return returnPaymentId;
+  // }
 }

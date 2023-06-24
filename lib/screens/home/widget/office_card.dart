@@ -39,10 +39,10 @@ class _OfficeCardState extends State<OfficeCard> {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(12),
             child: Image.network(
-              widget.officeData.imageUrl!.isEmpty ||
+              widget.officeData.imageUrl.isEmpty ||
                       widget.officeData.imageUrl == ''
                   ? "https://img.freepik.com/premium-photo/modern-corporate-architecture-can-be-seen-cityscape-office-buildings_410516-276.jpg"
-                  : widget.officeData.imageUrl!,
+                  : widget.officeData.imageUrl,
               fit: BoxFit.fill,
             ),
           ),
