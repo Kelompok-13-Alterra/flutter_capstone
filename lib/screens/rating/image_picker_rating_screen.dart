@@ -1,8 +1,3 @@
-//AUTHOR : ULFA LADAYYA
-//KELAS C FLUTTER
-
-// ignore_for_file: unnecessary_nullable_for_final_variable_declarations
-
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -98,19 +93,6 @@ class _ImagePickerRatingScreenState extends State<ImagePickerRatingScreen> {
                 },
               ),
             ),
-            // Padding(
-            //   padding: const EdgeInsets.all(9),
-            //   child: GridView.builder(
-            //       itemCount: imgFileList!.length,
-            //       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            //           crossAxisCount: 4),
-            //       itemBuilder: (BuildContext context, int index) {
-            //         return Image.file(
-            //           File(imgFileList![index].path),
-            //           fit: BoxFit.cover,
-            //         );
-            //       }),
-            // ),
           ),
         ],
       ),

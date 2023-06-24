@@ -19,10 +19,8 @@ class MidtransService {
         '$baseUrl/api/v1/transaction/$transactionId/payment-detail',
         options: Options(headers: headers),
       );
-      // print(response.data);
       return MidtransPaymentModel.fromJson(response.data);
     } on DioError catch (e) {
-      // print(e);
       throw Exception('Failed get list of office $e');
     }
   }

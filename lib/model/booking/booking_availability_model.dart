@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final bookingAvailabilityModel = bookingAvailabilityModelFromJson(jsonString);
-
 import 'dart:convert';
 
 BookingAvailabilityModel bookingAvailabilityModelFromJson(String str) =>

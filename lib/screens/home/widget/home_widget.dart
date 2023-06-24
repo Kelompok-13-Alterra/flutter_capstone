@@ -27,7 +27,6 @@ class _HomeWidgetState extends State<HomeWidget> {
         if (homeViewModel.getFilters[homeViewModel.getSelectedFilterindex] ==
             'Semua') {
           return FilterContentWidget(
-            // childCount: office.listOffice,
             condition: office.listOffice[index] == office.listOffice[index],
             officeId: data.id,
             data: data,
@@ -42,7 +41,6 @@ class _HomeWidgetState extends State<HomeWidget> {
               .toList()
               .isNotEmpty) {
             return FilterContentWidget(
-              // childCount: office.listOffice,
               condition: office.listOffice[index].price < 150000,
               officeId: data.id,
               data: data,
@@ -64,7 +62,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                 .getFilters[homeViewModel.getSelectedFilterindex] ==
             'Rating Baik') {
           return FilterContentWidget(
-            // childCount: office.listOffice,
             condition: office.listOffice[index].rating > 3.5,
             officeId: data.id,
             data: data,
@@ -75,7 +72,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                 .getFilters[homeViewModel.getSelectedFilterindex] ==
             'Termurah') {
           return FilterContentWidget(
-            // childCount: office.listOffice,
             condition: office.listOffice[index].price < 150000,
             officeId: data.id,
             data: data,

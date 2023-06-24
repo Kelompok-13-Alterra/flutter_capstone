@@ -49,7 +49,6 @@ class PaymentViewModel extends ChangeNotifier {
   //Detail Payment
   //===========================================================================
   Timer? _timer;
-  // String rekening = '';
   final String jumlahTransfer = 'IDR 23.099';
   bool isDetailTransaksi = true;
   DateTime? _timerOffice;
@@ -61,7 +60,6 @@ class PaymentViewModel extends ChangeNotifier {
   int transactionId = 0;
   MidtransPaymentModel? _midtransModel;
 
-  // String get getRekening => rekening;
   int get getPrice => price!;
   int get getDiscount => discount!;
   int get getTax => tax!;
@@ -157,26 +155,4 @@ class PaymentViewModel extends ChangeNotifier {
       rethrow;
     }
   }
-
-  //===========================================================================
-  //===========================================================================
-  // late int returnPaymentId;
-  // Future<int> createOrderId(
-  //   BuildContext context,
-  //   int officeId,
-  //   String startDate,
-  //   String endDate,
-  //   String selectedValue,
-  // ) async {
-  //   var res = await OrderService().createOrder(
-  //     context,
-  //     officeId: officeId,
-  //     startDate: startDate,
-  //     endDate: endDate,
-  //     paymentId: selectedValue,
-  //   );
-  //   returnPaymentId = res.data.idTransaction;
-  //   notifyListeners();
-  //   return returnPaymentId;
-  // }
 }

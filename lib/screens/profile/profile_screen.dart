@@ -14,8 +14,6 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  // var res = LoginService().getDataUser();
-
   Future<dynamic>? provileaViewModel;
   @override
   void initState() {
@@ -47,10 +45,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
             return SingleChildScrollView(
               child: Column(
                 children: [
-                  // Text("${profile?.data.dateBirth}"),
                   SizedBox(
                     width: MediaQuery.of(context).size.width,
-                    // width: 420,
                     height: 415,
                     child: Container(
                       color: SourceColor().white,
@@ -83,7 +79,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 children: [
                                   Text(
                                     '${profile?.data.name}',
-                                    // "Michael Abraham",
                                     style: setTextStyle(SourceColor().black)
                                         .copyWith(
                                       fontSize: 14,
@@ -95,8 +90,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   ),
                                   GestureDetector(
                                     onTap: () {
-                                      // Navigator.of(context).pushNamed
-
                                       //Mengirim argument value profile ke edit profile form
                                       Navigator.of(context).pushNamed(
                                         '/edit-profile',
@@ -120,27 +113,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ),
                               child: Text(
                                 '${profile?.data.email}',
-                                // 'email',
                                 style: setTextStyle(NeutralColor().neutral40)
                                     .copyWith(
                                   fontSize: 16,
                                   fontWeight: regular,
                                 ),
                               ),
-                              // FutureBuilder(
-                              //   initialData: LoginService().getDataUser(),
-                              //   builder: (BuildContext context,
-                              //       AsyncSnapshot<dynamic> snapshot) {
-                              //     return Text(
-                              //       'email',
-                              //       style: setTextStyle(NeutralColor().neutral40)
-                              //           .copyWith(
-                              //         fontSize: 16,
-                              //         fontWeight: regular,
-                              //       ),
-                              //     );
-                              //   },
-                              // ),
                             ),
                             Padding(
                               padding:
@@ -158,7 +136,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     '${profile?.data.company}' == ''
                                         ? 'No Company'
                                         : '${profile?.data.company}',
-                                    // 'No Company',
                                     style:
                                         setTextStyle(NeutralColor().neutral50)
                                             .copyWith(
@@ -201,9 +178,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 ),
                               ],
                             ),
-                            // const SizedBox(
-                            //   height: 16,
-                            // ),
                           ],
                         ),
                       ),

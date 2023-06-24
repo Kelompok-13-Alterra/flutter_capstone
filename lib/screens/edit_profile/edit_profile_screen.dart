@@ -23,9 +23,6 @@ class EditProfileScreen extends StatefulWidget {
 
 class _EditProfileScreenState extends State<EditProfileScreen> {
   final formKey = GlobalKey<FormState>();
-  // final TextEditingController _nameController = TextEditingController();
-  // final TextEditingController _companyController = TextEditingController();
-  // final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _dateController = TextEditingController();
 
@@ -225,8 +222,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     var name = args?.profileModel?.data.name;
     var company = args?.profileModel?.data.company;
     var email = args?.profileModel?.data.email;
-    // var _gender = args?.profileModel?.data.gender;
-    // var _dateBirth = args?.profileModel?.data.dateBirth;
 
     return Consumer<EditProfileViewModel>(builder: (context, profile, child) {
       return Scaffold(
@@ -310,19 +305,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         TextFormField(
-                          // controller: _nameController,
                           initialValue: name,
-                          //'${editProfile?.data.name}',
                           onSaved: (val) {
                             name = val;
                           },
-                          // validator: (value) {
-                          //   if (value != null) {
-                          //     return 'Enter name';
-                          //   } else {
-                          //     return null;
-                          //   }
-                          // },
                           decoration: InputDecoration(
                             labelText: 'Nama',
                             hintStyle: setTextStyle(
@@ -339,14 +325,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         const SizedBox(height: 25.0),
                         TextFormField(
                           initialValue: company,
-                          // controller: _companyController,
-                          // validator: (value) {
-                          //   if (value != null) {
-                          //     return 'Enter company name';
-                          //   } else {
-                          //     return null;
-                          //   }
-                          // },
                           onSaved: (val) {
                             company = val;
                           },
@@ -365,7 +343,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         ),
                         const SizedBox(height: 25.0),
                         TextFormField(
-                          // controller: _emailController,
                           initialValue: email,
                           onSaved: (val) {
                             email = val;
@@ -387,13 +364,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         TextFormField(
                           controller: _passwordController,
                           obscureText: _obscureText,
-                          // validator: (value) {
-                          //   if (value != null && value.length < 5) {
-                          //     return 'Enter min. 5 characters';
-                          //   } else {
-                          //     return null;
-                          //   }
-                          // },
                           decoration: InputDecoration(
                             suffixIcon: IconButton(
                               icon: Icon(
@@ -514,13 +484,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         Container(
                           padding: const EdgeInsets.symmetric(vertical: 16),
                           child: TextFormField(
-                            // validator: (value) {
-                            //   if (value!.isEmpty) {
-                            //     return "Silahkan isikan tanggal";
-                            //   } else {
-                            //     return null;
-                            //   }
-                            // },
                             onTap: () async {
                               showDialog(
                                 context: context,
@@ -539,7 +502,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                           currentDate: DateTime.now(),
                                         ),
                                         value:
-                                            // _dateBirth,
                                             _singleDatePickerValueWithDefaultValue,
                                         onValueChanged: (value) {
                                           DateTime? dateBirth = value[0];
@@ -563,10 +525,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             readOnly: true,
                             autofocus: true,
                             controller: _dateController,
-                            // initialValue: _dateBirth,
-                            // onSaved: (val) {
-                            //   _dateBirth = val;
-                            // },
                             decoration: InputDecoration(
                               prefixIcon:
                                   const Icon(Icons.calendar_today_rounded),

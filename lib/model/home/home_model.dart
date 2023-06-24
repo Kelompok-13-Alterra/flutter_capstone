@@ -35,12 +35,12 @@ class Office {
   int id;
   double rating;
   int capacity;
-  String close; // Change
+  String close;
   String description;
   String facilities;
   String location;
   String name;
-  String open; // Change
+  String open;
   int price;
   bool status;
   String type;
@@ -48,7 +48,7 @@ class Office {
 
   Office({
     required this.id,
-    required this.rating, // Change
+    required this.rating,
     required this.capacity,
     required this.close,
     required this.description,
@@ -63,7 +63,6 @@ class Office {
   });
 
   factory Office.fromJson(Map<String, dynamic> json) => Office(
-        // Change All
         id: json['ID'] ?? 0,
         rating: json['rating'] ?? Random().nextDouble() * (5 - 1) + 1,
         capacity: json["Capacity"] ?? 0,
@@ -79,17 +78,15 @@ class Office {
         imageUrl: json["ImageUrl"] ?? '',
       );
 
-  // get rating => rating;
-
   Map<String, dynamic> toJson() => {
         "rating": rating,
         "capacity": capacity,
-        "close": close, // Change
+        "close": close,
         "description": description,
         "facilities": facilities,
         "location": location,
         "name": name,
-        "open": open, // Change
+        "open": open,
         "price": price,
         "status": status,
         "type": type,

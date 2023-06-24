@@ -7,10 +7,10 @@ import 'package:provider/provider.dart';
 class DetailCard extends StatefulWidget {
   final String name;
   final double rating;
-  final int price; //
+  final int price;
   final String open;
   final String close;
-  final int capacity; //
+  final int capacity;
   final String location;
   const DetailCard({
     super.key,

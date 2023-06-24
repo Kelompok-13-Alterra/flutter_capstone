@@ -151,13 +151,6 @@ class _RescheduleScreenState extends State<RescheduleScreen> {
                                 args['ID'],
                                 pickedRange,
                               );
-
-                              // ScaffoldMessenger.of(context).showSnackBar(
-                              //     const SnackBar(content: Text(provider.ge)));
-
-                              // ignore: avoid_print
-                              print(
-                                  'picked range ${dataRescheduleConvert('${pickedRange.start}')} ${dataRescheduleConvert('${pickedRange.end}')} ${pickedRange.duration.inDays}');
                             }
                             // }
                           },

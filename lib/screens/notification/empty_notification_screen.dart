@@ -88,10 +88,6 @@ class EmptyNotificationScreen extends StatelessWidget {
                 fontWeight: regular,
               ),
             ),
-            // Text(
-            //   "",
-            //   style: blackTextStyle.copyWith(fontSize: 12, fontWeight: regular),
-            // ),
             const SizedBox(
               height: 11,
             ),

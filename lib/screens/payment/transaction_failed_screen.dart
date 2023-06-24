@@ -24,24 +24,9 @@ class _TransactionFailedScreenState extends State<TransactionFailedScreen> {
 
   @override
   Widget build(BuildContext context) {
-    //   final args =
-    //       ModalRoute.of(context)?.settings.arguments as BookingScheduleArgument;
     return WillPopScope(
       onWillPop: () async {
         Navigator.pop(context);
-        // Navigator.pushReplacement(
-        //   context,
-        //   MaterialPageRoute(
-        //     builder: (context) => DetailScreen(
-        //       buttonRoute: '/bottom-nav',
-        //       textButton: 'Booking',
-        //       officeId: widget.officeId,
-        //       selectedDateRange: null,
-        //       // officeId: null,
-        //     ),
-        //   ),
-        //   // (route) => true,
-        // );
         return false;
       },
       child: Scaffold(
@@ -88,16 +73,6 @@ class _TransactionFailedScreenState extends State<TransactionFailedScreen> {
                     ),
                   ),
                   onPressed: () {
-                    // Navigator.pushReplacement(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (context) => const DetailScreen(
-                    //       buttonRoute: null,
-                    //       textButton: 'Pilih Metode Pembayaran',
-                    //     ),
-                    //   ),
-                    // );
-                    // if (mounted) {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
@@ -106,12 +81,9 @@ class _TransactionFailedScreenState extends State<TransactionFailedScreen> {
                           textButton: 'Booking',
                           officeId: widget.officeId,
                           selectedDateRange: null,
-                          // officeId: null,
                         ),
                       ),
-                      // (route) => false,
                     );
-                    // }
                   },
                   child: Text(
                     'Booking Office',

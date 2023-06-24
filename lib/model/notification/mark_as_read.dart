@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final markAsReadModel = markAsReadModelFromJson(jsonString);
-
 import 'dart:convert';
 
 MarkAsReadModel markAsReadModelFromJson(String str) =>

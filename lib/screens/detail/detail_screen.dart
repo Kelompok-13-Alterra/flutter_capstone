@@ -1,7 +1,6 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-// import 'package:flutter_capstone/model/detail/detail_model.dart';
 import 'package:flutter_capstone/screens/detail/widget/bottom_book.dart';
 import 'package:flutter_capstone/screens/detail/widget/detail_card.dart';
 import 'package:flutter_capstone/screens/detail/widget/fasilities.dart';
@@ -81,11 +80,7 @@ class _DetailScreenState extends State<DetailScreen> {
         }
         return true;
       },
-      child:
-          // final detailViewModel = Provider.of<DetailViewModel>(context);
-          // final dataOffice = detailViewModel.detailData;
-          // return
-          Scaffold(
+      child: Scaffold(
         body: Consumer<DetailViewModel>(builder: (context, provider, _) {
           return FutureBuilder(
             future: detailDataFuture,
@@ -134,9 +129,6 @@ class _DetailScreenState extends State<DetailScreen> {
                         name: detail.name,
                         type: detail.type,
                         location: detail.location,
-                        // location: detail.location,
-                        // open: detail.open,
-                        // close: detail.close,
                       ),
                     ],
                   ),
@@ -153,7 +145,5 @@ class _DetailScreenState extends State<DetailScreen> {
         }),
       ),
     );
-    // final detailViewModel = Provider.of<DetailViewModel>(context);
-    // final dataOffice = detailViewModel.detailData;
   }
 }

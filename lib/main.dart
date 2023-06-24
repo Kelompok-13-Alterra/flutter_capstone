@@ -92,7 +92,6 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    // final bottomNavParamater = ModalRoute.of(context)?.settings.arguments ?? '';
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Office Booking (Capstone Project Kel 13)',

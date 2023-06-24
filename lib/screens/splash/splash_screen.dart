@@ -1,8 +1,9 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/core/init/utils/shared_preferences.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-// import 'package:your_app/home_screen.dart'; // Ganti dengan nama halaman utama aplikasi Anda
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -17,14 +18,11 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
 
     Timer(const Duration(seconds: 3), () async {
-      // WidgetsFlutterBinding.ensureInitialized();
       var token = await getToken();
       if (token.toString() == 'null') {
-        // ignore: use_build_context_synchronously
         Navigator.pushNamedAndRemoveUntil(
             context, '/boarding', (route) => false);
       } else {
-        // ignore: use_build_context_synchronously
         Navigator.pushNamedAndRemoveUntil(
             context, '/bottom-nav', (route) => true);
       }

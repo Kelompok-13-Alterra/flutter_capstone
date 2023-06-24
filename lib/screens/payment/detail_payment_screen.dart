@@ -49,9 +49,6 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
 
   @override
   void initState() {
-    // Future.microtask(() => Provider.of<PaymentViewModel>(context, listen: false)
-    //     .getMidtrans(paymentId: widget.paymentId));
-
     Future.microtask(
         () => paymentViewModel?.startCountdown(context, widget.officeId));
 
@@ -64,10 +61,7 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
       final data =
           detailPaymentViewFuture.getMidtrans(paymentId: widget.paymentId);
       completer.complete(data);
-      completer.future.then((data) {
-        // final detailViewModel =
-        //     Provider.of<PaymentViewModel>(context, listen: false);
-      });
+      completer.future.then((data) {});
     });
     detailPaymentDataFuture = completer.future;
     super.initState();
@@ -184,8 +178,6 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // print('This is payment ID in Detail Payment Screen ${widget.paymentId}');
-
     return Consumer<PaymentViewModel>(builder: (context, provider, _) {
       paymenStatus();
       return FutureBuilder(
@@ -201,8 +193,6 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                 bookingData: provider.getMidtransModel.data!,
                 dateData: widget.selectedDateRange,
               );
-
-              // );
             } else {
               return Scaffold(
                 backgroundColor: Colors.white,
@@ -516,7 +506,7 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                                     const SizedBox(
                                       height: 16,
                                     ),
-                                    // Detail Jumlaj Transfer
+                                    // Detail Jumlah Transfer
                                     //====================================================
                                     Text(
                                       'Jumlah Transfer',

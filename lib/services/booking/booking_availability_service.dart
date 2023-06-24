@@ -1,5 +1,5 @@
 //Check if the date available or not
-// ignore_for_file: deprecated_member_use
+// ignore_for_file: deprecated_member_use, unnecessary_null_in_if_null_operators, use_build_context_synchronously
 
 import 'dart:convert';
 
@@ -35,23 +35,17 @@ class BookingAvailabilityService {
           }));
       return BookingAvailabilityModel.fromJson(response.data);
     } on DioError catch (e) {
-      // print(e.response!.statusCode);
       if (e.response!.statusCode == 500) {
-        // ignore: unnecessary_null_in_if_null_operators
         var selectedDateRange = args.selectedDateRange ?? null;
-        // ignore: use_build_context_synchronously
         return modalBottomSheet(context,
             img: 'assets/images/modal_bottom/retro_mac_error.png',
             title: 'Waduh?!',
             desc:
                 'Tanggal yang kamu pilih tidak tersedia. Coba pilih\ntanggal yang lain.',
             path: () {
-          // ignore: unnecessary_null_in_if_null_operators
           Navigator.pop(context, selectedDateRange);
         }, buttonText: 'Pilih tanggal lain');
-      } else if (e.response!.statusCode == 400) {
-        // return const PageNotFoundScreen();
-      }
+      } else if (e.response!.statusCode == 400) {}
       throw Exception(e);
     }
   }

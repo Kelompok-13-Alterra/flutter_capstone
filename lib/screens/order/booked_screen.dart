@@ -39,7 +39,6 @@ class _BookedOrderScreenState extends State<BookedOrderScreen> {
                 ),
               );
             } else if (!snapshot.hasData) {
-              //final homeViewModel = Provider.of<HomeViewModel>(context);
               return ListView.builder(
                   itemCount: office.listBooked.length,
                   itemBuilder: (context, index) {
@@ -52,7 +51,6 @@ class _BookedOrderScreenState extends State<BookedOrderScreen> {
                       duration:
                           '${office.listBooked[index].office.open.substring(0, 5)} - ${office.listBooked[index].office.close.substring(0, 5)}',
                       status: 'Booked',
-                      // route: '/detail-schedule',
                       buttonText1: 'Change Schedule',
                       routeButton1: () {
                         final officeIDDetail =
@@ -68,7 +66,6 @@ class _BookedOrderScreenState extends State<BookedOrderScreen> {
                       },
                       buttonText2: 'Cancel Book',
                       routeButton2: () {},
-                      // transactionId: ,
                     );
                   });
             } else {

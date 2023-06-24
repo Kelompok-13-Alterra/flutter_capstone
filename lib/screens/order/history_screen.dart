@@ -43,13 +43,10 @@ class _HistoryOrderScreenState extends State<HistoryOrderScreen> {
                 ),
               );
             } else if (!snapshot.hasData) {
-              //final homeViewModel = Provider.of<HomeViewModel>(context);
               return ListView.builder(
                   itemCount: office.listHistory.length,
                   itemBuilder: (context, index) {
                     var data = office.listHistory[index];
-
-                    //office.listHistory[index].id
                     return OrderWidget(
                       urlImg: office.listHistory[index].office.imageUrl,
                       title: office.listHistory[index].office.name,
@@ -58,7 +55,6 @@ class _HistoryOrderScreenState extends State<HistoryOrderScreen> {
                       duration:
                           '${office.listHistory[index].office.open} - ${office.listHistory[index].office.close}',
                       status: 'Booked',
-                      // route: '/detail-schedule',
                       buttonText1: 'Book Again',
                       routeButton1: () {
                         Navigator.push(
@@ -72,10 +68,7 @@ class _HistoryOrderScreenState extends State<HistoryOrderScreen> {
                             ),
                           ),
                         );
-                        //  arguments: ReviewArguments(
-                        //             transactionId: transactionId!)
                       },
-                      // routeButton1: '/detail',
                       buttonText2: 'Give Review',
                       routeButton2: () {
                         Navigator.pushNamed(
@@ -86,10 +79,6 @@ class _HistoryOrderScreenState extends State<HistoryOrderScreen> {
                                   office.listHistory[index].office.id),
                         );
                       },
-                      // transactionId: data.id,
-                      // transactionId: office.listHistory[index].id,
-
-                      // office.listHistory[index].id,
                     );
                   });
             } else {

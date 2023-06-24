@@ -8,8 +8,6 @@ import 'package:flutter_capstone/core/init/utils/shared_preferences.dart';
 import 'package:flutter_capstone/widgets/modal_bottom.dart';
 
 class ReviewService {
-  // int transactionId = 21;
-
   Future<void> addPosted(
     BuildContext context, {
     required int transactionId,
@@ -47,7 +45,6 @@ class ReviewService {
           },
           buttonText: 'Okay!',
         );
-        // return ReviewModel.fromJson(response.data);
       }
     } on DioError catch (e) {
       print(e.response?.data);

@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final midtransPaymentModel = midtransPaymentModelFromJson(jsonString);
-
 import 'dart:convert';
 
 import 'package:flutter_capstone/model/home/home_model.dart';

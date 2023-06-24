@@ -21,7 +21,6 @@ class CardsProfileWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 156,
-      // width: 136,
       child: Card(
         color: cardColor,
         shape: RoundedRectangleBorder(

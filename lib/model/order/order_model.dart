@@ -1,8 +1,4 @@
 //Model utk create order
-// To parse this JSON data, do
-//
-//     final orderModel = orderModelFromJson(jsonString);
-
 import 'dart:convert';
 
 OrderModel orderModelFromJson(String str) =>

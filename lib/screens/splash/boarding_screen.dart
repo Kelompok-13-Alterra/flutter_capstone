@@ -1,4 +1,4 @@
-// ignore_for_file: unused_field
+// ignore_for_file: unused_field, avoid_unnecessary_containers
 
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/screens/login/login_screen.dart';
@@ -119,7 +119,6 @@ class _OnBoardingScreenState extends State<BoardingScreen> {
               itemCount: boardingData['boarding'].length,
               itemBuilder: (BuildContext context, int index) {
                 return Container(
-                  // height: MediaQuery.of(context).size.height * 0.65 - 0.35,
                   padding: const EdgeInsets.only(top: 100),
                   child: Align(
                     alignment: Alignment.topCenter,
@@ -197,7 +196,6 @@ class _OnBoardingScreenState extends State<BoardingScreen> {
                           controller: _pageControllerDescription,
                           itemCount: boardingData['boarding'].length,
                           itemBuilder: (BuildContext context, int index) {
-                            // ignore: avoid_unnecessary_containers
                             return Container(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -234,8 +232,6 @@ class _OnBoardingScreenState extends State<BoardingScreen> {
                           child: ElevatedButton(
                             onPressed: () async {
                               if (isLastPage) {
-                                // Navigator.pushNamed(context,
-                                //     email == null ? '/login' : '/bottom-nav');
                                 Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(

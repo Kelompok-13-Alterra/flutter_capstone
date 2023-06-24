@@ -7,8 +7,6 @@ class HomeViewModel with ChangeNotifier {
   List<Office> get listOffice => _listOffice;
   HomeService homeService = HomeService();
   int _selectedFilterIndex = 0;
-  // double? rating;
-  List<double> rating = [];
 
   final List<String> _filters = [
     'Semua',
@@ -20,7 +18,6 @@ class HomeViewModel with ChangeNotifier {
 
   int get getSelectedFilterindex => _selectedFilterIndex;
   List<String> get getFilters => _filters;
-  List<double> get getRating => rating;
 
   set setSelectedFilterIndex(int value) {
     _selectedFilterIndex = value;
@@ -36,12 +33,4 @@ class HomeViewModel with ChangeNotifier {
       rethrow;
     }
   }
-
-  set setRatingValue(double value) {
-    rating.add(value);
-    notifyListeners();
-  }
 }
-
-//Maps
-

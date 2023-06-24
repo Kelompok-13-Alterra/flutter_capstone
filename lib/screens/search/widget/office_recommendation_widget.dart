@@ -9,36 +9,10 @@ import 'package:flutter_capstone/core/init/utils/open_close.dart';
 
 class OfficeRecommendationWidget extends StatelessWidget {
   final Office officeData;
-  // final String namaKantor;
-  // final String img;
-  // final String imgRating;
-  // final double rating;
-  // final String office;
-  // final String imgCoWorkingOffice;
-  // final String imgLocation;
-  // final String location;
-  // final String imgTime;
-  // final String time;
-  // final int price;
-  // final String open;
-  // final String close;
 
   const OfficeRecommendationWidget({
     super.key,
     required this.officeData,
-    // required this.namaKantor,
-    // required this.img,
-    // required this.rating,
-    // required this.imgRating,
-    // required this.imgCoWorkingOffice,
-    // required this.office,
-    // required this.imgLocation,
-    // required this.location,
-    // required this.time,
-    // required this.imgTime,
-    // required this.price,
-    // required this.open,
-    // required this.close,
   });
 
   @override

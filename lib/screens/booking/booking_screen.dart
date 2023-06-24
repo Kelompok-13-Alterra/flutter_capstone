@@ -50,7 +50,7 @@ class _BookingScheduleScreenState extends State<BookingScheduleScreen> {
               ),
               textButtonTheme: TextButtonThemeData(
                 style: TextButton.styleFrom(
-                  foregroundColor: NeutralColor().neutral0, // button text color
+                  foregroundColor: NeutralColor().neutral0,
                 ),
               ),
             ),
@@ -62,7 +62,6 @@ class _BookingScheduleScreenState extends State<BookingScheduleScreen> {
       ),
       firstDate: DateTime.now(),
       lastDate: DateTime(DateTime.now().year + 2),
-      // locale: const Locale('ind', 'id'),
       helpText: 'Start - End Date',
       cancelText: 'CANCEL',
       confirmText: 'OK',

@@ -21,9 +21,6 @@ class ShowModalPayment extends StatefulWidget {
   String? type;
   String? location;
   String image;
-  // final String location;
-  // final String open;
-  // final String close;
   ShowModalPayment({
     super.key,
     required this.onPressed,
@@ -34,9 +31,6 @@ class ShowModalPayment extends StatefulWidget {
     required this.type,
     required this.location,
     required this.image,
-
-    // required this.open,
-    // required this.close,
   });
 
   @override
@@ -49,9 +43,7 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
       return Column(
         children: [
           GestureDetector(
-            onTap: () {
-              // provider.setSelectedValue = 'Virtual Account BNI';
-            },
+            onTap: () {},
             child: Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
@@ -199,12 +191,6 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                             style: setTextStyle(NeutralColor().neutral10)
                                 .copyWith(fontWeight: medium, fontSize: 16),
                           ),
-                          // Text(
-                          //   'Gratis Biaya Pembayaran',
-                          //   style: setTextStyle(
-                          //           PrimaryColor().onPrimaryFixedVariant)
-                          //       .copyWith(fontWeight: semiBold, fontSize: 11),
-                          // ),
                         ],
                       ),
                     ],
@@ -410,9 +396,6 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                     children: [
                       IconButton(
                         onPressed: widget.onPressed,
-                        // () {
-                        //   Navigator.pop(context);
-                        // },
                         icon: const Icon(Icons.close),
                         constraints: const BoxConstraints(),
                         padding: EdgeInsets.zero,

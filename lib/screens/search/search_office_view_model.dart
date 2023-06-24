@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/model/home/home_model.dart';
-import 'package:flutter_capstone/model/search_office/search_model.dart';
 
 class SearchOfficeViewModel with ChangeNotifier {
   final TextEditingController _searchBarController = TextEditingController();
@@ -17,7 +16,6 @@ class SearchOfficeViewModel with ChangeNotifier {
   String get searchQuery => _searchQuery;
 
   onChange(String value) {
-    // _searchQuery = value;
     if (value.length >= 3) {
       _searchQuery = value;
       _isSearch = true;

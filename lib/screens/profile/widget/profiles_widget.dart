@@ -25,42 +25,29 @@ List<String> subMenuInformation = [
   'Privacy Policy',
   'Terms and Condition',
   'Help Centre',
-  // 'Log Out'
 ];
 
 List iconSubMenuAccount = [
   Image.asset(
     'assets/icons/profile/meeting_room_fill.png',
-    // width: 15,
-    // height: 15,
   ),
   Image.asset(
     'assets/icons/profile/lock.png',
-    // width: 15,
-    // height: 15,
   ),
   Image.asset(
     'assets/icons/profile/delete_forever.png',
-    // width: 15,
-    // height: 15,
   ),
 ];
 
 List iconSubMenuInformation = [
   Image.asset(
     'assets/icons/profile/privacy_tip.png',
-    // width: 15,
-    // height: 15,
   ),
   Image.asset(
     'assets/icons/profile/local_police.png',
-    // width: 15,
-    // height: 15,
   ),
   Image.asset(
     'assets/icons/profile/help_center.png',
-    // width: 15,
-    // height: 15,
   ),
 ];
 
@@ -73,7 +60,6 @@ Widget profilesWidget(BuildContext context) {
     children: [
       Container(
         width: MediaQuery.of(context).size.width,
-        // width: 360,
         height: 234,
         color: SourceColor().white,
         child: Padding(
@@ -139,7 +125,6 @@ Widget profilesWidget(BuildContext context) {
       ),
       Container(
         width: MediaQuery.of(context).size.width,
-        // width: 360,
         height: 280,
         color: SourceColor().white,
         child: Padding(
@@ -204,11 +189,10 @@ Widget profilesWidget(BuildContext context) {
                   removeToken();
                   loginViewModel.getEmail.clear();
                   loginViewModel.getPassword.clear();
-                  // ignore: use_build_context_synchronously
+
                   Navigator.pushNamedAndRemoveUntil(
                       context, '/login', (route) => false);
 
-                  // ignore: use_build_context_synchronously
                   ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(content: Text('Berhasil keluar!')));
                 },
@@ -246,12 +230,11 @@ Widget profilesWidget(BuildContext context) {
                             ),
                           ],
                         ),
-                        // ignore: prefer_const_constructors
-                        Padding(
-                          padding: const EdgeInsets.only(
+                        const Padding(
+                          padding: EdgeInsets.only(
                             right: 18,
                           ),
-                          child: const Padding(
+                          child: Padding(
                             padding: EdgeInsets.only(
                               right: 21.53,
                             ),

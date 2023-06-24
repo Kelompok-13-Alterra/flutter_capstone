@@ -52,18 +52,13 @@ modalBottomSheet(
                   height: 50,
                   child: ElevatedButton(
                     onPressed: path,
-                    // () {
-                    //   Navigator.pushNamedAndRemoveUntil(
-                    //       context, '/bottom-nav', (route) => false);
-                    // },
                     style: ButtonStyle(
                       elevation: MaterialStateProperty.all(0),
                       backgroundColor:
                           MaterialStateProperty.all(PrimaryColor().primary),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.circular(100), // Bentuk border
+                          borderRadius: BorderRadius.circular(100),
                         ),
                       ),
                     ),

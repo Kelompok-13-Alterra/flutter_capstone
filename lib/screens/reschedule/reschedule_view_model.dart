@@ -1,4 +1,4 @@
-// ignore_for_file: deprecated_member_use, avoid_print
+// ignore_for_file: deprecated_member_use, avoid_print, use_build_context_synchronously
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/services/reschedule/reschedule_service.dart';
 import 'package:dio/dio.dart';
@@ -42,7 +42,6 @@ class RescheduleViewModel extends ChangeNotifier {
       );
       if (response.statusCode == 201) {
         updateRecheduleOffice(idTransaction, start, end);
-        // ignore: use_build_context_synchronously
         return showModalBottomSheet(
           context: context,
           isScrollControlled: true,
@@ -121,14 +120,12 @@ class RescheduleViewModel extends ChangeNotifier {
       return response.data['status_code'] as int?;
     } on DioError catch (e) {
       if (e.response!.statusCode == 500) {
-        // ignore: use_build_context_synchronously
         return modalBottomSheet(context,
             img: 'assets/images/modal_bottom/retro_mac_error.png',
             title: 'Waduh?!',
             desc:
                 'Tanggal yang kamu pilih tidak tersedia. Coba pilih\ntanggal yang lain.',
             path: () {
-          // ignore: unnecessary_null_in_if_null_operators
           Navigator.pop(context);
         }, buttonText: 'Pilih tanggal lain');
       }

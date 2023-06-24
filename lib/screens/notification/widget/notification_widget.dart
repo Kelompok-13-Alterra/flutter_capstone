@@ -29,7 +29,6 @@ Widget notificationWidget(BuildContext context, {required Datum notification}) {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          // clipBehavior: Clip.none,
           children: [
             Flexible(
               flex: 3,
@@ -52,15 +51,11 @@ Widget notificationWidget(BuildContext context, {required Datum notification}) {
                     child: Text(notification.createdAt.toString(),
                         textAlign: TextAlign.end,
                         style: setTextStyle(NeutralColor().neutral50)
-                            .copyWith(fontSize: 12, fontWeight: regular)
-
-                        // TextStyle(fontSize: 15, color: Colors.white),
-                        ),
+                            .copyWith(fontSize: 12, fontWeight: regular)),
                   ),
                 ],
               ),
             ),
-
             Flexible(
               flex: 1,
               child: SizedBox(
@@ -69,8 +64,6 @@ Widget notificationWidget(BuildContext context, {required Datum notification}) {
                 child: child(),
               ),
             ),
-
-            //Picture
           ],
         ),
       ),

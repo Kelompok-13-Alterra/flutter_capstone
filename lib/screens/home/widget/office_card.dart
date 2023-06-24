@@ -108,8 +108,6 @@ class _OfficeCardState extends State<OfficeCard> {
                     ),
                     Text(
                       widget.officeData.rating.toStringAsFixed(1),
-
-                      // '${randomRating(Random(), 1, 5).toStringAsFixed(1)}',
                       style: GoogleFonts.roboto(
                         color: NeutralColor().neutral17,
                         fontSize: 13,

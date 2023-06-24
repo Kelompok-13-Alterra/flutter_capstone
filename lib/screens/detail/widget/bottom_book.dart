@@ -16,9 +16,6 @@ class BottomBook extends StatefulWidget {
   String? type;
   String? location;
   String image;
-  // final String? location;
-  // final String? open;
-  // final String? close;
   BottomBook(
       {super.key,
       required this.textButton,
@@ -30,18 +27,13 @@ class BottomBook extends StatefulWidget {
       this.name,
       this.type,
       this.location,
-      required this.image
-      // this.location,
-      // this.open,
-      // this.close,
-      });
+      required this.image});
 
   @override
   State<BottomBook> createState() => _BottomBookState();
 }
 
 class _BottomBookState extends State<BottomBook> {
-  // DateTimeRange? selectedDateRange;
   @override
   void setState(fn) {
     if (mounted) {
@@ -51,8 +43,6 @@ class _BottomBookState extends State<BottomBook> {
 
   @override
   Widget build(BuildContext context) {
-    // print('Office id ${widget.officeId}');
-    // print('date range in bottom book ${widget.selectedDateRange}');
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: FractionallySizedBox(
@@ -71,24 +61,10 @@ class _BottomBookState extends State<BottomBook> {
                 ),
               ),
             ),
-            // onPressed: widget.function,
             onPressed: () {
               if (widget.function != null) {
                 widget.function!();
-              }
-              // widget.function!();
-              // if (widget.buttonRoute != null) {
-              //   print(widget.officeId);
-              //   Navigator.pushNamed(context, '${widget.buttonRoute}',
-              //           arguments:
-              //               BookingScheduleArgument(officeId: widget.officeId!))
-              //       .then((value) {
-              //     setState(() {
-              //       selectedDateRange = value.toString();
-              //     });
-              //   });
-              // }
-              else if (widget.selectedDateRange != null) {
+              } else if (widget.selectedDateRange != null) {
                 showModalBottomSheet(
                   context: context,
                   enableDrag: false,
@@ -109,10 +85,6 @@ class _BottomBookState extends State<BottomBook> {
                       name: widget.name,
                       type: widget.type,
                       location: widget.location,
-                      // location: widget.location,
-                      // open: widget.open ?? '',
-                      // close: widget.close ?? '',
-
                       onPressed: () {
                         widget.selectedDateRange = null;
                         Navigator.pop(context);
@@ -122,11 +94,6 @@ class _BottomBookState extends State<BottomBook> {
                   },
                 );
               } else {
-                // setState(() {
-                //   widget.officeId != widget.officeId;
-                //   widget.selectedDateRange != widget.selectedDateRange;
-                // });
-                // Navigator.pop(context);
                 Navigator.pushReplacementNamed(context, '${widget.buttonRoute}',
                         arguments: BookingScheduleArgument(
                             officeId: widget.officeId ?? 0,
@@ -149,7 +116,6 @@ class _BottomBookState extends State<BottomBook> {
                     widget.textButton,
                   )
                 : Text(
-                    // widget.textButton,
                     widget.selectedDateRange != null
                         ? 'Pilih metode pembayaran'
                         : 'Booking',
