@@ -21,7 +21,6 @@ class MarkAsReadService {
           },
         ),
       );
-      print(response.data);
       return MarkAsReadModel.fromJson(response.data);
     } on DioError catch (e) {
       throw Exception(e);

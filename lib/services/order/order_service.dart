@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_null_in_if_null_operators, deprecated_member_use
+// ignore_for_file: unnecessary_null_in_if_null_operators, deprecated_member_use, use_build_context_synchronously
 
 import 'dart:convert';
 import 'package:dio/dio.dart';
@@ -35,12 +35,9 @@ class OrderService {
                 "paymentID": paymentId,
                 "start": startDate,
               }));
-      // print(response.data);
       return OrderModel.fromJson(response.data);
     } on DioError catch (e) {
       if (e.response!.statusCode == 500) {
-        var selectedDateRange = args?.selectedDateRange ?? null;
-        // ignore: use_build_context_synchronously
         return modalBottomSheet(context,
             img: 'assets/images/modal_bottom/retro_mac_error.png',
             title: 'Waduh?!',
@@ -55,6 +52,7 @@ class OrderService {
                 buttonRoute: '/booking',
                 officeId: args?.officeId ?? -1,
                 selectedDateRange: null,
+                idTransaction: null,
               ),
             ),
           );

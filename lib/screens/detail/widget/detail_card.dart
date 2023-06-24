@@ -5,7 +5,8 @@ import 'package:flutter_capstone/style/text_style.dart';
 import 'package:provider/provider.dart';
 
 class DetailCard extends StatefulWidget {
-  final String name; //
+  final String name;
+  final double rating;
   final int price; //
   final String open;
   final String close;
@@ -14,6 +15,7 @@ class DetailCard extends StatefulWidget {
   const DetailCard({
     super.key,
     required this.name,
+    required this.rating,
     required this.price,
     required this.open,
     required this.close,
@@ -75,7 +77,7 @@ class _DetailCardState extends State<DetailCard> {
                   width: 5,
                 ),
                 Text(
-                  "4.6",
+                  widget.rating.toStringAsFixed(1),
                   style: setTextStyle(NeutralColor().neutral17)
                       .copyWith(fontWeight: semiBold, fontSize: 13),
                 )

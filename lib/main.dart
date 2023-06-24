@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/model/notification/mark_as_read.dart';
 import 'package:flutter_capstone/screens/booking/booking_screen.dart';
 import 'package:flutter_capstone/screens/bottom_nav/bottom_nav_screen.dart';
 import 'package:flutter_capstone/screens/detail/detail_view_model.dart';

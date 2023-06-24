@@ -65,7 +65,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             'Rating Baik') {
           return FilterContentWidget(
             // childCount: office.listOffice,
-            condition: office.listOffice[index].price < 150000,
+            condition: office.listOffice[index].rating > 3.5,
             officeId: data.id,
             data: data,
           );

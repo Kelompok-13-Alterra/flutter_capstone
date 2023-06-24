@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 
 HomeModel homeModelFromJson(String str) {
   final jsonData = json.decode(str);
@@ -32,6 +33,7 @@ class HomeModel {
 
 class Office {
   int id;
+  double rating;
   int capacity;
   String close; // Change
   String description;
@@ -45,7 +47,8 @@ class Office {
   String? imageUrl;
 
   Office({
-    required this.id, // Change
+    required this.id,
+    required this.rating, // Change
     required this.capacity,
     required this.close,
     required this.description,
@@ -62,6 +65,7 @@ class Office {
   factory Office.fromJson(Map<String, dynamic> json) => Office(
         // Change All
         id: json['ID'] ?? 0,
+        rating: json['rating'] ?? Random().nextDouble() * (5 - 1) + 1,
         capacity: json["Capacity"] ?? 0,
         close: json["Close"] ?? DateTime.now(),
         description: json["Description"] ?? 'null',
@@ -78,6 +82,7 @@ class Office {
   // get rating => rating;
 
   Map<String, dynamic> toJson() => {
+        "rating": rating,
         "capacity": capacity,
         "close": close, // Change
         "description": description,
