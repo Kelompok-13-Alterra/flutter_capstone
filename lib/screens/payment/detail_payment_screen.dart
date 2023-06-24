@@ -249,20 +249,28 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                               ),
                               child: ClipRRect(
                                   borderRadius: BorderRadius.circular(12),
-                                  child: provider.getMidtransModel.data!.office
-                                              .imageUrl!.isEmpty ||
-                                          provider.getMidtransModel.data!.office
-                                                  .imageUrl ==
-                                              ''
-                                      ? Image.network(
-                                          'https://img.freepik.com/premium-photo/modern-corporate-architecture-can-be-seen-cityscape-office-buildings_410516-276.jpg',
-                                          fit: BoxFit.fill,
-                                        )
-                                      : Image.network(
-                                          provider.getMidtransModel.data!.office
-                                              .imageUrl!,
-                                          fit: BoxFit.fill,
-                                        )),
+                                  child:
+                                      // child: Image.network(
+                                      // provider
+                                      //     .getMidtransModel.data!.office.imageUrl
+                                      //     .toString(),
+                                      // fit: BoxFit.fill,
+                                      // ),
+                                      // ),
+                                      provider.getMidtransModel.data!.office
+                                                  .imageUrl!.isEmpty ||
+                                              provider.getMidtransModel.data!
+                                                      .office.imageUrl ==
+                                                  ''
+                                          ? Image.network(
+                                              'https://img.freepik.com/premium-photo/modern-corporate-architecture-can-be-seen-cityscape-office-buildings_410516-276.jpg',
+                                              fit: BoxFit.fill,
+                                            )
+                                          : Image.network(
+                                              provider.getMidtransModel.data!
+                                                  .office.imageUrl!,
+                                              fit: BoxFit.fill,
+                                            )),
                             ),
                             const SizedBox(
                               width: 16,

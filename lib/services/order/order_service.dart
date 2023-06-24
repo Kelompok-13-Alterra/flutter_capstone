@@ -52,6 +52,7 @@ class OrderService {
                 buttonRoute: '/booking',
                 officeId: args?.officeId ?? -1,
                 selectedDateRange: null,
+                idTransaction: null,
               ),
             ),
           );
