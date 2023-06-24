@@ -1,14 +1,16 @@
-import 'dart:math';
+library globals;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/core/init/utils/open_close.dart';
 import 'package:flutter_capstone/core/init/utils/price_convert.dart';
 import 'package:flutter_capstone/model/home/home_model.dart';
+import 'package:flutter_capstone/screens/home/home_view_model.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class OfficeCard extends StatefulWidget {
   final Office officeData;
+
   const OfficeCard({super.key, required this.officeData});
 
   @override
@@ -16,12 +18,11 @@ class OfficeCard extends StatefulWidget {
 }
 
 class _OfficeCardState extends State<OfficeCard> {
-  var result = Random().nextDouble() * (5 - 1) + 1;
+  HomeViewModel? homeViewModel;
 
   @override
   void initState() {
     super.initState();
-    result;
   }
 
   @override
@@ -106,7 +107,8 @@ class _OfficeCardState extends State<OfficeCard> {
                       width: 5,
                     ),
                     Text(
-                      result.toStringAsFixed(1),
+                      widget.officeData.rating.toStringAsFixed(1),
+
                       // '${randomRating(Random(), 1, 5).toStringAsFixed(1)}',
                       style: GoogleFonts.roboto(
                         color: NeutralColor().neutral17,

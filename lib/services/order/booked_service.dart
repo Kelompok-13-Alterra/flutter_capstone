@@ -19,8 +19,6 @@ class BookedService {
           }));
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-        final responseData = response.data;
-        print(responseData);
         BookedModel booked = BookedModel.fromJson(response.data);
         if (booked.data.isEmpty) {
           return [];

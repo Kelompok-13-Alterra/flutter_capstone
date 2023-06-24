@@ -1,6 +1,5 @@
 // ignore_for_file: unnecessary_null_comparison, unrelated_type_equality_checks
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_capstone/core/init/utils/price_convert.dart';

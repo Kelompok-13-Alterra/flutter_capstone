@@ -70,12 +70,16 @@ class _RescheduleScreenState extends State<RescheduleScreen> {
                         // Image Swipe
                         //================================================================
                         ImageDetail(
-                          image: detail!.imageUrl,
+                          image: detail!.imageUrl!.isEmpty ||
+                                  detail.imageUrl == ''
+                              ? "https://img.freepik.com/premium-photo/modern-corporate-architecture-can-be-seen-cityscape-office-buildings_410516-276.jpg"
+                              : detail.imageUrl!,
                         ),
                         // Container Detail
                         //================================================================
                         DetailCard(
                           name: detail.name,
+                          rating: detail.rating,
                           price: detail.price,
                           open: detail.open,
                           close: detail.close,

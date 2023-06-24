@@ -92,7 +92,9 @@ class _HomeScreenState extends State<HomeScreen> {
       body: CustomScrollView(
         shrinkWrap: true,
         slivers: [
-          const BackgroundWidget(),
+          BackgroundWidget(
+            currentAddress: _currentAddress ?? 'Untracked place',
+          ),
           const FilterChoice(),
           HomeWidget(
             currentAddress: _currentAddress,

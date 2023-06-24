@@ -1,5 +1,6 @@
 class DetailModel {
   final int id;
+  final double rating;
   final DateTime createdAt;
   final DateTime updatedAt;
   final String name;
@@ -16,6 +17,7 @@ class DetailModel {
 
   DetailModel({
     required this.id,
+    required this.rating,
     required this.createdAt,
     required this.updatedAt,
     required this.name,
@@ -34,6 +36,7 @@ class DetailModel {
   factory DetailModel.fromJson(Map<String, dynamic> json) {
     return DetailModel(
       id: json['ID'] ?? 0,
+      rating: json['rating'] ?? 0,
       createdAt: DateTime.parse(json['CreatedAt']),
       updatedAt: DateTime.parse(json['UpdatedAt']),
       name: json['Name'] ?? '',

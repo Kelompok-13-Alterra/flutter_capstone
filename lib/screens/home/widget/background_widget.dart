@@ -5,7 +5,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class BackgroundWidget extends StatefulWidget {
-  const BackgroundWidget({super.key});
+  final String? currentAddress;
+  const BackgroundWidget({super.key, this.currentAddress});
 
   @override
   State<BackgroundWidget> createState() => _BackgroundWidgetState();
@@ -161,7 +162,7 @@ class _BackgroundWidgetState extends State<BackgroundWidget> {
                                   width: 24,
                                 ),
                                 Text(
-                                  'Jakarta, Indonesia',
+                                  widget.currentAddress.toString(),
                                   style: GoogleFonts.roboto(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w500,
