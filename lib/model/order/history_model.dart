@@ -38,6 +38,7 @@ class History {
   DateTime? deletedAt;
   int userId;
   int officeId;
+  String? paymentStatus;
   int discount;
   int price;
   int tax;
@@ -54,6 +55,7 @@ class History {
     this.deletedAt,
     required this.userId,
     required this.officeId,
+    this.paymentStatus,
     required this.discount,
     required this.price,
     required this.tax,
@@ -71,6 +73,7 @@ class History {
         deletedAt: json["DeletedAt"],
         userId: json["UserID"],
         officeId: json["OfficeID"],
+        paymentStatus: json["PaymentStatus"],
         discount: json["Discount"],
         price: json["Price"],
         tax: json["Tax"],
@@ -88,6 +91,7 @@ class History {
         "DeletedAt": deletedAt,
         "UserID": userId,
         "OfficeID": officeId,
+        "paymentStatus": paymentStatus,
         "Discount": discount,
         "Price": price,
         "Tax": tax,

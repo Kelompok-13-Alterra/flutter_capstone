@@ -37,6 +37,7 @@ class Booked {
   String end;
   Office office;
   int officeId;
+  String? paymentStatus;
   int price;
   String start;
   bool status;
@@ -51,6 +52,7 @@ class Booked {
     required this.end,
     required this.office,
     required this.officeId,
+    this.paymentStatus,
     required this.price,
     required this.start,
     required this.status,
@@ -65,6 +67,7 @@ class Booked {
         end: json["End"] ?? "",
         office: Office.fromJson(json["Office"]),
         officeId: json["OfficeID"] ?? 0,
+        paymentStatus: json["PaymentStatus"],
         price: json["Price"] ?? 0,
         start: json["Start"] ?? "",
         status: json["Status"] == true ? true : false,
@@ -78,6 +81,7 @@ class Booked {
         "end": end,
         "office": office.toJson(),
         "officeID": officeId,
+        "paymentStatus": paymentStatus,
         "price": price,
         "start": start,
         "status": status,

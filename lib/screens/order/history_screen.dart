@@ -54,7 +54,11 @@ class _HistoryOrderScreenState extends State<HistoryOrderScreen> {
                       type: office.listHistory[index].office.type,
                       duration:
                           '${office.listHistory[index].office.open} - ${office.listHistory[index].office.close}',
-                      status: 'Booked',
+                      statusPayment:
+                          office.listHistory[index].paymentStatus!.isEmpty ||
+                                  office.listHistory[index].paymentStatus == ''
+                              ? 'untrack'
+                              : office.listHistory[index].paymentStatus!,
                       buttonText1: 'Book Again',
                       routeButton1: () {
                         Navigator.push(
