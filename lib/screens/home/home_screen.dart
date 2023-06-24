@@ -101,27 +101,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-
-      // FutureBuilder(
-      //   future: getOffice,
-      //   builder: (context, snapshot) {
-      //     if (!snapshot.hasData) {
-      //       return CustomScrollView(
-      //         slivers: [
-      //           const BackgroundWidget(),
-      //           const FilterChoice(),
-      //           HomeWidget(
-      //               // currentAddress: _currentAddress,
-      //               ),
-      //         ],
-      //       );
-      //     } else if (snapshot.connectionState == ConnectionState.waiting) {
-      //       return const CircularProgressIndicator();
-      //     } else {
-      //       return const Center(child: Text("error"));
-      //     }
-      //   },
-      // ),
     );
   }
 }
