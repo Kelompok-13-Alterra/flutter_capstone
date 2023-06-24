@@ -75,20 +75,7 @@ class _BottomBookState extends State<BottomBook> {
             onPressed: () {
               if (widget.function != null) {
                 widget.function!();
-              }
-              // widget.function!();
-              // if (widget.buttonRoute != null) {
-              //   print(widget.officeId);
-              //   Navigator.pushNamed(context, '${widget.buttonRoute}',
-              //           arguments:
-              //               BookingScheduleArgument(officeId: widget.officeId!))
-              //       .then((value) {
-              //     setState(() {
-              //       selectedDateRange = value.toString();
-              //     });
-              //   });
-              // }
-              else if (widget.selectedDateRange != null) {
+              } else if (widget.selectedDateRange != null) {
                 showModalBottomSheet(
                   context: context,
                   enableDrag: false,
@@ -122,11 +109,6 @@ class _BottomBookState extends State<BottomBook> {
                   },
                 );
               } else {
-                // setState(() {
-                //   widget.officeId != widget.officeId;
-                //   widget.selectedDateRange != widget.selectedDateRange;
-                // });
-                // Navigator.pop(context);
                 Navigator.pushReplacementNamed(context, '${widget.buttonRoute}',
                         arguments: BookingScheduleArgument(
                             officeId: widget.officeId ?? 0,

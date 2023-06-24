@@ -24,12 +24,6 @@ class BookingScheduleScreen extends StatefulWidget {
 class _BookingScheduleScreenState extends State<BookingScheduleScreen> {
   int? officeId;
   DateTimeRange? selectedDateRange;
-  // @override
-  // void setState(fn) {
-  //   if (mounted) {
-  //     super.setState(fn);
-  //   }
-  // }
 
   @override
   void initState() {

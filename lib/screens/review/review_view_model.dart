@@ -41,30 +41,4 @@ class ReviewViewModel extends ChangeNotifier {
     _reviewController.clear();
     notifyListeners();
   }
-
-  // onSelected(bool value) {
-  //   if (_reviewList.contains(e)) {
-  //     _reviewList.remove(e.toString());
-  //   } else {
-  //     _reviewList.add(e.toString());
-  //   }
-  //   notifyListeners();
-  //   // if (args!.transactionId != args.transactionId) {
-  //   // setState(() {});
-  //   // }
-  // }
-
-  // dynamic _data;
-  // dynamic get data => _data;
-  // deleteImage() {
-  //   _imgFileList.remove(_data);
-  //   notifyListeners();
-  // }
-
-  // int transactionID = 0;
-  // int get getTransactionID => transactionID;
-  // set setTransactionID(int val) {
-  //   transactionID = val;
-  //   notifyListeners();
-  // }
 }

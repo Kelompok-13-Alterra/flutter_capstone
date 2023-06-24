@@ -67,9 +67,6 @@ class _ReviewScreenState extends State<ReviewScreen> {
       }
       print("args : ${args?.transactionId}");
       reviewProvider.clearField;
-      // setState(() {
-      //   reviewProvider.reviewController.clear();
-      // });
     }
 
     print('Id Traksaksi : ${args?.transactionId}');
@@ -153,10 +150,6 @@ class _ReviewScreenState extends State<ReviewScreen> {
                       ),
                       onRatingUpdate: (rating) {
                         reviewProvider.onRatingUpdate(rating);
-                        // setState(() {
-                        //    rating = rating ;
-                        //   // rate = rating;
-                        // });
                       },
                     ),
                     const SizedBox(
@@ -201,57 +194,6 @@ class _ReviewScreenState extends State<ReviewScreen> {
                         ),
                       );
                     }).toList(),
-                    // List<Widget>.generate(
-                    //   reviewProvider.filters.length ~/ 2, (int index) {
-                    // final firstIndex = index * 2;
-                    // final secondIndex = index * 2 + 1;
-                    // // final firstIndex = reviewProvider.firstIndex;
-                    // // final secondIndex = reviewProvider.secondIndex;
-                    // return Row(
-                    // children: [
-                    //       FilterChip(
-                    //         label: Text(
-                    //           reviewProvider.filters[firstIndex],
-                    //           style: TextStyle(
-                    //             color: selectedFilterIndex == firstIndex
-                    //                 ? NeutralColor().neutral100
-                    //                 : NeutralColor().neutral60,
-                    //           ),
-                    //         ),
-                    //         selected:
-                    //             // reviewProvider.filters[firstIndex],
-                    //             selectedFilterIndex == firstIndex,
-                    //         selectedColor: SourceColor().seed,
-                    //         onSelected: (bool selected) {
-                    //           //reviewProvider.onSelected(selected);
-                    //           setState(() {
-                    //             selectedFilterIndex = selected ? firstIndex : 0;
-                    //           });
-                    //         },
-                    //       ),
-                    //       const SizedBox(width: 8.0),
-                    //       ChoiceChip(
-                    //         label: Text(
-                    //           reviewProvider.filters[secondIndex],
-                    //           style: TextStyle(
-                    //             color: selectedFilterIndex == secondIndex
-                    //                 ? NeutralColor().neutral100
-                    //                 : NeutralColor().neutral60,
-                    //           ),
-                    //         ),
-                    //         selected: selectedFilterIndex == secondIndex,
-                    //         selectedColor: SourceColor().seed,
-                    //         onSelected: (bool selected) {
-                    //           //reviewProvider.onSelectedSecondIndex(selected);
-                    //           setState(() {
-                    // selectedFilterIndex =
-                    //                 selected ? secondIndex : 0;
-                    //           });
-                    //         },
-                    //       ),
-                    //     ],
-                    //   );
-                    // }),
                   ),
                 ),
               ),
