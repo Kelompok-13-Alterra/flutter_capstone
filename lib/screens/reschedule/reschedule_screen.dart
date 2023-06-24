@@ -56,7 +56,7 @@ class _RescheduleScreenState extends State<RescheduleScreen> {
 
         return true;
       },
-      child: Consumer2<RescheduleModelView, DetailViewModel>(
+      child: Consumer2<RescheduleViewModel, DetailViewModel>(
         builder: (context, provider, provider2, _) {
           return FutureBuilder(
             future: detailDataFuture,
@@ -70,10 +70,10 @@ class _RescheduleScreenState extends State<RescheduleScreen> {
                         // Image Swipe
                         //================================================================
                         ImageDetail(
-                          image: detail!.imageUrl!.isEmpty ||
+                          image: detail!.imageUrl.isEmpty ||
                                   detail.imageUrl == ''
                               ? "https://img.freepik.com/premium-photo/modern-corporate-architecture-can-be-seen-cityscape-office-buildings_410516-276.jpg"
-                              : detail.imageUrl!,
+                              : detail.imageUrl,
                         ),
                         // Container Detail
                         //================================================================
@@ -151,6 +151,9 @@ class _RescheduleScreenState extends State<RescheduleScreen> {
                                 args['ID'],
                                 pickedRange,
                               );
+
+                              // ScaffoldMessenger.of(context).showSnackBar(
+                              //     const SnackBar(content: Text(provider.ge)));
 
                               // ignore: avoid_print
                               print(

@@ -4,7 +4,6 @@ import 'package:flutter_capstone/model/midtrans/midtrans_model.dart';
 import 'dart:async';
 import 'package:flutter_capstone/screens/payment/transaction_failed_screen.dart';
 import 'package:flutter_capstone/services/midtrans/midtrans_service.dart';
-import 'package:flutter_capstone/services/order/order_service.dart';
 
 class PaymentViewModel extends ChangeNotifier {
   //Detail Payment
