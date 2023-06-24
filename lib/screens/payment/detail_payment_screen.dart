@@ -11,14 +11,13 @@ import 'package:provider/provider.dart';
 import 'payment_view_model.dart';
 import 'dart:async';
 
-// ignore: must_be_immutable
 class DetailPaymentScreen extends StatefulWidget {
   final int paymentId;
   final int officeId;
   final String selectedDateRange;
-  String image;
+  final String image;
 
-  DetailPaymentScreen({
+  const DetailPaymentScreen({
     super.key,
     required this.paymentId,
     required this.officeId,
@@ -277,7 +276,7 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                                       borderRadius: BorderRadius.circular(12),
                                       child: Image.network(
                                         provider.getMidtransModel.data!.office
-                                                    .imageUrl!.isEmpty ||
+                                                    .imageUrl.isEmpty ||
                                                 provider.getMidtransModel.data!
                                                         .office.imageUrl ==
                                                     ''

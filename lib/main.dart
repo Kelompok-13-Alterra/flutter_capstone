@@ -19,7 +19,7 @@ import 'package:flutter_capstone/screens/home/home_screen.dart';
 import 'package:flutter_capstone/screens/home/home_view_model.dart';
 import 'package:flutter_capstone/screens/login/login_screen.dart';
 import 'package:flutter_capstone/screens/login/login_view_model.dart';
-import 'package:flutter_capstone/screens/reschedule/reschedule.dart';
+import 'package:flutter_capstone/screens/reschedule/reschedule_screen.dart';
 import 'package:flutter_capstone/screens/reschedule/reschedule_view_model.dart';
 import 'package:flutter_capstone/screens/order/order_screen.dart';
 import 'package:flutter_capstone/screens/profile/profile_screen.dart';
@@ -74,7 +74,7 @@ void main() {
           create: (context) => MarkAsReadViewModel(),
         ),
         ChangeNotifierProvider(
-          create: (context) => RescheduleModelView(),
+          create: (context) => RescheduleViewModel(),
         ),
         ChangeNotifierProvider(
           create: (context) => EditProfileViewModel(),
