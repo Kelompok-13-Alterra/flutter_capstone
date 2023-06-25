@@ -54,11 +54,14 @@ class _HomeScreenState extends State<HomeScreen> {
   Future<void> _getCurrentPosition() async {
     final hasPermission = await _handleLocationPermission();
 
-    if (!hasPermission) return;
+    if (!hasPermission || !mounted) return;
+
     await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
         .then((Position position) {
-      setState(() => _currentPosition = position);
-      _getAddressFromLatLng(_currentPosition!);
+      if (mounted) {
+        setState(() => _currentPosition = position);
+        _getAddressFromLatLng(_currentPosition!);
+      }
     }).catchError((e) {
       throw e;
     });
