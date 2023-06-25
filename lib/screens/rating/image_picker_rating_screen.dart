@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_nullable_for_final_variable_declarations
+
 import 'dart:io';
 
 import 'package:flutter/material.dart';
