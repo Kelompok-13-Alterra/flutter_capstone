@@ -330,25 +330,26 @@ class OrderWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 //Button 1
-                SizedBox(
-                  width: 160,
-                  height: 40,
-                  child: ElevatedButton(
-                    onPressed: routeButton1,
-                    style: ElevatedButton.styleFrom(
-                      foregroundColor: SourceColor().white,
-                      backgroundColor: PrimaryColor().primary,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(100),
+                Expanded(
+                  child: SizedBox(
+                    height: 40,
+                    child: ElevatedButton(
+                      onPressed: routeButton1,
+                      style: ElevatedButton.styleFrom(
+                        foregroundColor: SourceColor().white,
+                        backgroundColor: PrimaryColor().primary,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(100),
+                        ),
+                        padding: const EdgeInsets.symmetric(vertical: 8),
+                        visualDensity: VisualDensity.compact,
                       ),
-                      padding: const EdgeInsets.symmetric(vertical: 8),
-                      visualDensity: VisualDensity.compact,
-                    ),
-                    child: Text(
-                      buttonText1,
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: medium,
+                      child: Text(
+                        buttonText1,
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: medium,
+                        ),
                       ),
                     ),
                   ),
@@ -357,38 +358,39 @@ class OrderWidget extends StatelessWidget {
                 const Padding(padding: EdgeInsets.only(right: 10)),
 
                 //Button 2
-                SizedBox(
-                  width: 160,
-                  height: 40,
-                  child: ElevatedButton(
-                    onPressed: routeButton2,
-                    style: ElevatedButton.styleFrom(
-                      foregroundColor: buttonText2 == 'Cancel Book'
-                          ? ErrorColor().error50
-                          : PrimaryColor().primary,
-                      backgroundColor: SourceColor().white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(100),
-                        side: BorderSide(
-                          color: buttonText2 == 'Cancel Book'
-                              ? ErrorColor().error50
-                              : PrimaryColor().primary,
+                Expanded(
+                  child: SizedBox(
+                    height: 40,
+                    child: ElevatedButton(
+                      onPressed: routeButton2,
+                      style: ElevatedButton.styleFrom(
+                        foregroundColor: buttonText2 == 'Cancel Book'
+                            ? ErrorColor().error50
+                            : PrimaryColor().primary,
+                        backgroundColor: SourceColor().white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(100),
+                          side: BorderSide(
+                            color: buttonText2 == 'Cancel Book'
+                                ? ErrorColor().error50
+                                : PrimaryColor().primary,
+                          ),
                         ),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 8),
+                        visualDensity: VisualDensity.compact,
                       ),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 16, vertical: 8),
-                      visualDensity: VisualDensity.compact,
+                      child: Text(buttonText2,
+                          style: buttonText2 == 'Cancel Book'
+                              ? setTextStyle(ErrorColor().error50).copyWith(
+                                  fontSize: 14,
+                                  fontWeight: medium,
+                                )
+                              : setTextStyle(PrimaryColor().primary).copyWith(
+                                  fontSize: 14,
+                                  fontWeight: medium,
+                                )),
                     ),
-                    child: Text(buttonText2,
-                        style: buttonText2 == 'Cancel Book'
-                            ? setTextStyle(ErrorColor().error50).copyWith(
-                                fontSize: 14,
-                                fontWeight: medium,
-                              )
-                            : setTextStyle(PrimaryColor().primary).copyWith(
-                                fontSize: 14,
-                                fontWeight: medium,
-                              )),
                   ),
                 ),
               ],
