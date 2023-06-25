@@ -1,8 +1,6 @@
 // ignore_for_file: unnecessary_brace_in_string_interps, must_be_immutable
 
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/core/init/utils/open_close.dart';
-import 'package:flutter_capstone/core/init/utils/price_convert.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -46,7 +44,6 @@ class OrderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('Status payment $statusPayment');
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16),

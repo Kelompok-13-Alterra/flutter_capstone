@@ -103,10 +103,10 @@ class PaymentViewModel extends ChangeNotifier {
 
   void startCountdown(BuildContext context, int officeId) {
     //the timer will end up the transaction success or failed
-    _timerOffice = DateTime.now().add(const Duration(seconds: 5));
+    _timerOffice = DateTime.now().add(const Duration(minutes: 2));
 
     // Inisialisasi _timerOffice saat countdown dimulai
-    _timer = Timer.periodic(const Duration(minutes: 2), (timer) {
+    _timer = Timer.periodic(const Duration(seconds: 2), (timer) {
       if (DateTime.now().isBefore(_timerOffice!)) {
         notifyListeners();
       } else {
