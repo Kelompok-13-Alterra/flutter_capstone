@@ -60,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
       setState(() => _currentPosition = position);
       _getAddressFromLatLng(_currentPosition!);
     }).catchError((e) {
-      debugPrint(e);
+      throw e;
     });
   }
 
@@ -81,8 +81,15 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     getOffice = Provider.of<HomeViewModel>(context, listen: false).getOffice();
 
+    if (mounted) {
+      _getCurrentPosition();
+    }
     super.initState();
-    _getCurrentPosition();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   @override

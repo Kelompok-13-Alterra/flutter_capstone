@@ -44,27 +44,25 @@ class _BookedOrderScreenState extends State<BookedOrderScreen> {
                   itemBuilder: (context, index) {
                     var data = office.listBooked[index];
                     return OrderWidget(
-                      urlImg: office.listBooked[index].office.imageUrl,
-                      title: office.listBooked[index].office.name,
-                      rating: 4.6,
-                      type: office.listBooked[index].office.type,
+                      imageUrl: data.office.imageUrl,
+                      title: data.office.name,
+                      rating: data.office.rating,
+                      type: data.office.type,
                       duration:
-                          '${office.listBooked[index].office.open.substring(0, 5)} - ${office.listBooked[index].office.close.substring(0, 5)}',
-                      statusPayment:
-                          office.listBooked[index].paymentStatus!.isEmpty ||
-                                  office.listBooked[index].paymentStatus == ''
-                              ? 'untrack'
-                              : office.listBooked[index].paymentStatus!,
+                          '${data.office.open.substring(0, 5)} - ${data.office.close.substring(0, 5)}',
+                      statusPayment: data.paymentStatus!.isEmpty ||
+                              data.paymentStatus == ''
+                          ? 'untrack'
+                          : data.paymentStatus!,
                       buttonText1: 'Change Schedule',
                       routeButton1: () {
-                        final officeIDDetail =
-                            office.listBooked[index].office.id;
+                        final officeIDDetail = data.office.id;
                         Navigator.pushNamed(
                           context,
                           '/reschedule',
                           arguments: {
-                            'ID': office.listBooked[index].idTransaction,
-                            'officeId': office.listBooked[index].office.id,
+                            'ID': data.idTransaction,
+                            'officeId': data.office.id,
                           },
                         );
                       },

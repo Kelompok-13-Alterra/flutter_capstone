@@ -1,7 +1,10 @@
 // ignore_for_file: unnecessary_brace_in_string_interps, must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:flutter_capstone/core/init/utils/open_close.dart';
+import 'package:flutter_capstone/core/init/utils/price_convert.dart';
 import 'package:flutter_capstone/style/text_style.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 // class OrderValue {
 //   Booked? bookedData;
@@ -12,7 +15,7 @@ class OrderWidget extends StatelessWidget {
   // dynamic data;
   // Booked bookedData;
   // History historyData;
-  final String? urlImg;
+  final String? imageUrl;
   final String title;
   final double rating;
   final String type;
@@ -30,7 +33,7 @@ class OrderWidget extends StatelessWidget {
     // required this.bookedData,
     // required this.historyData,
     required this.title,
-    required this.urlImg,
+    required this.imageUrl,
     required this.rating,
     required this.type,
     required this.duration,
@@ -51,117 +54,275 @@ class OrderWidget extends StatelessWidget {
           children: [
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                //Image
                 Container(
-                  width: 130,
-                  height: 100,
+                  height: 90,
+                  width: 110,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
-                    image: DecorationImage(
-                      image: NetworkImage(
-                        urlImg!.isEmpty || urlImg == ''
-                            ? 'https://img.freepik.com/premium-photo/modern-corporate-architecture-can-be-seen-cityscape-office-buildings_410516-276.jpg'
-                            : urlImg!,
-                      ),
-                      fit: BoxFit.cover,
-                    ),
+                    color: Colors.black,
                   ),
-                ),
-
-                //Contain
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      title,
-                      style: TextStyle(
-                        fontWeight: semiBold,
-                        fontSize: 16,
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    Row(
-                      children: [
-                        Icon(Icons.star, color: SourceColor().yellow),
-                        const SizedBox(width: 4),
-                        Text(
-                          rating.toString(),
-                          style: TextStyle(
-                            fontWeight: medium,
-                            fontSize: 13,
-                            color: NeutralColor().neutral17,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 4),
-                    Row(
-                      children: [
-                        Icon(Icons.business,
-                            size: 14, color: NeutralColor().neutral60),
-                        const SizedBox(width: 4),
-                        Text(
-                          type,
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: medium,
-                            color: NeutralColor().neutral60,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 4),
-                    Row(
-                      children: [
-                        Icon(Icons.access_time,
-                            size: 14, color: NeutralColor().neutral60),
-                        const SizedBox(width: 4),
-                        Text(
-                          duration,
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: medium,
-                            color: NeutralColor().neutral60,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-
-                //Button status
-                Container(
-                  height: 28,
-                  width: 81,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                  decoration: BoxDecoration(
-                    color: statusPayment == 'success'
-                        ? SuccessColor().green
-                        : statusPayment == 'deny'
-                            ? WarningColor().red
-                            : statusPayment == 'failure' ||
-                                    statusPayment == 'pending' ||
-                                    statusPayment == 'untrack'
-                                ? NeutralColor().neutral50
-                                : SourceColor().seed,
+                  child: ClipRRect(
                     borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Center(
-                    child: Text(
-                      statusPayment,
-                      style: TextStyle(
-                        color: SourceColor().white,
-                        fontWeight: medium,
-                        fontSize: 13,
-                      ),
+                    child: Image.network(
+                      imageUrl!.isEmpty || imageUrl == ''
+                          ? "https://img.freepik.com/premium-photo/modern-corporate-architecture-can-be-seen-cityscape-office-buildings_410516-276.jpg"
+                          : imageUrl!,
+                      fit: BoxFit.fill,
                     ),
                   ),
                 ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 16.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            //Wrap with flexible to know that the Row that's okay to be narrower than its intrinsic width
+                            Flexible(
+                              child: Text(
+                                title,
+                                overflow: TextOverflow.ellipsis,
+                                style: setTextStyle(NeutralColor().neutral20)
+                                    .copyWith(
+                                  fontSize: 16,
+                                  fontWeight: bold,
+                                ),
+                              ),
+                            ),
+                            Container(
+                              height: 28,
+                              width: 81,
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 8, vertical: 4),
+                              decoration: BoxDecoration(
+                                color: statusPayment == 'success'
+                                    ? SuccessColor().green
+                                    : statusPayment == 'deny'
+                                        ? WarningColor().red
+                                        : statusPayment == 'failure' ||
+                                                statusPayment == 'pending' ||
+                                                statusPayment == 'untrack'
+                                            ? NeutralColor().neutral50
+                                            : SourceColor().seed,
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  statusPayment,
+                                  style: setTextStyle(SourceColor().white)
+                                      .copyWith(
+                                    fontWeight: medium,
+                                    fontSize: 13,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.star,
+                              size: 15,
+                              color: SourceColor().yellow,
+                            ),
+                            const SizedBox(
+                              width: 5,
+                            ),
+                            Text(
+                              rating.toStringAsFixed(1),
+                              style: GoogleFonts.roboto(
+                                color: NeutralColor().neutral17,
+                                fontSize: 13,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            )
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 2,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 2),
+                              child: Image.asset(
+                                type == 'office'
+                                    ? 'assets/icons/office_card/office.png'
+                                    : 'assets/icons/office_card/co_working_space.png',
+                                width: 12,
+                                height: 12,
+                                color: NeutralColor().neutral60,
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 5,
+                            ),
+                            Flexible(
+                              child: Text(
+                                type,
+                                overflow: TextOverflow.ellipsis,
+                                style: GoogleFonts.roboto(
+                                  color: NeutralColor().neutral60,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 2,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Icon(
+                              Icons.av_timer,
+                              size: 15,
+                              color: NeutralColor().neutral60,
+                            ),
+                            const SizedBox(
+                              width: 5,
+                            ),
+                            Text(
+                              duration,
+                              style: GoogleFonts.roboto(
+                                color: NeutralColor().neutral60,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            )
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                      ],
+                    ),
+                  ),
+                )
               ],
             ),
+            // Row(
+            //   crossAxisAlignment: CrossAxisAlignment.start,
+            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //   children: [
+            //     //Image
+            //     Container(
+            //       width: 130,
+            //       height: 100,
+            //       decoration: BoxDecoration(
+            //         borderRadius: BorderRadius.circular(12),
+            //         image: DecorationImage(
+            //           image: NetworkImage(
+            //             urlImg!.isEmpty || urlImg == ''
+            //                 ? 'https://img.freepik.com/premium-photo/modern-corporate-architecture-can-be-seen-cityscape-office-buildings_410516-276.jpg'
+            //                 : urlImg!,
+            //           ),
+            //           fit: BoxFit.cover,
+            //         ),
+            //       ),
+            //     ),
+
+            //     //Contain
+            //     Column(
+            //       crossAxisAlignment: CrossAxisAlignment.start,
+            //       children: [
+            //         Text(
+            //           title,
+            //           overflow: TextOverflow.ellipsis,
+            //           style: TextStyle(
+            //             fontWeight: semiBold,
+            //             fontSize: 16,
+            //           ),
+            //         ),
+            //         const SizedBox(height: 4),
+            //         Row(
+            //           children: [
+            //             Icon(Icons.star, color: SourceColor().yellow),
+            //             const SizedBox(width: 4),
+            //             Text(
+            //               rating.toStringAsFixed(1),
+            //               style: TextStyle(
+            //                 fontWeight: medium,
+            //                 fontSize: 13,
+            //                 color: NeutralColor().neutral17,
+            //               ),
+            //             ),
+            //           ],
+            //         ),
+            //         const SizedBox(height: 4),
+            //         Row(
+            //           children: [
+            //             Icon(Icons.business,
+            //                 size: 14, color: NeutralColor().neutral60),
+            //             const SizedBox(width: 4),
+            //             Text(
+            //               type,
+            //               style: TextStyle(
+            //                 fontSize: 12,
+            //                 fontWeight: medium,
+            //                 color: NeutralColor().neutral60,
+            //               ),
+            //             ),
+            //           ],
+            //         ),
+            //         const SizedBox(height: 4),
+            //         Row(
+            //           children: [
+            //             Icon(Icons.access_time,
+            //                 size: 14, color: NeutralColor().neutral60),
+            //             const SizedBox(width: 4),
+            //             Text(
+            //               duration,
+            //               style: TextStyle(
+            //                 fontSize: 12,
+            //                 fontWeight: medium,
+            //                 color: NeutralColor().neutral60,
+            //               ),
+            //             ),
+            //           ],
+            //         ),
+            //       ],
+            //     ),
+
+            //     //Button status
+            //     Container(
+            //       height: 28,
+            //       width: 81,
+            //       padding:
+            //           const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+            //       decoration: BoxDecoration(
+            //         color: statusPayment == 'success'
+            //             ? SuccessColor().green
+            //             : statusPayment == 'deny'
+            //                 ? WarningColor().red
+            //                 : statusPayment == 'failure' ||
+            //                         statusPayment == 'pending' ||
+            //                         statusPayment == 'untrack'
+            //                     ? NeutralColor().neutral50
+            //                     : SourceColor().seed,
+            //         borderRadius: BorderRadius.circular(12),
+            //       ),
+            //       child: Center(
+            //         child: Text(
+            //           statusPayment,
+            //           style: TextStyle(
+            //             color: SourceColor().white,
+            //             fontWeight: medium,
+            //             fontSize: 13,
+            //           ),
+            //         ),
+            //       ),
+            //     ),
+            //   ],
+            // ),
 
             const SizedBox(
               height: 8,

@@ -49,7 +49,7 @@ class DetailModel {
       location: json['Location'] ?? '',
       facilities: json['Facilities'] ?? '',
       deletedAt: json['DeletedAt'],
-      imageUrl: json['ImageUrl'],
+      imageUrl: json['ImageUrl'] ?? '',
     );
   }
 }

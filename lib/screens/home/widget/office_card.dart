@@ -133,10 +133,9 @@ class _OfficeCardState extends State<OfficeCard> {
                       child: Text(
                         widget.officeData.location,
                         overflow: TextOverflow.ellipsis,
-                        style: GoogleFonts.roboto(
-                          color: NeutralColor().neutral60,
+                        style: setTextStyle(NeutralColor().neutral60).copyWith(
                           fontSize: 12,
-                          fontWeight: FontWeight.w500,
+                          fontWeight: semiBold,
                         ),
                       ),
                     )

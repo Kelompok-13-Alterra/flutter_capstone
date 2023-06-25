@@ -48,17 +48,15 @@ class _HistoryOrderScreenState extends State<HistoryOrderScreen> {
                   itemBuilder: (context, index) {
                     var data = office.listHistory[index];
                     return OrderWidget(
-                      urlImg: office.listHistory[index].office.imageUrl,
-                      title: office.listHistory[index].office.name,
-                      rating: 4.6,
-                      type: office.listHistory[index].office.type,
-                      duration:
-                          '${office.listHistory[index].office.open} - ${office.listHistory[index].office.close}',
-                      statusPayment:
-                          office.listHistory[index].paymentStatus!.isEmpty ||
-                                  office.listHistory[index].paymentStatus == ''
-                              ? 'untrack'
-                              : office.listHistory[index].paymentStatus!,
+                      imageUrl: data.office.imageUrl,
+                      title: data.office.name,
+                      rating: data.office.rating,
+                      type: data.office.type,
+                      duration: '${data.office.open} - ${data.office.close}',
+                      statusPayment: data.paymentStatus!.isEmpty ||
+                              data.paymentStatus == ''
+                          ? 'untrack'
+                          : data.paymentStatus!,
                       buttonText1: 'Book Again',
                       routeButton1: () {
                         Navigator.push(
@@ -69,6 +67,8 @@ class _HistoryOrderScreenState extends State<HistoryOrderScreen> {
                               officeId: data.officeId,
                               buttonRoute: '/booking',
                               selectedDateRange: null,
+                              idTransaction: null,
+                              rating: data.office.rating,
                             ),
                           ),
                         );

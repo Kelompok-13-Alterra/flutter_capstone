@@ -1,5 +1,4 @@
 // ignore_for_file: use_build_context_synchronously
-
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/core/init/utils/date_convert.dart';
 import 'package:flutter_capstone/services/order/order_service.dart';
@@ -665,9 +664,9 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                       context,
                       officeId: widget.officeId,
                       startDate: convertDateTime(
-                          widget.selectedDateRange!.start.toString()),
+                          widget.selectedDateRange?.start.toString() ?? ''),
                       endDate: convertDateTime(
-                          widget.selectedDateRange!.end.toString()),
+                          widget.selectedDateRange?.end.toString() ?? ''),
                       paymentId: provider.selectedValue,
                     );
 

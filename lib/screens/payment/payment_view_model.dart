@@ -106,7 +106,7 @@ class PaymentViewModel extends ChangeNotifier {
     _timerOffice = DateTime.now().add(const Duration(seconds: 5));
 
     // Inisialisasi _timerOffice saat countdown dimulai
-    _timer = Timer.periodic(const Duration(seconds: 2), (timer) {
+    _timer = Timer.periodic(const Duration(minutes: 2), (timer) {
       if (DateTime.now().isBefore(_timerOffice!)) {
         notifyListeners();
       } else {

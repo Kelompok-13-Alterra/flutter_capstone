@@ -3,10 +3,6 @@ import 'package:flutter_capstone/model/detail/detail_model.dart';
 import 'package:flutter_capstone/services/detail/detail_service.dart';
 
 class DetailViewModel extends ChangeNotifier {
-  /// Data Propertynya sama seperti OfficeModel
-  /// sehingga DetailViewModel tidak perlu karena
-  /// generate rating hanya sekali, tidak boleh double agar rating tidak terus berubah"
-  ///
   DetailModel? _detailOffice;
 
   DetailModel? get detailData => _detailOffice;

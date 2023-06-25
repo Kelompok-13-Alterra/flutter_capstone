@@ -1,5 +1,4 @@
 // ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/screens/detail/widget/bottom_book.dart';
 import 'package:flutter_capstone/screens/detail/widget/detail_card.dart';
@@ -93,20 +92,18 @@ class _DetailScreenState extends State<DetailScreen> {
                       // Image Swipe
                       //================================================================
                       ImageDetail(
-                        image: detail!.imageUrl.isEmpty || detail.imageUrl == ''
-                            ? "https://img.freepik.com/premium-photo/modern-corporate-architecture-can-be-seen-cityscape-office-buildings_410516-276.jpg"
-                            : detail.imageUrl,
+                        image: detail?.imageUrl ?? '',
                       ),
                       // Container Detail
                       //================================================================
                       DetailCard(
-                        name: detail.name,
+                        name: detail?.name ?? 'Untrack Office',
                         rating: widget.rating ?? 0,
-                        price: detail.price,
-                        open: detail.open,
-                        close: detail.close,
-                        capacity: detail.capacity,
-                        location: detail.location,
+                        price: detail?.price ?? 0,
+                        open: detail?.open ?? '',
+                        close: detail?.close ?? '',
+                        capacity: detail?.capacity ?? 0,
+                        location: detail?.location ?? 'Untrack Location',
                       ),
                       // Container Fasilitas
                       //================================================================
@@ -114,7 +111,7 @@ class _DetailScreenState extends State<DetailScreen> {
                       // Container Deskripsi
                       //================================================================
                       OfficeDescription(
-                        description: detail.description,
+                        description: detail?.description ?? '',
                       ),
                       // Button Book
                       //================================================================
@@ -123,12 +120,12 @@ class _DetailScreenState extends State<DetailScreen> {
                         officeId: widget.officeId,
                         buttonRoute: widget.buttonRoute,
                         textButton: widget.textButton,
-                        image: detail.imageUrl,
+                        image: detail?.imageUrl ?? '',
                         selectedDateRange: widget.selectedDateRange,
-                        price: detail.price,
-                        name: detail.name,
-                        type: detail.type,
-                        location: detail.location,
+                        price: detail?.price ?? 0,
+                        name: detail?.name ?? 'Untrack Office',
+                        type: detail?.type,
+                        location: detail?.location ?? '',
                       ),
                     ],
                   ),
