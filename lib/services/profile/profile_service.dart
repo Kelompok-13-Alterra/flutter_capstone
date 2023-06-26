@@ -33,4 +33,30 @@ class ProfileService extends ChangeNotifier {
       throw Exception(e);
     }
   }
+
+  Future<ProfileModel> profileChatBooking() async {
+    String token = await getToken();
+    try {
+      final response = await Dio().get(
+        '$baseUrl/api/v1/user/me',
+        options: Options(
+          headers: {
+            'accept': 'application/json',
+            'Content-Type': "aplication/json",
+            'Authorization': 'Bearer $token',
+          },
+        ),
+      );
+      print("Profile : ${response.data}");
+
+      if (response.statusCode == 200) {
+        return ProfileModel.fromJson(response.data);
+      } else {
+        throw Exception(
+            'Gagal memuat detail office. Error code : ${response.statusCode}');
+      }
+    } on DioError catch (e) {
+      throw Exception(e);
+    }
+  }
 }
