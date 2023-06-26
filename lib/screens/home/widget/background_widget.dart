@@ -94,13 +94,27 @@ class _BackgroundWidgetState extends State<BackgroundWidget> {
                           ),
                         ],
                       ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 125),
+                        child: GestureDetector(
+                          onTap: () {
+                            //OnTab di Notifikasi
+                            Navigator.pushNamed(context, '/notification');
+                          },
+                          child: SvgPicture.asset(
+                            "assets/images/home/notification-home.svg",
+                            height: 32,
+                            width: 32,
+                          ),
+                        ),
+                      ),
                       GestureDetector(
                         onTap: () {
                           //OnTab di Notifikasi
-                          Navigator.pushNamed(context, '/notification');
+                          Navigator.pushNamed(context, '/booking-via-chat');
                         },
-                        child: SvgPicture.asset(
-                          "assets/images/home/notification-home.svg",
+                        child: Image.asset(
+                          "assets/icons/booking_via_chat/chat.png",
                           height: 32,
                           width: 32,
                         ),

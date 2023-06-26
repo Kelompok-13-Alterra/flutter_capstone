@@ -20,10 +20,10 @@ class LoginScreen extends StatelessWidget {
             children: [
               Container(
                 padding: const EdgeInsets.only(top: 80.15),
-                child: const Column(
+                child:  Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   mainAxisSize: MainAxisSize.max,
-                  children: [
+                  children: const [
                     HeaderLogin(),
                     FormLogin(),
                   ],

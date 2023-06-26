@@ -1,11 +1,8 @@
+// ignore_for_file: avoid_unnecessary_containers
+
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/core/init/utils/date_convert.dart';
-import 'package:flutter_capstone/screens/payment/detail_payment_screen.dart';
 import 'package:flutter_capstone/screens/reschedule/reschedule_view_model.dart';
-import 'package:flutter_capstone/services/booking/booking_availability_service.dart';
-import 'package:flutter_capstone/services/order/order_service.dart';
 import 'package:flutter_capstone/style/text_style.dart';
-import 'package:flutter_capstone/widgets/modal_bottom.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:provider/provider.dart';

@@ -9,7 +9,6 @@ import 'package:flutter_capstone/screens/detail/widget/office_description.dart';
 import 'package:flutter_capstone/screens/errors/connection_error.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_capstone/screens/detail/detail_view_model.dart';
 import 'dart:async';
