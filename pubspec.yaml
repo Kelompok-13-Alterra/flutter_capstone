@@ -46,6 +46,7 @@ dependencies:
   shared_preferences: ^2.1.1
   slide_countdown: ^0.6.0
   smooth_page_indicator: ^1.1.0
+  flutter_tawk: ^0.1.0
 
 dev_dependencies:
   flutter_launcher_icons: ^0.13.1

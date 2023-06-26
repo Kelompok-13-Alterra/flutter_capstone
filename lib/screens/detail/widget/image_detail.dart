@@ -121,6 +121,13 @@ class _ImageDetailState extends State<ImageDetail> {
                 ),
               ),
             ),
+            // Padding(
+            //   padding: const EdgeInsets.only(top: 100),
+            //   child: Container(
+            //     alignment: Alignment.bottomRight,
+            //     child: const Icon(Icons.abc_sharp),
+            //   ),
+            // ),
           ],
         ),
         const SizedBox(
