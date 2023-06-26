@@ -1,6 +1,3 @@
-//AUTHOR : ULFA LADAYYA
-//KELAS C FLUTTER
-
 // ignore_for_file: unnecessary_nullable_for_final_variable_declarations
 
 import 'dart:io';
@@ -57,21 +54,56 @@ class _ImagePickerRatingScreenState extends State<ImagePickerRatingScreen> {
           ),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.all(9),
+              padding: const EdgeInsets.only(
+                  top: 20, bottom: 24, right: 16, left: 16),
               child: GridView.builder(
-                  itemCount: imgFileList!.length,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 4),
-                  itemBuilder: (BuildContext context, int index) {
-                    return Image.file(
-                      File(imgFileList![index].path),
-                      fit: BoxFit.cover,
-                    );
-                  }),
+                shrinkWrap: true,
+                scrollDirection: Axis.vertical,
+                itemCount: imgFileList!.length,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 4,
+                  mainAxisSpacing: 4,
+                  crossAxisSpacing: 4,
+                ),
+                itemBuilder: (BuildContext context, int index) {
+                  return Stack(
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image.file(
+                          File(imgFileList![index].path),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      Positioned(
+                        right: 1,
+                        child: GestureDetector(
+                          onTap: () {
+                            deleteImage(
+                              imgFileList![index],
+                            );
+                          },
+                          child: Image.asset(
+                            "assets/icons/rating/delete.png",
+                            width: 20,
+                            height: 20,
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              ),
             ),
           ),
         ],
       ),
     );
+  }
+
+  void deleteImage(data) {
+    setState(() {
+      imgFileList!.remove(data);
+    });
   }
 }

@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_capstone/screens/notification/mark_as_read_view_model.dart';
 import 'package:flutter_capstone/style/text_style.dart';
+import 'package:provider/provider.dart';
 
 class EmptyNotificationScreen extends StatelessWidget {
   const EmptyNotificationScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var markReadViewModel = Provider.of<MarkAsReadViewModel>(context);
     return Scaffold(
       backgroundColor: const Color(0xFFFFFFFF),
       appBar: AppBar(
@@ -23,8 +26,8 @@ class EmptyNotificationScreen extends StatelessWidget {
                 ),
                 child: Text(
                   "Notification",
-                  style: blackTextStyle.copyWith(
-                      fontSize: 16, fontWeight: regular),
+                  style: setTextStyle(NeutralColor().neutral12)
+                      .copyWith(fontSize: 16, fontWeight: regular),
                 ),
               ),
               Padding(
@@ -33,11 +36,21 @@ class EmptyNotificationScreen extends StatelessWidget {
                   bottom: 20,
                 ),
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    markReadViewModel.getMarkAsRead();
+                    var res = markReadViewModel.getMarkAsReadModel.meta;
+                    if (res?.isError == false) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(res?.message ?? 'Please try again'),
+                        ),
+                      );
+                    }
+                  },
                   child: Text(
                     "Mark all as read",
-                    style: blackTextStyle.copyWith(
-                        fontSize: 14, fontWeight: semiBold),
+                    style: setTextStyle(KeyColor().primary)
+                        .copyWith(fontSize: 14, fontWeight: semiBold),
                   ),
                 ),
               ),
@@ -51,7 +64,7 @@ class EmptyNotificationScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Image.asset(
-              "assets/Empty(general).png",
+              "assets/assets/images/notification/empty.png",
               height: 137,
               width: 119.77,
             ),
@@ -60,18 +73,20 @@ class EmptyNotificationScreen extends StatelessWidget {
             ),
             Text(
               "Masih Kosong Nih",
-              style: blackTextStyle.copyWith(fontSize: 16, fontWeight: regular),
+              style: setTextStyle(NeutralColor().neutral12).copyWith(
+                fontSize: 16,
+                fontWeight: regular,
+              ),
             ),
             const SizedBox(
               height: 8,
             ),
             Text(
-              "Yuk, pesan kantor atau co-working",
-              style: blackTextStyle.copyWith(fontSize: 12, fontWeight: regular),
-            ),
-            Text(
-              "space kamu sekarang",
-              style: blackTextStyle.copyWith(fontSize: 12, fontWeight: regular),
+              "Yuk, pesan kantor atau co-working\nspace kamu sekarang",
+              style: setTextStyle(NeutralColor().neutral40).copyWith(
+                fontSize: 12,
+                fontWeight: regular,
+              ),
             ),
             const SizedBox(
               height: 11,
@@ -93,8 +108,8 @@ class EmptyNotificationScreen extends StatelessWidget {
                 ),
                 child: Text(
                   "Start Booking",
-                  style: blackTextStyle.copyWith(
-                      fontSize: 14, fontWeight: semiBold),
+                  style: setTextStyle(PrimaryColor().onPrimary)
+                      .copyWith(fontSize: 14, fontWeight: semiBold),
                 ),
               ),
             ),

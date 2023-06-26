@@ -1,13 +1,10 @@
-//AUTHOR : ULFA LADAYYA
-//KELAS C FLUTTER
-
-// ignore_for_file: avoid_unnecessary_containers
-
 import 'package:flutter/material.dart';
-//import 'package:notification_feature/style/padding_style.dart';
+import 'package:flutter_capstone/model/notification/notification_model.dart';
+import 'package:flutter_capstone/screens/notification/all_notification_screen.dart';
+import 'package:flutter_capstone/screens/notification/booked_notification_screen.dart';
+import 'package:flutter_capstone/screens/notification/mark_as_read_view_model.dart';
 import 'package:flutter_capstone/style/text_style.dart';
-import 'package:flutter_capstone/widgets/notification/card_all_booking_notification_widget.dart';
-import 'package:flutter_capstone/widgets/notification/card_booking_notification_widget.dart';
+import 'package:provider/provider.dart';
 
 class NotificationScreen extends StatefulWidget {
   const NotificationScreen({super.key});
@@ -17,6 +14,7 @@ class NotificationScreen extends StatefulWidget {
 }
 
 class _NotificationScreenState extends State<NotificationScreen> {
+  Datum? notification;
   List<Tab> notifTab = [
     const Tab(
       text: "All",
@@ -27,12 +25,21 @@ class _NotificationScreenState extends State<NotificationScreen> {
   ];
   @override
   Widget build(BuildContext context) {
+    var markReadViewModel = Provider.of<MarkAsReadViewModel>(context);
     return DefaultTabController(
       length: notifTab.length,
       child: Scaffold(
-        backgroundColor: const Color(0xFFFFFFFF),
+        backgroundColor: SourceColor().white,
         appBar: AppBar(
-          backgroundColor: const Color(0xFFFFFFFF),
+          elevation: 0,
+          backgroundColor: SourceColor().white,
+          leading: IconButton(
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.black,
+            ),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
           title: Padding(
             padding: const EdgeInsets.only(
               top: 16,
@@ -46,7 +53,10 @@ class _NotificationScreenState extends State<NotificationScreen> {
                   ),
                   child: Text(
                     "Notification",
-                    style: NotificationTitle().text9,
+                    style: setTextStyle(NeutralColor().neutral12).copyWith(
+                      fontSize: 16,
+                      fontWeight: regular,
+                    ),
                   ),
                 ),
                 Padding(
@@ -55,10 +65,27 @@ class _NotificationScreenState extends State<NotificationScreen> {
                     bottom: 20,
                   ),
                   child: TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      markReadViewModel.getMarkAsRead();
+                      var res = markReadViewModel.getMarkAsReadModel.meta;
+                      if (res?.isError == false) {
+                        setState(() {
+                          notification?.isRead = true;
+                        });
+
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(res?.message ?? 'Please try again'),
+                          ),
+                        );
+                      }
+                    },
                     child: Text(
                       "Mark all as read",
-                      style: MarkAllAsRead().text10,
+                      style: setTextStyle(KeyColor().primary).copyWith(
+                        fontSize: 14,
+                        fontWeight: semiBold,
+                      ),
                     ),
                   ),
                 ),
@@ -73,20 +100,17 @@ class _NotificationScreenState extends State<NotificationScreen> {
               indicatorColor: const Color(0xFF005DB9),
               labelColor: const Color(0xFF5E5E62),
               unselectedLabelColor: const Color(0xFF666666),
-              labelStyle: TabLabelStyle().text11,
-              unselectedLabelStyle: UnselectTabLabelStyle().text12,
+              labelStyle: setTextStyle(NeutralColor().neutral10)
+                  .copyWith(fontSize: 14, fontWeight: semiBold),
+              unselectedLabelStyle: setTextStyle(NeutralColor().neutral10)
+                  .copyWith(fontSize: 14, fontWeight: semiBold),
               tabs: notifTab,
             ),
-            Expanded(
+            const Expanded(
               child: TabBarView(
                 children: [
-                  Container(
-                    child: cardAllBookingNotificationWidget(context),
-                  ),
-                  Container(
-                    color: Colors.white,
-                    child: cardBookingNotificationWidget(context),
-                  ),
+                  AllNotificationScreen(),
+                  BookedNotificationScreen(),
                 ],
               ),
             ),
@@ -96,71 +120,3 @@ class _NotificationScreenState extends State<NotificationScreen> {
     );
   }
 }
-    // return Scaffold(
-    //   backgroundColor: Colors.white,
-    //   appBar: AppBar(
-    //     backgroundColor: const Color(0xFFFFFFFF),
-    //     title: Padding(
-    //       padding: const EdgeInsets.only(
-    //         top: 16,
-    //       ),
-    //       child: Row(
-    //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    //         children: [
-    //           Text(
-    //             "Notification",
-    //             style: NotificationTitle().text9,
-    //           ),
-    //           Text(
-    //             "Mark all as read",
-    //             style: MarkAllAsRead().text10,
-    //           ),
-    //         ],
-    //       ),
-    //     ),
-    //     bottom: PreferredSize(
-    //       preferredSize: const Size.fromHeight(56),
-    //       child: DefaultTabController(
-    //         length: notifTab.length,
-    //         child: TabBar(
-    //           indicatorWeight: 3,
-    //           indicatorColor: const Color(0xFF005DB9),
-    //           labelStyle: TabLabelStyle().text11,
-    //           unselectedLabelStyle: UnselectTabLabelStyle().text12,
-    //           tabs: notifTab,
-    //         ),
-    //       ),
-    //     ),
-    //   ),
-    // body: TabBarView(
-    //   children: [
-    //     Container(
-    //       child: Text("1"),
-    //       color: Colors.blueGrey,
-    //     ),
-    //     Container(
-    //       child: Text("2"),
-    //       color: Colors.greenAccent,
-    //     ),
-    //   ],
-    // ),
-    // );
-/*
-        bottom: const PreferredSize(
-          preferredSize: Size.fromHeight(108),
-          child: DefaultTabController(
-            length: 2,
-            child: TabBar(
-              labelColor: Color(0xFF5E5E62),
-              tabs: [
-                Tab(
-                  text: "All",
-                ),
-                Tab(
-                  text: "Booking",
-                ),
-              ],
-            ),
-          ),
-        ),
- */

@@ -28,32 +28,42 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  calendar_date_picker2: ^0.5.2
+  cupertino_icons: ^1.0.2
+  dio: ^5.1.2
+  email_validator: ^2.1.17
+  file_picker: ^5.3.2
   flutter:
     sdk: flutter
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
-  image_picker: ^0.8.7+5
-  email_validator: ^2.1.17
-  flutter_svg: ^2.0.5
+  flutter_html: ^3.0.0-alpha.3
   flutter_rating_bar: ^4.0.1
+  flutter_svg: ^2.0.5
+  flutter_tawk: ^0.1.0
+  geocoding: ^2.1.0
+  geolocator: ^9.0.2
   google_fonts: ^4.0.4
+  image_picker: ^0.8.9
+  intl: ^0.18.1
+  provider: ^6.0.5
+  shared_preferences: ^2.1.1
+  slide_countdown: ^0.6.0
+  smooth_page_indicator: ^1.1.0
 
 dev_dependencies:
+  flutter_launcher_icons: ^0.13.1
+  flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
 
-  # The "flutter_lints" package below contains a set of recommended lints to
-  # encourage good coding practices. The lint set provided by the package is
-  # activated in the `analysis_options.yaml` file located at the root of your
-  # package. See that file for information about deactivating specific lint
-  # rules and activating additional ones.
-  flutter_lints: ^2.0.0
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/logo/logo_foreground.png"
+  adaptive_icon_background: "#FFFFFF"
+  adaptive_icon_foreground: "assets/logo/logo_foreground.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
-
 # The following section is specific to Flutter packages.
 flutter:
   # The following line ensures that the Material Icons font is
@@ -64,41 +74,34 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/
-    - assets/homescreen/icon-location.svg
-    - assets/homescreen/icon-right.svg
-    - assets/homescreen/maps.png
-    - assets/homescreen/office-list.jpg
-    - assets/homescreen/background-homescreen.svg
-    - assets/homescreen/notification-home.svg
-    - assets/homescreen/background-home1.svg
-    - assets/homescreen/background-home2.svg
-    - assets/icon-botton-navigation-bar/home.svg
-    - assets/icon-botton-navigation-bar/home-selected.svg
-    - assets/icon-botton-navigation-bar/notes.svg
-    - assets/icon-botton-navigation-bar/notes-selected.svg
-    - assets/icon-botton-navigation-bar/apps-rectangle.svg
-    - assets/icon-botton-navigation-bar/apps-rectangle-selected.svg
-    - assets/img/
-    - assets/on_boarding/
-    - assets/progress_indicator/
-    - assets/image/Avatar.png
-    - assets/image/meeting_room.png
-    - assets/image/Image_total_kantor.png
-    - assets/image/Image_total_co-working.png
-    - assets/image/meeting_room_fill.png
-    - assets/image/delete_forever.png
-    - assets/image/help_center.png
-    - assets/image/privacy_tip.png
-    - assets/image/lock.png
-    - assets/image/logout.png
-    - assets/image/local_police.png
+    - assets/icons/
+    - assets/icons/auth/
+    - assets/icons/profile/
+    - assets/icons/detail/
+    - assets/icons/errors/
+    - assets/icons/rating/
+    - assets/icons/office_card/
+    - assets/icons/payment/
+    - assets/icons/bottom_navigation_bar/
+    - assets/icons/progress_indicator/
+    - assets/icons/booking_via_chat/
 
+    - assets/images/
+    - assets/images/notification/
+    - assets/images/edit_profile/
+    - assets/images/profile/
+    - assets/images/office_image/
+    - assets/images/modal_bottom/
+    - assets/images/home/
+    - assets/images/on_boarding/
+    - assets/images/detail/
+    - assets/images/rating/
+
+    - assets/logo/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
-
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/assets-and-images/#from-packages
-
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a

@@ -1,10 +1,13 @@
-// ignore_for_file: file_names
+// ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
-import 'package:flutter_capstone/screens/order/order_screen.dart';
-import 'package:flutter_capstone/widgets/home/homepage.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_capstone/screens/home/home_view_model.dart';
+import 'package:flutter_capstone/screens/home/widget/background_widget.dart';
+import 'package:flutter_capstone/screens/home/widget/filter_choice.dart';
+import 'package:flutter_capstone/screens/home/widget/home_widget.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -14,100 +17,97 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int currentIndex = 0;
+  late Future<dynamic> getOffice;
 
-  final List<Widget> _children = [
-    const Homepage(),
-    const OrderScreen(),
-    const Center(
-      child: Text("Ini buat page Setting"),
-    ),
-  ];
+  String? _currentAddress;
+  Position? _currentPosition;
 
-  List<String> svgAssets = [
-    'assets/icon-botton-navigation-bar/home.svg',
-    'assets/icon-botton-navigation-bar/home-selected.svg',
-    'assets/icon-botton-navigation-bar/notes.svg',
-    'assets/icon-botton-navigation-bar/notes-selected.svg',
-    'assets/icon-botton-navigation-bar/apps-rectangle.svg',
-    'assets/icon-botton-navigation-bar/apps-rectangle-selected.svg',
-  ];
+  Future<bool> _handleLocationPermission() async {
+    bool serviceEnabled;
+    LocationPermission permission;
 
-  void onTabTapped(int index) {
-    setState(() {
-      currentIndex = index;
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text(
+              'Location services are disabled. Please enable the services')));
+      return false;
+    }
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Location permissions are denied')));
+        return false;
+      }
+    }
+    if (permission == LocationPermission.deniedForever) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text(
+              'Location permissions are permanently denied, we cannot request permissions.')));
+      return false;
+    }
+    return true;
+  }
+
+  Future<void> _getCurrentPosition() async {
+    final hasPermission = await _handleLocationPermission();
+
+    if (!hasPermission || !mounted) return;
+
+    await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
+        .then((Position position) {
+      if (mounted) {
+        setState(() => _currentPosition = position);
+        _getAddressFromLatLng(_currentPosition!);
+      }
+    }).catchError((e) {
+      throw e;
     });
+  }
+
+  Future<void> _getAddressFromLatLng(Position position) async {
+    await placemarkFromCoordinates(
+            _currentPosition!.latitude, _currentPosition!.longitude)
+        .then((List<Placemark> placemarks) {
+      Placemark place = placemarks[0];
+      setState(() {
+        _currentAddress = '${place.subAdministrativeArea}';
+      });
+    }).catchError((e) {
+      debugPrint(e);
+    });
+  }
+
+  @override
+  void initState() {
+    getOffice = Provider.of<HomeViewModel>(context, listen: false).getOffice();
+
+    if (mounted) {
+      _getCurrentPosition();
+    }
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: null,
       backgroundColor: Colors.white,
-      body: _children[currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        elevation: 0,
-        type: BottomNavigationBarType.fixed,
-        unselectedLabelStyle: GoogleFonts.roboto(
-          fontSize: 14,
-          fontWeight: FontWeight.w500,
-          color: const Color(0xFFC7C6CA),
-        ),
-        selectedLabelStyle: GoogleFonts.roboto(
-          fontSize: 14,
-          fontWeight: FontWeight.w500,
-          color: const Color(0xFF0074E5),
-        ),
-        currentIndex: currentIndex,
-        onTap: onTabTapped,
-        items: [
-          BottomNavigationBarItem(
-            icon: Column(
-              children: [
-                SvgPicture.asset(
-                  currentIndex == 0 ? svgAssets[1] : svgAssets[0],
-                  height: 24,
-                  width: 24,
-                  fit: BoxFit.contain,
-                ),
-                const SizedBox(
-                  height: 5,
-                )
-              ],
-            ),
-            label: 'Home',
+      body: CustomScrollView(
+        shrinkWrap: true,
+        slivers: [
+          BackgroundWidget(
+            currentAddress: _currentAddress ?? 'Untracked place',
           ),
-          BottomNavigationBarItem(
-            icon: Column(
-              children: [
-                SvgPicture.asset(
-                  currentIndex == 1 ? svgAssets[3] : svgAssets[2],
-                  height: 24,
-                  width: 24,
-                  fit: BoxFit.contain,
-                ),
-                const SizedBox(
-                  height: 5,
-                )
-              ],
-            ),
-            label: "Order",
-          ),
-          BottomNavigationBarItem(
-            icon: Column(
-              children: [
-                SvgPicture.asset(
-                  currentIndex == 2 ? svgAssets[5] : svgAssets[4],
-                  height: 24,
-                  width: 24,
-                  fit: BoxFit.contain,
-                ),
-                const SizedBox(
-                  height: 5,
-                )
-              ],
-            ),
-            label: "Settings",
+          const FilterChoice(),
+          HomeWidget(
+            currentAddress: _currentAddress,
           ),
         ],
       ),
