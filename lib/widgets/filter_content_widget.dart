@@ -35,7 +35,7 @@ class _FilterContentWidgetState extends State<FilterContentWidget> {
                   rating: widget.data.rating,
                   officeId: widget.officeId,
                   buttonRoute: '/booking',
-                  textButton: 'Book',
+                  textButton: 'Booking via Aplication',
                 ),
               ),
             );

@@ -118,7 +118,7 @@ class _BottomBookState extends State<BottomBook> {
                 : Text(
                     widget.selectedDateRange != null
                         ? 'Pilih metode pembayaran'
-                        : 'Booking',
+                        : 'Booking via Aplication',
                     style: setTextStyle(SourceColor().white)
                         .copyWith(fontWeight: medium, fontSize: 14),
                   ),

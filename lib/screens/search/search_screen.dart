@@ -127,7 +127,8 @@ class _SearchScreenState extends State<SearchScreen> {
                                             MaterialPageRoute(
                                               builder: (context) =>
                                                   DetailScreen(
-                                                textButton: 'Booking',
+                                                textButton:
+                                                    'Booking via Aplication',
                                                 buttonRoute: '/booking',
                                                 officeId: data.id,
                                                 selectedDateRange: null,
