@@ -115,7 +115,7 @@ class MyApp extends StatelessWidget {
         '/reschedule': (context) => const RescheduleScreen(),
         '/card-search-bar': (context) => const SearchScreen(),
         '/booking': (context) => const BookingScheduleScreen(),
-        '/booking-via-chat':(context) => const BookingViaChatScreen(),
+        '/booking-via-chat': (context) => const BookingViaChatScreen(),
         '/edit-profile': (context) {
           final EditProfileArguments args = ModalRoute.of(context)
               ?.settings

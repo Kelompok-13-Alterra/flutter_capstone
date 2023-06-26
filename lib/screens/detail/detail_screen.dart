@@ -6,7 +6,6 @@ import 'package:flutter_capstone/screens/detail/widget/fasilities.dart';
 import 'package:flutter_capstone/screens/detail/widget/image_detail.dart';
 import 'package:flutter_capstone/screens/detail/widget/office_description.dart';
 import 'package:flutter_capstone/screens/errors/connection_error.dart';
-import 'package:flutter_capstone/style/text_style.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_capstone/screens/detail/detail_view_model.dart';
 import 'dart:async';
@@ -115,36 +114,36 @@ class _DetailScreenState extends State<DetailScreen> {
                         description: detail?.description ?? '',
                       ),
 
-                      //Booking Via Chat
-                      Container(
-                        alignment: Alignment.bottomRight,
-                        child: Row(
-                          children: [
-                            TextButton(
-                              onPressed: () {
-                                Navigator.pushNamed(
-                                    context, '/booking-via-chat');
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.only(
-                                  left: 16,
-                                  bottom: 16,
-                                ),
-                                child: Text(
-                                  "Booking Via Chat",
-                                  style: setTextStyle(BlackColor().black)
-                                      .copyWith(
-                                          fontWeight: semiBold, fontSize: 14),
-                                ),
-                              ),
-                            ),
-                            // FloatingActionButton(
-                            //   onPressed: () {},
-                            //   child: Icon(Icons.abc),
-                            // ),
-                          ],
-                        ),
-                      ),
+                      // //Booking Via Chat
+                      // Container(
+                      //   alignment: Alignment.bottomRight,
+                      //   child: Row(
+                      //     children: [
+                      //       TextButton(
+                      //         onPressed: () {
+                      //           Navigator.pushNamed(
+                      //               context, '/booking-via-chat');
+                      //         },
+                      //         child: Padding(
+                      //           padding: const EdgeInsets.only(
+                      //             left: 16,
+                      //             bottom: 16,
+                      //           ),
+                      //           child: Text(
+                      //             "Booking Via Chat",
+                      //             style: setTextStyle(BlackColor().black)
+                      //                 .copyWith(
+                      //                     fontWeight: semiBold, fontSize: 14),
+                      //           ),
+                      //         ),
+                      //       ),
+                      //       // FloatingActionButton(
+                      //       //   onPressed: () {},
+                      //       //   child: Icon(Icons.abc),
+                      //       // ),
+                      //     ],
+                      //   ),
+                      // ),
                       // Container(
                       //   alignment: Alignment.bottomRight,
                       //   child: const Icon(Icons.abc_sharp),

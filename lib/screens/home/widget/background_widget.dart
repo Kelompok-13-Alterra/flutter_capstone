@@ -105,6 +105,17 @@ class _BackgroundWidgetState extends State<BackgroundWidget> {
                           width: 32,
                         ),
                       ),
+                      GestureDetector(
+                        onTap: () {
+                          //OnTab di Notifikasi
+                          Navigator.pushNamed(context, '/booking-via-chat');
+                        },
+                        child: Image.asset(
+                          "assets/icons/booking_via_chat/chat.png",
+                          height: 32,
+                          width: 32,
+                        ),
+                      ),
                     ],
                   ),
                   //Card Location
