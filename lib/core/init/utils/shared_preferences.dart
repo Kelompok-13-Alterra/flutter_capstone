@@ -1,7 +1,11 @@
+import 'dart:convert';
+import 'dart:typed_data';
+
+import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 const String token = "token";
-const String photoProfile = "photo";
+
 saveToken({
   required String valueToken,
 }) async {
@@ -22,22 +26,31 @@ removeToken() async {
   await prefs.remove(token);
 }
 
-savePhotoProfile({
-  required String valuePhotoProfile,
-}) async {
-  final SharedPreferences prefs = await SharedPreferences.getInstance();
+class Utility {
+  static const String photoProfile = "photo";
 
-  await prefs.setString(photoProfile, valuePhotoProfile);
-}
+  static Future<String> getImageFromPreferences() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString(photoProfile).toString();
+  }
 
-Future<String> getPhotoProfile() async {
-  final SharedPreferences prefs = await SharedPreferences.getInstance();
-  final dataPhotoProfile = prefs.getString(photoProfile).toString();
-  return dataPhotoProfile;
-}
+  static Future<bool> saveImageToPreferences(String value) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.setString(photoProfile, value);
+  }
 
-removePhotoProfile() async {
-  final SharedPreferences prefs = await SharedPreferences.getInstance();
+  static Image imageFromBase64String(String base64String) {
+    return Image.memory(
+      base64Decode(base64String),
+      fit: BoxFit.fill,
+    );
+  }
 
-  await prefs.remove(photoProfile);
+  static Uint8List dataFromBase64String(String base64String) {
+    return base64Decode(base64String);
+  }
+
+  static String base64String(Uint8List data) {
+    return base64Encode(data);
+  }
 }

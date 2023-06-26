@@ -65,27 +65,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            FutureBuilder(
-                              future: getPhotoProfile(),
-                              builder: (context, snapshot) {
-                                if (snapshot.hasData) {
-                                  return ClipOval(
-                                      child: Image.file(
-                                    File(snapshot.data!),
-                                    width: 100,
-                                    height: 100,
-                                  ));
-                                } else {
-                                  return SizedBox(
-                                    width: 100,
-                                    height: 100,
-                                    child: CircleAvatar(
-                                      backgroundColor:
-                                          SecondaryColor().secondaryFixedDim,
-                                    ),
-                                  );
-                                }
-                              },
+                            SizedBox(
+                              width: 100,
+                              height: 100,
+                              child: CircleAvatar(
+                                backgroundColor:
+                                    SecondaryColor().secondaryFixedDim,
+                              ),
                             ),
                             Padding(
                               padding: const EdgeInsets.symmetric(

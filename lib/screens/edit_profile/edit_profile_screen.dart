@@ -1,6 +1,7 @@
 // ignore_for_file: unused_field, no_leading_underscores_for_local_identifiers, avoid_print
 
 import 'dart:io';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/core/init/utils/shared_preferences.dart';
 import 'package:flutter_capstone/screens/bottom_nav/bottom_nav_screen.dart';
@@ -31,6 +32,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   XFile? selectedImage;
   List? _imageFile;
   String? uploadImage;
+  Future<File>? imageFile;
+  Image? imageFromPreferences;
 
   void _togglePasswordVisibility() {
     setState(() {
@@ -229,13 +232,24 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     }
   }
 
-  void setImageFile(XFile? file) {
+  void setImageFile(XFile? file) async {
     if (file != null) {
       setState(() {
         _imageFile = [file];
         uploadImage = file.path;
       });
     }
+  }
+
+  loadImageFromPreferences() {
+    Utility.getImageFromPreferences().then((img) {
+      if (null == img) {
+        return;
+      }
+      setState(() {
+        imageFromPreferences = Utility.imageFromBase64String(img);
+      });
+    });
   }
 
   @override
@@ -282,12 +296,15 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       child: Column(
                         children: [
                           FutureBuilder(
-                            future: getPhotoProfile(),
+                            future: imageFile,
                             builder: (context, snapshot) {
                               if (snapshot.hasData) {
+                                Utility.saveImageToPreferences(
+                                    Utility.base64String(
+                                        snapshot.data!.readAsBytesSync()));
                                 return ClipOval(
                                     child: Image.file(
-                                  File(snapshot.data!),
+                                  snapshot.data!,
                                   width: 100,
                                   height: 100,
                                 ));
@@ -321,7 +338,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             ),
                             onPressed: () async {
                               await pickImageFromGallery();
-                              savePhotoProfile(valuePhotoProfile: uploadImage!);
+                              setState(() {
+                                imageFromPreferences = null;
+                              });
+                              loadImageFromPreferences();
                             },
                             child: Text(
                               "Change Photo",
@@ -599,8 +619,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                   ),
                                 ),
                                 onPressed: () async {
-                                  savePhotoProfile(
-                                      valuePhotoProfile: uploadImage!);
                                   final form = formKey.currentState;
                                   if (form != null && form.validate()) {
                                     form.save();
