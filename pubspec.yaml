@@ -83,6 +83,7 @@ flutter:
     - assets/icons/payment/
     - assets/icons/bottom_navigation_bar/
     - assets/icons/progress_indicator/
+    - assets/icons/booking_via_chat/
 
     - assets/images/
     - assets/images/notification/

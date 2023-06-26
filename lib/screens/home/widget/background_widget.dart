@@ -94,15 +94,18 @@ class _BackgroundWidgetState extends State<BackgroundWidget> {
                           ),
                         ],
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          //OnTab di Notifikasi
-                          Navigator.pushNamed(context, '/notification');
-                        },
-                        child: SvgPicture.asset(
-                          "assets/images/home/notification-home.svg",
-                          height: 32,
-                          width: 32,
+                      Padding(
+                        padding: const EdgeInsets.only(left: 125),
+                        child: GestureDetector(
+                          onTap: () {
+                            //OnTab di Notifikasi
+                            Navigator.pushNamed(context, '/notification');
+                          },
+                          child: SvgPicture.asset(
+                            "assets/images/home/notification-home.svg",
+                            height: 32,
+                            width: 32,
+                          ),
                         ),
                       ),
                       GestureDetector(
