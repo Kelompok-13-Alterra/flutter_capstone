@@ -120,83 +120,87 @@ class _DetailScreenState extends State<DetailScreen> {
                       OfficeDescription(
                         description: detail?.description ?? '',
                       ),
-                      Padding(
-                        padding: isBookingFormVisible
-                            ? const EdgeInsets.all(16)
-                            : const EdgeInsets.fromLTRB(16, 16, 16, 0),
-                        child: Column(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                ElevatedButton(
-                                  style: ButtonStyle(
-                                    elevation: MaterialStateProperty.all(0),
-                                    backgroundColor: MaterialStateProperty.all(
-                                      Colors.white,
-                                    ),
-                                    shape: MaterialStateProperty.all<
-                                        RoundedRectangleBorder>(
-                                      RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(100),
-                                        side: BorderSide(
-                                            color: PrimaryColor().primary,
-                                            width: 2.0),
+                      widget.textButton == 'Booking via Aplication'
+                          ? Padding(
+                              padding: isBookingFormVisible
+                                  ? const EdgeInsets.all(16)
+                                  : const EdgeInsets.fromLTRB(16, 16, 16, 0),
+                              child: Column(
+                                children: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      ElevatedButton(
+                                        style: ButtonStyle(
+                                          elevation:
+                                              MaterialStateProperty.all(0),
+                                          backgroundColor:
+                                              MaterialStateProperty.all(
+                                            Colors.white,
+                                          ),
+                                          shape: MaterialStateProperty.all<
+                                              RoundedRectangleBorder>(
+                                            RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(100),
+                                              side: BorderSide(
+                                                  color: PrimaryColor().primary,
+                                                  width: 2.0),
+                                            ),
+                                          ),
+                                        ),
+                                        onPressed: () {
+                                          setState(
+                                            () {
+                                              isBookingFormVisible =
+                                                  !isBookingFormVisible;
+                                            },
+                                          );
+                                        },
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 16),
+                                          child: Row(
+                                            children: [
+                                              Text(
+                                                'Bookng via Form',
+                                                style: setTextStyle(
+                                                        SourceColor().black)
+                                                    .copyWith(
+                                                        fontWeight: bold,
+                                                        fontSize: 10),
+                                              ),
+                                              const SizedBox(
+                                                width: 5,
+                                              ),
+                                              isBookingFormVisible
+                                                  ? SvgPicture.asset(
+                                                      "assets/icons/detail/up.svg")
+                                                  : SvgPicture.asset(
+                                                      "assets/icons/detail/down.svg"),
+                                            ],
+                                          ),
+                                        ),
                                       ),
-                                    ),
+                                    ],
                                   ),
-                                  onPressed: () {
-                                    setState(
-                                      () {
-                                        isBookingFormVisible =
-                                            !isBookingFormVisible;
-                                      },
-                                    );
-                                  },
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 16),
-                                    child: Row(
-                                      children: [
-                                        Text(
-                                          'Bookng via Form',
-                                          style:
-                                              setTextStyle(SourceColor().black)
-                                                  .copyWith(
-                                                      fontWeight: bold,
-                                                      fontSize: 10),
-                                        ),
-                                        const SizedBox(
-                                          width: 5,
-                                        ),
-                                        isBookingFormVisible
-                                            ? SvgPicture.asset(
-                                                "assets/icons/detail/up.svg")
-                                            : SvgPicture.asset(
-                                                "assets/icons/detail/down.svg"),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            isBookingFormVisible
-                                ? const SizedBox(
-                                    height: 16,
-                                  )
-                                : Container(),
-                            isBookingFormVisible
-                                ? FormBoooking(
-                                    nameOffice:
-                                        detail?.name ?? 'Untrack Office',
-                                    officeId: widget.officeId,
-                                    imageUrl: detail?.imageUrl ?? '',
-                                  )
-                                : Container()
-                          ],
-                        ),
-                      ),
+                                  isBookingFormVisible
+                                      ? const SizedBox(
+                                          height: 16,
+                                        )
+                                      : Container(),
+                                  isBookingFormVisible
+                                      ? FormBoooking(
+                                          nameOffice:
+                                              detail?.name ?? 'Untrack Office',
+                                          officeId: widget.officeId,
+                                          imageUrl: detail?.imageUrl ?? '',
+                                        )
+                                      : Container()
+                                ],
+                              ),
+                            )
+                          : Container(),
                       // Button Book via Aplication
                       //================================================================
                       !isBookingFormVisible
