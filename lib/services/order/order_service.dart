@@ -48,7 +48,7 @@ class OrderService {
             context,
             MaterialPageRoute(
               builder: (context) => DetailScreen(
-                textButton: 'Booking',
+                textButton: 'Booking via Aplication',
                 buttonRoute: '/booking',
                 officeId: args?.officeId ?? -1,
                 selectedDateRange: null,

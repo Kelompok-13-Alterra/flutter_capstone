@@ -1,5 +1,7 @@
 // ignore_for_file: deprecated_member_use, avoid_print, use_build_context_synchronously
 import 'package:flutter/material.dart';
+import 'package:flutter_capstone/screens/payment/detail_payment_screen.dart';
+import 'package:flutter_capstone/services/order/order_service.dart';
 import 'package:flutter_capstone/services/reschedule/reschedule_service.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_capstone/core/init/const/api.dart';
@@ -10,13 +12,17 @@ import 'package:flutter_capstone/widgets/modal_bottom.dart';
 
 class RescheduleViewModel extends ChangeNotifier {
   // ignore: body_might_complete_normally_nullable
+
+  bool isLoading = false;
   Future<int?> checkRescheduleOffice(
     BuildContext context,
     int officeId,
     String start,
     String end,
-    int idTransaction,
+    int? idTransaction,
     DateTimeRange? selectedDateRange,
+    bool reschedule,
+    String imgUrl,
   ) async {
     final url =
         '$baseUrl/api/v1/transaction/office/$officeId/availability-check';
@@ -41,7 +47,10 @@ class RescheduleViewModel extends ChangeNotifier {
         ),
       );
       if (response.statusCode == 201) {
-        updateRecheduleOffice(idTransaction, start, end);
+        if (idTransaction != null) {
+          updateRecheduleOffice(idTransaction, start, end);
+        }
+
         return showModalBottomSheet(
           context: context,
           isScrollControlled: true,
@@ -69,7 +78,9 @@ class RescheduleViewModel extends ChangeNotifier {
                     Padding(
                       padding: const EdgeInsets.only(top: 6, bottom: 16),
                       child: Text(
-                        'Jadwal office berhasil diganti!!!',
+                        reschedule
+                            ? 'Jadwal office berhasil diganti!!!'
+                            : 'Lanjutkan Pemesanan',
                         textAlign: TextAlign.center,
                         style: setTextStyle(NeutralColor().neutral17).copyWith(
                           fontSize: 12,
@@ -81,12 +92,43 @@ class RescheduleViewModel extends ChangeNotifier {
                       width: double.infinity,
                       height: 50,
                       child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.pushNamedAndRemoveUntil(
-                            context,
-                            '/bottom-nav',
-                            (route) => false,
-                          );
+                        onPressed: () async {
+                          if (reschedule) {
+                            Navigator.pushNamedAndRemoveUntil(
+                              context,
+                              '/bottom-nav',
+                              (route) => false,
+                            );
+                          } else if (reschedule == false) {
+                            isLoading = true;
+                            notifyListeners();
+                            var res = await OrderService().createOrder(
+                              context,
+                              officeId: officeId,
+                              startDate: start,
+                              endDate: end,
+                              paymentId: 'va-bni',
+                            );
+
+                            var transactionId = res.data.idTransaction;
+
+                            // print(
+                            //     "id : ${widget.officeId} start : ${startDateController.text} end : ${endDateController.text} transaction : ${transactionId}");
+
+                            isLoading = false;
+                            notifyListeners();
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => DetailPaymentScreen(
+                                  paymentId: transactionId,
+                                  officeId: officeId,
+                                  image: imgUrl,
+                                  selectedDateRange: start,
+                                ),
+                              ),
+                            );
+                          }
                         },
                         style: ButtonStyle(
                           elevation: MaterialStateProperty.all(0),
@@ -101,7 +143,11 @@ class RescheduleViewModel extends ChangeNotifier {
                           ),
                         ),
                         child: Text(
-                          'Kembali',
+                          reschedule
+                              ? 'Kembali'
+                              : isLoading
+                                  ? 'Memuat...'
+                                  : 'Lanjutkan Pembayaran',
                           style:
                               setTextStyle(PrimaryColor().onPrimary).copyWith(
                             fontSize: 14,

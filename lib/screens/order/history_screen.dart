@@ -63,7 +63,7 @@ class _HistoryOrderScreenState extends State<HistoryOrderScreen> {
                           context,
                           MaterialPageRoute(
                             builder: (context) => DetailScreen(
-                              textButton: 'Booking',
+                              textButton: 'Booking via Aplication',
                               officeId: data.officeId,
                               buttonRoute: '/booking',
                               selectedDateRange: null,
