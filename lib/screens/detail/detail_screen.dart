@@ -3,9 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_capstone/screens/detail/widget/bottom_book.dart';
 import 'package:flutter_capstone/screens/detail/widget/detail_card.dart';
 import 'package:flutter_capstone/screens/detail/widget/fasilities.dart';
+import 'package:flutter_capstone/screens/detail/widget/form_booking.dart';
 import 'package:flutter_capstone/screens/detail/widget/image_detail.dart';
 import 'package:flutter_capstone/screens/detail/widget/office_description.dart';
 import 'package:flutter_capstone/screens/errors/connection_error.dart';
+import 'package:flutter_capstone/style/text_style.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_capstone/screens/detail/detail_view_model.dart';
 import 'dart:async';
@@ -54,6 +58,8 @@ class _DetailScreenState extends State<DetailScreen> {
     super.initState();
   }
 
+  bool isBookingFormVisible = false;
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -66,7 +72,7 @@ class _DetailScreenState extends State<DetailScreen> {
               builder: (context) => DetailScreen(
                 officeId: widget.officeId,
                 buttonRoute: '/booking',
-                textButton: 'Book',
+                textButton: 'Booking via Aplication',
               ),
             ),
           );
@@ -86,6 +92,7 @@ class _DetailScreenState extends State<DetailScreen> {
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.done) {
                 final detail = provider.detailData;
+
                 return SingleChildScrollView(
                   child: Column(
                     children: <Widget>[
@@ -113,20 +120,103 @@ class _DetailScreenState extends State<DetailScreen> {
                       OfficeDescription(
                         description: detail?.description ?? '',
                       ),
-                      // Button Book
+                      widget.textButton == 'Booking via Aplication'
+                          ? Padding(
+                              padding: isBookingFormVisible
+                                  ? const EdgeInsets.all(16)
+                                  : const EdgeInsets.fromLTRB(16, 16, 16, 0),
+                              child: Column(
+                                children: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      ElevatedButton(
+                                        style: ButtonStyle(
+                                          elevation:
+                                              MaterialStateProperty.all(0),
+                                          backgroundColor:
+                                              MaterialStateProperty.all(
+                                            Colors.white,
+                                          ),
+                                          shape: MaterialStateProperty.all<
+                                              RoundedRectangleBorder>(
+                                            RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(100),
+                                              side: BorderSide(
+                                                  color: PrimaryColor().primary,
+                                                  width: 2.0),
+                                            ),
+                                          ),
+                                        ),
+                                        onPressed: () {
+                                          setState(
+                                            () {
+                                              isBookingFormVisible =
+                                                  !isBookingFormVisible;
+                                            },
+                                          );
+                                        },
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 16),
+                                          child: Row(
+                                            children: [
+                                              Text(
+                                                'Bookng via Form',
+                                                style: setTextStyle(
+                                                        SourceColor().black)
+                                                    .copyWith(
+                                                        fontWeight: bold,
+                                                        fontSize: 10),
+                                              ),
+                                              const SizedBox(
+                                                width: 5,
+                                              ),
+                                              isBookingFormVisible
+                                                  ? SvgPicture.asset(
+                                                      "assets/icons/detail/up.svg")
+                                                  : SvgPicture.asset(
+                                                      "assets/icons/detail/down.svg"),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  isBookingFormVisible
+                                      ? const SizedBox(
+                                          height: 16,
+                                        )
+                                      : Container(),
+                                  isBookingFormVisible
+                                      ? FormBoooking(
+                                          nameOffice:
+                                              detail?.name ?? 'Untrack Office',
+                                          officeId: widget.officeId,
+                                          imageUrl: detail?.imageUrl ?? '',
+                                        )
+                                      : Container()
+                                ],
+                              ),
+                            )
+                          : Container(),
+                      // Button Book via Aplication
                       //================================================================
-                      BottomBook(
-                        function: null,
-                        officeId: widget.officeId,
-                        buttonRoute: widget.buttonRoute,
-                        textButton: widget.textButton,
-                        image: detail?.imageUrl ?? '',
-                        selectedDateRange: widget.selectedDateRange,
-                        price: detail?.price ?? 0,
-                        name: detail?.name ?? 'Untrack Office',
-                        type: detail?.type,
-                        location: detail?.location ?? '',
-                      ),
+                      !isBookingFormVisible
+                          ? BottomBook(
+                              function: null,
+                              officeId: widget.officeId,
+                              buttonRoute: widget.buttonRoute,
+                              textButton: widget.textButton,
+                              image: detail?.imageUrl ?? '',
+                              selectedDateRange: widget.selectedDateRange,
+                              price: detail?.price ?? 0,
+                              name: detail?.name ?? 'Untrack Office',
+                              type: detail?.type,
+                              location: detail?.location ?? '',
+                            )
+                          : Container(),
                     ],
                   ),
                 );

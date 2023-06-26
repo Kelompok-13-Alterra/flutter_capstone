@@ -78,7 +78,7 @@ class _TransactionFailedScreenState extends State<TransactionFailedScreen> {
                       MaterialPageRoute(
                         builder: (context) => DetailScreen(
                           buttonRoute: '/booking',
-                          textButton: 'Booking',
+                          textButton: 'Booking via Aplication',
                           officeId: widget.officeId,
                           selectedDateRange: null,
                         ),

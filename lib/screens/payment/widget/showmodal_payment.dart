@@ -37,6 +37,7 @@ class ShowModalPayment extends StatefulWidget {
 }
 
 class _ShowModalPaymentState extends State<ShowModalPayment> {
+  bool isLoading = false;
   Widget buildListVirtualAccount(BuildContext context) {
     return Consumer<PaymentViewModel>(builder: (context, provider, _) {
       return Column(
@@ -660,6 +661,9 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                     ),
                   ),
                   onPressed: () async {
+                    setState(() {
+                      isLoading = true;
+                    });
                     var res = await OrderService().createOrder(
                       context,
                       officeId: widget.officeId,
@@ -684,12 +688,18 @@ class _ShowModalPaymentState extends State<ShowModalPayment> {
                         ),
                       ),
                     );
+
+                    setState(() {
+                      isLoading = false;
+                    });
                   },
-                  child: Text(
-                    "Bayar",
-                    style: setTextStyle(SourceColor().white)
-                        .copyWith(fontWeight: medium, fontSize: 14),
-                  ),
+                  child: isLoading
+                      ? const CircularProgressIndicator()
+                      : Text(
+                          "Bayar",
+                          style: setTextStyle(SourceColor().white)
+                              .copyWith(fontWeight: medium, fontSize: 14),
+                        ),
                 ),
               ),
             ),
