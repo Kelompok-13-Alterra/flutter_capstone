@@ -217,39 +217,39 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     );
   }
 
-  Future<void> pickImageFromGallery() async {
-    final picker = ImagePicker();
-    XFile? image = await picker.pickImage(source: ImageSource.gallery);
-    try {
-      if (image != null) {
-        setState(() {
-          setImageFile(image);
-        });
-      }
-    } catch (e) {
-      rethrow;
-    }
-  }
+  // Future<void> pickImageFromGallery() async {
+  //   final picker = ImagePicker();
+  //   XFile? image = await picker.pickImage(source: ImageSource.gallery);
+  //   try {
+  //     if (image != null) {
+  //       setState(() {
+  //         setImageFile(image);
+  //       });
+  //     }
+  //   } catch (e) {
+  //     rethrow;
+  //   }
+  // }
 
-  void setImageFile(XFile? file) async {
-    if (file != null) {
-      setState(() {
-        _imageFile = [file];
-        uploadImage = file.path;
-      });
-    }
-  }
+  // void setImageFile(XFile? file) async {
+  //   if (file != null) {
+  //     setState(() {
+  //       _imageFile = [file];
+  //       uploadImage = file.path;
+  //     });
+  //   }
+  // }
 
-  loadImageFromPreferences() {
-    Utility.getImageFromPreferences().then((img) {
-      if (null == img) {
-        return;
-      }
-      setState(() {
-        imageFromPreferences = Utility.imageFromBase64String(img);
-      });
-    });
-  }
+  // loadImageFromPreferences() {
+  //   Utility.getImageFromPreferences().then((img) {
+  //     if (null == img) {
+  //       return;
+  //     }
+  //     setState(() {
+  //       imageFromPreferences = Utility.imageFromBase64String(img);
+  //     });
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -336,11 +336,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               ),
                             ),
                             onPressed: () async {
-                              await pickImageFromGallery();
                               setState(() {
                                 imageFromPreferences = null;
                               });
-                              loadImageFromPreferences();
                             },
                             child: Text(
                               "Change Photo",
