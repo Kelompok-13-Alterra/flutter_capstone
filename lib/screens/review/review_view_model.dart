@@ -32,7 +32,6 @@ class ReviewViewModel extends ChangeNotifier {
 
   onRatingUpdate(rating) {
     _rating = rating;
-    print("halo ${_rating}");
     notifyListeners();
   }
 

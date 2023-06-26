@@ -1,5 +1,6 @@
 // ignore_for_file: deprecated_member_use, avoid_print, use_build_context_synchronously
 import 'package:flutter/material.dart';
+import 'package:flutter_capstone/screens/bottom_nav/bottom_nav_screen.dart';
 import 'package:flutter_capstone/screens/payment/detail_payment_screen.dart';
 import 'package:flutter_capstone/services/order/order_service.dart';
 import 'package:flutter_capstone/services/reschedule/reschedule_service.dart';
@@ -94,9 +95,11 @@ class RescheduleViewModel extends ChangeNotifier {
                       child: ElevatedButton(
                         onPressed: () async {
                           if (reschedule) {
-                            Navigator.pushNamedAndRemoveUntil(
+                            Navigator.pushAndRemoveUntil(
                               context,
-                              '/bottom-nav',
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const BottomNavScreen(selectedIndex: 1)),
                               (route) => false,
                             );
                           } else if (reschedule == false) {
@@ -111,9 +114,6 @@ class RescheduleViewModel extends ChangeNotifier {
                             );
 
                             var transactionId = res.data.idTransaction;
-
-                            // print(
-                            //     "id : ${widget.officeId} start : ${startDateController.text} end : ${endDateController.text} transaction : ${transactionId}");
 
                             isLoading = false;
                             notifyListeners();

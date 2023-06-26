@@ -21,7 +21,6 @@ class NotificationService {
           },
         ),
       );
-      // print(response.data);
       return NotificationModel.fromJson(response.data);
     } on DioError catch (e) {
       throw Exception(e);

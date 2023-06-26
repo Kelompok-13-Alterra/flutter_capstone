@@ -28,12 +28,7 @@ class ReviewService {
             "star": star,
             "tags": tags,
           }));
-      print("id : ${transactionId}");
-      print("desc : ${description}}");
-      print("star : ${star}");
-      print("tags : ${tags}");
       if (response.statusCode == 201) {
-        print("Berhasil ${response.data}");
         return modalBottomSheet(
           context,
           img: 'assets/images/rating/success_to_rate.png',
@@ -47,7 +42,6 @@ class ReviewService {
         );
       }
     } on DioError catch (e) {
-      print(e.response?.data);
       if (e.response!.statusCode == 500) {
         return modalBottomSheet(
           context,

@@ -650,14 +650,6 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                                     provider.isDetailTransaksi == true
                                         ? buildDetailTransaksi(context)
                                         : Container(),
-                                    // ElevatedButton(
-                                    //     onPressed: () async {
-                                    //       await provider.getMidtrans(
-                                    //           paymentId: widget.paymentId);
-                                    //       print(
-                                    //           provider.getMidtransModel.data!.status);
-                                    //     },
-                                    //     child: Text('Refresh')),
                                   ],
                                 ),
                               )
@@ -668,12 +660,6 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
                     )
                   ],
                 ),
-                // body: Center(
-                //   child: Text(
-                //     'Countdown: ${getTimeRemaining()}',
-                //     style: TextStyle(fontSize: 20),
-                //   ),
-                // ),
               );
             }
           } else if (snapshot.hasError) {

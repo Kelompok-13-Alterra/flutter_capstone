@@ -18,8 +18,6 @@ class DetailService {
           },
         ),
       );
-      // print(response);
-
       return response;
     } catch (e) {
       return Future.error(e);

@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_capstone/core/init/utils/shared_preferences.dart';
 import 'package:flutter_capstone/model/profile/profile_model.dart';
 import 'package:flutter_capstone/screens/profile/widget/cards_profile_widget.dart';
 import 'package:flutter_capstone/screens/profile/widget/profiles_widget.dart';
@@ -62,13 +65,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            SizedBox(
-                              width: 88,
-                              height: 88,
-                              child: CircleAvatar(
-                                backgroundColor:
-                                    SecondaryColor().secondaryFixedDim,
-                              ),
+                            FutureBuilder(
+                              future: getPhotoProfile(),
+                              builder: (context, snapshot) {
+                                if (snapshot.hasData) {
+                                  return ClipOval(
+                                      child: Image.file(
+                                    File(snapshot.data!),
+                                    width: 100,
+                                    height: 100,
+                                  ));
+                                } else {
+                                  return SizedBox(
+                                    width: 100,
+                                    height: 100,
+                                    child: CircleAvatar(
+                                      backgroundColor:
+                                          SecondaryColor().secondaryFixedDim,
+                                    ),
+                                  );
+                                }
+                              },
                             ),
                             Padding(
                               padding: const EdgeInsets.symmetric(

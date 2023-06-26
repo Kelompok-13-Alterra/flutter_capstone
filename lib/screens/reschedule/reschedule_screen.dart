@@ -33,7 +33,7 @@ class _RescheduleScreenState extends State<RescheduleScreen> {
       final detailViewModel =
           Provider.of<DetailViewModel>(context, listen: false);
       final data = detailViewModel.getOfficeDetail(args['officeId']);
-      print('data $data');
+
       detailDataFuture = data.then((data) {
         detailViewModel.checkOpeningStatus(detailViewModel.detailData!.open,
             detailViewModel.detailData!.close);
@@ -44,8 +44,7 @@ class _RescheduleScreenState extends State<RescheduleScreen> {
   @override
   Widget build(BuildContext context) {
     final args = ModalRoute.of(context)!.settings.arguments as Map;
-    print(
-        'Payment ID on detail schedule: ${args['ID']} officeID : ${args['officeId']}');
+
     return WillPopScope(
       onWillPop: () async {
         Navigator.pushNamedAndRemoveUntil(

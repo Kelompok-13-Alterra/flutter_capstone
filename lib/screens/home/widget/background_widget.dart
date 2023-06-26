@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -95,7 +96,7 @@ class _BackgroundWidgetState extends State<BackgroundWidget> {
                         ],
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 125),
+                        padding: const EdgeInsets.only(left: 130),
                         child: GestureDetector(
                           onTap: () {
                             //OnTab di Notifikasi
@@ -109,16 +110,23 @@ class _BackgroundWidgetState extends State<BackgroundWidget> {
                         ),
                       ),
                       GestureDetector(
-                        onTap: () {
-                          //OnTab di Notifikasi
-                          Navigator.pushNamed(context, '/booking-via-chat');
-                        },
-                        child: Image.asset(
-                          "assets/icons/booking_via_chat/chat.png",
-                          height: 32,
-                          width: 32,
-                        ),
-                      ),
+                          onTap: () {
+                            //OnTab di Notifikasi
+                            Navigator.pushNamed(context, '/booking-via-chat');
+                          },
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Container(
+                              width: 32,
+                              height: 32,
+                              color: SourceColor().white,
+                              child: Icon(
+                                Icons.chat_outlined,
+                                size: 25,
+                                color: PrimaryColor().primary,
+                              ),
+                            ),
+                          )),
                     ],
                   ),
                   //Card Location

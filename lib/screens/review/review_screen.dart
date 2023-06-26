@@ -45,7 +45,6 @@ class _ReviewScreenState extends State<ReviewScreen> {
 
     //Provider
     ReviewViewModel reviewProvider = Provider.of<ReviewViewModel>(context);
-    print("tes : ${args?.transactionId}");
 
     //Submit review
     _submitReview() async {
@@ -65,17 +64,9 @@ class _ReviewScreenState extends State<ReviewScreen> {
           tags: reviewProvider.reviewList,
         );
       }
-      print("args : ${args?.transactionId}");
       reviewProvider.clearField;
-      // setState(() {
-      //   reviewProvider.reviewController.clear();
       // });
     }
-
-    print('Id Traksaksi : ${args?.transactionId}');
-    print("desc : ${reviewProvider.reviewController.text}}");
-    print("star : ${reviewProvider.rating}");
-    print("tags : ${reviewProvider.reviewList}");
 
     return Scaffold(
       appBar: AppBar(

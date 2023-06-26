@@ -149,7 +149,6 @@ class PaymentViewModel extends ChangeNotifier {
       _midtransModel =
           await midtransService.getPayment(transactionId: paymentId);
       notifyListeners();
-      // print(_midtransModel?.data?.office);
       return _midtransModel;
     } catch (e) {
       rethrow;

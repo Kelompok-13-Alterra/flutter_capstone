@@ -20,8 +20,6 @@ class ProfileService extends ChangeNotifier {
           },
         ),
       );
-      print("Profile : ${response.data}");
-
       notifyListeners();
       if (response.statusCode == 200) {
         return ProfileModel.fromJson(response.data);
@@ -34,7 +32,7 @@ class ProfileService extends ChangeNotifier {
     }
   }
 
-    Future<ProfileModel> profile() async {
+  Future<ProfileModel> profile() async {
     String token = await getToken();
     try {
       final response = await Dio().get(
@@ -47,8 +45,6 @@ class ProfileService extends ChangeNotifier {
           },
         ),
       );
-      print("Profile : ${response.data}");
-
       if (response.statusCode == 200) {
         return ProfileModel.fromJson(response.data);
       } else {

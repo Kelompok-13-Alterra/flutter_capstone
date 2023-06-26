@@ -1,10 +1,12 @@
 // ignore_for_file: unused_field, no_leading_underscores_for_local_identifiers, avoid_print
 
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter_capstone/core/init/utils/shared_preferences.dart';
+import 'package:flutter_capstone/screens/bottom_nav/bottom_nav_screen.dart';
 import 'package:flutter_capstone/screens/profile/profile_screen.dart';
 import 'package:flutter_capstone/style/text_style.dart';
 import 'package:flutter_capstone/screens/edit_profile/edit_profile_view_model.dart';
-
 import 'package:intl/intl.dart';
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:image_picker/image_picker.dart';
@@ -27,6 +29,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   final TextEditingController _dateController = TextEditingController();
 
   XFile? selectedImage;
+  List? _imageFile;
+  String? uploadImage;
 
   void _togglePasswordVisibility() {
     setState(() {
@@ -184,7 +188,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.of(context).pushNamed('/bottom-nav');
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) =>
+                          const BottomNavScreen(selectedIndex: 2)));
                 },
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size(328, 50),
@@ -209,10 +215,27 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     );
   }
 
-  Future<XFile?> pickImageFromGallery() async {
+  Future<void> pickImageFromGallery() async {
     final picker = ImagePicker();
     XFile? image = await picker.pickImage(source: ImageSource.gallery);
-    return image;
+    try {
+      if (image != null) {
+        setState(() {
+          setImageFile(image);
+        });
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  void setImageFile(XFile? file) {
+    if (file != null) {
+      setState(() {
+        _imageFile = [file];
+        uploadImage = file.path;
+      });
+    }
   }
 
   @override
@@ -258,9 +281,27 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     child: Center(
                       child: Column(
                         children: [
-                          CircleAvatar(
-                            backgroundColor: SecondaryColor().secondaryFixedDim,
-                            radius: 44,
+                          FutureBuilder(
+                            future: getPhotoProfile(),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                return ClipOval(
+                                    child: Image.file(
+                                  File(snapshot.data!),
+                                  width: 100,
+                                  height: 100,
+                                ));
+                              } else {
+                                return SizedBox(
+                                  width: 100,
+                                  height: 100,
+                                  child: CircleAvatar(
+                                    backgroundColor:
+                                        SecondaryColor().secondaryFixedDim,
+                                  ),
+                                );
+                              }
+                            },
                           ),
                           const SizedBox(
                             height: 12,
@@ -279,12 +320,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               ),
                             ),
                             onPressed: () async {
-                              XFile? image = await pickImageFromGallery();
-                              if (image != null) {
-                                setState(() {
-                                  selectedImage = image;
-                                });
-                              }
+                              await pickImageFromGallery();
+                              savePhotoProfile(valuePhotoProfile: uploadImage!);
                             },
                             child: Text(
                               "Change Photo",
@@ -562,6 +599,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                   ),
                                 ),
                                 onPressed: () async {
+                                  savePhotoProfile(
+                                      valuePhotoProfile: uploadImage!);
                                   final form = formKey.currentState;
                                   if (form != null && form.validate()) {
                                     form.save();
@@ -588,7 +627,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                   style: setTextStyle(SourceColor().white)
                                       .copyWith(
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 18,
+                                    fontSize: 14,
                                   ),
                                 ),
                               ),
