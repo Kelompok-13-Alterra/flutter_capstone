@@ -1,7 +1,6 @@
-// ignore_for_file: unused_field, no_leading_underscores_for_local_identifiers, avoid_print
+// ignore_for_file: unused_field, no_leading_underscores_for_local_identifiers, avoid_print, unnecessary_null_comparison
 
 import 'dart:io';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_capstone/core/init/utils/shared_preferences.dart';
 import 'package:flutter_capstone/screens/bottom_nav/bottom_nav_screen.dart';
